@@ -1,0 +1,7 @@
+
+RemixGemHelperDB = {
+["show_primordial"] = false,
+["show_helpframe"] = true,
+["show_frame"] = true,
+["show_unowned"] = false,
+}

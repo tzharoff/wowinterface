@@ -1,0 +1,143 @@
+
+EncounterDetailsDB = {
+	["chartData"] = {
+		[58] = {
+			["Raid Damage Done"] = {
+				6104, -- [1]
+				35155, -- [2]
+				["max_value"] = 35155,
+				["__time"] = 1694559695,
+			},
+		},
+		[59] = {
+			["Raid Damage Done"] = {
+				6104, -- [1]
+				["max_value"] = 6104,
+				["__time"] = 1694559697,
+			},
+		},
+		[60] = {
+			["Raid Damage Done"] = {
+				6104, -- [1]
+				18312, -- [2]
+				0, -- [3]
+				6104, -- [4]
+				12208, -- [5]
+				["max_value"] = 18312,
+				["__time"] = 1694559706,
+			},
+		},
+		[61] = {
+			["Raid Damage Done"] = {
+				["__time"] = 1694559723,
+			},
+		},
+		[62] = {
+			["Raid Damage Done"] = {
+				["__time"] = 1694559734,
+			},
+		},
+		[63] = {
+			["Raid Damage Done"] = {
+				["__time"] = 1694559752,
+			},
+		},
+		[64] = {
+			["Raid Damage Done"] = {
+				["__time"] = 1694559770,
+			},
+		},
+		[66] = {
+			["Raid Damage Done"] = {
+				["__time"] = 1694559794,
+			},
+		},
+		[68] = {
+			["Raid Damage Done"] = {
+				["__time"] = 1694559873,
+			},
+		},
+		[67] = {
+			["Raid Damage Done"] = {
+				["__time"] = 1694559873,
+			},
+		},
+		[49] = {
+			["Raid Damage Done"] = {
+				147348, -- [1]
+				0, -- [2]
+				294700, -- [3]
+				["max_value"] = 294700,
+				["__time"] = 1694559293,
+			},
+		},
+		[50] = {
+			["Raid Damage Done"] = {
+				["__time"] = 1694559309,
+			},
+		},
+		[51] = {
+			["Raid Damage Done"] = {
+				147348, -- [1]
+				["max_value"] = 147348,
+				["__time"] = 1694559589,
+			},
+		},
+		[52] = {
+			["Raid Damage Done"] = {
+				210497, -- [1]
+				147348, -- [2]
+				["max_value"] = 210497,
+				["__time"] = 1694559603,
+			},
+		},
+		[53] = {
+			["Raid Damage Done"] = {
+				157874, -- [1]
+				0, -- [2]
+				["max_value"] = 157874,
+				["__time"] = 1694559625,
+			},
+		},
+		[54] = {
+			["Raid Damage Done"] = {
+				["__time"] = 1694559634,
+			},
+		},
+		[55] = {
+			["Raid Damage Done"] = {
+				["__time"] = 1694559655,
+			},
+		},
+		[56] = {
+			["Raid Damage Done"] = {
+				["__time"] = 1694559678,
+			},
+		},
+		[57] = {
+			["Raid Damage Done"] = {
+				101876, -- [1]
+				["max_value"] = 101876,
+				["__time"] = 1694559688,
+			},
+		},
+		[65] = {
+			["Raid Damage Done"] = {
+				["__time"] = 1694559794,
+			},
+		},
+	},
+	["encounter_spells"] = {
+	},
+	["emotes"] = {
+		{
+			["boss"] = "Loatheb",
+		}, -- [1]
+		{
+			["boss"] = "Heigan the Unclean",
+		}, -- [2]
+		{
+			["boss"] = "Noth the Plaguebringer",
+		}, -- [3]
+	},
+}

@@ -1,0 +1,33 @@
+VER 3 0100000000000004 "A" "134400"
+#showtooltip
+/cast Avatar
+/cast Demoralizing Shout
+END
+VER 3 0100000000000001 "Colussus Smash" "134400"
+#showtooltip
+/cast Colossus Smash
+/cast Avatar
+/use 13
+END
+VER 3 0100000000000002 "Mortal Strike" "134400"
+#showtooltip
+/cast Mortal Strike
+/use 13
+/use 14
+END
+VER 3 0100000000000003 "Shield" "134400"
+#showtooltip
+/cast Shield Slam
+/use 14
+END
+VER 3 0100000000000007 "SMS" "134400"
+#showtooltip Mortal Strike
+/cast Sharpen Blade
+/cast Mortal Strike
+END
+VER 3 0100000000000005 "VuhDoDCShieldData" "Ability_Repair"
+P[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]1WM[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
+END
+VER 3 0100000000000006 "VuhDoDCShieldNames" "Ability_Repair"
+N[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]Mon[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
+END

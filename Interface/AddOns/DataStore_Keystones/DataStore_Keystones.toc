@@ -1,0 +1,13 @@
+## Interface: 110000
+## Title: DataStore_Keystones
+## Notes: Stores information about Mythic+ Keystones
+## Author: Teelo (US-Jubei'thos)
+## Version: 11.0-001
+## Dependencies: DataStore, DataStore_Containers
+## OptionalDeps: Ace3
+## SavedVariables: DataStore_KeystonesDB
+## X-Category: Interface Enhancements
+## X-Curse-Project-ID: 411498
+
+DataStore_Keystones.lua
+

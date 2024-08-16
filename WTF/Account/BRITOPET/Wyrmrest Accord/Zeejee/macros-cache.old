@@ -1,0 +1,19 @@
+VER 3 0100000000000006 "feather" "134400"
+#showtooltip Angelic Feather
+/cast [@player, nomod] Angelic Feather; [@cursor, mod:alt] Angelic Feather
+END
+VER 3 0100000000000001 "Icethorn" "Ability_Creature_Poison_03"
+/use milling
+/use adder's tongue
+END
+VER 3 0100000000000003 "MillButtonMacro" "ability_miling"
+#showtooltip Milling
+/click TSMDestroyButton
+END
+VER 3 0100000000000004 "zMilling" "RACIAL_TROLL_BERSERK"
+/run function FnH() for i=0,4 do for j=1,GetContainerNumSlots(i) do local t={GetItemInfo(GetContainerItemLink(i,j) or 0)} if t[7]=="Herb" and select(2,GetContainerItemInfo(i,j))>=5 and t[11]>=200 then return i.." "..j,t[1] end end end end
+END
+VER 3 0100000000000005 "zzMilling" "ACHIEVEMENT_GUILDPERK_MOBILEBANKING"
+/run local f,l,n=AuM or CreateFrame("Button","AuM",nil,"SecureActionButtonTemplate") f:SetAttribute("type","macro") l,n=FnH() if l then f:SetAttribute("macrotext","/cast Milling\n/use "..l) SetMacroItem("zzMilling",n) end
+/click AuM
+END

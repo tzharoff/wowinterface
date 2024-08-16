@@ -1,0 +1,14 @@
+## Interface: 80000
+## Title: |c4069ccf0TargetHealthPercent|r
+## Version: 5.0
+## Notes: Display a small frame with the targets health in a percent
+## Author: subwired
+## SavedVariablesPerCharacter: TargetHealthPercentConfig
+
+TargetHealthPercentUI.lua
+TargetHealthPercent.lua
+
+
+
+
+

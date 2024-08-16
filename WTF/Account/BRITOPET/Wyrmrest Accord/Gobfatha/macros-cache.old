@@ -1,0 +1,16 @@
+VER 3 0100000000000003 "Misdirect" "INV_MISC_QUESTIONMARK"
+#showtooltip Misdirection
+/cast [@focus, help] [@pet, nodead, exists] Misdirection
+END
+VER 3 0100000000000002 "nana" "ABILITY_RACIAL_BETTERLIVINGTHROUGHCHEMISTRY"
+/cast bad manner
+END
+VER 3 0100000000000001 "PA" "Ability_BackStab"
+/petattack
+END
+VER 3 0100000000000004 "VuhDoDCShieldData" "Ability_Repair"
+P[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]1HM[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]0__
+END
+VER 3 0100000000000005 "VuhDoDCShieldNames" "Ability_Repair"
+N[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]Gob[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]Dev
+END

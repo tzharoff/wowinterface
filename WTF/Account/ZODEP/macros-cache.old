@@ -1,0 +1,42 @@
+VER 3 000000000000000C " " "INV_MISC_QUESTIONMARK"
+#showtooltip item:165802
+/run if not InCombatLockdown() then RHT.b:SetAttribute("item","Noble Gardener's Hearthstone") end
+/click RHTB X 1
+END
+VER 3 0000000000000004 "#show /qDeathStr" "INV_Misc_QuestionMark"
+#show death
+END
+VER 3 0000000000000009 "APR_MACRO" "134400"
+/script print('no button yet')
+END
+VER 3 0000000000000006 "assist" "Ability_Creature_Cursed_02"
+/assist chiarina
+END
+VER 3 0000000000000003 "BoneShield" "Spell_Shadow_FelArmour"
+/cast boneshield
+END
+VER 3 0000000000000007 "Cam" "Ability_CheapShot"
+/console CameraDistanceMaxfactor 4
+END
+VER 3 0000000000000005 "Null" "INV_Misc_QuestionMark"
+END
+VER 3 0000000000000008 "PA" "ABILITY_RACIAL_CANNIBALIZE"
+/petattack
+END
+VER 3 0000000000000001 "Pestilence" "Spell_Shadow_AbominationExplosion"
+/cast pestilence
+END
+VER 3 0000000000000002 "Strangulate" "Spell_Shadow_DestructiveSoul"
+/cast strangulate
+END
+VER 3 000000000000000A "ZygorAction1" "134327"
+#showtooltip Talk to Outrunner Alarion
+/run ZGV:MCM(4)
+/cleartarget
+/target Outrunner Alarion
+/run ZGV:MRM()
+END
+VER 3 000000000000000B "ZygorAction2" "134327"
+#showtooltip Shift click to destroy:|n|cff9d9d9d3 Inert Elemental Particle|r worth |cffffaa9963c|r|nRight click to skip this item|n
+/run ZGV.Inventory:HandleTrashMacro()
+END

@@ -1,0 +1,4 @@
+VER 3 0100000000000001 "SS" "INV_Misc_QuestionMark"
+#showtooltip
+/cast [target=player] Sacred Shield
+END

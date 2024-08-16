@@ -1,0 +1,15 @@
+Version: 1
+Frame: TargetHealthPercentBar
+FrameLevel: 1
+Anchor: RIGHT
+X: -129
+Y: -109
+W: 38
+H: 16
+Frame: scanner_button
+FrameLevel: 200
+Anchor: RIGHT
+X: -81
+Y: -130
+W: 200
+H: 50

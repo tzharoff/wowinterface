@@ -1,0 +1,49 @@
+VER 3 0100000000000004 "#1" "134400"
+#showtooltip
+/cast [@boss1] curse of exhaustion
+END
+VER 3 0100000000000007 "C" "134400"
+#showtooltip
+/cast [@mouseover, exists] [] Corruption
+END
+VER 3 010000000000000B "CD" "134400"
+#showtooltip
+/cast [@focus] Spell Lock(Command Demon Ability)
+END
+VER 3 010000000000000C "CoT" "134400"
+#showtooltip
+/cast [@focus] Curse of Tongues
+END
+VER 3 0100000000000009 "F" "134400"
+#showtooltip
+/cast [@focus] Fear
+END
+VER 3 010000000000000D "focus" "132160"
+/focus
+END
+VER 3 0100000000000008 "H" "134400"
+#showtooltip
+/cast [@mouseover, exists] [] Haunt
+END
+VER 3 010000000000000A "MC" "134400"
+#showtooltip
+/cast [@focus] Mortal Coil
+END
+VER 3 0100000000000005 "Seed" "134400"
+#showtooltip
+/cast [@mouseover, exists] [] Seed of Corruption
+END
+VER 3 0100000000000006 "SR" "134400"
+#showtooltip
+/cast [@mouseover, exists] [] Soul Rot
+END
+VER 3 0100000000000003 "UA" "134400"
+#showtooltip
+/cast [@mouseover, exists] [] Unstable Affliction
+END
+VER 3 0100000000000001 "VuhDoDCShieldData" "Ability_Repair"
+P[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]1LR[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]0__
+END
+VER 3 0100000000000002 "VuhDoDCShieldNames" "Ability_Repair"
+N[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]Hea[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]Rin
+END

@@ -1,0 +1,15 @@
+VER 3 0100000000000002 "LOL" "SPELL_HOLY_CHAMPIONSBOND"
+#showtooltip Shadow Dance
+/use Ruthless Gladiator's Badge of Conquest
+/use Berserking(Racial)
+/use Shadow Dance
+END
+VER 3 0100000000000001 "Tricks" "ABILITY_ROGUE_TRICKSOFTHETRADE"
+/cast [target=focus] Tricks of the Trade
+END
+VER 3 0100000000000003 "VuhDoDCShieldData" "Ability_Repair"
+P[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]1RM[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
+END
+VER 3 0100000000000004 "VuhDoDCShieldNames" "Ability_Repair"
+N[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]Zon[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
+END

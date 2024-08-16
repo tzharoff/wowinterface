@@ -1,0 +1,8 @@
+Version: 1
+Frame: TargetHealthPercentBar
+FrameLevel: 1
+Anchor: CENTER
+X: 205
+Y: -100
+W: 38
+H: 16

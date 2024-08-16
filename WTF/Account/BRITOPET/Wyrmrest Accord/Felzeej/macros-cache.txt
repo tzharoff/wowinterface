@@ -1,0 +1,34 @@
+VER 3 0100000000000003 "Agony" "134400"
+#showtooltip
+/cast [@mouseover,harm,nodead][] Agony
+END
+VER 3 0100000000000004 "Corruption" "134400"
+#showtooltip
+/cast [@mouseover,harm,nodead][] Corruption
+END
+VER 3 0100000000000007 "MC" "134400"
+#showtooltip
+/cast [@mouseover,harm,nodead][] Mortal Coil
+END
+VER 3 0100000000000009 "Seed" "134400"
+#showtooltip
+/cast [@mouseover,harm,nodead][] Seed of Corruption
+END
+VER 3 0100000000000005 "Siphon life" "134400"
+#showtooltip
+/cast [@mouseover,harm,nodead][] Siphon Life
+END
+VER 3 0100000000000008 "SR" "134400"
+#showtooltip
+/cast [@mouseover,harm,nodead][] Soul Rot
+END
+VER 3 0100000000000006 "UA" "134400"
+#showtooltip
+/cast [@mouseover,harm,nodead][] Unstable Affliction
+END
+VER 3 0100000000000001 "VuhDoDCShieldData" "Ability_Repair"
+P[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]1LR[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
+END
+VER 3 0100000000000002 "VuhDoDCShieldNames" "Ability_Repair"
+N[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]Fel[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
+END

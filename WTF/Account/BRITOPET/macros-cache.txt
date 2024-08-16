@@ -1,0 +1,243 @@
+VER 3 0000000000000040 " " "INV_MISC_QUESTIONMARK"
+#showtooltip item:208704
+/run if not InCombatLockdown() then RHT.b:SetAttribute("item","Deepdweller's Earthen Hearthstone") end
+/click RHTB X 1
+END
+VER 3 000000000000001F " " "Ability_Warrior_VictoryRush"
+#showtooltip Intervene
+/cast [target=focus] Intervene
+/cast |cffffd100|HclubFinder:ClubFinder-1-23986-1171-40780995|h[Guild: Kame House]|h|r
+END
+VER 3 0000000000000029 "AAP_MACRO" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/use Modified Blood Fetish
+END
+VER 3 0000000000000031 "aaRasz1" "236307"
+#showtooltip Spell Block
+#showicon Spell Block
+/cast Spell Reflection
+/cast Spell Block
+END
+VER 3 0000000000000032 "aaRasz2" "134400"
+#showtooltip Shield Wall
+#showicon Shield Wall
+/cast Shield Wall
+/cast Spell Reflection
+END
+VER 3 000000000000002A "ActionButton" "3050177"
+/click ExtraActionButton1
+END
+VER 3 0000000000000046 "Antique" "4555657"
+/run a=C_CurrencyInfo.GetCurrencyInfo(3010); print("You have earned " .. a.totalEarned .. " of " .. a.maxQuantity .. " possible bullion.")
+END
+VER 3 000000000000002E "APR_MACRO" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/use Teleportation Beacon
+END
+VER 3 0000000000000030 "Bombs" "132886"
+/rw BOMBS to MARKERS
+END
+VER 3 000000000000002F "Breath" "642418"
+/rw OMG LAZERS IN 3
+END
+VER 3 0000000000000035 "Cancel BoP" "135964"
+#showtooltip
+/cancelaura Blessing of Protection
+END
+VER 3 0000000000000042 "CD" "134400"
+#showtooltip
+/cast Recklessness
+/cast Avatar
+/cast Berserking
+END
+VER 3 0000000000000034 "Cliff" "4622502"
+#showtooltip
+/run if IsUsableSpell(368896) then C_MountJournal.SummonByID(1591) end
+/click MountJournalSummonRandomFavoriteButton
+/dismount [mounted]
+END
+VER 3 000000000000003E "colossus smash" "134400"
+#showtooltip
+/cast Colossus Smash
+/cast Avatar
+/cast Berserking(Racial)
+END
+VER 3 0000000000000045 "ConsolePort_Menu" "136243"
+/click CPMa
+/click CPMb
+/click CPMc
+/click CPMd
+/click CPMe
+/click CPMf
+/click CPMg
+/click CPMh
+/click CPMi
+/click CPMj
+/click CPMk
+/click CPMl
+/click CPMm
+/click CPMn
+/click CPMo
+/click CPMp
+/click CPMq
+END
+VER 3 000000000000002B "crackling" "136222"
+/tar crackling
+END
+VER 3 0000000000000015 "FS" "Ability_DualWieldSpecialization"
+/cast Frost Strike(Rank 6)
+/cast Rune Strike
+END
+VER 3 0000000000000027 "Gang" "Ability_Creature_Cursed_01"
+/e represents the Nether Angel's with a gang sign to %t.
+END
+VER 3 000000000000001B "GNO" "Spell_Nature_UnrelentingStorm"
+#showtooltip Shield Block
+/e remembers he has a shield to hide behind!
+/cast Shield Block
+END
+VER 3 0000000000000017 "HB" "Ability_Mage_Invisibility"
+/cast Howling Blast(Rank 4)
+/cast Rune Strike
+END
+VER 3 000000000000003F "Heroic Leap" "134400"
+#showtooltip Heroic Leap
+/cast [@cursor] Heroic Leap
+END
+VER 3 0000000000000038 "High" "4622497"
+/cancelform
+/run local z={2022,2023,2024,2025,2026,2085,2093,2112,2134,2135} for i=1,#z do if (z[i]==C_Map.GetBestMapForUnit("player")) then return C_MountJournal.SummonByID(1563);end;end;C_MountJournal.SummonByID(0)
+END
+VER 3 0000000000000022 "Inv" "Ability_Mage_Invisibility"
+#showtooltip Invisibility
+/e flips everyone off and disappears!
+/cast Invisibility
+END
+VER 3 000000000000003C "Kame" "134400"
+/3 |cffffd100|HclubFinder:ClubFinder-1-23986-1171-40780995|h[Guild: Kame House]|h|r A PvE focused guild that runs m+ and raids fri/sat 6-9 pm server we are a cluster of sarcastic assholes that love to goof around and clear content pst for more info!
+END
+VER 3 000000000000001E "LFM" "INV_SCROLL_11"
+/2 <Dragon Soul> (10-man :: 6:45pm [Server Time]) LF 1 Healer (Paladin/Druid) [Fresh]
+END
+VER 3 000000000000000E "LOA" "SPELL_MISC_PETHEAL"
+/tar blessed
+/tar shadowed
+/script SetRaidTarget("target",8)
+/targetlasttarget
+END
+VER 3 000000000000002C "night terror" "136123"
+/tar night terror
+END
+VER 3 0000000000000024 "personalvent" "Ability_BullRush"
+/p Zeej's vent
+/p Vent IP: 70.85.251.61
+/p Vent Port: 3244
+/p  Vent Password: pedoz
+END
+VER 3 0000000000000013 "Pest" "Ability_Creature_Cursed_03"
+#showtooltip Pestilence
+/cast Pestilence
+/cast Rune Strike
+END
+VER 3 0000000000000004 "pet" "Ability_Mage_ArcaneBarrage"
+/petattack
+END
+VER 3 0000000000000036 "Proto" "4622499"
+/cancelform
+/run local z={2022,2023,2024,2025,2026,2085,2093,2112,2134,2135} for i=1,#z do if (z[i]==C_Map.GetBestMapForUnit("player")) then return C_MountJournal.SummonByID(1589);end;end;C_MountJournal.SummonByID(0)
+END
+VER 3 0000000000000012 "PS" "Ability_Creature_Cursed_02"
+/cast Plague Strike(Rank 6)
+/cast Rune Strike
+END
+VER 3 0000000000000028 "PULL5" "INV_GIZMO_ROCKETLAUNCHER"
+/dbm pull 5
+END
+VER 3 0000000000000011 "PWA" "Ability_Mage_ShatterShield"
+/powa
+END
+VER 3 0000000000000025 "Rev" "Spell_Shaman_TotemRecall"
+/cast Devastate(Rank 5)
+/cast Heroic Strike(Rank 13)
+END
+VER 3 0000000000000019 "SBF" "Spell_unused2"
+/sbf options
+END
+VER 3 0000000000000016 "Sindy" "Ability_Creature_Disease_02"
+/rw     {skull}}
+/rw  {x} {square}
+/rw {moon}       {triangle} 
+END
+VER 3 0000000000000010 "Sku" "Ability_BackStab"
+/script SetRaidTarget("target",8)
+END
+VER 3 0000000000000043 "sleep" "134400"
+/sleep
+END
+VER 3 0000000000000041 "Spear" "134400"
+#showtooltip
+/cast [@player] Champion's Spear
+END
+VER 3 000000000000001A "SW" "Ability_Warrior_ShieldWall"
+#showtooltip Shield Wall
+/e is empowered by an anchient spirit to be more resilient against damage.
+/cast Shield Wall
+END
+VER 3 000000000000001C "Taunt" "Ability_Warrior_Rampage"
+#showtooltip Taunt
+/e calls %t's a motherless ogre!
+/cast Taunt
+END
+VER 3 000000000000000C "Taunt" "Spell_Nature_Reincarnation"
+/e calls %t a motherless ogre!
+/cast Taunt
+END
+VER 3 000000000000003D "Testing" "136103"
+/3   A PvE focused guild that runs m+ and raids fri/sat 6-9 pm server we are a cluster of sarcastic assholes that love to goof around and clear content pst for more info or an invite
+END
+VER 3 000000000000000A "Time" "Spell_Shadow_FocusedPower"
+/tar time
+END
+VER 3 0000000000000005 "Vent" "Ability_Creature_Cursed_03"
+/p Vent Name: Nether Angels
+/p Vent IP: lego.pure-voice.net
+/p Vent Port: 3244
+/p Vent Password: pedoz
+END
+VER 3 000000000000000D "VentP" "Ability_Creature_Cursed_02"
+/ra Vent Name: Zeej's Vent
+/ra Vent IP: lego.pure-voice.net
+/ra Vent Port: 3244
+/ra Vent Password: pedoz
+END
+VER 3 000000000000002D "void" "1027879"
+/tar void
+END
+VER 3 0000000000000033 "WakeNBake" "132334"
+/ra https://discord.gg/enB7VVbytk
+END
+VER 3 0000000000000044 "whelp" "4640498"
+/tar Lost whelp
+/ping [@target] Attack
+END
+VER 3 0000000000000037 "Wind" "4622500"
+/cancelform
+/run local z={2022,2023,2024,2025,2026,2085,2093,2112,2134,2135} for i=1,#z do if (z[i]==C_Map.GetBestMapForUnit("player")) then return C_MountJournal.SummonByID(1590);end;end;C_MountJournal.SummonByID(0)
+END
+VER 3 0000000000000018 "X" "Ability_Druid_ChallangingRoar"
+/kneel
+END
+VER 3 0000000000000014 "XX" "Spell_Shadow_SacrificialShield"
+/script SetRaidTarget("target",7)
+END
+VER 3 0000000000000039 "ZygorAction1" "134327"
+#showtooltip Talk to Sparz Boltwist
+/run ZGV:MCM(4)
+/cleartarget
+/target Sparz Boltwist
+/run ZGV:MRM()
+END
+VER 3 000000000000003A "ZygorAction2" "134400"
+END
+VER 3 000000000000003B "ZygorAction3" "134400"
+END

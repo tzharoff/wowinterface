@@ -1,0 +1,74 @@
+VER 3 0100000000000001 "+R" "INV_Misc_QuestionMark"
+#showtooltip
+/castsequence [harm] reset=15 Charge, Intercept, Charge; [help] Intervene;
+END
+VER 3 010000000000000E "Amethyst" "INV_Weapon_Shortblade_88"
+/tar Amethyst
+/cast Taunt
+END
+VER 3 010000000000001C "AVA" "134400"
+END
+VER 3 0100000000000018 "Avatar" "134400"
+#showtooltip
+/cast Avatar
+/cast Demoralizing Shout
+END
+VER 3 010000000000000F "Banner" "INV_MISC_QUESTIONMARK"
+#showtooltip Die by the Sword
+/cast Defensive Stance
+/cast Die by the Sword
+END
+VER 3 0100000000000015 "CHARGE" "134400"
+#showtooltip Charge
+/use Prismatic Bauble
+/cast Charge
+END
+VER 3 0100000000000010 "CMD" "INV_MISC_QUESTIONMARK"
+#showtooltip Demoralizing Shout
+/cast Demoralizing Shout
+/cast Commanding Shout
+END
+VER 3 010000000000001B "HL" "134400"
+#showtooltip Heroic Leap
+/use Prismatic Bauble
+/cast [@cursor] Heroic Leap
+END
+VER 3 0100000000000013 "HoP" "ACHIEVEMENT_GUILD_DOCTORISIN"
+/cancelaura hand of protection
+END
+VER 3 010000000000000A "LFM" "INV_SCROLL_11"
+/2 <Dragon Soul> (10-man :: 6:45pm) LF 1 Healer (Druid/Paladin), 1 Melee DPS (DK), 1 Ranged DPS (Mage/Warlock)
+END
+VER 3 0100000000000012 "MOK" "INV_MISC_QUESTIONMARK"
+#showtooltip Mocking Banner
+/cast Mocking Banner
+END
+VER 3 0100000000000019 "Mortal Strike" "134400"
+#showtooltip
+/cast Mortal Strike
+/use 14
+END
+VER 3 0100000000000016 "Mouse" "134156"
+/tar Thieving Rock Mouse
+/script SetRaidTarget("target", 8);
+END
+VER 3 0100000000000017 "Recklessness" "458972"
+#showtooltip
+/cast Recklessness
+/cast Ravager
+END
+VER 3 0100000000000014 "Sharpen" "1380678"
+/cast Sharpen Blade
+/cast Mortal Strike
+END
+VER 3 010000000000001A "SLAM" "134400"
+#showtooltip
+/cast Shield Slam
+/use 14
+END
+VER 3 0100000000000004 "VuhDoDCShieldData" "Ability_Repair"
+P1IR1OH1HM[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]1WT[x][x]0__[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
+END
+VER 3 0100000000000005 "VuhDoDCShieldNames" "Ability_Repair"
+NMaxOhyZor[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]Zee[x][x]Sha[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
+END

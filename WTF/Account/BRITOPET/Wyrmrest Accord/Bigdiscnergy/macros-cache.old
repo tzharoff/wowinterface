@@ -1,0 +1,54 @@
+VER 3 0100000000000006 "ATD" "134400"
+#showtooltip
+/use [harm][@focustarget] Shadow Word: Death
+END
+VER 3 010000000000000A "ATMG" "134400"
+#showtooltip
+/cast [@focustarget] Mindgames
+END
+VER 3 0100000000000009 "ATPN" "134400"
+#showtooltip
+/cast [@focustarget] Penance
+END
+VER 3 0100000000000005 "ATS" "134400"
+#showtooltip
+/use [harm][@focustarget] Smite
+END
+VER 3 0100000000000008 "ATW" "134400"
+#showtooltip
+/cast [@focustarget] Purge the Wicked
+END
+VER 3 0100000000000003 "BAR" "134400"
+#showtooltip
+/cast [@target] Power Word: Barrier
+END
+VER 3 010000000000000D "FOCUS" "135994"
+/focus [@target]
+END
+VER 3 0100000000000004 "FTHR" "134400"
+#showtooltip
+/cast [@player] angelic feather
+/stopspelltarget
+/cast [target=player] body and mind
+END
+VER 3 0100000000000002 "MASS" "134400"
+#showtooltip
+/cast [@cursor] Mass Dispel
+END
+VER 3 010000000000000B "MB" "134400"
+#showtooltip
+/cast [@focustarget] Mind Blast
+END
+VER 3 0100000000000001 "Power Infusion" "134400"
+#showtooltip
+/cast [@focus,exists,help,nodead] Power Infusion; [@player] Power Infusion
+END
+VER 3 010000000000000C "Schism" "134400"
+#showtooltip
+/cast [@focustarget] Schism
+END
+VER 3 0100000000000007 "TEST" "134400"
+#showtooltip
+/cast [@target] mass dispel
+/stoptarget
+END

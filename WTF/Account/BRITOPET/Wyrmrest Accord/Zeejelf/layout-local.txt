@@ -1,0 +1,15 @@
+Version: 1
+Frame: TargetHealthPercentBar
+FrameLevel: 1
+Anchor: CENTER
+X: -21
+Y: 113
+W: 38
+H: 16
+Frame: ZygorPetBattleFrame
+FrameLevel: 1
+Anchor: RIGHT
+X: -10
+Y: 115
+W: 450
+H: 600

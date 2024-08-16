@@ -1,0 +1,21 @@
+
+WeakAurasOptionsSaved = {
+["magnetAlign"] = true,
+["spellCacheAchievements"] = true,
+["spellCache"] = {
+},
+["locale"] = "enUS",
+["needsRebuild"] = true,
+["version"] = "5.15.4",
+["spellCacheAchivements"] = true,
+["spellCacheStrings"] = true,
+["frame"] = {
+["xOffset"] = 507.0679321289063,
+["yOffset"] = 1096.042846679688,
+["height"] = 665.0001220703125,
+["width"] = 830,
+},
+["savedSnippets"] = {
+},
+["build"] = "56110",
+}

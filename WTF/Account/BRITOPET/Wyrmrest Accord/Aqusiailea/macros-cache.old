@@ -1,0 +1,20 @@
+VER 3 0100000000000004 "AVA" "134400"
+#showtooltip
+/cast Avatar
+/cast Demoralizing Shout
+END
+VER 3 0100000000000001 "CS" "134400"
+#showtooltip
+/cast Colossus Smash
+/cast Avatar
+END
+VER 3 0100000000000002 "MS" "134400"
+#showtooltip
+/cast Mortal Strike
+/use 13
+END
+VER 3 0100000000000003 "SLAM" "134400"
+#showtooltip
+/cast Shield Slam
+/use 13
+END

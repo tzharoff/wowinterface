@@ -1,0 +1,70 @@
+
+CraftSimDebugData = {
+}
+CraftSimOptions = {
+	["transparencyCostOverview"] = 1,
+	["customResourcefulnessConstant"] = 0.3,
+	["infoVersionID"] = 80,
+	["topGearMode"] = "Top Profit",
+	["autoAssignVellum"] = false,
+	["customerServiceAllowAutoResult"] = true,
+	["priceDebug"] = false,
+	["transparencySpecInfo"] = 1,
+	["modulesPriceDetails"] = true,
+	["tsmPriceKeyItems"] = "first(DBRecent, DBMinbuyout)",
+	["showProfitPercentage"] = false,
+	["customerServiceActivePreviewIDs"] = {
+	},
+	["modulesCustomerService"] = false,
+	["recipeScanIncludeSoulbound"] = false,
+	["tsmPriceKeyMaterials"] = "first(DBRecent, DBMinbuyout)",
+	["customMulticraftConstant"] = 2.5,
+	["modulesMaterials"] = true,
+	["priceSource"] = "TradeSkillMaster",
+	["detailedCraftingInfoTooltip"] = true,
+	["transparencyTopGear"] = 1,
+	["modulesCostOverview"] = true,
+	["recipeScanIncludeNotLearned"] = false,
+	["craftGarbageCollectCrafts"] = 500,
+	["craftGarbageCollectEnabled"] = true,
+	["transparencyMaterials"] = 1,
+	["recipeScanIncludeGear"] = false,
+	["modulesSpecInfo"] = true,
+	["modulesStatWeights"] = true,
+	["customerServiceRecipeWhisperFormat"] = "Highest Result: %gc\nwith Inspiration: %ic (%insp)\nCrafting Costs: %cc\n%ccd\n",
+	["recipeScanOptimizeProfessionTools"] = false,
+	["materialSuggestionInspirationThreshold"] = false,
+	["modulesRecipeScan"] = false,
+	["modulesPriceOverride"] = false,
+	["transparencyStatWeights"] = 1,
+	["modulesCraftResults"] = false,
+	["modulesTopGear"] = true,
+	["topGearAutoUpdate"] = false,
+	["openLastRecipe"] = true,
+	["breakPointOffset"] = false,
+}
+CraftSimGGUIConfig = {
+}
+CraftSimPriceOverridesV2 = {
+	["recipeResultOverrides"] = {
+	},
+	["globalOverrides"] = {
+	},
+}
+CraftSimRecipeIDs = {
+}
+CraftSimProfessionInfoCache = {
+}
+CraftSimProfessionSkillLineIDCache = {
+}
+CraftSimCraftData = {
+}
+CraftSimRecipeMap = {
+}
+CraftSimLoadedProfessionRecipes = {
+}
+CraftSimCustomerHistory = {
+	["profileKeys"] = {
+		["Kalzulkoh - Wyrmrest Accord"] = "Default",
+	},
+}

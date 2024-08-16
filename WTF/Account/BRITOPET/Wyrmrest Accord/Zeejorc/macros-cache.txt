@@ -1,0 +1,10 @@
+VER 3 0100000000000001 "AVA" "134400"
+#showtooltip
+/cast Avatar
+/cast Demoralizing Shout
+END
+VER 3 0100000000000002 "SS" "134400"
+#Showtooltip
+/cast Shield Slam
+/cast Ancestral Call
+END

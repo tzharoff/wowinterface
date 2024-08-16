@@ -1,0 +1,6 @@
+VER 3 0100000000000001 "VuhDoDCShieldData" "Ability_Repair"
+R2NT1PT1RM[x]1SR1HM2LR2RM2OM2PM3WM3IH3WM4IR4HM4OH[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]1WM[x][x][x][x][x]0__[x][x][x][x][x][x][x][x]0__[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
+END
+VER 3 0100000000000002 "VuhDoDCShieldNames" "Ability_Repair"
+NFriLorAzo[x]RayZorJahInvBolBlaMonVivPunMaxDesOhy[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]Huu[x][x][x][x][x]Ter[x][x][x][x][x][x][x][x]Sha[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
+END

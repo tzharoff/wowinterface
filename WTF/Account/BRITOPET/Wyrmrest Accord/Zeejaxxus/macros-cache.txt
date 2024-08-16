@@ -1,0 +1,26 @@
+VER 3 0100000000000001 "avatar" "134400"
+#showtooltip
+/cast avatar
+/cast demoralizing shout
+END
+VER 3 0100000000000002 "CS" "134400"
+#showtooltip
+/cast Colossus Smash
+/cast Avatar
+END
+VER 3 0100000000000003 "MS" "134400"
+#showtooltip
+/cast Mortal Strike
+/use 13
+END
+VER 3 0100000000000004 "Slam" "134400"
+#showtooltip
+/cast Shield Slam
+/use 13
+END
+VER 3 0100000000000005 "VuhDoDCShieldData" "Ability_Repair"
+P[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]1WM[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
+END
+VER 3 0100000000000006 "VuhDoDCShieldNames" "Ability_Repair"
+N[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]Zee[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
+END

@@ -1,0 +1,21 @@
+
+MythicDungeonPortalsSettings = {
+["isMinimapEnabled"] = true,
+["BackgroundVisible"] = true,
+["profileKeys"] = {
+["Felplande - Wyrmrest Accord"] = "Felplande - Wyrmrest Accord",
+["Kalzulkoh - Wyrmrest Accord"] = "Kalzulkoh - Wyrmrest Accord",
+["Zartbertu - Wyrmrest Accord"] = "Zartbertu - Wyrmrest Accord",
+["Huufar - Wyrmrest Accord"] = "Huufar - Wyrmrest Accord",
+},
+["profiles"] = {
+["Felplande - Wyrmrest Accord"] = {
+},
+["Kalzulkoh - Wyrmrest Accord"] = {
+},
+["Zartbertu - Wyrmrest Accord"] = {
+},
+["Huufar - Wyrmrest Accord"] = {
+},
+},
+}

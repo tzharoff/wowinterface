@@ -1,0 +1,1037 @@
+
+_detalhes_database = {
+["savedbuffs"] = {
+},
+["mythic_dungeon_id"] = 33,
+["tabela_historico"] = {
+["tabelas"] = {
+},
+},
+["ocd_tracker"] = {
+["show_title"] = true,
+["current_cooldowns"] = {
+},
+["filters"] = {
+["defensive-raid"] = false,
+["ofensive"] = true,
+["defensive-target"] = false,
+["utility"] = false,
+["defensive-personal"] = false,
+},
+["width"] = 120,
+["group_frames"] = true,
+["own_frame"] = {
+["defensive-raid"] = false,
+["ofensive"] = false,
+["defensive-target"] = false,
+["utility"] = false,
+["defensive-personal"] = false,
+},
+["frames"] = {
+["defensive-raid"] = {
+},
+["main"] = {
+},
+["ofensive"] = {
+},
+["defensive-target"] = {
+},
+["utility"] = {
+},
+["defensive-personal"] = {
+},
+},
+["show_options"] = false,
+["ignored_cooldowns"] = {
+},
+["height"] = 18,
+["cooldowns"] = {
+},
+["lines_per_column"] = 12,
+["framme_locked"] = false,
+["show_conditions"] = {
+["only_inside_instance"] = true,
+["only_in_group"] = true,
+},
+["enabled"] = false,
+["pos"] = {
+},
+},
+["last_version"] = "11.0.0 12822",
+["player_stats"] = {
+["mythicdungeoncompletedDF2"] = {
+[198] = {
+[18] = {
+["completed"] = 4,
+["history"] = {
+{
+["onTime"] = true,
+["deaths"] = 1,
+["day"] = 16,
+["month"] = 3,
+["affix"] = 9,
+["runTime"] = 1108214,
+["year"] = 2024,
+},
+{
+["onTime"] = true,
+["deaths"] = 4,
+["date"] = 1711339026,
+["affix"] = 10,
+["runTime"] = 1070,
+["combatTime"] = 856.3189999999013,
+},
+{
+["onTime"] = true,
+["deaths"] = 4,
+["date"] = 1711938429,
+["affix"] = 9,
+["runTime"] = 1120,
+["combatTime"] = 973.0970000001835,
+},
+{
+["onTime"] = true,
+["deaths"] = 13,
+["date"] = 1712548124,
+["affix"] = 10,
+["runTime"] = 1550,
+["combatTime"] = 1330.410999999964,
+},
+},
+["totalTime"] = 4849503,
+["minTime"] = 1070361,
+},
+},
+[456] = {
+[18] = {
+["completed"] = 1,
+["history"] = {
+{
+["onTime"] = true,
+["deaths"] = 8,
+["day"] = 11,
+["month"] = 3,
+["affix"] = 10,
+["runTime"] = 1346581,
+["year"] = 2024,
+},
+},
+["totalTime"] = 1346581,
+["minTime"] = 1346581,
+},
+},
+[244] = {
+[18] = {
+["completed"] = 3,
+["history"] = {
+{
+["onTime"] = true,
+["deaths"] = 0,
+["day"] = 11,
+["month"] = 3,
+["affix"] = 10,
+["runTime"] = 968198,
+["year"] = 2024,
+},
+{
+["onTime"] = true,
+["deaths"] = 1,
+["date"] = 1711409474,
+["affix"] = 10,
+["runTime"] = 1034,
+["combatTime"] = 821.7389999999996,
+},
+{
+["onTime"] = true,
+["deaths"] = 0,
+["date"] = 1712546111,
+["affix"] = 10,
+["runTime"] = 903,
+["combatTime"] = 744.5000000000437,
+},
+},
+["totalTime"] = 2906391,
+["minTime"] = 903344,
+},
+},
+[245] = {
+[4] = {
+["completed"] = 1,
+["history"] = {
+{
+["onTime"] = true,
+["deaths"] = 0,
+["day"] = 11,
+["month"] = 6,
+["affix"] = 9,
+["runTime"] = 891199,
+["year"] = 2023,
+},
+},
+["totalTime"] = 891199,
+["minTime"] = 891199,
+},
+},
+[404] = {
+[2] = {
+["completed"] = 1,
+["history"] = {
+{
+["onTime"] = true,
+["deaths"] = 6,
+["date"] = 1714017051,
+["affix"] = 9,
+["runTime"] = 1392,
+["combatTime"] = 1161.815000000061,
+},
+},
+["totalTime"] = 1392865,
+["minTime"] = 0,
+},
+},
+[401] = {
+[2] = {
+["completed"] = 2,
+["history"] = {
+{
+["onTime"] = true,
+["deaths"] = 8,
+["date"] = 1713995250,
+["affix"] = 9,
+["runTime"] = 1515,
+["combatTime"] = 1240.024000000558,
+},
+{
+["onTime"] = true,
+["deaths"] = 1,
+["date"] = 1714022215,
+["affix"] = 9,
+["runTime"] = 1130,
+["combatTime"] = 939.8059999999823,
+},
+},
+["totalTime"] = 2646010,
+["minTime"] = 0,
+},
+},
+[402] = {
+[2] = {
+["completed"] = 1,
+["history"] = {
+{
+["onTime"] = true,
+["deaths"] = 22,
+["date"] = 1714852120,
+["affix"] = 10,
+["runTime"] = 1642,
+["combatTime"] = 1153.680000000401,
+},
+},
+["totalTime"] = 1642159,
+["minTime"] = 0,
+},
+},
+[463] = {
+[22] = {
+["completed"] = 1,
+["history"] = {
+{
+["onTime"] = true,
+["deaths"] = 20,
+["day"] = 14,
+["month"] = 3,
+["affix"] = 9,
+["runTime"] = 1885090,
+["year"] = 2024,
+},
+},
+["totalTime"] = 1885090,
+["minTime"] = 1885090,
+},
+[18] = {
+["completed"] = 2,
+["history"] = {
+{
+["onTime"] = true,
+["deaths"] = 9,
+["date"] = 1711336091,
+["affix"] = 10,
+["runTime"] = 1140,
+["combatTime"] = 822.6080000001239,
+},
+{
+["onTime"] = true,
+["deaths"] = 4,
+["date"] = 1711940069,
+["affix"] = 9,
+["runTime"] = 1118,
+["combatTime"] = 862.0900000002002,
+},
+},
+["totalTime"] = 2258979,
+["minTime"] = 0,
+},
+},
+[464] = {
+[19] = {
+["completed"] = 1,
+["history"] = {
+{
+["onTime"] = true,
+["deaths"] = 3,
+["day"] = 11,
+["month"] = 3,
+["affix"] = 10,
+["runTime"] = 1689464,
+["year"] = 2024,
+},
+},
+["totalTime"] = 1689464,
+["minTime"] = 1689464,
+},
+[18] = {
+["completed"] = 3,
+["history"] = {
+{
+["onTime"] = true,
+["deaths"] = 3,
+["date"] = 1711414542,
+["affix"] = 10,
+["runTime"] = 1439,
+["combatTime"] = 1028.444000000001,
+},
+{
+["onTime"] = true,
+["deaths"] = 1,
+["date"] = 1712632425,
+["affix"] = 10,
+["runTime"] = 1283,
+["combatTime"] = 927.0349999999453,
+},
+{
+["onTime"] = true,
+["deaths"] = 0,
+["date"] = 1712634406,
+["affix"] = 10,
+["runTime"] = 1551,
+["combatTime"] = 1159.637000000104,
+},
+},
+["totalTime"] = 4274915,
+["minTime"] = 0,
+},
+},
+[248] = {
+[18] = {
+["completed"] = 1,
+["history"] = {
+{
+["onTime"] = true,
+["deaths"] = 0,
+["date"] = 1711337557,
+["affix"] = 10,
+["runTime"] = 1129,
+["combatTime"] = 942.2319999997271,
+},
+},
+["totalTime"] = 1129612,
+["minTime"] = 0,
+},
+},
+[168] = {
+[19] = {
+["completed"] = 1,
+["history"] = {
+{
+["onTime"] = true,
+["deaths"] = 7,
+["date"] = 1712801508,
+["affix"] = 9,
+["runTime"] = 1417,
+["combatTime"] = 1168.566999999923,
+},
+},
+["totalTime"] = 1417431,
+["minTime"] = 0,
+},
+},
+[199] = {
+[18] = {
+["completed"] = 3,
+["history"] = {
+{
+["onTime"] = true,
+["deaths"] = 0,
+["date"] = 1710823912,
+["affix"] = 9,
+["runTime"] = 1111,
+["combatTime"] = 927.3079999998445,
+},
+{
+["onTime"] = true,
+["deaths"] = 4,
+["date"] = 1711412467,
+["affix"] = 10,
+["runTime"] = 1292,
+["combatTime"] = 1013.064000000001,
+},
+{
+["onTime"] = true,
+["deaths"] = 3,
+["date"] = 1712033375,
+["affix"] = 9,
+["runTime"] = 1233,
+["combatTime"] = 1034.127000000095,
+},
+},
+["totalTime"] = 3638087,
+["minTime"] = 0,
+},
+},
+[438] = {
+[8] = {
+["completed"] = 1,
+["history"] = {
+{
+["onTime"] = true,
+["deaths"] = 1,
+["day"] = 11,
+["month"] = 6,
+["affix"] = 9,
+["runTime"] = 1038202,
+["year"] = 2023,
+},
+},
+["totalTime"] = 1038202,
+["minTime"] = 1038202,
+},
+},
+[403] = {
+[5] = {
+["completed"] = 1,
+["history"] = {
+{
+["onTime"] = true,
+["deaths"] = 0,
+["day"] = 11,
+["month"] = 6,
+["affix"] = 9,
+["runTime"] = 995579,
+["year"] = 2023,
+},
+},
+["totalTime"] = 995579,
+["minTime"] = 995579,
+},
+[4] = {
+["completed"] = 2,
+["history"] = {
+{
+["onTime"] = true,
+["deaths"] = 2,
+["date"] = 1714020058,
+["affix"] = 9,
+["runTime"] = 1682,
+["combatTime"] = 1438.835999999661,
+},
+{
+["onTime"] = true,
+["deaths"] = 7,
+["date"] = 1714800260,
+["affix"] = 10,
+["runTime"] = 1536,
+["combatTime"] = 1340.44299999997,
+},
+},
+["totalTime"] = 3219078,
+["minTime"] = 0,
+},
+[7] = {
+["completed"] = 1,
+["history"] = {
+{
+["onTime"] = false,
+["deaths"] = 40,
+["date"] = 1715045963,
+["affix"] = 10,
+["runTime"] = 2731,
+["combatTime"] = 1838.271000000415,
+},
+},
+["totalTime"] = 2731026,
+["minTime"] = 0,
+},
+},
+[251] = {
+[2] = {
+["completed"] = 1,
+["history"] = {
+{
+["onTime"] = true,
+["deaths"] = 0,
+["day"] = 11,
+["month"] = 6,
+["affix"] = 9,
+["runTime"] = 684786,
+["year"] = 2023,
+},
+},
+["totalTime"] = 684786,
+["minTime"] = 684786,
+},
+},
+},
+},
+["SoloTablesSaved"] = {
+["Mode"] = 1,
+},
+["tabela_instancias"] = {
+},
+["coach"] = {
+["enabled"] = false,
+["welcome_panel_pos"] = {
+},
+["last_coach_name"] = false,
+},
+["on_death_menu"] = false,
+["cached_talents"] = {
+},
+["last_instance_id"] = 2520,
+["data_harvest_for_charsts"] = {
+["players"] = {
+{
+["playerKey"] = "total",
+["combatObjectContainer"] = 1,
+["name"] = "Damage of Each Individual Player",
+["playerOnly"] = true,
+},
+},
+["totals"] = {
+{
+["combatObjectSubTableKey"] = 1,
+["name"] = "Damage of All Player Combined",
+["combatObjectSubTableName"] = "totals",
+},
+},
+},
+["announce_interrupts"] = {
+["enabled"] = false,
+["whisper"] = "",
+["channel"] = "SAY",
+["custom"] = "",
+["next"] = "",
+},
+["announce_prepots"] = {
+["enabled"] = false,
+["channel"] = "SELF",
+["reverse"] = false,
+},
+["active_profile"] = "Zeejina-Wyrmrest Accord",
+["last_realversion"] = 159,
+["benchmark_db"] = {
+["frame"] = {
+},
+},
+["last_instance_time"] = 1715400021,
+["combat_log"] = {
+["track_hunter_frenzy"] = false,
+["inverse_deathlog_raid"] = false,
+["calc_evoker_damage"] = true,
+["inverse_deathlog_overalldata"] = false,
+["evoker_calc_damage"] = true,
+["merge_critical_heals"] = false,
+["merge_gemstones_1007"] = false,
+["evoker_show_realtimedps"] = true,
+["inverse_deathlog_mplus"] = false,
+},
+["local_instances_config"] = {
+{
+["modo"] = 2,
+["sub_attribute"] = 1,
+["horizontalSnap"] = false,
+["verticalSnap"] = false,
+["isLocked"] = false,
+["is_open"] = true,
+["sub_atributo_last"] = {
+1,
+1,
+1,
+1,
+1,
+},
+["snap"] = {
+},
+["segment"] = 0,
+["mode"] = 2,
+["attribute"] = 1,
+["pos"] = {
+["normal"] = {
+["y"] = -46.81463623046875,
+["x"] = -842.0428009033203,
+["w"] = 372.6666870117188,
+["h"] = 215.2904510498047,
+},
+["solo"] = {
+["y"] = 2,
+["x"] = 1,
+["w"] = 300,
+["h"] = 200,
+},
+},
+},
+{
+["modo"] = 2,
+["sub_attribute"] = 3,
+["horizontalSnap"] = false,
+["verticalSnap"] = false,
+["isLocked"] = false,
+["is_open"] = false,
+["sub_atributo_last"] = {
+1,
+1,
+1,
+3,
+1,
+},
+["snap"] = {
+},
+["segment"] = -1,
+["mode"] = 2,
+["attribute"] = 4,
+["pos"] = {
+["normal"] = {
+["y"] = -182.5498352050781,
+["x"] = -821.2564849853516,
+["w"] = 457.9999694824219,
+["h"] = 304.9999694824219,
+},
+["solo"] = {
+["y"] = 2,
+["x"] = 1,
+["w"] = 300,
+["h"] = 200,
+},
+},
+},
+{
+["modo"] = 2,
+["sub_attribute"] = 3,
+["horizontalSnap"] = false,
+["verticalSnap"] = false,
+["isLocked"] = false,
+["is_open"] = true,
+["sub_atributo_last"] = {
+1,
+1,
+1,
+3,
+1,
+},
+["snap"] = {
+},
+["segment"] = -1,
+["mode"] = 2,
+["attribute"] = 4,
+["pos"] = {
+["normal"] = {
+["y"] = -260.9230041503906,
+["x"] = -848.2134399414062,
+["w"] = 369.0770874023438,
+["h"] = 172.2223052978516,
+},
+["solo"] = {
+["y"] = 2,
+["x"] = 1,
+["w"] = 300,
+["h"] = 200,
+},
+},
+},
+},
+["mythic_plus_log"] = {
+"06/05/24 18:39:23|Activity Time: 1838.2710000004",
+"06/05/24 18:39:23|GetCompletionInfo() Found, Time: 2731",
+"06/05/24 18:39:23|MergeSegmentsOnEnd started | creating the overall segment at the end of the run.",
+"06/05/24 18:39:23|MythicDungeonFinished() | merge_boss_trash = true",
+"06/05/24 18:39:23|MythicDungeonFinished() | Details was in combat.",
+"06/05/24 18:39:21|===== Mythic+ Finished =====",
+"06/05/24 18:39:21|MergeTrashCleanup started.",
+"06/05/24 18:39:21|BossDefeated | key level: | 7 | Chrono-Lord Deios | Uldaman: Legacy of Tyr",
+"06/05/24 18:35:22|COMBAT_PLAYER_LEAVE | wiped on boss | key level: | 7 | Chrono-Lord Deios Uldaman: Legacy of Tyr",
+"06/05/24 18:32:10|COMBAT_PLAYER_LEAVE | wiped on boss | key level: | 7 | Chrono-Lord Deios Uldaman: Legacy of Tyr",
+"06/05/24 18:22:12|MergeTrashCleanup started.",
+"06/05/24 18:22:12|BossDefeated | key level: | 7 | Emberon | Uldaman: Legacy of Tyr",
+"06/05/24 18:15:37|MergeTrashCleanup started.",
+"06/05/24 18:15:37|BossDefeated | key level: | 7 | Sentinel Talondras | Uldaman: Legacy of Tyr",
+"06/05/24 18:11:21|COMBAT_PLAYER_LEAVE | wiped on boss | key level: | 7 | Sentinel Talondras Uldaman: Legacy of Tyr",
+"06/05/24 18:05:42|MergeTrashCleanup | no segments to merge.",
+"06/05/24 18:05:42|BossDefeated | key level: | 7 | The Lost Dwarves | Uldaman: Legacy of Tyr",
+"06/05/24 18:03:47|MergeTrashCleanup started.",
+"06/05/24 18:03:47|BossDefeated | key level: | 7 | Bromach | Uldaman: Legacy of Tyr",
+"06/05/24 17:59:04|OnChallengeModeStart()",
+"06/05/24 17:59:04|COMBAT_MYTHICDUNGEON_START | settings: always_in_combat = false | make_overall_boss_only = false | merge_boss_trash = true | delay_to_show_graphic = 1 | mythicrun_time_type = 1 | reverse_death_log = false | make_overall_when_done = true | delete_trash_after_merge = true | show_damage_graphic = true | boss_dedicated_segment = true |  | level: 7 | zone: Uldaman: Legacy of Tyr | zoneId: 2451",
+"06/05/24 17:59:04|Event: WORLD_STATE_TIMER_START | payload1: 1 | payload2:  | payload3: ",
+"06/05/24 17:59:04|Event: CHALLENGE_MODE_START",
+"06/05/24 17:56:15|OnChallengeModeStart()",
+"06/05/24 17:56:15|COMBAT_MYTHICDUNGEON_START | settings: always_in_combat = false | make_overall_boss_only = false | merge_boss_trash = true | delay_to_show_graphic = 1 | mythicrun_time_type = 1 | reverse_death_log = false | make_overall_when_done = true | delete_trash_after_merge = true | show_damage_graphic = true | boss_dedicated_segment = true |  | level: 7 | zone: Uldaman: Legacy of Tyr | zoneId: 2451",
+"06/05/24 17:56:15|Event: WORLD_STATE_TIMER_START | payload1: 1 | payload2:  | payload3: ",
+"06/05/24 17:56:07|Event: CHALLENGE_MODE_START",
+"04/05/24 12:48:40|Activity Time: 1153.6800000004",
+"04/05/24 12:48:40|GetCompletionInfo() Found, Time: 1642",
+"04/05/24 12:48:40|MergeSegmentsOnEnd started | creating the overall segment at the end of the run.",
+"04/05/24 12:48:40|MythicDungeonFinished() | merge_boss_trash = true",
+"04/05/24 12:48:38|===== Mythic+ Finished =====",
+"04/05/24 12:48:38|MergeTrashCleanup started.",
+"04/05/24 12:48:38|BossDefeated | key level: | 2 | Echo of Doragosa | Algeth'ar Academy",
+"04/05/24 12:44:26|MergeTrashCleanup started.",
+"04/05/24 12:44:26|BossDefeated | key level: | 2 | Vexamus | Algeth'ar Academy",
+"04/05/24 12:35:16|MergeTrashCleanup started.",
+"04/05/24 12:35:16|BossDefeated | key level: | 2 | Crawth | Algeth'ar Academy",
+"04/05/24 12:29:27|MergeTrashCleanup started.",
+"04/05/24 12:29:27|BossDefeated | key level: | 2 | Overgrown Ancient | Algeth'ar Academy",
+"04/05/24 12:23:07|OnChallengeModeStart()",
+"04/05/24 12:23:06|COMBAT_MYTHICDUNGEON_START | settings: mythicrun_time_type = 1 | make_overall_boss_only = false | merge_boss_trash = true | delay_to_show_graphic = 1 | always_in_combat = false | reverse_death_log = false | make_overall_when_done = true | delete_trash_after_merge = true | show_damage_graphic = true | boss_dedicated_segment = true |  | level: 2 | zone: Algeth'ar Academy | zoneId: 2526",
+"04/05/24 12:23:06|Event: WORLD_STATE_TIMER_START | payload1: 1 | payload2:  | payload3: ",
+"04/05/24 12:22:58|Event: CHALLENGE_MODE_START",
+"03/05/24 22:24:20|Activity Time: 1340.443",
+"03/05/24 22:24:20|GetCompletionInfo() Found, Time: 1536",
+"03/05/24 22:24:20|MergeSegmentsOnEnd started | creating the overall segment at the end of the run.",
+"03/05/24 22:24:20|MythicDungeonFinished() | merge_boss_trash = true",
+"03/05/24 22:24:20|MythicDungeonFinished() | Details was in combat.",
+},
+["cached_roles"] = {
+},
+["last_day"] = "05",
+["ignore_nicktag"] = false,
+["nick_tag_cache"] = {
+["nextreset"] = 1724132192,
+["last_version"] = 16,
+},
+["data_harvested_for_charts"] = {
+},
+["announce_firsthit"] = {
+["enabled"] = true,
+["channel"] = "SELF",
+},
+["force_font_outline"] = "",
+["combat_id"] = 251,
+["savedStyles"] = {
+},
+["combat_counter"] = 1460,
+["character_data"] = {
+["logons"] = 153,
+},
+["announce_deaths"] = {
+["enabled"] = false,
+["last_hits"] = 1,
+["only_first"] = 5,
+["where"] = 1,
+},
+["tabela_overall"] = {
+{
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 3,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+},
+["tempo_start"] = 12046.089,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["totals_grupo"] = {
+0,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["bossTimers"] = {
+},
+["trinketProcs"] = {
+},
+["playerTalents"] = {
+},
+["totals"] = {
+0,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = false,
+["aura_timeline"] = {
+},
+["data_inicio"] = 0,
+["amountCasts"] = {
+},
+["mapId"] = 2444,
+["cleu_events"] = {
+["n"] = 1,
+},
+["zoneName"] = "Dragon Isles",
+["boss_hp"] = 1,
+["is_challenge"] = false,
+["frags"] = {
+},
+["data_fim"] = 0,
+["cleu_timeline"] = {
+},
+["spells_cast_timeline"] = {
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["heal_section"] = {
+},
+["heal"] = {
+},
+["damage_section"] = {
+},
+["damage"] = {
+},
+},
+["start_time"] = 0,
+["TimeData"] = {
+},
+["combat_counter"] = 1459,
+},
+["plugin_database"] = {
+["DETAILS_PLUGIN_TINY_THREAT"] = {
+["enabled"] = true,
+["animate"] = false,
+["hide_pull_bar"] = false,
+["author"] = "Terciob",
+["playercolor"] = {
+1,
+1,
+1,
+},
+["usefocus"] = false,
+["updatespeed"] = 1,
+["disable_gouge"] = false,
+["showamount"] = false,
+["useplayercolor"] = false,
+["absolute_mode"] = false,
+["playSound"] = false,
+["playSoundFile"] = "Details Threat Warning Volume 3",
+["useclasscolors"] = false,
+},
+["DETAILS_PLUGIN_RAIDCHECK"] = {
+["enabled"] = true,
+["food_tier1"] = true,
+["mythic_1_4"] = true,
+["food_tier2"] = true,
+["author"] = "Terciob",
+["use_report_panel"] = true,
+["pre_pot_healers"] = false,
+["pre_pot_tanks"] = false,
+["food_tier3"] = true,
+},
+["DETAILS_PLUGIN_VANGUARD"] = {
+["tank_block_size_height"] = 50,
+["show_power_bar"] = false,
+["first_run"] = false,
+["aura_timer_text_size"] = 14,
+["tank_block_castbar_size_height"] = 16,
+["show_health_bar"] = true,
+["aura_offset_y"] = 0,
+["enabled"] = true,
+["show_cast_bar"] = false,
+["author"] = "Terciob",
+["tank_block_size"] = 150,
+["bar_height"] = 24,
+["tank_block_texture"] = "Details Serenity",
+["tank_block_color"] = {
+0.074509,
+0.035294,
+0.035294,
+0.832845,
+},
+["tank_block_height"] = 40,
+["tank_block_powerbar_size_height"] = 10,
+["show_inc_bars"] = true,
+},
+["DETAILS_PLUGIN_ENCOUNTER_DETAILS"] = {
+["enabled"] = true,
+["encounter_timers_bw"] = {
+},
+["max_emote_segments"] = 3,
+["last_section_selected"] = "main",
+["author"] = "Terciob",
+["window_scale"] = 1,
+["hide_on_combat"] = false,
+["show_icon"] = 5,
+["opened"] = 0,
+["encounter_timers_dbm"] = {
+},
+},
+["DETAILS_PLUGIN_COMPARETWO_WINDOW"] = {
+["enabled"] = true,
+["author"] = "Terciob",
+["max_compares"] = 4,
+["compare_type"] = 1,
+},
+["DETAILS_PLUGIN_STREAM_OVERLAY"] = {
+["use_square_mode"] = false,
+["is_first_run"] = false,
+["grow_direction"] = "right",
+["arrow_color"] = {
+1,
+1,
+1,
+0.5,
+},
+["scale"] = 1,
+["arrow_anchor_y"] = 0,
+["minimap"] = {
+["minimapPos"] = 155.2472387522797,
+["radius"] = 160,
+["hide"] = false,
+},
+["row_height"] = 20,
+["arrow_anchor_x"] = 0,
+["font_color"] = {
+1,
+1,
+1,
+1,
+},
+["row_texture"] = "Details Serenity",
+["square_grow_direction"] = "right",
+["point"] = "CENTER",
+["main_frame_strata"] = "LOW",
+["square_amount"] = 5,
+["enabled"] = false,
+["arrow_size"] = 10,
+["y"] = 4.57763671875e-05,
+["row_spacement"] = 21,
+["main_frame_color"] = {
+0,
+0,
+0,
+0.2,
+},
+["row_color"] = {
+0.1,
+0.1,
+0.1,
+0.4,
+},
+["arrow_texture"] = "Interface\\CHATFRAME\\ChatFrameExpandArrow",
+["use_spark"] = true,
+["per_second"] = {
+["enabled"] = false,
+["point"] = "CENTER",
+["scale"] = 1,
+["font_shadow"] = true,
+["y"] = 3.0517578125e-05,
+["x"] = 3.0517578125e-05,
+["size"] = 32,
+["update_speed"] = 0.05,
+["attribute_type"] = 1,
+},
+["x"] = 0,
+["font_face"] = "Friz Quadrata TT",
+["square_size"] = 32,
+["font_size"] = 10,
+["author"] = "Terciob",
+["main_frame_locked"] = false,
+["main_frame_size"] = {
+300,
+500.0000305175781,
+},
+},
+},
+["last_encounter"] = "Scalecommander Sarkareth",
+["mythic_dungeon_currentsaved"] = {
+["players"] = {
+"Player-1171-068FFE4B",
+"Player-1171-0AC65C29",
+"Player-1171-06DAB06F",
+"Player-1171-0AC607DD",
+},
+["dungeon_name"] = "Uldaman: Legacy of Tyr",
+["started"] = false,
+["segment_id"] = 6,
+["ej_id"] = 0,
+["started_at"] = 1715043553.7,
+["run_id"] = 33,
+["level"] = 7,
+["dungeon_zone_id"] = 2451,
+["previous_boss_killed_at"] = 1715045961,
+},
+["announce_cooldowns"] = {
+["enabled"] = false,
+["ignored_cooldowns"] = {
+},
+["custom"] = "",
+["channel"] = "RAID",
+},
+["rank_window"] = {
+["last_difficulty"] = 15,
+["last_raid"] = "",
+},
+["announce_damagerecord"] = {
+["enabled"] = true,
+["channel"] = "SELF",
+},
+["cached_specs"] = {
+["Player-1171-0AC52BC5"] = 581,
+},
+}

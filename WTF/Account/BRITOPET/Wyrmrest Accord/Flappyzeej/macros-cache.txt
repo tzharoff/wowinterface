@@ -1,0 +1,53 @@
+VER 3 0100000000000004 "AKOU" "5199639"
+#showtooltip
+/cast [target=Akou] Prescience
+END
+VER 3 010000000000000C "Asalla" "134400"
+#showtooltip
+/cast [target=Asalla] Prescience
+END
+VER 3 0100000000000009 "CAM" "134400"
+#showtooltip
+/cast [target=Shinidormu] Prescience
+END
+VER 3 0100000000000003 "Ebon" "134400"
+#showtooltip Ebon Might
+/use 14
+/cast Ebon Might
+END
+VER 3 0100000000000006 "IMBA" "5199639"
+#showtooltip
+/cast [target=Imba] Prescience
+END
+VER 3 010000000000000A "LEVI" "134400"
+#showtooltip
+/cast [target=Leviatthan] Prescience
+END
+VER 3 0100000000000005 "MAX" "134400"
+#showtooltip
+/cast [target=Maximar] Prescience
+END
+VER 3 0100000000000008 "NEARLY" "134400"
+#showtooltip
+/cast [target=Nearly] Prescience
+END
+VER 3 0100000000000001 "Scales" "134400"
+#showtooltip
+/cast [@focus, exists,  nodead][] Blistering Scales
+END
+VER 3 0100000000000007 "SKAMPI" "134400"
+#showtooltip
+/cast [target=Akou] Prescience
+END
+VER 3 010000000000000E "SP" "134400"
+#showtooltip
+/script local u,pi="target","Spatial Paradox";if IsSpellInRange(pi,u)==1 and GetSpellCooldown(pi)==0 then SendChatMessage("You have "..GetSpellLink(pi).."!","WHISPER",nil,UnitName(u)) end
+/cast [@target,nodead] Spatial Paradox
+END
+VER 3 010000000000000B "Tagi" "134400"
+#showtooltip
+/cast [target=Tagi] Prescience
+END
+VER 3 010000000000000D "VDPT" "4630415"
+/vd pt
+END

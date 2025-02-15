@@ -1100,6 +1100,7 @@ local default_profile = {
 			quick_detection = false,
 			faster_updates = false,
 			use_animation_accel = true,
+			no_helptips = false,
 		},
 
 	--tooltip
@@ -1109,7 +1110,8 @@ local default_profile = {
 			fontsize_title = 10,
 			fontcolor = {1, 1, 1, 1},
 			fontcolor_right = {1, 0.7, 0, 1}, --{1, 0.9254, 0.6078, 1}
-			fontshadow = false,
+			fontshadow = true,
+			fontcontour = {0, 0, 0, 1},
 			bar_color = {0.3960, 0.3960, 0.3960, 0.8700},
 			background = {0.0941, 0.0941, 0.0941, 0.8},
 			divisor_color = {1, 1, 1, 1},
@@ -1147,6 +1149,8 @@ local default_profile = {
 
 			--height used on tooltips at displays such as damage taken by spell
 			line_height = 17,
+
+			show_border_shadow = true, --from spell tooltips from the main window
 		},
 
 	--new window system
@@ -1444,6 +1448,11 @@ local default_global_data = {
 			font_size = 10,
 		},
 
+	--information about the transcriptor frame
+		transcriptor_frame = {
+			scale = 1,
+		},
+
 	--keystone window
 		keystone_frame = {
 			scale = 1,
@@ -1469,10 +1478,10 @@ local default_global_data = {
 		font_color = {0.9, 0.9, 0.9, 0.923},
 		font_outline = "NONE",
 		font_face = "DEFAULT",
-		bar_texture = "Skyline",
+		bar_texture = "You Are the Best!",
 	},
 
-	frame_background_color = {0.1215, 0.1176, 0.1294, 0.8},
+	frame_background_color = {0.0549, 0.0549, 0.0549, 0.934},
 
 --/run Details.breakdown_spell_tab.spellcontainer_height = 311 --352
 	--breakdown spell tab
@@ -1643,7 +1652,13 @@ local default_global_data = {
 			last_mythicrun_chart = {},
 			mythicrun_chart_frame = {},
 			mythicrun_chart_frame_minimized = {},
-			finished_run_frame = {}, --end of mythic+ panel
+			finished_run_panel3 = {}, --save window position
+			finished_run_frame_options = {
+				orientation = "horizontal",
+				grow_direction = "left",
+			},
+
+			autoclose_time = 90,
 
 			mythicrun_time_type = 1, --1: combat time (the amount of time the player is in combat) 2: run time (the amount of time it took to finish the mythic+ run)
 		}, --implementar esse time_type quando estiver dando refresh na janela
@@ -1698,6 +1713,10 @@ local default_global_data = {
 		exp90temp = {
 			delete_damage_TCOB = true, --delete damage on the concil of blood encounter
 		},
+
+	third_party = {
+		openraid_notecache = {},
+	},
 }
 
 Details.default_global_data = default_global_data
@@ -2054,7 +2073,7 @@ function Details:ImportProfile (profileString, newProfileName, bImportAutoRunCod
 		mythicPlusSettings.last_mythicrun_chart = {}
 		mythicPlusSettings.mythicrun_chart_frame = {}
 		mythicPlusSettings.mythicrun_chart_frame_minimized = {}
-		mythicPlusSettings.finished_run_frame = {}
+		mythicPlusSettings.finished_run_panel3 = {}
 
 		--max segments allowed
 		Details.segments_amount = 25

@@ -33,7 +33,6 @@ end
 L = BigWigs:NewBossLocale("Nefarian Classic", "zhTW")
 if L then
 	--L.engage_yell_trigger = "Let the games begin"
-	L.stage2_yell_trigger = "燃燒吧！一群廢物！燒吧！"
 	L.stage3_yell_trigger = "不可能！來吧，我的僕人！再次為你們的主人服務！"
 
 	L.shaman_class_call_yell_trigger = "薩滿，讓我看看你圖騰到底是什麼用處的"
@@ -64,10 +63,13 @@ end
 L = BigWigs:NewBossLocale("Blackwing Lair Trash", "zhTW")
 if L then
 	--L.wyrmguard_overseer = "Death Talon Wyrmguard / Death Talon Overseer" -- NPC 12460 / 12461
+	--L.sandstorm = "Sandstorm"
 
 	--L.target_vulnerability = "Target Vulnerability Warnings"
 	--L.target_vulnerability_desc = "When your target is a Death Talon Wyrmguard or a Death Talon Overseer, show a warning for what vulnerability it has."
 	--L.target_vulnerability_message = "Target Vulnerability: %s"
 	--L.detect_magic_missing_message = "Detect Magic is missing from your target"
 	--L.detect_magic_warning = "A Mage must cast \124cff71d5ff\124Hspell:2855:0\124h[Detect Magic]\124h\124r on your target for vulnerability warnings to work."
+
+	--L.warlock = "Blackwing Warlock" -- NPC 12459
 end

@@ -1,70 +1,6 @@
 
 EncounterDetailsDB = {
 ["chartData"] = {
-nil,
-nil,
-nil,
-nil,
-nil,
-nil,
-nil,
-nil,
-nil,
-nil,
-nil,
-nil,
-nil,
-nil,
-nil,
-nil,
-nil,
-nil,
-nil,
-{
-},
-nil,
-nil,
-{
-},
-nil,
-{
-},
-nil,
-nil,
-nil,
-nil,
-{
-},
-[33] = {
-},
-[37] = {
-},
-[73] = {
-},
-[48] = {
-},
-[70] = {
-},
-[54] = {
-},
-[56] = {
-},
-[67] = {
-},
-[75] = {
-},
-[51] = {
-},
-[83] = {
-},
-[62] = {
-},
-[42] = {
-},
-[59] = {
-},
-[80] = {
-},
 },
 ["encounter_spells"] = {
 [117514] = {
@@ -85,13 +21,14 @@ nil,
 },
 ["source"] = "Living Amber",
 },
-[123735] = {
+[118094] = {
 ["school"] = 1,
 ["token"] = {
+["SPELL_CAST_START"] = true,
 ["SPELL_CAST_SUCCESS"] = true,
 ["SPELL_DAMAGE"] = true,
 },
-["source"] = "Grand Empress Shek'zeer",
+["source"] = "Subetai the Swift",
 },
 [132007] = {
 ["school"] = 1,
@@ -110,12 +47,12 @@ nil,
 },
 ["source"] = "Pandafrog",
 },
-[196810] = {
-["school"] = 2,
+[125206] = {
+["school"] = 1,
 ["token"] = {
-["SPELL_HEAL"] = true,
+["SPELL_CAST_SUCCESS"] = true,
 },
-["source"] = "Divine Image",
+["source"] = "Amethyst Guardian",
 },
 [119387] = {
 ["school"] = 1,
@@ -133,35 +70,35 @@ nil,
 },
 ["source"] = "Tsulong",
 },
-[118094] = {
+[125873] = {
 ["school"] = 1,
+["type"] = "BUFF",
 ["token"] = {
-["SPELL_CAST_START"] = true,
-["SPELL_CAST_SUCCESS"] = true,
-["SPELL_DAMAGE"] = true,
-},
-["source"] = "Subetai the Swift",
-},
-[125206] = {
-["school"] = 1,
-["token"] = {
-["SPELL_CAST_SUCCESS"] = true,
-},
-["source"] = "Amethyst Guardian",
-},
-[120388] = {
-["school"] = 1,
-["type"] = "DEBUFF",
-["token"] = {
-["SPELL_CAST_SUCCESS"] = true,
 ["SPELL_AURA_APPLIED"] = true,
 },
-["source"] = "Dread Spawn",
+["source"] = "The Kor'thik",
 },
-[122349] = {
+[196810] = {
+["school"] = 2,
+["token"] = {
+["SPELL_HEAL"] = true,
+},
+["source"] = "Divine Image",
+},
+[117975] = {
+["school"] = 1,
+["token"] = {
+["SPELL_CAST_SUCCESS"] = true,
+["SPELL_CAST_START"] = true,
+},
+["source"] = "Protector Kaolan",
+},
+[122532] = {
 ["school"] = 8,
 ["token"] = {
 ["SPELL_DAMAGE"] = true,
+["SPELL_CAST_SUCCESS"] = true,
+["SPELL_HEAL"] = true,
 },
 ["source"] = "Living Amber",
 },
@@ -182,12 +119,14 @@ nil,
 },
 ["source"] = "Animated Protector",
 },
-[117628] = {
-["school"] = 32,
+[117539] = {
+["school"] = 1,
+["type"] = "BUFF",
 ["token"] = {
-["SPELL_CAST_START"] = true,
+["SPELL_AURA_APPLIED"] = true,
+["SPELL_CAST_SUCCESS"] = true,
 },
-["source"] = "Zian of the Endless Shadow",
+["source"] = "Undying Shadows",
 },
 [125451] = {
 ["school"] = 1,
@@ -198,14 +137,14 @@ nil,
 },
 ["source"] = "Sha of Fear",
 },
-[118303] = {
-["school"] = 1,
-["type"] = "DEBUFF",
+[120458] = {
+["school"] = 16,
 ["token"] = {
+["SPELL_CAST_START"] = true,
 ["SPELL_CAST_SUCCESS"] = true,
-["SPELL_AURA_APPLIED"] = true,
+["SPELL_DAMAGE"] = true,
 },
-["source"] = "Undying Shadows",
+["source"] = "Sha of Fear",
 },
 [196811] = {
 ["school"] = 2,
@@ -214,12 +153,14 @@ nil,
 },
 ["source"] = "Divine Image",
 },
-[119358] = {
+[122786] = {
 ["school"] = 1,
+["type"] = "BUFF",
 ["token"] = {
-["SPELL_CAST_START"] = true,
+["SPELL_AURA_APPLIED"] = true,
+["SPELL_DAMAGE"] = true,
+["SPELL_CAST_SUCCESS"] = true,
 },
-["source"] = "Elegon",
 },
 [118047] = {
 ["school"] = 1,
@@ -252,24 +193,19 @@ nil,
 },
 ["source"] = "Elder Asani",
 },
-[117960] = {
-["school"] = 64,
-["type"] = "BUFF",
+[119358] = {
+["school"] = 1,
 ["token"] = {
-["SPELL_AURA_APPLIED"] = true,
 ["SPELL_CAST_START"] = true,
-["SPELL_CAST_SUCCESS"] = true,
 },
 ["source"] = "Elegon",
 },
-[122532] = {
-["school"] = 8,
+[117833] = {
+["school"] = 32,
 ["token"] = {
-["SPELL_DAMAGE"] = true,
-["SPELL_CAST_SUCCESS"] = true,
-["SPELL_HEAL"] = true,
+["SPELL_CAST_START"] = true,
 },
-["source"] = "Living Amber",
+["source"] = "Meng the Demented",
 },
 [122540] = {
 ["school"] = 8,
@@ -319,30 +255,29 @@ nil,
 },
 ["source"] = "Lei Shi",
 },
-[120672] = {
-["school"] = 16,
+[118049] = {
+["school"] = 1,
 ["token"] = {
-["SPELL_CAST_START"] = true,
 ["SPELL_CAST_SUCCESS"] = true,
-["SPELL_DAMAGE"] = true,
+["SPELL_CAST_START"] = true,
 },
-["source"] = "Sha of Fear",
+["source"] = "Subetai the Swift",
 },
-[117539] = {
+[128419] = {
 ["school"] = 1,
 ["type"] = "BUFF",
 ["token"] = {
 ["SPELL_AURA_APPLIED"] = true,
 ["SPELL_CAST_SUCCESS"] = true,
 },
-["source"] = "Undying Shadows",
+["source"] = "Dread Spawn",
 },
-[118299] = {
-["school"] = 64,
+[123428] = {
+["school"] = 1,
+["type"] = "DEBUFF",
 ["token"] = {
-["SPELL_DAMAGE"] = true,
+["SPELL_AURA_APPLIED"] = true,
 },
-["source"] = "Energy Charge",
 },
 [117905] = {
 ["school"] = 1,
@@ -415,21 +350,22 @@ nil,
 },
 ["source"] = "Tsulong",
 },
-[115771] = {
-["school"] = 1,
-["type"] = "BUFF",
-["token"] = {
-["SPELL_AURA_APPLIED"] = true,
-},
-["source"] = "Cobalt Guardian",
-},
-[225080] = {
-["school"] = 1,
+[122151] = {
+["school"] = 0,
 ["type"] = "DEBUFF",
 ["token"] = {
 ["SPELL_AURA_APPLIED"] = true,
 },
-["source"] = "Pandafrog",
+["source"] = "Gara'jal the Spiritbinder",
+},
+[120672] = {
+["school"] = 16,
+["token"] = {
+["SPELL_CAST_START"] = true,
+["SPELL_CAST_SUCCESS"] = true,
+["SPELL_DAMAGE"] = true,
+},
+["source"] = "Sha of Fear",
 },
 [432443] = {
 ["school"] = 4,
@@ -455,14 +391,14 @@ nil,
 },
 ["source"] = "Amber Globule",
 },
-[122786] = {
+[121994] = {
 ["school"] = 1,
 ["type"] = "BUFF",
 ["token"] = {
-["SPELL_AURA_APPLIED"] = true,
-["SPELL_DAMAGE"] = true,
 ["SPELL_CAST_SUCCESS"] = true,
+["SPELL_AURA_APPLIED"] = true,
 },
+["source"] = "Amber-Shaper Un'sok",
 },
 [120438] = {
 ["school"] = 32,
@@ -471,12 +407,14 @@ nil,
 },
 ["source"] = "Dread Spawn",
 },
-[123428] = {
-["school"] = 1,
+[120629] = {
+["school"] = 32,
 ["type"] = "DEBUFF",
 ["token"] = {
 ["SPELL_AURA_APPLIED"] = true,
+["SPELL_PERIODIC_DAMAGE"] = true,
 },
+["source"] = "Sha of Fear",
 },
 [123121] = {
 ["school"] = 16,
@@ -489,22 +427,21 @@ nil,
 },
 ["source"] = "Lei Shi",
 },
-[118049] = {
+[116525] = {
 ["school"] = 1,
+["type"] = "DEBUFF",
 ["token"] = {
-["SPELL_CAST_SUCCESS"] = true,
-["SPELL_CAST_START"] = true,
+["SPELL_AURA_APPLIED"] = true,
 },
-["source"] = "Subetai the Swift",
+["source"] = "Emperor's Rage",
 },
-[121994] = {
+[115771] = {
 ["school"] = 1,
 ["type"] = "BUFF",
 ["token"] = {
-["SPELL_CAST_SUCCESS"] = true,
 ["SPELL_AURA_APPLIED"] = true,
 },
-["source"] = "Amber-Shaper Un'sok",
+["source"] = "Cobalt Guardian",
 },
 [117219] = {
 ["school"] = 32,
@@ -522,21 +459,20 @@ nil,
 },
 ["source"] = "Elder Regail",
 },
+[115827] = {
+["school"] = 1,
+["type"] = "BUFF",
+["token"] = {
+["SPELL_AURA_APPLIED"] = true,
+},
+["source"] = "Jade Guardian",
+},
 [124947] = {
 ["school"] = 64,
 ["token"] = {
 ["SPELL_DAMAGE"] = true,
 },
 ["source"] = "Elegon",
-},
-[120629] = {
-["school"] = 32,
-["type"] = "DEBUFF",
-["token"] = {
-["SPELL_AURA_APPLIED"] = true,
-["SPELL_PERIODIC_DAMAGE"] = true,
-},
-["source"] = "Sha of Fear",
 },
 [123812] = {
 ["school"] = 8,
@@ -556,20 +492,21 @@ nil,
 },
 ["source"] = "Subetai the Swift",
 },
-[115827] = {
+[117986] = {
 ["school"] = 1,
-["type"] = "BUFF",
-["token"] = {
-["SPELL_AURA_APPLIED"] = true,
-},
-["source"] = "Jade Guardian",
-},
-[124018] = {
-["school"] = 0,
 ["token"] = {
 ["SPELL_CAST_SUCCESS"] = true,
 },
-["source"] = "Imperial Vizier Zor'lok",
+["source"] = "Protector Kaolan",
+},
+[117752] = {
+["school"] = 0,
+["type"] = "BUFF",
+["token"] = {
+["SPELL_AURA_APPLIED"] = true,
+["SPELL_CAST_SUCCESS"] = true,
+},
+["source"] = "Gara'jal the Spiritbinder",
 },
 [120669] = {
 ["school"] = 1,
@@ -580,13 +517,12 @@ nil,
 },
 ["source"] = "Sha of Fear",
 },
-[130774] = {
-["school"] = 32,
-["type"] = "DEBUFF",
+[123811] = {
+["school"] = 0,
 ["token"] = {
-["SPELL_AURA_APPLIED"] = true,
+["SPELL_CAST_SUCCESS"] = true,
 },
-["source"] = "Amethyst Guardian",
+["source"] = "Imperial Vizier Zor'lok",
 },
 [123791] = {
 ["school"] = 1,
@@ -602,12 +538,14 @@ nil,
 },
 ["source"] = "Amber-Shaper Un'sok",
 },
-[118003] = {
+[122547] = {
 ["school"] = 8,
+["type"] = "BUFF",
 ["token"] = {
-["SPELL_DAMAGE"] = true,
+["SPELL_AURA_APPLIED"] = true,
+["SPELL_CAST_SUCCESS"] = true,
 },
-["source"] = "Elder Regail",
+["source"] = "Amber-Shaper Un'sok",
 },
 [120455] = {
 ["school"] = 32,
@@ -633,12 +571,12 @@ nil,
 },
 ["source"] = "Elder Asani",
 },
-[123811] = {
-["school"] = 0,
+[118003] = {
+["school"] = 8,
 ["token"] = {
-["SPELL_CAST_SUCCESS"] = true,
+["SPELL_DAMAGE"] = true,
 },
-["source"] = "Imperial Vizier Zor'lok",
+["source"] = "Elder Regail",
 },
 [379] = {
 ["school"] = 8,
@@ -653,14 +591,13 @@ nil,
 ["SPELL_DAMAGE"] = true,
 },
 },
-[122547] = {
-["school"] = 8,
-["type"] = "BUFF",
+[115861] = {
+["school"] = 1,
+["type"] = "DEBUFF",
 ["token"] = {
 ["SPELL_AURA_APPLIED"] = true,
-["SPELL_CAST_SUCCESS"] = true,
 },
-["source"] = "Amber-Shaper Un'sok",
+["source"] = "Cobalt Guardian",
 },
 [119495] = {
 ["school"] = 32,
@@ -709,12 +646,13 @@ nil,
 },
 ["source"] = "Pandafrog",
 },
-[443473] = {
-["school"] = 8,
+[123735] = {
+["school"] = 1,
 ["token"] = {
-["SPELL_PERIODIC_DAMAGE"] = true,
+["SPELL_CAST_SUCCESS"] = true,
+["SPELL_DAMAGE"] = true,
 },
-["source"] = "Pandafrog",
+["source"] = "Grand Empress Shek'zeer",
 },
 [117519] = {
 ["school"] = 32,
@@ -756,20 +694,22 @@ nil,
 ["SPELL_DAMAGE"] = true,
 },
 },
-[443503] = {
-["school"] = 8,
-["type"] = "BUFF",
+[118091] = {
+["school"] = 1,
+["type"] = "DEBUFF",
 ["token"] = {
 ["SPELL_AURA_APPLIED"] = true,
 },
-["source"] = "Protector Kaolan",
 },
-[116805] = {
-["school"] = 8,
+[129378] = {
+["school"] = 1,
+["type"] = "BUFF",
 ["token"] = {
-["SPELL_DAMAGE"] = true,
+["SPELL_AURA_APPLIED"] = true,
+["SPELL_CAST_SUCCESS"] = true,
+["SPELL_PERIODIC_HEAL"] = true,
 },
-["source"] = "Titan Spark",
+["source"] = "Sha of Fear",
 },
 [117988] = {
 ["school"] = 32,
@@ -777,12 +717,13 @@ nil,
 ["SPELL_DAMAGE"] = true,
 },
 },
-[118091] = {
-["school"] = 1,
-["type"] = "DEBUFF",
+[443503] = {
+["school"] = 8,
+["type"] = "BUFF",
 ["token"] = {
 ["SPELL_AURA_APPLIED"] = true,
 },
+["source"] = "Protector Kaolan",
 },
 [116829] = {
 ["school"] = 1,
@@ -807,15 +748,12 @@ nil,
 },
 ["source"] = "Amethyst Guardian",
 },
-[129378] = {
-["school"] = 1,
-["type"] = "BUFF",
+[116805] = {
+["school"] = 8,
 ["token"] = {
-["SPELL_AURA_APPLIED"] = true,
-["SPELL_CAST_SUCCESS"] = true,
-["SPELL_PERIODIC_HEAL"] = true,
+["SPELL_DAMAGE"] = true,
 },
-["source"] = "Sha of Fear",
+["source"] = "Titan Spark",
 },
 [118004] = {
 ["school"] = 8,
@@ -834,13 +772,12 @@ nil,
 },
 ["source"] = "Amber-Shaper Un'sok",
 },
-[115861] = {
-["school"] = 1,
-["type"] = "DEBUFF",
+[443473] = {
+["school"] = 8,
 ["token"] = {
-["SPELL_AURA_APPLIED"] = true,
+["SPELL_PERIODIC_DAMAGE"] = true,
 },
-["source"] = "Cobalt Guardian",
+["source"] = "Pandafrog",
 },
 [123235] = {
 ["school"] = 1,
@@ -871,14 +808,13 @@ nil,
 ["SPELL_DAMAGE"] = true,
 },
 },
-[123833] = {
-["school"] = 0,
-["type"] = "BUFF",
+[130774] = {
+["school"] = 32,
+["type"] = "DEBUFF",
 ["token"] = {
 ["SPELL_AURA_APPLIED"] = true,
-["SPELL_CAST_SUCCESS"] = true,
 },
-["source"] = "Imperial Vizier Zor'lok",
+["source"] = "Amethyst Guardian",
 },
 [117052] = {
 ["school"] = 1,
@@ -898,14 +834,14 @@ nil,
 },
 ["source"] = "Elder Regail",
 },
-[117752] = {
+[123833] = {
 ["school"] = 0,
 ["type"] = "BUFF",
 ["token"] = {
 ["SPELL_AURA_APPLIED"] = true,
 ["SPELL_CAST_SUCCESS"] = true,
 },
-["source"] = "Gara'jal the Spiritbinder",
+["source"] = "Imperial Vizier Zor'lok",
 },
 [123426] = {
 ["school"] = 1,
@@ -930,29 +866,29 @@ nil,
 },
 ["source"] = "Feng the Accursed",
 },
-[122151] = {
+[124018] = {
 ["school"] = 0,
+["token"] = {
+["SPELL_CAST_SUCCESS"] = true,
+},
+["source"] = "Imperial Vizier Zor'lok",
+},
+[118303] = {
+["school"] = 1,
+["type"] = "DEBUFF",
+["token"] = {
+["SPELL_CAST_SUCCESS"] = true,
+["SPELL_AURA_APPLIED"] = true,
+},
+["source"] = "Undying Shadows",
+},
+[225080] = {
+["school"] = 1,
 ["type"] = "DEBUFF",
 ["token"] = {
 ["SPELL_AURA_APPLIED"] = true,
 },
-["source"] = "Gara'jal the Spiritbinder",
-},
-[117986] = {
-["school"] = 1,
-["token"] = {
-["SPELL_CAST_SUCCESS"] = true,
-},
-["source"] = "Protector Kaolan",
-},
-[128419] = {
-["school"] = 1,
-["type"] = "BUFF",
-["token"] = {
-["SPELL_AURA_APPLIED"] = true,
-["SPELL_CAST_SUCCESS"] = true,
-},
-["source"] = "Dread Spawn",
+["source"] = "Pandafrog",
 },
 [193473] = {
 ["school"] = 32,
@@ -962,13 +898,12 @@ nil,
 },
 ["source"] = "Void Tendril",
 },
-[116525] = {
-["school"] = 1,
-["type"] = "DEBUFF",
+[117628] = {
+["school"] = 32,
 ["token"] = {
-["SPELL_AURA_APPLIED"] = true,
+["SPELL_CAST_START"] = true,
 },
-["source"] = "Emperor's Rage",
+["source"] = "Zian of the Endless Shadow",
 },
 [201633] = {
 ["school"] = 2,
@@ -985,14 +920,12 @@ nil,
 },
 ["source"] = "Qiang the Merciless",
 },
-[120458] = {
-["school"] = 16,
+[118299] = {
+["school"] = 64,
 ["token"] = {
-["SPELL_CAST_START"] = true,
-["SPELL_CAST_SUCCESS"] = true,
 ["SPELL_DAMAGE"] = true,
 },
-["source"] = "Sha of Fear",
+["source"] = "Energy Charge",
 },
 [122752] = {
 ["school"] = 32,
@@ -1038,20 +971,22 @@ nil,
 },
 ["source"] = "Amber-Shaper Un'sok",
 },
-[125873] = {
-["school"] = 1,
+[117960] = {
+["school"] = 64,
 ["type"] = "BUFF",
 ["token"] = {
 ["SPELL_AURA_APPLIED"] = true,
-},
-["source"] = "The Kor'thik",
-},
-[117833] = {
-["school"] = 32,
-["token"] = {
 ["SPELL_CAST_START"] = true,
+["SPELL_CAST_SUCCESS"] = true,
 },
-["source"] = "Meng the Demented",
+["source"] = "Elegon",
+},
+[122349] = {
+["school"] = 8,
+["token"] = {
+["SPELL_DAMAGE"] = true,
+},
+["source"] = "Living Amber",
 },
 [124967] = {
 ["school"] = 1,
@@ -1071,13 +1006,14 @@ nil,
 ["SPELL_CAST_SUCCESS"] = true,
 },
 },
-[117975] = {
+[120388] = {
 ["school"] = 1,
+["type"] = "DEBUFF",
 ["token"] = {
 ["SPELL_CAST_SUCCESS"] = true,
-["SPELL_CAST_START"] = true,
+["SPELL_AURA_APPLIED"] = true,
 },
-["source"] = "Protector Kaolan",
+["source"] = "Dread Spawn",
 },
 [123467] = {
 ["school"] = 32,
@@ -1085,13 +1021,6 @@ nil,
 ["SPELL_DAMAGE"] = true,
 },
 ["source"] = "Lei Shi",
-},
-[117506] = {
-["school"] = 1,
-["token"] = {
-["SPELL_CAST_SUCCESS"] = true,
-},
-["source"] = "Zian of the Endless Shadow",
 },
 [116363] = {
 ["school"] = 1,
@@ -1101,6 +1030,13 @@ nil,
 ["SPELL_CAST_SUCCESS"] = true,
 },
 ["source"] = "Feng the Accursed",
+},
+[117506] = {
+["school"] = 1,
+["token"] = {
+["SPELL_CAST_SUCCESS"] = true,
+},
+["source"] = "Zian of the Endless Shadow",
 },
 },
 ["emotes"] = {

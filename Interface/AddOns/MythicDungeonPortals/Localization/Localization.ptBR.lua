@@ -1,5 +1,7 @@
 local L = select(2, ...).L('ptBR')
 
+L["MDP_TITLE"] = "Portais de Masmorras Míticas"
+
 -- Expansões
 L["Cataclysm"] = "Cataclysm"
 L["Mists of Pandaria"] = "Mists of Pandaria"
@@ -68,10 +70,20 @@ L["DUNGEON_THE_ROOKERY"] = "O Pombal"
 L["DUNGEON_DARKFLAME_CLEFT"] = "Fenda Chama Negra"
 L["DUNGEON_CINDERBREW_BREWERY"] = "Cervejaria Cinzaferro"
 L["DUNGEON_PRIORY_OF_THE_SACRED_FLAME"] = "Priorado da Chama Sagrada"
+L["DUNGEON_GRIM_BATOL"] = "Grim Batol"
+L["DUNGEON_SEIGE_OF_BORALUS"] = "Assédio a Boralus"
+
+-- Raids
+L["RAID_VAULT_OF_THE_INCARNATES"] = "Cofre dos Encarnados"
+L["RAID_ABBERUS_THE_SHADOWED_CRUCIBLE"] = "Aberrus, o Crucível Sombrio"
+L["RAID_AMIRDRASSIL_THE_DREAMS_HOPE"] = "Amirdrassil, a Esperança do Sonho"
+L["RAID_CASTLE_NATHRIA"] = "Castelo Nathria"
+L["RAID_SANCTUM_OF_DOMINATION"] = "Santuário da Dominação"
+L["RAID_SEPULCHER_OF_THE_FIRST_ONES"] = "Sepulcro dos Primogênitos"
 
 -- Settings
-L["Left click to open Portals"] = "Left click to open Portals"
-L["Right click to open settings"] = "Right click to open settings"
-L["Show/Hide Backgrounds"] = "Show/Hide Backgrounds"
-L["Show/Hide Minimap Icon"] = "Show/Hide Minimap Icon"
-L["Mythic Dungeon Portals Settings"] = "Mythic Dungeon Portals Settings"
+L["LEFT_CLICK"] = "Clique esquerdo para abrir portais"
+L["RIGHT_CLICK"] = "Clique direito para abrir configurações"
+L["SHOW_BACKGROUNDS"] = "Mostrar/Ocultar Fundos"
+L["SHOW_MINIMAP"] = "Mostrar/Ocultar Ícone do Minimapa"
+L["SETTINGS_TITLE"] = "Configurações dos Portais de Masmorras Míticas"

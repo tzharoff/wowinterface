@@ -1,0 +1,8 @@
+## Interface: 110007
+## Title: |cff0000FFGSE:|r |cFF00D1FFElfyau Warrior Macros|r
+## Notes: GSE3 Elfyau Warrior Macros
+## Author: Elfyau
+## Version: v1
+## RequiredDeps: GSE
+
+loaded.lua

@@ -30,6 +30,7 @@ SimcLDB = LibStub("LibDataBroker-1.1"):NewDataObject("SimulationCraft", {
 LibDBIcon = LibStub("LibDBIcon-1.0")
 
 local SimcFrame = nil
+local OptionsDB = nil
 
 local OFFSET_ITEM_ID = 1
 local OFFSET_ENCHANT_ID = 2
@@ -87,11 +88,12 @@ local zandalariLoaBuffs   = Simulationcraft.zandalariLoaBuffs
 
 function Simulationcraft:OnInitialize()
   -- init databroker
-  self.db = LibStub("AceDB-3.0"):New("SimulationCraftDB", {
+  OptionsDB = LibStub("AceDB-3.0"):New("SimulationCraftDB", {
     profile = {
       minimap = {
         hide = false,
       },
+      closeOnCopy = true,
       frame = {
         point = "CENTER",
         relativeFrame = nil,
@@ -103,7 +105,7 @@ function Simulationcraft:OnInitialize()
       },
     },
   });
-  LibDBIcon:Register("SimulationCraft", SimcLDB, self.db.profile.minimap)
+  LibDBIcon:Register("SimulationCraft", SimcLDB, OptionsDB.profile.minimap)
   Simulationcraft:UpdateMinimapButton()
   Simulationcraft:RegisterChatCommand('simc', 'HandleChatCommand')
   AddonCompartmentFrame:RegisterAddon({
@@ -125,7 +127,7 @@ function Simulationcraft:OnDisable()
 end
 
 function Simulationcraft:UpdateMinimapButton()
-  if (self.db.profile.minimap.hide) then
+  if (OptionsDB.profile.minimap.hide) then
     LibDBIcon:Hide("SimulationCraft")
   else
     LibDBIcon:Show("SimulationCraft")
@@ -156,9 +158,9 @@ function Simulationcraft:HandleChatCommand(input)
     elseif arg == 'merchant' then
       showMerchant = true
     elseif arg == 'minimap' then
-      self.db.profile.minimap.hide = not self.db.profile.minimap.hide
+      OptionsDB.profile.minimap.hide = not OptionsDB.profile.minimap.hide
       DEFAULT_CHAT_FRAME:AddMessage(
-        "SimulationCraft: Minimap button is now " .. (self.db.profile.minimap.hide and "hidden" or "shown")
+        "SimulationCraft: Minimap button is now " .. (OptionsDB.profile.minimap.hide and "hidden" or "shown")
       )
       Simulationcraft:UpdateMinimapButton()
       return
@@ -361,8 +363,8 @@ local function WriteLoadoutContent(exportStream, configID, treeID)
           local entryIndex = GetActiveEntryIndex(treeNode);
           if(entryIndex <= 0 or entryIndex > 4) then
             local configInfo = Traits.GetConfigInfo(configID)
-            local errorMsg = "Talent loadout '" .. configInfo.name .. "' is corrupt/incomplete. It needs to be"
-              .. " recreated or deleted for /simc to function properly"
+            local errorMsg = "Talent loadout '" .. configInfo.name .. "' is corrupt/incomplete. Find that talent"
+              .. " loadout in your talents UI and delete or update it. It may be on a different spec."
             print(errorMsg);
             error(errorMsg);
           end
@@ -645,11 +647,23 @@ function Simulationcraft:GetUpgradeCurrencies()
   return table.concat(upgradeCurrencies, '/')
 end
 
+function Simulationcraft:GetItemUpgradeAchievements()
+  local achieves = {}
+  for i=1, #Simulationcraft.upgradeAchievements do
+    local achId = Simulationcraft.upgradeAchievements[i]
+    _, name, points, complete = GetAchievementInfo(achId)
+    if complete then
+      achieves[#achieves + 1] = achId
+    end
+  end
+  return table.concat(achieves, '/')
+end
+
 function Simulationcraft:GetMainFrame(text)
   -- Frame code largely adapted from https://www.wowinterface.com/forums/showpost.php?p=323901&postcount=2
   if not SimcFrame then
     -- Main Frame
-    local frameConfig = self.db.profile.frame
+    local frameConfig = OptionsDB.profile.frame
     local f = CreateFrame("Frame", "SimcFrame", UIParent, "DialogBoxFrame")
     f:ClearAllPoints()
     -- load position from local DB
@@ -693,12 +707,32 @@ function Simulationcraft:GetMainFrame(text)
     sf:SetPoint("BOTTOM", SimcFrameButton, "TOP", 0, 0)
 
     -- edit box
+    local ctrlDown = false
     local eb = CreateFrame("EditBox", "SimcEditBox", SimcScrollFrame)
     eb:SetSize(sf:GetSize())
     eb:SetMultiLine(true)
     eb:SetAutoFocus(true)
     eb:SetFontObject("ChatFontNormal")
     eb:SetScript("OnEscapePressed", function() f:Hide() end)
+    eb:SetScript("OnKeyDown", function(self, key)
+      if key == "LCTRL" or key == "RCTRL" then
+        ctrlDown = true
+      end
+    end)
+    eb:SetScript("OnKeyUp", function(self, key)
+      if key == "LCTRL" or key == "RCTRL" then
+        -- Add a small grace period. In testing, the way I press Ctrl-C would sometimes have Ctrl keyup bfore C
+        C_Timer.After(0.2, function() ctrlDown = false end)
+      end
+      if ctrlDown and key == "C" then
+        if OptionsDB.profile.closeOnCopy then
+          -- Just in case there's some weird way that WoW could close the window before the OS copies
+          C_Timer.After(0.1, function()
+            f:Hide()
+          end)
+        end
+      end
+    end)
     sf:SetScrollChild(eb)
 
     -- resizing
@@ -733,6 +767,15 @@ function Simulationcraft:GetMainFrame(text)
         -- save size between sessions
         frameConfig.width = f:GetWidth()
         frameConfig.height = f:GetHeight()
+    end)
+
+    -- Automatic close checkbox
+    local checkbox = CreateFrame("CheckButton", "AutomaticClose", f, "ChatConfigCheckButtonTemplate")
+    checkbox:SetPoint("BOTTOMLEFT", 12, 18)
+    checkbox.Text:SetText("Close after copy")
+    checkbox:SetChecked(true)
+    checkbox:HookScript("OnClick", function(self)
+      OptionsDB.profile.closeOnCopy = self:GetChecked()
     end)
 
     SimcFrame = f
@@ -1034,6 +1077,10 @@ function Simulationcraft:GetSimcProfile(debugOutput, noBags, showMerchant, links
     simulationcraftProfile = simulationcraftProfile .. '#\n'
     simulationcraftProfile = simulationcraftProfile .. '# slot_high_watermarks=' .. highWatermarksStr .. '\n'
   end
+
+  local upgradeAchievementsStr = Simulationcraft:GetItemUpgradeAchievements()
+  simulationcraftProfile = simulationcraftProfile .. '#\n'
+  simulationcraftProfile = simulationcraftProfile .. '# upgrade_achievements=' .. upgradeAchievementsStr .. '\n'
 
   -- sanity checks - if there's anything that makes the output completely invalid, punt!
   if specId==nil then

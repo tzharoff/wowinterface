@@ -1,7 +1,23 @@
+VER 3 0100000000000005 "AW" "134400"
+#showtooltip
+/cast Avenging Wrath
+/use 14
+END
 VER 3 0100000000000003 "BoF" "134400"
 #showtooltip
 /stopcasting
 /cast [@focus,help,nodead] [@mouseover,help,nodead] [] Blessing of Freedom
+END
+VER 3 0100000000000004 "FV" "134400"
+#showtooltip
+/cast Final Verdict
+/use 14
+END
+VER 3 0100000000000006 "MG" "134400"
+#showtooltip
+/cast Moment of Glory
+/cast Avenging Wrath
+/use 14
 END
 VER 3 0100000000000001 "VuhDoDCShieldData" "Ability_Repair"
 P[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]1PM[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]

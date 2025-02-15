@@ -5,6 +5,7 @@ local module = core:NewModule("Announce", "AceTimer-3.0", "LibSink-2.0")
 local Debug = core.Debug
 
 local LSM = LibStub("LibSharedMedia-3.0")
+local HBD = LibStub("HereBeDragons-2.0")
 
 -- testing snippet:
 -- /script C_Timer.After(2, function() SilverDragon:GetModule("Announce"):Seen("_", 32491, 120, 0.490, 0.362, false, "fake") end)
@@ -138,7 +139,7 @@ function module:OnInitialize()
 			return {
 				type = "select", dialogControl = "LSM30_Sound",
 				name = "Sound to Play", desc = "Choose a sound file to play",
-				values = AceGUIWidgetLSMlists.sound,
+				values = LSM:HashTable("sound"),
 				disabled = function() return not self.db.profile[enabled_key] end,
 				order = order,
 			}
@@ -248,9 +249,21 @@ function module:OnInitialize()
 							Ambience = _G.AMBIENCE_VOLUME,
 							Master = _G.MASTER,
 							Music = _G.MUSIC_VOLUME,
-							SFX = _G.SOUND_VOLUME,
+							SFX = _G.SOUND_VOLUME or _G.FX_VOLUME,
 							Dialog = _G.DIALOG_VOLUME,
 						},
+						order = 11,
+					},
+					test = {
+						type = "execute",
+						name = "Test it!",
+						image = "interface/common/voicechat-speaker",
+						func = function()
+							module:PlaySound{
+								soundfile = module.db.profile.soundfile,
+								loops = module.db.profile.sound_loop
+							}
+						end,
 						order = 11,
 					},
 					unmute = toggle("Ignore mute", "Play sounds even when muted", 12),
@@ -457,7 +470,7 @@ function module:ShouldAnnounce(id, zone, x, y, is_dead, source, ...)
 		Debug("ShouldAnnounce", false, "dead")
 		return false
 	end
-	if core.db.global.always[id] then
+	if core:IsCustom(id, zone) then
 		-- If you've manually added a mob, bypass any other checks
 		Debug("ShouldAnnounce", true, "always")
 		return true
@@ -522,6 +535,9 @@ core.RegisterCallback("SD Announce Sink", "Announce", function(callback, id, zon
 			source = source .. " @ unknown location"
 		else
 			source = source .. (" @ %.1f, %.1f"):format(x * 100, y * 100)
+			if zone ~= HBD:GetPlayerZone() then
+				source = source .. " in " .. (core.zone_names[zone] or UNKNOWN)
+			end
 			if module.db.profile.sink_opts.sink20OutputSink == "ChatFrame" and MAP_PIN_HYPERLINK then
 				pin = (" |cffffff00|Hworldmap:%d:%d:%d|h[%s]|h|r"):format(
 					zone, x * 10000, y * 10000, MAP_PIN_HYPERLINK

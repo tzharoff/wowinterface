@@ -25,7 +25,7 @@ BigWigs_Options: enabled
 BigWigs_Plugins: enabled
 BigWigs_VaultOfTheIncarnates: disabled
 Craftility: disabled
-CraftSim: disabled
+CraftSim: enabled
 DataStore: enabled
 DataStore_Keystones: enabled
 Details: disabled
@@ -85,8 +85,8 @@ TidyPlates_Grey: disabled
 TidyPlates_Neon: disabled
 TidyPlates_Quatre: disabled
 TomPoints: disabled
-TomTom: disabled
-TradeSkillMaster: disabled
+TomTom: enabled
+TradeSkillMaster: enabled
 TradeSkillMaster_AppHelper: enabled
 VuhDo: enabled
 VuhDoOptions: enabled
@@ -99,3 +99,4 @@ WeakAurasStopMotion: disabled
 WeakAurasTemplates: disabled
 Blizzard_ObjectiveTracker: enabled
 Blizzard_CompactRaidFrames: enabled
+Blizzard_CombatText: enabled

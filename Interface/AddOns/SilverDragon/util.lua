@@ -12,6 +12,7 @@ local function quick_texture_markup(icon)
 	-- needs less than CreateTextureMarkup
 	return '|T' .. icon .. ':0:0:1:-1|t'
 end
+ns.quick_texture_markup = quick_texture_markup
 local completeColor = CreateColor(0, 1, 0, 1)
 local incompleteColor = CreateColor(1, 0, 0, 1)
 function addon:RenderString(s, context)
@@ -147,7 +148,7 @@ do
 	local out = {}
 	function addon:RenderStringList(variant, ...)
 		if not ... then return "" end
-		if type(...) == "table" then return self:RenderStringList(variant, unpack(...)) end
+		if ns.xtype(...) == "table" then return self:RenderStringList(variant, unpack(...)) end
 		wipe(out)
 		for i=1,select("#", ...) do
 			table.insert(out, ("{%s:%d}"):format(variant, (select(i, ...))))
@@ -214,7 +215,7 @@ do
 		-- local unitType, _, serverID, instanceID, zoneUID, mobID, spawnUID = strsplit("-", guid)
 		local guidType, _, serverID, instanceID, zoneUID, id, spawnUID = strsplit("-", guid)
 		if not (guidType and valid_types[guidType]) then return end
-		return tonumber(zoneUID)
+		return tonumber(zoneUID), tonumber(id)
 	end
 	function addon:UnitShard(unit)
 		return self:GUIDShard(UnitGUID(unit))
@@ -261,10 +262,8 @@ do
 	if _G.C_TooltipInfo then
 		function TextFromHyperlink(link)
 			local info = C_TooltipInfo.GetHyperlink(link)
-			if info and info.lines and info.lines[1] then
-				if info.lines[1].type == Enum.TooltipDataType.Unit then
-					return info.lines[1].leftText
-				end
+			if info and info.lines and info.lines[1] and info.lines[1].type == Enum.TooltipDataLineType.UnitName then
+				return info.lines[1].leftText
 			end
 		end
 	else

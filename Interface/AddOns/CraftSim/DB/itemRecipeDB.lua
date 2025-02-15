@@ -9,7 +9,7 @@ CraftSim.DB = CraftSim.DB
 ---@class CraftSim.DB.ITEM_RECIPE : CraftSim.DB.Repository
 CraftSim.DB.ITEM_RECIPE = CraftSim.DB:RegisterRepository()
 
-local print = CraftSim.DEBUG:SetDebugPrint(CraftSim.CONST.DEBUG_IDS.DB)
+local print = CraftSim.DEBUG:RegisterDebugID("Database.itemRecipeDB")
 
 ---@class CraftSim.ItemRecipeData
 ---@field recipeID RecipeID
@@ -61,6 +61,12 @@ function CraftSim.DB.ITEM_RECIPE:Migrate()
         -- restore data table if not existing
         CraftSimDB.itemCountDB.data = CraftSimDB.itemCountDB.data or {}
         CraftSimDB.itemRecipeDB.version = 3
+    end
+
+    --  TWW Refactor
+    if CraftSimDB.itemRecipeDB.version == 3 then
+        self:ClearAll()
+        CraftSimDB.itemRecipeDB.version = 4
     end
 end
 

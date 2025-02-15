@@ -1,7 +1,9 @@
 # NameplateSCT
 
-## [1.41](https://github.com/Justw8/NameplateSCT/tree/1.41) (2024-07-26)
-[Full Changelog](https://github.com/Justw8/NameplateSCT/compare/1.40...1.41) [Previous Releases](https://github.com/Justw8/NameplateSCT/releases)
+## [1.43](https://github.com/Justw8/NameplateSCT/tree/1.43) (2025-02-03)
+[Full Changelog](https://github.com/Justw8/NameplateSCT/compare/1.42...1.43) [Previous Releases](https://github.com/Justw8/NameplateSCT/releases)
 
-- Tweak Overkill Display  
-- Update zhCN.lua (#46)  
+- bump tocs  
+- Also truncuate overkill damage  
+- Add 'DAMAGE\_SHIELD' CLEUs as viable damage events  
+- Update zhCN.lua (#53)  

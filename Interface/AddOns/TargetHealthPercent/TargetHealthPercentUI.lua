@@ -57,12 +57,13 @@ end
 
 
 function TargetHealthPercentUI.CreateConfigMenu()
-	local configPanel = CreateFrame("Frame", "TargetHealthPercentConfigFrame", UIParent)
+	local configPanel = CreateFrame("Frame", "TargetHealthPercentConfigFrame", InterfaceOptionsFramePanelContainer)
 	configPanel.name = "TargetHealthPercent"
 	configPanel.okay = function (self) return end
 	configPanel.cancel = function (self) return end
 
-	local addonName, addonTitle, addonNotes = GetAddOnInfo('TargetHealthPercent')
+	--local addonName, addonTitle, addonNotes = GetAddOnInfo('TargetHealthPercent')
+	local addonName, addonTitle, addonNotes = C_AddOns.GetAddOnInfo('TargetHealthPercent')
 	local configPanelText = configPanel:CreateFontString(nil, 'ARTWORK', 'GameFontNormalLarge')
 	configPanelText:SetPoint('TOPLEFT', 16, -16)
 	configPanelText:SetText(addonTitle)
@@ -167,7 +168,14 @@ function TargetHealthPercentUI.CreateConfigMenu()
 	local showHP = TargetHealthPercentUI.CreateCheckButton("Show Max HP", configPanel,"show the max health the target has", "showHP", 'InterfaceOptionsCheckButtonTemplate')
 	showHP:SetPoint('TOPLEFT', showHPDesc, 'BOTTOMLEFT', 0, -5)
 	
-	InterfaceOptions_AddCategory(configPanel)
+	-- shout out
+	local showTyDesc = configPanel:CreateFontString(nil, 'ARTWORK', 'GameFontNormal')
+	showTyDesc:SetPoint('TOPLEFT', showUse20, 'BOTTOMLEFT', 0, -75)
+	showTyDesc:SetText("  -- Special thanks to RaFan for keeping this addon alive --")
+	
+	--InterfaceOptions_AddCategory(configPanel)
+	local category = Settings.RegisterCanvasLayoutCategory(configPanel, configPanel.name)
+	Settings.RegisterAddOnCategory(category)
 end
 
 function TargetHealthPercentUI.BarAlphaSliderChanged(self, value)

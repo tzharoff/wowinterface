@@ -31,9 +31,9 @@ _detalhes_database = {
 ["show_options"] = false,
 ["ignored_cooldowns"] = {
 },
+["framme_locked"] = false,
 ["cooldowns"] = {
 },
-["height"] = 18,
 ["own_frame"] = {
 ["defensive-raid"] = false,
 ["ofensive"] = false,
@@ -41,7 +41,7 @@ _detalhes_database = {
 ["utility"] = false,
 ["defensive-personal"] = false,
 },
-["framme_locked"] = false,
+["height"] = 18,
 ["show_conditions"] = {
 ["only_inside_instance"] = true,
 ["only_in_group"] = true,
@@ -59,7 +59,7 @@ _detalhes_database = {
 ["utility"] = false,
 },
 },
-["last_version"] = "11.0.2 12829",
+["last_version"] = "11.0.5 13191",
 ["player_stats"] = {
 },
 ["force_font_outline"] = "",
@@ -91,7 +91,7 @@ _detalhes_database = {
 ["attribute"] = 1,
 ["pos"] = {
 ["normal"] = {
-["y"] = -149.8802490234375,
+["y"] = -149.8802185058594,
 ["x"] = -865.3675842285156,
 ["w"] = 310.0000610351563,
 ["h"] = 158.0001068115234,
@@ -163,22 +163,20 @@ _detalhes_database = {
 ["evoker_show_realtimedps"] = false,
 ["inverse_deathlog_mplus"] = false,
 },
-["data_harvested_for_charts"] = {
-},
-["mythic_plus_log"] = {
-},
-["on_death_menu"] = false,
-["cached_roles"] = {
-},
-["nick_tag_cache"] = {
-["nextreset"] = 1724882131,
-["last_version"] = 16,
-},
 ["announce_firsthit"] = {
 ["enabled"] = true,
 ["channel"] = "SELF",
 },
+["mythic_plus_log"] = {
+},
+["SoloTablesSaved"] = {
+["Mode"] = 1,
+},
+["cached_roles"] = {
+},
 ["ignore_nicktag"] = false,
+["combat_counter"] = 14,
+["on_death_menu"] = false,
 ["plugin_database"] = {
 ["DETAILS_PLUGIN_TINY_THREAT"] = {
 ["enabled"] = true,
@@ -220,13 +218,13 @@ _detalhes_database = {
 ["tank_block_size"] = 150,
 ["bar_height"] = 24,
 ["tank_block_texture"] = "Details Serenity",
-["tank_block_height"] = 40,
 ["tank_block_color"] = {
 0.074509,
 0.035294,
 0.035294,
 0.832845,
 },
+["tank_block_height"] = 40,
 ["tank_block_powerbar_size_height"] = 10,
 ["show_inc_bars"] = true,
 },
@@ -266,31 +264,28 @@ _detalhes_database = {
 0.5,
 },
 ["scale"] = 1,
-["main_frame_size"] = {
-300,
-500.0000305175781,
-},
+["arrow_anchor_y"] = 0,
 ["minimap"] = {
 ["minimapPos"] = 155.2472387522797,
 ["radius"] = 160,
 ["hide"] = false,
 },
-["point"] = "CENTER",
+["row_height"] = 20,
 ["arrow_anchor_x"] = 0,
-["y"] = 4.57763671875e-05,
-["row_texture"] = "Details Serenity",
-["square_grow_direction"] = "right",
 ["font_color"] = {
 1,
 1,
 1,
 1,
 },
-["row_height"] = 20,
+["row_texture"] = "Details Serenity",
+["square_grow_direction"] = "right",
+["point"] = "CENTER",
+["main_frame_strata"] = "LOW",
 ["square_amount"] = 5,
 ["enabled"] = false,
 ["arrow_size"] = 10,
-["use_spark"] = true,
+["font_size"] = 10,
 ["row_spacement"] = 21,
 ["main_frame_color"] = {
 0,
@@ -298,14 +293,13 @@ _detalhes_database = {
 0,
 0.2,
 },
-["main_frame_strata"] = "LOW",
-["arrow_texture"] = "Interface\\CHATFRAME\\ChatFrameExpandArrow",
 ["row_color"] = {
 0.1,
 0.1,
 0.1,
 0.4,
 },
+["arrow_texture"] = "Interface\\CHATFRAME\\ChatFrameExpandArrow",
 ["per_second"] = {
 ["enabled"] = false,
 ["point"] = "CENTER",
@@ -313,26 +307,30 @@ _detalhes_database = {
 ["font_shadow"] = true,
 ["y"] = 3.0517578125e-05,
 ["x"] = 3.0517578125e-05,
-["update_speed"] = 0.05,
 ["size"] = 32,
+["update_speed"] = 0.05,
 ["attribute_type"] = 1,
 },
+["use_spark"] = true,
 ["x"] = 0,
 ["font_face"] = "Friz Quadrata TT",
 ["square_size"] = 32,
-["arrow_anchor_y"] = 0,
-["font_size"] = 10,
-["main_frame_locked"] = false,
+["y"] = 4.57763671875e-05,
 ["author"] = "Terciob",
+["main_frame_locked"] = false,
+["main_frame_size"] = {
+300,
+500.0000305175781,
+},
 },
 },
 ["last_instance_time"] = 0,
 ["combat_id"] = 0,
 ["savedStyles"] = {
 },
-["last_day"] = "13",
+["last_day"] = "23",
 ["character_data"] = {
-["logons"] = 1,
+["logons"] = 5,
 },
 ["announce_deaths"] = {
 ["enabled"] = false,
@@ -368,7 +366,7 @@ _detalhes_database = {
 },
 ["raid_roster"] = {
 },
-["tempo_start"] = 1723586164,
+["tempo_start"] = 1000684.461,
 ["last_events_tables"] = {
 },
 ["alternate_power"] = {
@@ -431,11 +429,11 @@ _detalhes_database = {
 ["data_inicio"] = 0,
 ["amountCasts"] = {
 },
-["mapId"] = 1,
+["mapId"] = 2552,
 ["cleu_events"] = {
 ["n"] = 1,
 },
-["zoneName"] = "Kalimdor",
+["zoneName"] = "Khaz Algar (Surface)",
 ["boss_hp"] = 1,
 ["is_challenge"] = false,
 ["frags"] = {
@@ -461,15 +459,15 @@ _detalhes_database = {
 },
 ["start_time"] = 0,
 ["TimeData"] = {
-["Raid Damage Done"] = {
 },
+["combat_counter"] = 13,
 },
-["combat_counter"] = 5,
+["last_realversion"] = 161,
+["nick_tag_cache"] = {
+["nextreset"] = 1733720217,
+["last_version"] = 16,
 },
-["last_realversion"] = 159,
-["combat_counter"] = 6,
-["SoloTablesSaved"] = {
-["Mode"] = 1,
+["data_harvested_for_charts"] = {
 },
 ["announce_cooldowns"] = {
 ["enabled"] = false,
@@ -487,6 +485,11 @@ _detalhes_database = {
 ["channel"] = "SELF",
 },
 ["cached_specs"] = {
-["Player-3676-0E864522"] = 1449,
+["Player-3676-0E6BE64D"] = 104,
+["Player-3684-07195128"] = 72,
+["Player-3676-0DCE3B8B"] = 104,
+["Player-3676-0A2D4593"] = 70,
+["Player-3676-0E88B15B"] = 64,
+["Player-3676-06F46815"] = 269,
 },
 }

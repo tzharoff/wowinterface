@@ -19,7 +19,7 @@ CraftSimNO_PRICE_API = { name = "None" }
 CraftSim.PRICE_APIS.available = true
 
 local systemPrint = print
-local print = CraftSim.DEBUG:SetDebugPrint(CraftSim.CONST.DEBUG_IDS.PRICE_APIS)
+local print = CraftSim.DEBUG:RegisterDebugID("Data.PriceAPI")
 
 function CraftSim.PRICE_API:InitPriceSource()
     local loadedSources = CraftSim.PRICE_APIS:GetAvailablePriceSourceAddons()
@@ -36,7 +36,7 @@ function CraftSim.PRICE_API:InitPriceSource()
                     CraftSim.LOCAL:GetText(CraftSim.CONST.TEXT.POPUP_NO_PRICE_SOURCE_TITLE), CraftSim.GUTIL.COLORS.RED),
                 text = CraftSim.LOCAL:GetText(CraftSim.CONST.TEXT.POPUP_NO_PRICE_SOURCE_WARNING) ..
                     table.concat(CraftSim.CONST.SUPPORTED_PRICE_API_ADDONS, "\n"),
-                acceptButtonLabel = "OK",
+                acceptButtonLabel = CraftSim.LOCAL:GetText(CraftSim.CONST.TEXT.POPUP_NO_PRICE_SOURCE_WARNING_ACCEPT),
                 declineButtonLabel = CraftSim.LOCAL:GetText(CraftSim.CONST.TEXT.POPUP_NO_PRICE_SOURCE_WARNING_SUPPRESS),
                 onDecline = function()
                     StaticPopup_Show("CRAFT_SIM_ACCEPT_NO_PRICESOURCE_WARNING")
@@ -140,6 +140,8 @@ function CraftSimTSM:GetAuctionAmountByItemLink(itemLink)
     return TSM_API.GetAuctionQuantity(TSM_API.ToItemString(itemLink))
 end
 
+---@param itemID string
+---@param isReagent boolean?
 function CraftSimTSM:GetMinBuyoutByItemID(itemID, isReagent)
     if itemID == nil then
         return
@@ -158,7 +160,7 @@ end
 function CraftSimTSM:GetMinBuyoutByTSMItemString(tsmItemString, isReagent)
     local minBuyoutPriceSourceKey = nil
     if isReagent then
-        minBuyoutPriceSourceKey = CraftSim.DB.OPTIONS:Get(CraftSim.CONST.GENERAL_OPTIONS.TSM_PRICE_KEY_MATERIALS)
+        minBuyoutPriceSourceKey = CraftSim.DB.OPTIONS:Get(CraftSim.CONST.GENERAL_OPTIONS.TSM_PRICE_KEY_REAGENTS)
     else
         minBuyoutPriceSourceKey = CraftSim.DB.OPTIONS:Get(CraftSim.CONST.GENERAL_OPTIONS.TSM_PRICE_KEY_ITEMS)
     end
@@ -176,6 +178,8 @@ function CraftSimTSM:GetMinBuyoutByTSMItemString(tsmItemString, isReagent)
     end
 end
 
+---@param itemLink string
+---@param isReagent boolean?
 function CraftSimTSM:GetMinBuyoutByItemLink(itemLink, isReagent)
     if itemLink == nil then
         return
@@ -198,6 +202,7 @@ function CraftSimTSM:GetItemSaleRate(itemLink)
 end
 
 function CraftSimAUCTIONATOR:GetMinBuyoutByItemID(itemID)
+    if not itemID then return 0 end
     local vendorPrice = Auctionator.API.v1.GetVendorPriceByItemID(CraftSimAddonName, itemID)
     if vendorPrice then
         return vendorPrice
@@ -207,6 +212,7 @@ function CraftSimAUCTIONATOR:GetMinBuyoutByItemID(itemID)
 end
 
 function CraftSimAUCTIONATOR:GetMinBuyoutByItemLink(itemLink)
+    if not itemLink then return 0 end
     local vendorPrice = Auctionator.API.v1.GetVendorPriceByItemLink(CraftSimAddonName, itemLink)
     if vendorPrice then
         return vendorPrice
@@ -250,13 +256,15 @@ function CraftSimEXCHANGE:GetMinBuyoutByItemLink(itemLink)
 end
 
 ---@param itemID ItemID
+---@param isReagent boolean?
 ---@return number 0
-function CraftSimNO_PRICE_API:GetMinBuyoutByItemID(itemID)
+function CraftSimNO_PRICE_API:GetMinBuyoutByItemID(itemID, isReagent)
     return 0
 end
 
 ---@param itemLink string
+---@param isReagent boolean?
 ---@return number 0
-function CraftSimNO_PRICE_API:GetMinBuyoutByItemLink(itemLink)
+function CraftSimNO_PRICE_API:GetMinBuyoutByItemLink(itemLink, isReagent)
     return 0
 end

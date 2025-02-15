@@ -1,5 +1,7 @@
 local L = select(2, ...).L('zhCN')
 
+L["MDP_TITLE"] = "史诗+地下城传送门"
+
 -- 扩展包
 L["Cataclysm"] = "大地的裂变"
 L["Mists of Pandaria"] = "熊猫人之谜"
@@ -68,10 +70,20 @@ L["DUNGEON_THE_ROOKERY"] = "驭雷栖巢"
 L["DUNGEON_DARKFLAME_CLEFT"] = "暗焰裂口"
 L["DUNGEON_CINDERBREW_BREWERY"] = "燧酿酒庄"
 L["DUNGEON_PRIORY_OF_THE_SACRED_FLAME"] = "圣焰隐修院"
+L["DUNGEON_GRIM_BATOL"] = "格瑞姆巴托"
+L["DUNGEON_SEIGE_OF_BORALUS"] = "围攻伯拉勒斯"
+
+-- Raids
+L["RAID_VAULT_OF_THE_INCARNATES"] = "化身宝库"
+L["RAID_ABBERUS_THE_SHADOWED_CRUCIBLE"] = "亚贝鲁斯，暗影熔炉"
+L["RAID_AMIRDRASSIL_THE_DREAMS_HOPE"] = "艾米德拉希尔，梦境之望"
+L["RAID_CASTLE_NATHRIA"] = "纳斯利亚堡"
+L["RAID_SANCTUM_OF_DOMINATION"] = "统御圣所"
+L["RAID_SEPULCHER_OF_THE_FIRST_ONES"] = "初诞者圣墓"
 
 -- Settings
-L["Left click to open Portals"] = "左键点击打开传送门"
-L["Right click to open settings"] = "右键点击打开设置"
-L["Show/Hide Backgrounds"] = "显示/隐藏背景"
-L["Show/Hide Minimap Icon"] = "显示/隐藏小地图图标"
-L["Mythic Dungeon Portals Settings"] = "史诗+地下城传送门设置"
+L["LEFT_CLICK"] = "左键点击打开传送门"
+L["RIGHT_CLICK"] = "右键点击打开设置"
+L["SHOW_BACKGROUNDS"] = "显示/隐藏背景"
+L["SHOW_MINIMAP"] = "显示/隐藏小地图图标"
+L["SETTINGS_TITLE"] = "史诗+地下城传送门设置"

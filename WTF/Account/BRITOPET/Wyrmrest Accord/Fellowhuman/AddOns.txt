@@ -25,7 +25,7 @@ BigWigs_Options: enabled
 BigWigs_Plugins: enabled
 BigWigs_VaultOfTheIncarnates: enabled
 Craftility: disabled
-CraftSim: disabled
+CraftSim: enabled
 DataStore: enabled
 DataStore_Keystones: enabled
 Details: enabled
@@ -36,7 +36,7 @@ Details_DataStorage: enabled
 Details_Streamer: enabled
 Details_TinyThreat: enabled
 Details_Vanguard: enabled
-FriendGroups: enabled
+FriendGroups: disabled
 HandyNotes: enabled
 Hekili: enabled
 LittleWigs: enabled
@@ -46,12 +46,12 @@ LittleWigs_Cataclysm: enabled
 LittleWigs_Classic: enabled
 LittleWigs_Legion: enabled
 LittleWigs_MistsOfPandaria: enabled
-LittleWigs_Shadowlands: disabled
+LittleWigs_Shadowlands: enabled
 LittleWigs_WarlordsOfDraenor: enabled
 LittleWigs_WrathOfTheLichKing: enabled
 LowHealthAlarm: enabled
 MRT: enabled
-MythicDungeonPortals: enabled
+MythicDungeonPortals: disabled
 MythicDungeonTools: enabled
 NameplateSCT: enabled
 OmniCD: disabled
@@ -101,3 +101,12 @@ Blizzard_ObjectiveTracker: enabled
 Blizzard_CompactRaidFrames: enabled
 Blizzard_CombatText: enabled
 BigWigs_MistsOfPandaria: enabled
+RemixCheckList: disabled
+Remix Gem Helper: disabled
+CopyPasta2: disabled
+LittleWigs_Dragonflight: enabled
+BigWigs_Dragonflight: enabled
+DBM-Test: enabled
+BigWigs_Cataclysm: enabled
+BigWigs_KhazAlgar: enabled
+DBM-Party-Shadowlands: enabled

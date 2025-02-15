@@ -45,7 +45,7 @@ local function _GetGuildName(characterKey)
 end
 
 
-DataStore:OnAddonLoaded(addonName, function()
+AddonFactory:OnAddonLoaded(addonName, function()
 	DataStore:RegisterModule({
 		addon = addon,
 		addonName = addonName,
@@ -73,6 +73,18 @@ DataStore:OnAddonLoaded(addonName, function()
 	DataStore_CharacterGUIDs[id] = UnitGUID("player")
 	addon.ThisCharID = id
 	
+	-- **** Test Start ****
+	-- local MVC = LibStub("LibMVC-1.0")
+	-- local oop = MVC:GetService("AddonFactory.Classes")
+	
+	-- DS_TestDB = DS_TestDB or {}
+	-- local testDB = oop:New("UniqueItemsCollection", DS_TestDB)
+	-- local newID = testDB:Add(addon.ThisCharKey)
+	-- print("newID : " .. (newID or "nil"))
+	-- print("DS_TestDB.Count: " .. (DS_TestDB.Count or "nil"))
+	
+	-- **** Test Stop ****
+	
 	-- Base guild information
 	allGuilds = DataStore:CreateSetAndList(DataStore_GuildIDs)
 	
@@ -91,7 +103,7 @@ DataStore:OnAddonLoaded(addonName, function()
 	addon.Frames = CreateFrame("Frame", "DataStoreFrames", UIParent)
 end)
 
-DataStore:OnPlayerLogin(function()
+AddonFactory:OnPlayerLogin(function()
 	addon:SetLongRealmName(addon.ThisRealm:gsub(" ", ""), addon.ThisRealm)
 end)
 
@@ -354,15 +366,22 @@ end
 function addon:DeleteGuild(guildKey)
 	if not allGuilds.Set[guildKey] then return end
 
+	-- This needs review, might not be necessary anymore, we have DeleteGuildBank
+
 	-- delete the guild in all modules
 	addon:IterateModules(function(moduleDB) 
+	
+		-- for k, v in pairs(moduleDB) do
+			-- print(k)
+		-- end
+	
 		if moduleDB.Guilds then
 			moduleDB.Guilds[guildKey] = nil
 		end
 	end)
 
 	-- delete the key in DataStore
-	allGuilds.Set[guildKey] = nil
+	-- allGuilds.Set[guildKey] = nil
 	-- also delete in all tables !
 end
 

@@ -1,37 +1,27 @@
 # DBM - Core
 
-## [11.0.2](https://github.com/DeadlyBossMods/DeadlyBossMods/tree/11.0.2) (2024-07-28)
-[Full Changelog](https://github.com/DeadlyBossMods/DeadlyBossMods/compare/11.0.1...11.0.2) [Previous Releases](https://github.com/DeadlyBossMods/DeadlyBossMods/releases)
+## [11.1.4](https://github.com/DeadlyBossMods/DeadlyBossMods/tree/11.1.4) (2025-02-08)
+[Full Changelog](https://github.com/DeadlyBossMods/DeadlyBossMods/compare/11.1.3...11.1.4) [Previous Releases](https://github.com/DeadlyBossMods/DeadlyBossMods/releases)
 
-- prep new tag  
-- Tests: Give mods more time to detect a wipe if necessary (#1171)  
-- Tests: restructure UI a bit (#1170)  
-- AnnoyingPopup: Simplify logic (#1168)  
-- Update koKR (#1169)  
-- Update localization.tw.lua  
-- Update localization.ru.lua (#1165)  
-- fix link  
-- Update localization.ru.lua (#1163)  
-- Update koKR (#1164)  
-- improve instructional language  
-- Also support M+ dungeons for that alert  
-- Fix delves and molten core showing needless + sign. that was bad copy and paste from Mythic+  
-    Add regular vanilla, wrath, and cata raid popups  
-    Fix wago url for vanilla raid module  
-- Show more annoying nag if important raid mods are missing (#1162)  
-- Push core fixes for delve loading timing  
-- Fix last to actually use faster function on retail  
-- Fix and close https://github.com/DeadlyBossMods/DeadlyBossMods/issues/1159  
-    Fixes cross realm pull timers no longer working in pre patch. Also fixes pull timers never fully working correctly in Classic Era and Classic Cata  
-- Tests: strip prefix when auto-generating test report files  
-- Tests: pre-fill more metadata based on educated guesses when generating tests  
-- Tests: parse difficulty modifier from Transcriptor logs  
-- Tests: update transcriptor filter  
-- Tests: fake player debuff on test start for MC heat levels  
-- Core: don't special-case unnamed AntiSpam() calls  
-    This avoids a somewhat obscure problem in tests: it was generating a  
-    trailing whitespace in the record because the check result gets removed  
-    from an array with a hole due to the previous nil-value.  
-- Add new nil warning object to avoid a LuaLS nil checking bug (#1158)  
-- Fix and close https://github.com/DeadlyBossMods/DeadlyBossMods/issues/1160  
+- Prep new tag  
+- Core: Align SoD Naxx difficulties with warcraftlogs (#1526)  
+- Fix year in timestamp (#1530)  
+- Update localization.br.lua  
+- Update localization.br.lua  
+- Update localization.br.lua  
+- Update localization.br.lua  
+- Update localization.es.lua  
+- Update localization.es.lua  
+- Update localization.fr.lua  
+- Update localization.fr.lua  
+- Update localization.fr.lua  
+- Variance: remove obsolete code  
+    This has no place being in Start method. Bar attributes on creation are to be managed in DBT:CreateBar  
+- Variance: fix var to non-var getting kept on debug  
+    Fix related to this https://github.com/DeadlyBossMods/DeadlyBossMods/blob/master/DBM-Core/modules/objects/Timer.lua#L225-L227  
+- Variance: code cleanup (#1525)  
+- Tests: Get player names from PLAYER\_INFO as well and explicitly filter to CLEU events for other sources  
+- Tests: Get server name from CHAT\_MSG\_RAID\_BOSS\_WHISPER\_SYNC (which always has it)  
+- Tests: Set GUID for raid warning messages coming from yourself correctly  
+- play voice pack count sound when changing voice pack in dropdown menu  
 - bump alpha  

@@ -4,6 +4,7 @@ if L then
 	L.tirnenn_villager = "Aldeana tirnenn"
 	L.drust_harvester = "Cosechador Drust"
 	L.drust_soulcleaver = "Rajaalmas Drust"
+	L.drust_spiteclaw = "Zarparrencor Drust"
 	L.drust_boughbreaker = "Romperramas Drust"
 	L.mistveil_defender = "Defensora Velo de Niebla"
 	L.mistveil_gorgegullet = "Engullidor Velo de Niebla"
@@ -17,14 +18,13 @@ if L then
 	L.spinemaw_acidgullet = "Gargantácida faucespina"
 	L.spinemaw_staghorn = "Astado faucespina"
 	L.spinemaw_gorger = "Engullidor faucespina"
+	L.gormling_larva = "Larva de gormito"
+	L.spinemaw_reaver = "Atracador faucespina"
+
+	--L.gate_open_desc = "Show a bar indicating when the gate to the next area will open after defeating each boss."
 end
 
 L = BigWigs:NewBossLocale("Mistcaller", "esES") or BigWigs:NewBossLocale("Mistcaller", "esMX")
 if L then
 	L.vulpin = "Vulpino"
-end
-
-L = BigWigs:NewBossLocale("Tred'ova", "esES") or BigWigs:NewBossLocale("Tred'ova", "esMX")
-if L then
-	L.parasite = "Parásito"
 end

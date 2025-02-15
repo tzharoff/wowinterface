@@ -9,11 +9,11 @@ CraftSim.DB = CraftSim.DB
 ---@class CraftSim.DB.CRAFT_QUEUE : CraftSim.DB.Repository
 CraftSim.DB.CRAFT_QUEUE = CraftSim.DB:RegisterRepository()
 
-local print = CraftSim.DEBUG:SetDebugPrint(CraftSim.CONST.DEBUG_IDS.DB)
+local print = CraftSim.DEBUG:RegisterDebugID("Database.craftQueueDB")
 
 function CraftSim.DB.CRAFT_QUEUE:Init()
     if not CraftSimDB.craftQueueDB then
-        ---@type CraftSimDB.Database
+        ---@class CraftSimDB.CraftQueueDB : CraftSimDB.Database
         CraftSimDB.craftQueueDB = {
             version = 0,
             ---@type CraftSim.CraftQueueItem.Serialized[]
@@ -25,24 +25,31 @@ function CraftSim.DB.CRAFT_QUEUE:Init()
 end
 
 function CraftSim.DB.CRAFT_QUEUE:Migrate()
-    -- 0 -> 1
-    if CraftSimDB.craftQueueDB.version == 0 then
+    local migrate = CraftSim.DB:GetMigrateFunction(CraftSimDB.craftQueueDB)
+
+    migrate(0, 1, function()
         if _G["CraftSimCraftQueueCache"] then
             CraftSimDB.craftQueueDB.data = _G["CraftSimCraftQueueCache"]
         end
-        CraftSimDB.craftQueueDB.version = 1
-    end
-    -- 1 -> 2 (16.1.2 -> 16.1.3)
-    if CraftSimDB.craftQueueDB.version == 1 then
+    end)
+    migrate(1, 2, function()
         CraftSim.DB.CRAFT_QUEUE:ClearAll()
-        CraftSimDB.craftQueueDB.version = 2
-    end
-
-    -- 2 -> 3 (specData refactor)
-    if CraftSimDB.craftQueueDB.version == 2 then
+    end)
+    migrate(2, 3, function()
         CraftSim.DB.CRAFT_QUEUE:ClearAll()
-        CraftSimDB.craftQueueDB.version = 3
-    end
+    end)
+    migrate(3, 4, function()
+        CraftSim.DB.CRAFT_QUEUE:ClearAll()
+    end)
+    migrate(4, 5, function()
+        CraftSim.DB.CRAFT_QUEUE:ClearAll()
+    end)
+    migrate(5, 6, function()
+        CraftSim.DB.CRAFT_QUEUE:ClearAll()
+    end)
+    migrate(6, 7, function()
+        CraftSim.DB.CRAFT_QUEUE:ClearAll()
+    end)
 end
 
 function CraftSim.DB.CRAFT_QUEUE:ClearAll()

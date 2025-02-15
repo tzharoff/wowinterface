@@ -3,6 +3,7 @@ local private = select(2, ...)
 
 ---@class DBM
 local DBM = private:GetPrototype("DBM")
+local CL = DBM_COMMON_L
 
 ---@class DBMTest
 local test = private:GetPrototype("DBMTest")
@@ -16,9 +17,22 @@ test.testRunning = false
 local traceField = "Trace"
 test[traceField] = function() end
 
+local LoadAddOn = _G.C_AddOns.LoadAddOn or LoadAddOn ---@diagnostic disable-line:deprecated
+
+function test:Load()
+	local loaded, err = LoadAddOn("DBM-Test")
+	if not loaded then
+		DBM:AddMsg("Failed to load DBM-Test: " .. (_G["ADDON_" .. err] or CL.UNKNOWN))
+		return loaded, err
+	end
+	return true
+end
+
 function test:LoadAllTests()
 	local numTestAddOnsFound = 0
-	C_AddOns.LoadAddOn("DBM-Test")
+	if not self:Load() then
+		return nil
+	end
 	for i = 1, C_AddOns.GetNumAddOns() do
 		if C_AddOns.GetAddOnMetadata(i, "X-DBM-Test") then
 			numTestAddOnsFound = numTestAddOnsFound + 1
@@ -32,9 +46,18 @@ function test:TestsLoaded()
 	return self.Registry ~= nil and #self.Registry.sortedTests > 0
 end
 
+local function checkTestRunning()
+	if not DBM.Test.testRunning or not DBM.Test.timeWarper then
+		DBM:AddMsg("No test is currently running")
+		return false
+	end
+	return true
+end
+
 function test:HandleCommand(testName, timeWarp)
 	timeWarp = timeWarp and tonumber(timeWarp:match("(%d+)"))
 	local numTestAddOnsFound = self:LoadAllTests()
+	if not numTestAddOnsFound then return end
 	if numTestAddOnsFound == 0 then
 		DBM:AddMsg("No test AddOns installed, install an alpha or dev version of DBM to get DBM-Test-* mods.")
 	end
@@ -46,6 +69,9 @@ function test:HandleCommand(testName, timeWarp)
 		if #self.Registry.sortedTests == 0 then
 			DBM:AddMsg("  (none)")
 		end
+		DBM:AddMsg("/dbm test freeze -- freeze a currently running test")
+		DBM:AddMsg("/dbm test resume -- resume a frozen test")
+		DBM:AddMsg("/dbm test toggle-freeze -- freeze or resume a running test")
 		DBM:AddMsg("/dbm test <name> <time warp factor> -- execute a test")
 		DBM:AddMsg("/dbm test * <time warp factor> -- run all tests")
 		DBM:AddMsg("<name> can be a prefix, e.g., /dbm test Dragonflight runs all tests for Dragonflight.")
@@ -56,6 +82,21 @@ function test:HandleCommand(testName, timeWarp)
 	elseif testName:lower() == "clear" then
 		DBM_TestResults_Export = {}
 		DBM:AddMsg("Cleared exported test results.")
+	elseif testName:lower() == "freeze" then
+		if not checkTestRunning() then
+			return
+		end
+		DBM.Test.timeWarper:Freeze()
+	elseif testName:lower() == "resume" then
+		if not checkTestRunning() then
+			return
+		end
+		DBM.Test.timeWarper:Resume()
+	elseif testName:lower() == "toggle-freeze" then
+		if not checkTestRunning() then
+			return
+		end
+		DBM.Test.timeWarper:ToggleFreeze()
 	else
 		local tests = {}
 		if testName == "*" then
@@ -71,14 +112,11 @@ function test:HandleCommand(testName, timeWarp)
 			return
 		end
 		local successes = 0
-		self:RunTests(tests, timeWarp, function(event, test, report, count, totalTests)
+		self:RunTests(tests, timeWarp, nil, function(event, test, testOptions, report, count, totalTests)
 			if event ~= "TestFinish" then return end
 			DBM:AddMsg("Test " .. test.name .. " finished, result: " .. report:GetResult())
 			if report:GetResult() == "Success" then
 				successes = successes + 1
-			end
-			if report:HasDiff() then
-				report:ReportDiff()
 			end
 			if report:HasErrors() then
 				report:ReportErrors()
@@ -106,10 +144,6 @@ end
 -- These functions are intentionally disabled in release builds to prevent people from using these to tamper with DBM's private namespace in release builds.
 
 local function checkDevBuild()
---@non-alpha@
-	error("this function is only available in dev and alpha builds of DBM", 3)
-	do return false end -- Safety to prevent people from just overriding error() to circumvent the alpha check.
---@end-non-alpha@
 	return true
 end
 

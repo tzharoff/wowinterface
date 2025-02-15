@@ -8,7 +8,7 @@ CraftSim.TOPGEAR = {}
 CraftSim.TOPGEAR.IsEquipping = false
 CraftSim.TOPGEAR.EMPTY_SLOT = "EMPTY_SLOT"
 
-local print = CraftSim.DEBUG:SetDebugPrint(CraftSim.CONST.DEBUG_IDS.TOP_GEAR)
+local print = CraftSim.DEBUG:RegisterDebugID("Modules.TopGear")
 
 CraftSim.TOPGEAR.SIM_MODES = {
     PROFIT = CraftSim.CONST.TEXT.TOP_GEAR_SIM_MODES_PROFIT,
@@ -162,10 +162,11 @@ function CraftSim.TOPGEAR:GetUniqueCombosFromAllPermutations(totalCombos, isCook
 end
 
 ---@param recipeData CraftSim.RecipeData
+---@param forceCache? boolean
 ---@return CraftSim.ProfessionGear[] inventoryGear
-function CraftSim.TOPGEAR:GetProfessionGearFromInventory(recipeData)
+function CraftSim.TOPGEAR:GetProfessionGearFromInventory(recipeData, forceCache)
     local crafterUID = recipeData:GetCrafterUID()
-    if recipeData:IsCrafter() then
+    if recipeData:IsCrafter() and not forceCache then
         local currentProfession = recipeData.professionData.professionInfo.parentProfessionName
         print("GetProfessionGearFromInventory: currentProfession: " .. tostring(currentProfession))
         local inventoryGear = {}
@@ -210,11 +211,9 @@ end
 ---@return CraftSim.ProfessionGearSet[] topGearSets
 function CraftSim.TOPGEAR:GetProfessionGearCombinations(recipeData)
     local equippedGear = CraftSim.ProfessionGearSet(recipeData)
-    if recipeData:IsCrafter() then
-        equippedGear:LoadCurrentEquippedSet()
-    else
-        equippedGear:LoadCurrentEquippedSet(recipeData.crafterData)
-    end
+
+    equippedGear:LoadCurrentEquippedSet()
+
     local inventoryGear = CraftSim.TOPGEAR:GetProfessionGearFromInventory(recipeData)
 
     local equippedGearList = GUTIL:Filter(equippedGear:GetProfessionGearList(),
@@ -261,7 +260,6 @@ function CraftSim.TOPGEAR:GetProfessionGearCombinations(recipeData)
                 local partlyEmpty = emptyA or emptyB
                 if bothEmpty or (partlyEmpty or not professionGearA:Equals(professionGearB)) then
                     -- do not match item with itself..
-                    -- todo: somehow neglect order cause it is not important (maybe with temp list to remove items from..)
                     table.insert(gearSlotCombos, { professionGearA, professionGearB })
                 end
             end
@@ -333,6 +331,8 @@ function CraftSim.TOPGEAR:GetProfessionGearCombinations(recipeData)
     end
 end
 
+---@param recipeData CraftSim.RecipeData
+---@param topGearMode string
 ---@return CraftSim.TopGearResult[] topGearResults
 function CraftSim.TOPGEAR:OptimizeTopGear(recipeData, topGearMode)
     topGearMode = topGearMode or CraftSim.TOPGEAR:GetSimMode(CraftSim.TOPGEAR.SIM_MODES.PROFIT)
@@ -340,6 +340,7 @@ function CraftSim.TOPGEAR:OptimizeTopGear(recipeData, topGearMode)
 
     local previousGear = recipeData.professionGearSet
     local averageProfitPreviousGear = CraftSim.CALC:GetAverageProfit(recipeData)
+    local concentrationValuePreviousGear = recipeData:GetConcentrationValue()
 
     -- convert to top gear results
     ---@type CraftSim.TopGearResult[]
@@ -347,12 +348,15 @@ function CraftSim.TOPGEAR:OptimizeTopGear(recipeData, topGearMode)
         recipeData.professionGearSet = professionGearSet
         recipeData:Update()
         local averageProfit = CraftSim.CALC:GetAverageProfit(recipeData)
+        local concentrationValue = recipeData:GetConcentrationValue()
         local relativeProfit = averageProfit - averageProfitPreviousGear
+        local relativeConcentrationValue = concentrationValue - concentrationValuePreviousGear
         local relativeStats = professionGearSet.professionStats:Copy()
         local expectedQuality = recipeData.resultData.expectedQuality
-        local expectedQualityUpgrade = recipeData.resultData.expectedQualityUpgrade
+        local expectedQualityUpgrade = recipeData.resultData.expectedQualityUpgrade -- TODO: Remove or change
         relativeStats:subtract(previousGear.professionStats)
-        local result = CraftSim.TopGearResult(professionGearSet, averageProfit, relativeProfit, relativeStats,
+        local result = CraftSim.TopGearResult(professionGearSet, averageProfit, relativeProfit, concentrationValue,
+            relativeConcentrationValue, relativeStats,
             expectedQuality, expectedQualityUpgrade)
         return result
     end)
@@ -372,7 +376,11 @@ function CraftSim.TOPGEAR:OptimizeTopGear(recipeData, topGearMode)
                 return result.relativeProfit >= 1
             end)
         results = GUTIL:Sort(results, function(resultA, resultB)
-            return resultA.averageProfit > resultB.averageProfit
+            if recipeData.concentrating and recipeData.supportsQualities then
+                return resultA.concentrationValue > resultB.concentrationValue
+            else
+                return resultA.averageProfit > resultB.averageProfit
+            end
         end)
     elseif topGearMode == CraftSim.TOPGEAR:GetSimMode(CraftSim.TOPGEAR.SIM_MODES.MULTICRAFT) then
         print("Top Gear Mode: Multicraft")

@@ -1,6 +1,6 @@
 -- Diablohu(diablohudream@gmail.com)
 -- yleaf(yaroot@gmail.com)
-----Mini Dragon <流浪者酒馆-Brilla@金色平原(The Golden Plains-CN)> projecteurs@gmail.NOSPAM.com 20240625
+----Mini Dragon <流浪者酒馆-Brilla@金色平原(The Golden Plains-CN)> projecteurs@gmail.NOSPAM.com 202401211
 
 if GetLocale() ~= "zhCN" then return end
 if not DBM_CORE_L then DBM_CORE_L = {} end
@@ -16,7 +16,7 @@ end
 L.HOW_TO_USE_MOD					= "欢迎使用" .. L.DBM .. "。在聊天框输入 /dbm help 以获取可用命令的帮助。输入 /dbm 可打开设置窗口，并对各个Boss模块进行设置，也可以浏览首领击杀记录。"..L.DBM.." 会自动按你的专精做出相应配置，但是你可以进行微调。"
 L.SILENT_REMINDER					= "提示：" .. L.DBM .. " 正处于静音模式。"
 L.NEWS_UPDATE						= "|h|c11ff1111News|r|h: 此次更新主要重做了DBM的结构。无论正式服、还是各个版本的怀旧服都使用相同版本的DBM内核和模组。详情点击 |Hgarrmission:DBM:news|h|cff3588ff[这里]|r|h"
-L.NEWS_UPDATE_REPEAT				= "|h|c11ff1111News|r|h: 此次更新主要重做了DBM的结构。无论正式服、还是各个版本的怀旧服都使用相同版本的DBM内核和模组。你当前进入的团队缺少相应模组，无法提供战斗警报。本信息将持续显示，直到你安装了正确的的模组。"
+L.NEWS_UPDATE_REPEAT				= "|h|c11ff1111News|r|h: 此次更新主要重做了DBM的结构。无论正式服、还是各个版本的怀旧服都使用相同版本的DBM内核和模组。你当前进入的团队缺少相应模组，无法提供战斗警报。本信息将持续显示，直到你安装了正确的模组。"
 
 L.COPY_URL_DIALOG_NEWS				= "阅读最新新闻，请点击下方连接"
 
@@ -28,7 +28,7 @@ L.LOAD_GUI_COMBAT			= L.DBM .. "无法在战斗中初始化图形界面。请先
 L.BAD_LOAD					= L.DBM .. "检测到由于你在战斗过程中载入模块，有些计时器可能会错误。请在离开战斗后马上重载界面。"
 L.LOAD_MOD_VER_MISMATCH		= "%s 模块无法被载入。" .. L.DBM .. "核心未达到模块所需版本。请升级" .. L.DBM .. "。"
 L.LOAD_MOD_EXP_MISMATCH		= "%s 模块无法被载入, 因为它是为新资料片/测试服所设计的. 当新资料片在正式服开放时就能正确加载了."
-L.LOAD_MOD_TOC_MISMATCH		= "%s 模块无法被载入，因为它是为新版本(%s)所设计的的。当新版本在正式服开放时就能正确加载了。"
+L.LOAD_MOD_TOC_MISMATCH		= "%s 模块无法被载入，因为它是为新版本(%s)所设计的。当新版本在正式服开放时就能正确加载了。"
 L.LOAD_MOD_DISABLED			= "%s 模块已安装但被禁用。该模块不会被载入除非启用它。"
 L.LOAD_MOD_DISABLED_PLURAL	= "%s 模块已安装但被禁用。这些模块不会被载入除非启用它们。"
 
@@ -50,6 +50,7 @@ L.LOOT_SPEC_REMINDER			= "你当前的人物专精为 %s。你当前的拾取选
 L.BIGWIGS_ICON_CONFLICT		= L.DBM .. "检测到你同时开启了Bigwigs,请关闭自动标记以避免冲突。"
 
 L.MOD_AVAILABLE				= L.DBM .. "已经为%s制作了相关模块。你可以在Curse, Wago, WOWI或者到GitHub Releases页面上找到新版本。"
+L.MOD_MISSING				= "找不到团队模块"
 
 L.COMBAT_STARTED				= "%s作战开始，祝你走运 :)"
 L.COMBAT_STARTED_IN_PROGRESS	= "已进行的战斗-%s正在作战。祝你走运 :)"
@@ -81,7 +82,10 @@ L.MOVIE_SKIPPED				= "该场景动画已被" .. L.DBM .. "跳过。"
 L.MOVIE_NOTSKIPPED 			= L.DBM .. "检测到一个可以跳过的场景动画，但因暴雪的bug失败了。当bug被修复时，该场景动画能被正常跳过。"
 L.BONUS_SKIPPED				= L.DBM .. "已经自动关闭奖励拾取窗口。如果需要的话，3分钟内输入 /dbmbonusroll "
 
-L.AFK_WARNING				= "你在战斗中暂离(百分之%d生命值)。如果你真的没有暂离，动一下或者在'其他功能'中关闭本设置。"
+L.AFK_WARNING				= "你在战斗中暂离(剩余百分之%d生命值)。如果你真的没有暂离，动一下或者在'其他功能'中关闭本设置。"
+L.LOWHEALTH_WARNING			= "生命值低 (剩余百分之%d生命值)启动声音报警. 你可以在'其他功能'中关闭本设置。"
+L.ENTERING_COMBAT			= "进入战斗"
+L.LEAVING_COMBAT			= "离开战斗"
 
 L.COMBAT_STARTED_AI_TIMER	= "我的CPU是类神经网络处理器，一种学习型电脑。(本场战斗" .. L.DBM .. "将会使用人工智能来估计时间轴)。" --Terminator
 
@@ -192,8 +196,8 @@ L.WEAKAURA_KEY							= " (|cff308530WA 代码:|r %s)"
 L.UPDATEREMINDER_HEADER			= "您的 " .. L.DEADLY_BOSS_MODS .. " 版本已过期。\n您可以在Curse, Wago, WOWI或者到GitHub Releases页面下载到新版本：%s（%s）。如果您使用整合包，请使用更新器更新。"
 L.UPDATEREMINDER_FOOTER			= "按下 " .. (IsMacClient() and "Cmd-C" or "Ctrl-C") .. "复制下载地址到剪切板。"
 L.UPDATEREMINDER_FOOTER_GENERIC	= "按下 " .. (IsMacClient() and "Cmd-C" or "Ctrl-C") .. "复制链接到剪切板。"
-L.UPDATEREMINDER_DISABLE			= "警告：你的 " .. L.DEADLY_BOSS_MODS .. " 已经过期太久，它已被强制禁用，直到你更新。这是为了确保它不会导致你或其他团队成员出错。"
-L.UPDATEREMINDER_DISABLETEST		= "警告：你的测试版 " .. L.DEADLY_BOSS_MODS .. "已经过期，它已被强制禁用，直到你更新。这是为了确保过期模组不会被用于生成反馈。"
+L.UPDATEREMINDER_DISABLE			= "警告：你的 " .. L.DEADLY_BOSS_MODS .. " 已经过期且与当前游戏版本或最新版本DBM不兼容，它已被强制禁用，直到你更新。这是为了确保它不会导致你或其他团队成员出错。"
+L.UPDATEREMINDER_DISABLETEST		= "警告：你的 " .. L.DEADLY_BOSS_MODS .. "已经过期，在测试服环境下，它已被强制禁用，直到你更新。这是为了确保过期模组不会被用于生成反馈。"
 L.UPDATEREMINDER_HOTFIX			= "你的 " .. L.DEADLY_BOSS_MODS .. " 版本会在这首领战斗中有问题。最新版的" .. L.DBM .. "已经修复了这个问题。"
 L.UPDATEREMINDER_HOTFIX_ALPHA	= "你的 " .. L.DEADLY_BOSS_MODS .. " 版本会在这首领战斗中有问题。最新版的" .. L.DBM .. "（或Alpha版本）已经修复了这个问题。"
 L.UPDATEREMINDER_MAJORPATCH		= "你的 " .. L.DEADLY_BOSS_MODS .. " 已经过期，它已被禁用，直到你更新。这是为了确保它不会导致你或其他团队成员出错。这次更新是一个非常重要的补丁，请立刻到Curse, Wago, WOWI或者到GitHub Releases页面获取最新版本"
@@ -376,6 +380,7 @@ L.AUTO_SPEC_WARN_TEXTS.youposcount		= "你中了%s (%%s) (位置: %%s)"
 L.AUTO_SPEC_WARN_TEXTS.soakpos			= "%s - 快去%%s分担伤害"
 L.AUTO_SPEC_WARN_TEXTS.target			= ">%%s<中了%s"
 L.AUTO_SPEC_WARN_TEXTS.targetcount		= ">%%2$s<中了%s (%%1$s)"
+L.AUTO_SPEC_WARN_TEXTS.link				= "%s 与 >%%s< 连线"
 L.AUTO_SPEC_WARN_TEXTS.defensive		= "%s - 快开自保技能"
 L.AUTO_SPEC_WARN_TEXTS.taunt			= ">%%s<中了%s - 快嘲讽"
 L.AUTO_SPEC_WARN_TEXTS.close			= "你附近的>%%s<中了%s"
@@ -424,6 +429,7 @@ L.AUTO_SPEC_WARN_OPTIONS.youposcount	= "特殊警报：当你受到$spell:%s影�
 L.AUTO_SPEC_WARN_OPTIONS.soakpos			= "特殊警报：当你需要为受到$spell:%s的玩家分担伤害时(带位置)"
 L.AUTO_SPEC_WARN_OPTIONS.target			= "特殊警报：当他人受到$spell:%s影响时"
 L.AUTO_SPEC_WARN_OPTIONS.targetcount		= "特殊警报：当他人受到$spell:%s影响时(带计数)"
+L.AUTO_SPEC_WARN_OPTIONS.targetcount		= "特殊警报：当你中了$spell:%s并与其他玩家连线时"
 L.AUTO_SPEC_WARN_OPTIONS.defensive 		= "特殊警报：当你受到$spell:%s影响并需要开启自保技能时"
 L.AUTO_SPEC_WARN_OPTIONS.taunt 			= "特殊警报：当另外一个T中了$spell:%s并需要你嘲讽时"
 L.AUTO_SPEC_WARN_OPTIONS.close			= "特殊警报：当你附近有人受到$spell:%s影响时"
@@ -462,7 +468,7 @@ L.AUTO_TIMER_TEXTS.castcount				= "%s (%%s)"
 L.AUTO_TIMER_TEXTS.castsource			= "%s: %%s"
 L.AUTO_TIMER_TEXTS.active				= "%s结束"--Buff/Debuff/event on boss
 L.AUTO_TIMER_TEXTS.fades					= "%s消失"--Buff/Debuff on players
-L.AUTO_TIMER_TEXTS.ai					= "%s人工智能计时冷却"
+L.AUTO_TIMER_TEXTS.ai					= "%s AI"
 
 L.AUTO_TIMER_TEXTS.cd					= "%s冷却"
 L.AUTO_TIMER_TEXTS.cdcount				= "%s冷却（%%s）"
@@ -486,11 +492,13 @@ L.AUTO_TIMER_TEXTS.adds					= "下一波小怪"
 L.AUTO_TIMER_TEXTS.addscustom			= "小怪 (%%s)"
 L.AUTO_TIMER_TEXTS.roleplay				= GUILD_INTEREST_RP or "剧情"
 L.AUTO_TIMER_TEXTS.combat				= "战斗开始"
+
 --This basically clones np only bar option and display text from regular counterparts
-L.AUTO_TIMER_TEXTS.cdnp = L.AUTO_TIMER_TEXTS.cd
-L.AUTO_TIMER_TEXTS.nextnp = L.AUTO_TIMER_TEXTS.next
-L.AUTO_TIMER_TEXTS.cdcountnp = L.AUTO_TIMER_TEXTS.cdcount
-L.AUTO_TIMER_TEXTS.nextcountnp = L.AUTO_TIMER_TEXTS.nextcount
+L.AUTO_TIMER_TEXTS.cdnp					= L.AUTO_TIMER_TEXTS.cd -- OPTIONAL
+L.AUTO_TIMER_TEXTS.nextnp				= L.AUTO_TIMER_TEXTS.next -- OPTIONAL
+L.AUTO_TIMER_TEXTS.cdpnp				= L.AUTO_TIMER_TEXTS.cd -- OPTIONAL
+L.AUTO_TIMER_TEXTS.nextpnp				= L.AUTO_TIMER_TEXTS.next -- OPTIONAL
+L.AUTO_TIMER_TEXTS.castpnp				= L.AUTO_TIMER_TEXTS.cast -- OPTIONAL
 
 L.AUTO_TIMER_OPTIONS.target				= "计时条：$spell:%s减益效果持续时间"
 L.AUTO_TIMER_OPTIONS.targetcount		= "计时条：$spell:%s减益效果持续时间(带计数)"
@@ -503,14 +511,12 @@ L.AUTO_TIMER_OPTIONS.ai					= "计时条：$spell:%s人工智能冷却时间"
 L.AUTO_TIMER_OPTIONS.cd					= "计时条：$spell:%s冷却时间"
 L.AUTO_TIMER_OPTIONS.cdcount			= "计时条：$spell:%s冷却时间（带计数）"
 L.AUTO_TIMER_OPTIONS.cdnp				= "姓名版计时条：$spell:%s冷却时间"
-L.AUTO_TIMER_OPTIONS.cdnpcount			= "姓名版计时条：$spell:%s冷却时间（带计数）"
 L.AUTO_TIMER_OPTIONS.cdsource			= "计时条：$spell:%s冷却时间以及来源"
 L.AUTO_TIMER_OPTIONS.cdspecial			= "计时条：特殊技能冷却"
 L.AUTO_TIMER_OPTIONS.cdcombo			= "计时条：连击技能冷却"
 L.AUTO_TIMER_OPTIONS.next				= "计时条：下一次$spell:%s"
 L.AUTO_TIMER_OPTIONS.nextcount			= "计时条：下一次$spell:%s（带计数）"
 L.AUTO_TIMER_OPTIONS.nextnp				= "姓名版计时条：下一次$spell:%s"
-L.AUTO_TIMER_OPTIONS.nextnpcount		= "姓名版计时条：下一次$spell:%s（带计数）"
 L.AUTO_TIMER_OPTIONS.nextsource			= "计时条：下一次$spell:%s以及来源"
 L.AUTO_TIMER_OPTIONS.nextspecial		= "计时条：下一次特殊技能"
 L.AUTO_TIMER_OPTIONS.nextcombo			= "计时条：下一次技能冷却"
@@ -525,7 +531,7 @@ L.AUTO_TIMER_OPTIONS.intermissioncount	= "计时条：下一转阶段"
 L.AUTO_TIMER_OPTIONS.adds				= "计时条：下一波小怪"
 L.AUTO_TIMER_OPTIONS.addscustom			= "计时条：下一波小怪（自定义）"
 L.AUTO_TIMER_OPTIONS.roleplay			= "计时条：剧情"
-L.AUTO_TIMER_OPTIONS.combat				= "显示战斗开始倒计时"
+L.AUTO_TIMER_OPTIONS.combat				= "计时条：战斗开始倒计时"
 
 L.AUTO_ICONS_OPTION_TARGETS				= "为$spell:%s的目标添加团队标记"
 L.AUTO_ICONS_OPTION_TARGETS_TANK_A		= "为$spell:%s的目标添加团队标记，以坦克高于近战再高于远程排序，并以字母顺序优先"
@@ -534,10 +540,12 @@ L.AUTO_ICONS_OPTION_TARGETS_MELEE_A		= "为$spell:%s的目标添加团队标记�
 L.AUTO_ICONS_OPTION_TARGETS_MELEE_R		= "为$spell:%s的目标添加团队标记，以近战和团队阵容优先"
 L.AUTO_ICONS_OPTION_TARGETS_RANGED_A	= "为$spell:%s的目标添加团队标记，以远程和字母顺序优先"
 L.AUTO_ICONS_OPTION_TARGETS_RANGED_R	= "为$spell:%s的目标添加团队标记，以远程和团队阵容优先"
+L.AUTO_ICONS_OPTION_TARGETS_MRH			= "为$spell:%s的目标添加团队标记，以近战高于远程再高于治疗排序，团队角色回退"
 L.AUTO_ICONS_OPTION_TARGETS_ALPHA		= "为$spell:%s的目标添加团队标记，以字母顺序优先"
 L.AUTO_ICONS_OPTION_TARGETS_ROSTER 		= "为$spell:%s的目标添加团队标记，以团队阵容优先"
 L.AUTO_ICONS_OPTION_NPCS			= "为$spell:%s添加团队标记"
 L.AUTO_ICONS_OPTION_CONFLICT 			= " （可能与其他选项冲突）"
+
 L.AUTO_ARROW_OPTION_TEXT				= "为$spell:%s的目标添加箭头"
 L.AUTO_ARROW_OPTION_TEXT2			= "为$spell:%s的目标添加远离箭头"
 L.AUTO_ARROW_OPTION_TEXT3			= "为$spell:%s的目标添加前往指定位置的箭头"
@@ -561,7 +569,7 @@ L.AUTO_YELL_ANNOUNCE_TEXT.fade		= "%s 剩%%d秒"
 L.AUTO_YELL_ANNOUNCE_TEXT.shortfade	= "%%d秒"
 L.AUTO_YELL_ANNOUNCE_TEXT.iconfade	= "{rt%%2$d}%%1$d秒"
 L.AUTO_YELL_ANNOUNCE_TEXT.position	= UnitName("player").. " ({rt%%3$d})中了%1$s (%%1$s - {rt%%2$d})"
-L.AUTO_YELL_ANNOUNCE_TEXT.shortposition	= "{rt%%1$d}%s, %%2$d" --Icon, Spellname, number
+L.AUTO_YELL_ANNOUNCE_TEXT.shortposition	= "{rt%%1$d}%s" --Icon, Spellname
 L.AUTO_YELL_ANNOUNCE_TEXT.combo		= "%s, %%s"
 --L.AUTO_YELL_ANNOUNCE_TEXT.repeatplayer						= UnitName("player")--Doesn't need translation, it's just player name spam
 --L.AUTO_YELL_ANNOUNCE_TEXT.repeaticon							= "{rt%%1$d}"--Doesn't need translation. It's just icon spam
@@ -651,3 +659,20 @@ L.WORLD_BUFFS.zgHeartBooty	 = "夺灵者已经被打败了！我们不再有危�
 L.WORLD_BUFFS.zgHeartYojamba = "开始仪式，我的仆从们。我们必须把哈卡完全打回扭曲虚空中！"
 L.WORLD_BUFFS.rendHead		 = "那个假的酋长，雷德·黑手，已经倒下了！"
 L.WORLD_BUFFS.blackfathomBoon = "黑暗深渊的祝福"
+
+L.DBM_INSTALL_REMINDER_HEADER	= "检测到不完整的DBM安装！"
+L.DBM_INSTALL_REMINDER_EXPLAIN	= "欢迎来到%s. 您尚未安装%s的DBM的首领模块。在安装%s之前DBM不会提供任何警告和计时器！"
+L.DBM_INSTALL_REMINDER_DISABLE	= "关闭在此区域的所有DBM警告和计时器。" -- Used when we believe it's a user error that the mod isn't installed (i.e., current raids)
+L.DBM_INSTALL_REMINDER_DISABLE2 = "不为此模组再次显示此提示。" -- Used for unimportant mods, i.e., dungeons
+L.DBM_INSTALL_REMINDER_DL_WAGO	= "按下 " .. (IsMacClient() and "Cmd-C" or "Ctrl-C")  ..  "复制 Wago.io 地址至剪切板。"
+L.DBM_INSTALL_REMINDER_DL_CURSE	= "按下 " .. (IsMacClient() and "Cmd-C" or "Ctrl-C")  ..  "复制 Curseforge 地址至剪切板."
+---"Press " .. (IsMacClient() and "Cmd-C" or "Ctrl-C")  ..  "
+L.DBM_INSTALL_PACKAGE_VANILLA	= "香草和探索赛季模块"
+L.DBM_INSTALL_PACKAGE_BCC		= "燃烧的远征模块"
+L.DBM_INSTALL_PACKAGE_WRATH		= "巫妖王之怒模块"
+L.DBM_INSTALL_PACKAGE_CATA		= "大地的裂变模块"
+L.DBM_INSTALL_PACKAGE_MOP		= "熊猫人之谜模块"
+L.DBM_INSTALL_PACKAGE_DUNGEON	= "五人本与事件模块"
+
+-- Tests
+L.DBM_TAINTED_BY_TESTS			= "DBM曾经在当前进程中使用过测试模式的时间卷曲功能，建议你在正式战斗前 /reload 界面以防止DBM出现奇怪的问题。"

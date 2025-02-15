@@ -12,7 +12,7 @@ CraftSim.DB = {}
 ---@alias ItemID number
 ---@alias QualityID number between 1 and 5
 
-local print = CraftSim.DEBUG:SetDebugPrint(CraftSim.CONST.DEBUG_IDS.DB)
+local print = CraftSim.DEBUG:RegisterDebugID("Database")
 
 ---@class CraftSim.DB.Repository
 ---@field Init function
@@ -70,5 +70,16 @@ end
 function CraftSim.DB:ClearAll()
     for _, repository in ipairs(self.repositories) do
         repository:ClearAll()
+    end
+end
+
+---@param db CraftSimDB.Database
+---@return fun(from: number, to:number, migrate: function)
+function CraftSim.DB:GetMigrateFunction(db)
+    return function(from, to, migrate)
+        if db.version == from then
+            migrate()
+            db.version = to
+        end
     end
 end

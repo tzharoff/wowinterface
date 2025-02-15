@@ -3,7 +3,7 @@ local CraftSim = select(2, ...)
 
 local GUTIL = CraftSim.GUTIL
 
-local print = CraftSim.DEBUG:SetDebugPrint(CraftSim.CONST.DEBUG_IDS.DB)
+local print = CraftSim.DEBUG:RegisterDebugID("Database.optionsDB")
 
 ---@class CraftSim.DB
 CraftSim.DB = CraftSim.DB
@@ -25,9 +25,10 @@ function CraftSim.DB.OPTIONS:Init()
 end
 
 function CraftSim.DB.OPTIONS:Migrate()
-    -- 0 -> 1
-    if CraftSimDB.optionsDB.version == 0 then
-        -- move old saved variable to new db if it exists, otherwise init new table
+    local migrate = CraftSim.DB:GetMigrateFunction(CraftSimDB.optionsDB)
+
+
+    migrate(0, 1, function()
         CraftSimDB.optionsDB.data = {}
         local CraftSimOptions = _G["CraftSimOptions"]
         if CraftSimOptions then
@@ -36,7 +37,7 @@ function CraftSim.DB.OPTIONS:Migrate()
                 .doNotRemindPriceSource
             CraftSimDB.optionsDB.data[CraftSim.CONST.GENERAL_OPTIONS.PRICE_DEBUG] = CraftSimOptions.priceDebug
             CraftSimDB.optionsDB.data[CraftSim.CONST.GENERAL_OPTIONS.PRICE_SOURCE] = CraftSimOptions.priceSource
-            CraftSimDB.optionsDB.data[CraftSim.CONST.GENERAL_OPTIONS.TSM_PRICE_KEY_MATERIALS] = CraftSimOptions
+            CraftSimDB.optionsDB.data[CraftSim.CONST.GENERAL_OPTIONS.TSM_PRICE_KEY_REAGENTS] = CraftSimOptions
                 .tsmPriceKeyMaterials
             CraftSimDB.optionsDB.data[CraftSim.CONST.GENERAL_OPTIONS.TSM_PRICE_KEY_ITEMS] = CraftSimOptions
                 .tsmPriceKeyItems
@@ -69,7 +70,7 @@ function CraftSim.DB.OPTIONS:Migrate()
                 .modulePriceOverride
             CraftSimDB.optionsDB.data[CraftSim.CONST.GENERAL_OPTIONS.MODULE_RECIPE_SCAN] = CraftSimOptions
                 .moduleRecipeScan
-            CraftSimDB.optionsDB.data[CraftSim.CONST.GENERAL_OPTIONS.MODULE_CRAFT_RESULTS] = CraftSimOptions
+            CraftSimDB.optionsDB.data[CraftSim.CONST.GENERAL_OPTIONS.MODULE_CRAFT_LOG] = CraftSimOptions
                 .moduleCraftResults
             CraftSimDB.optionsDB.data[CraftSim.CONST.GENERAL_OPTIONS.MODULE_CUSTOMER_SERVICE] = CraftSimOptions
                 .moduleCustomerService
@@ -115,7 +116,7 @@ function CraftSim.DB.OPTIONS:Migrate()
                 .recipeScanScanMode
             CraftSimDB.optionsDB.data[CraftSim.CONST.GENERAL_OPTIONS.RECIPESCAN_FILTERED_EXPANSIONS] = CraftSimOptions
                 .recipeScanFilteredExpansions
-            CraftSimDB.optionsDB.data[CraftSim.CONST.GENERAL_OPTIONS.RECIPESCAN_IMPORT_ALL_PROFESSIONS] = CraftSimOptions
+            CraftSimDB.optionsDB.data["RECIPESCAN_IMPORT_ALL_PROFESSIONS"] = CraftSimOptions
                 .recipeScanImportAllProfessions
             CraftSimDB.optionsDB.data[CraftSim.CONST.GENERAL_OPTIONS.RECIPESCAN_OPTIMIZE_SUBRECIPES] = CraftSimOptions
                 .recipeScanOptimizeSubRecipes
@@ -154,24 +155,22 @@ function CraftSim.DB.OPTIONS:Migrate()
                 CraftSimOptions
                 .craftGarbageCollectCrafts
 
-            -- CRAFT RESULTS
-            CraftSimDB.optionsDB.data[CraftSim.CONST.GENERAL_OPTIONS.CRAFT_RESULTS_DISABLE] =
+            -- CRAFT LOG
+            CraftSimDB.optionsDB.data[CraftSim.CONST.GENERAL_OPTIONS.CRAFT_LOG_DISABLE] =
                 CraftSimOptions
                 .craftResultsDisable
 
             -- CRAFT QUEUE
-            CraftSimDB.optionsDB.data[CraftSim.CONST.GENERAL_OPTIONS.CRAFTQUEUE_GENERAL_RESTOCK_PROFIT_MARGIN_THRESHOLD] =
+            CraftSimDB.optionsDB.data["CRAFTQUEUE_GENERAL_RESTOCK_PROFIT_MARGIN_THRESHOLD"] =
                 CraftSimOptions.craftQueueGeneralRestockProfitMarginThreshold
-            CraftSimDB.optionsDB.data[CraftSim.CONST.GENERAL_OPTIONS.CRAFTQUEUE_GENERAL_RESTOCK_RESTOCK_AMOUNT] =
+            CraftSimDB.optionsDB.data["CRAFTQUEUE_GENERAL_RESTOCK_RESTOCK_AMOUNT"] =
                 CraftSimOptions.craftQueueGeneralRestockRestockAmount
-            CraftSimDB.optionsDB.data[CraftSim.CONST.GENERAL_OPTIONS.CRAFTQUEUE_GENERAL_RESTOCK_SALE_RATE_THRESHOLD] =
+            CraftSimDB.optionsDB.data["CRAFTQUEUE_GENERAL_RESTOCK_SALE_RATE_THRESHOLD"] =
                 CraftSimOptions.craftQueueGeneralRestockSaleRateThreshold
             CraftSimDB.optionsDB.data["CRAFTQUEUE_GENERAL_RESTOCK_TARGET_MODE_CRAFTOFFSET"] =
                 CraftSimOptions.craftQueueGeneralRestockTargetModeCraftOffset
-            CraftSimDB.optionsDB.data[CraftSim.CONST.GENERAL_OPTIONS.CRAFTQUEUE_RESTOCK_PER_RECIPE_OPTIONS] =
+            CraftSimDB.optionsDB.data["CRAFTQUEUE_RESTOCK_PER_RECIPE_OPTIONS"] =
                 CraftSimOptions.craftQueueRestockPerRecipeOptions
-            CraftSimDB.optionsDB.data[CraftSim.CONST.GENERAL_OPTIONS.CRAFTQUEUE_SHOPPING_LIST_PER_CHARACTER] =
-                CraftSimOptions.craftQueueShoppingListPerCharacter
             CraftSimDB.optionsDB.data["CRAFTQUEUE_SHOPPING_LIST_TARGET_MODE"] =
                 CraftSimOptions.craftQueueShoppingListTargetMode
             CraftSimDB.optionsDB.data[CraftSim.CONST.GENERAL_OPTIONS.CRAFTQUEUE_FLASH_TASKBAR_ON_CRAFT_FINISHED] =
@@ -191,44 +190,87 @@ function CraftSim.DB.OPTIONS:Migrate()
             CraftSimDB.optionsDB.data[CraftSim.CONST.GENERAL_OPTIONS.DEBUG_AUTO_SCROLL] =
                 CraftSimOptions.debugAutoScroll
         end
+    end)
 
-
-        CraftSimDB.optionsDB.version = 1
-    end
-
-    -- 1 -> 2
-    if CraftSimDB.optionsDB.version == 1 then
+    migrate(1, 2, function()
         if _G["CraftSimGGUIConfig"] then
             self:Save("GGUI_CONFIG", _G["CraftSimGGUIConfig"])
         end
         if _G["CraftSimLibIconDB"] then
             self:Save("LIB_ICON_DB", _G["CraftSimLibIconDB"])
         end
-        CraftSimDB.optionsDB.version = 2
-    end
+    end)
 
-    if CraftSimDB.optionsDB.version == 2 then
+    migrate(2, 3, function()
         CraftSimDB.optionsDB.data["MODULE_CUSTOMER_SERVICE"] = nil
         CraftSimDB.optionsDB.data["CUSTOMER_SERVICE_WHISPER_FORMAT"] = nil
         CraftSimDB.optionsDB.data["CUSTOMER_SERVICE_ALLOW_LIVE_PREVIEW"] = nil
         CraftSimDB.optionsDB.data["CUSTOMER_SERVICE_ACTIVE_PREVIEW_IDS"] = nil
+    end)
 
-        CraftSimDB.optionsDB.version = 3
-    end
-
-    if CraftSimDB.optionsDB.version == 3 then
+    migrate(3, 4, function()
         CraftSimDB.optionsDB.data["RECIPESCAN_SORT_MODE"] = "PROFIT"
         CraftSimDB.optionsDB.data["RECIPESCAN_SORT_BY_PROFIT_MARGIN"] = nil
-
-        CraftSimDB.optionsDB.version = 4
-    end
-
-    if CraftSimDB.optionsDB.version == 4 then
+    end)
+    migrate(4, 5, function()
         CraftSimDB.optionsDB.data["CRAFTQUEUE_SHOPPING_LIST_TARGET_MODE"] = nil
         CraftSimDB.optionsDB.data["CRAFTQUEUE_GENERAL_RESTOCK_TARGET_MODE_CRAFTOFFSET"] = nil
+    end)
 
-        CraftSimDB.optionsDB.version = 5
-    end
+    migrate(5, 6, function()
+        if CraftSimDB.optionsDB.data["PROFIT_CALCULATION_MULTICRAFT_CONSTANT"] == 2.5 then
+            CraftSimDB.optionsDB.data["PROFIT_CALCULATION_MULTICRAFT_CONSTANT"] = 2.5
+        end
+    end)
+    migrate(6, 7, function()
+        if CraftSimDB.optionsDB.data["PROFIT_CALCULATION_MULTICRAFT_CONSTANT"] == 2.2 then
+            CraftSimDB.optionsDB.data["PROFIT_CALCULATION_MULTICRAFT_CONSTANT"] = 2.5
+        end
+    end)
+    migrate(7, 8, function()
+        CraftSimDB.optionsDB.data["PROFIT_CALCULATION_MULTICRAFT_CONSTANT"] = nil
+    end)
+    migrate(8, 9, function()
+        CraftSimDB.optionsDB.data["CRAFTQUEUE_SHOPPING_LIST_PER_CHARACTER"] = nil
+        CraftSimDB.optionsDB.data["TSM_PRICE_KEY_REAGENTS"] = CraftSimDB.optionsDB.data["TSM_PRICE_KEY_MATERIALS"]
+        CraftSimDB.optionsDB.data["MODULE_REAGENT_OPTIMIZATION"] = CraftSimDB.optionsDB.data["MODULE_MATERIALS"]
+    end)
+    migrate(9, 10, function()
+        CraftSimDB.optionsDB.data["RECIPESCAN_IMPORT_ALL_PROFESSIONS"] = nil
+        CraftSimDB.optionsDB.data["CRAFTQUEUE_GENERAL_RESTOCK_RESTOCK_AMOUNT"] = nil
+        CraftSimDB.optionsDB.data["CRAFTQUEUE_GENERAL_RESTOCK_PROFIT_MARGIN_THRESHOLD"] = nil
+        CraftSimDB.optionsDB.data["CRAFTQUEUE_GENERAL_RESTOCK_SALE_RATE_THRESHOLD"] = nil
+        CraftSimDB.optionsDB.data["CRAFTQUEUE_GENERAL_RESTOCK_TARGET_MODE_CRAFTOFFSET"] = nil
+        CraftSimDB.optionsDB.data["CRAFTQUEUE_RESTOCK_PER_RECIPE_OPTIONS"] = nil
+    end)
+
+    migrate(10, 11, function()
+        CraftSimDB.optionsDB.data["CRAFTQUEUE_WORK_ORDERS_FORCE_CONCENTRATION"] = CraftSimDB.optionsDB.data
+            ["CRAFTQUEUE_PATRON_ORDERS_FORCE_CONCENTRATION"]
+        CraftSimDB.optionsDB.data["CRAFTQUEUE_PATRON_ORDERS_FORCE_CONCENTRATION"] = nil
+
+        CraftSimDB.optionsDB.data["CRAFTQUEUE_WORK_ORDERS_ALLOW_CONCENTRATION"] = CraftSimDB.optionsDB.data
+            ["CRAFTQUEUE_PATRON_ORDERS_ALLOW_CONCENTRATION"]
+        CraftSimDB.optionsDB.data["CRAFTQUEUE_PATRON_ORDERS_ALLOW_CONCENTRATION"] = nil
+
+        CraftSimDB.optionsDB.data["CRAFTQUEUE_WORK_ORDERS_ALLOW_CONCENTRATION"] = CraftSimDB.optionsDB.data
+            ["CRAFTQUEUE_PATRON_ORDERS_ALLOW_CONCENTRATION"]
+        CraftSimDB.optionsDB.data["CRAFTQUEUE_PATRON_ORDERS_ALLOW_CONCENTRATION"] = nil
+    end)
+
+    migrate(11, 12, function()
+        CraftSimDB.optionsDB.data["CRAFTQUEUE_PATRON_ORDERS_EXCLUDE_WARBANK"] = nil
+    end)
+
+    migrate(12, 13, function()
+        if CraftSimDB.optionsDB.data["RECIPESCAN_SEND_TO_CRAFTQUEUE_TSM_SALERATE_THRESHOLD"] == 1 then
+            CraftSimDB.optionsDB.data["RECIPESCAN_SEND_TO_CRAFTQUEUE_TSM_SALERATE_THRESHOLD"] = 0
+        end
+    end)
+    migrate(13, 14, function()
+        --- option removal
+        CraftSimDB.optionsDB.data["CRAFTQUEUE_WORK_ORDERS_ORDER_TYPE"] = nil
+    end)
 end
 
 function CraftSim.DB.OPTIONS:CleanUp()

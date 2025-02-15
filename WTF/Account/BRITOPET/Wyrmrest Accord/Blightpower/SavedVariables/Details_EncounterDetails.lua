@@ -1,34 +1,6 @@
 
 EncounterDetailsDB = {
 ["chartData"] = {
-[31] = {
-},
-[33] = {
-},
-[35] = {
-},
-[36] = {
-},
-[37] = {
-},
-[38] = {
-},
-[39] = {
-},
-[40] = {
-},
-[41] = {
-},
-[45] = {
-},
-[48] = {
-},
-[55] = {
-},
-[57] = {
-},
-[58] = {
-},
 },
 ["encounter_spells"] = {
 [114873] = {
@@ -152,20 +124,15 @@ EncounterDetailsDB = {
 },
 ["source"] = "Scarlet Defender",
 },
-[114493] = {
-["school"] = 8,
-["token"] = {
-["SPELL_PERIODIC_DAMAGE"] = true,
-},
-["source"] = "Reanimated Corpse",
-},
-[106807] = {
+[112992] = {
 ["school"] = 1,
+["type"] = "BUFF",
 ["token"] = {
-["SPELL_CAST_SUCCESS"] = true,
+["SPELL_AURA_APPLIED"] = true,
 ["SPELL_CAST_START"] = true,
+["SPELL_CAST_SUCCESS"] = true,
 },
-["source"] = "Ook-Ook",
+["source"] = "Hoptallus",
 },
 [111217] = {
 ["school"] = 1,
@@ -174,6 +141,13 @@ EncounterDetailsDB = {
 ["SPELL_DAMAGE"] = true,
 },
 ["source"] = "Armsmaster Harlan",
+},
+[114493] = {
+["school"] = 8,
+["token"] = {
+["SPELL_PERIODIC_DAMAGE"] = true,
+},
+["source"] = "Reanimated Corpse",
 },
 [111221] = {
 ["school"] = 1,
@@ -193,12 +167,13 @@ EncounterDetailsDB = {
 },
 ["source"] = "Flameweaver Koegler",
 },
-[111854] = {
+[111324] = {
 ["school"] = 1,
+["type"] = "BUFF",
 ["token"] = {
-["SPELL_CAST_SUCCESS"] = true,
+["SPELL_AURA_APPLIED"] = true,
 },
-["source"] = "Instructor Chillheart",
+["source"] = "Scarlet Defender",
 },
 [113690] = {
 ["school"] = 4,
@@ -219,13 +194,16 @@ EncounterDetailsDB = {
 },
 ["source"] = "Scarlet Myrmidon",
 },
-[114474] = {
-["school"] = 4,
+[106851] = {
+["school"] = 16,
+["type"] = "DEBUFF",
 ["token"] = {
+["SPELL_AURA_APPLIED"] = true,
+["SPELL_CAST_START"] = true,
 ["SPELL_CAST_SUCCESS"] = true,
 ["SPELL_DAMAGE"] = true,
 },
-["source"] = "Candlestick Mage",
+["source"] = "Yan-Zhu the Uncasked",
 },
 [113765] = {
 ["school"] = 1,
@@ -235,14 +213,15 @@ EncounterDetailsDB = {
 },
 ["source"] = "Rattlegore",
 },
-[114022] = {
+[114011] = {
 ["school"] = 1,
+["type"] = "DEBUFF",
 ["token"] = {
-["SPELL_CAST_START"] = true,
-["SPELL_CAST_SUCCESS"] = true,
+["SPELL_AURA_APPLIED"] = true,
 ["SPELL_DAMAGE"] = true,
+["SPELL_CAST_SUCCESS"] = true,
 },
-["source"] = "Scarlet Treasurer",
+["source"] = "Scarlet Hall Guardian",
 },
 [111631] = {
 ["school"] = 32,
@@ -255,35 +234,30 @@ EncounterDetailsDB = {
 },
 ["source"] = "Instructor Chillheart",
 },
-[128232] = {
+[114872] = {
 ["school"] = 4,
 ["token"] = {
+["SPELL_CAST_SUCCESS"] = true,
 ["SPELL_CAST_START"] = true,
 },
-["source"] = "Scarlet Evangelist",
+["source"] = "Bored Student",
 },
-[106851] = {
-["school"] = 16,
-["type"] = "DEBUFF",
+[114474] = {
+["school"] = 4,
 ["token"] = {
-["SPELL_AURA_APPLIED"] = true,
-["SPELL_CAST_START"] = true,
 ["SPELL_CAST_SUCCESS"] = true,
 ["SPELL_DAMAGE"] = true,
 },
-["source"] = "Yan-Zhu the Uncasked",
+["source"] = "Candlestick Mage",
 },
-[111667] = {
-["school"] = 4,
+[116140] = {
+["school"] = 1,
 ["type"] = "BUFF",
 ["token"] = {
-["SPELL_DAMAGE"] = true,
-["SPELL_CAST_SUCCESS"] = true,
 ["SPELL_AURA_APPLIED"] = true,
-["SPELL_PERIODIC_DAMAGE"] = true,
-["SPELL_CAST_START"] = true,
+["SPELL_CAST_SUCCESS"] = true,
 },
-["source"] = "Scarlet Evoker",
+["source"] = "Houndmaster Braun",
 },
 [114860] = {
 ["school"] = 1,
@@ -294,15 +268,14 @@ EncounterDetailsDB = {
 },
 ["source"] = "Professor Slate",
 },
-[114011] = {
+[6713] = {
 ["school"] = 1,
 ["type"] = "DEBUFF",
 ["token"] = {
-["SPELL_AURA_APPLIED"] = true,
-["SPELL_DAMAGE"] = true,
 ["SPELL_CAST_SUCCESS"] = true,
+["SPELL_AURA_APPLIED"] = true,
 },
-["source"] = "Scarlet Hall Guardian",
+["source"] = "Scarlet Defender",
 },
 [9734] = {
 ["school"] = 2,
@@ -319,30 +292,33 @@ EncounterDetailsDB = {
 },
 ["source"] = "Ook-Ook",
 },
-[111348] = {
-["school"] = 2,
+[128232] = {
+["school"] = 4,
+["token"] = {
+["SPELL_CAST_START"] = true,
+},
+["source"] = "Scarlet Evangelist",
+},
+[111667] = {
+["school"] = 4,
+["type"] = "BUFF",
 ["token"] = {
 ["SPELL_DAMAGE"] = true,
+["SPELL_CAST_SUCCESS"] = true,
+["SPELL_AURA_APPLIED"] = true,
+["SPELL_PERIODIC_DAMAGE"] = true,
+["SPELL_CAST_START"] = true,
 },
-["source"] = "Scarlet Scourge Hewer",
+["source"] = "Scarlet Evoker",
 },
-[116140] = {
+[106651] = {
 ["school"] = 1,
 ["type"] = "BUFF",
 ["token"] = {
 ["SPELL_AURA_APPLIED"] = true,
 ["SPELL_CAST_SUCCESS"] = true,
 },
-["source"] = "Houndmaster Braun",
-},
-[6713] = {
-["school"] = 1,
-["type"] = "DEBUFF",
-["token"] = {
-["SPELL_CAST_SUCCESS"] = true,
-["SPELL_AURA_APPLIED"] = true,
-},
-["source"] = "Scarlet Defender",
+["source"] = "Ook-Ook",
 },
 [113691] = {
 ["school"] = 4,
@@ -352,6 +328,21 @@ EncounterDetailsDB = {
 ["SPELL_DAMAGE"] = true,
 },
 ["source"] = "Flameweaver Koegler",
+},
+[113136] = {
+["school"] = 4,
+["token"] = {
+["SPELL_CAST_SUCCESS"] = true,
+["SPELL_CAST_START"] = true,
+},
+["source"] = "Darkmaster Gandling",
+},
+[17140] = {
+["school"] = 4,
+["token"] = {
+["SPELL_CAST_START"] = true,
+},
+["source"] = "Scarlet Evangelist",
 },
 [111813] = {
 ["school"] = 1,
@@ -364,29 +355,14 @@ EncounterDetailsDB = {
 },
 ["source"] = "Risen Guard",
 },
-[17140] = {
-["school"] = 4,
-["token"] = {
-["SPELL_CAST_START"] = true,
-},
-["source"] = "Scarlet Evangelist",
-},
-[113136] = {
-["school"] = 4,
-["token"] = {
-["SPELL_CAST_SUCCESS"] = true,
-["SPELL_CAST_START"] = true,
-},
-["source"] = "Darkmaster Gandling",
-},
-[106651] = {
+[114022] = {
 ["school"] = 1,
-["type"] = "BUFF",
 ["token"] = {
-["SPELL_AURA_APPLIED"] = true,
+["SPELL_CAST_START"] = true,
 ["SPELL_CAST_SUCCESS"] = true,
+["SPELL_DAMAGE"] = true,
 },
-["source"] = "Ook-Ook",
+["source"] = "Scarlet Treasurer",
 },
 [1604] = {
 ["school"] = 1,
@@ -404,13 +380,12 @@ EncounterDetailsDB = {
 },
 ["source"] = "Scarlet Scholar",
 },
-[114872] = {
-["school"] = 4,
+[111348] = {
+["school"] = 2,
 ["token"] = {
-["SPELL_CAST_SUCCESS"] = true,
-["SPELL_CAST_START"] = true,
+["SPELL_DAMAGE"] = true,
 },
-["source"] = "Bored Student",
+["source"] = "Scarlet Scourge Hewer",
 },
 [114479] = {
 ["school"] = 4,
@@ -427,13 +402,12 @@ EncounterDetailsDB = {
 },
 ["source"] = "Rattlegore",
 },
-[111324] = {
+[111854] = {
 ["school"] = 1,
-["type"] = "BUFF",
 ["token"] = {
-["SPELL_AURA_APPLIED"] = true,
+["SPELL_CAST_SUCCESS"] = true,
 },
-["source"] = "Scarlet Defender",
+["source"] = "Instructor Chillheart",
 },
 [111341] = {
 ["school"] = 2,
@@ -444,15 +418,13 @@ EncounterDetailsDB = {
 },
 ["source"] = "Scarlet Scourge Hewer",
 },
-[112992] = {
+[106807] = {
 ["school"] = 1,
-["type"] = "BUFF",
 ["token"] = {
-["SPELL_AURA_APPLIED"] = true,
-["SPELL_CAST_START"] = true,
 ["SPELL_CAST_SUCCESS"] = true,
+["SPELL_CAST_START"] = true,
 },
-["source"] = "Hoptallus",
+["source"] = "Ook-Ook",
 },
 },
 ["emotes"] = {

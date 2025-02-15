@@ -25,21 +25,24 @@ local mt = {__index = bossModPrototype}
 ---@class DBMMod
 ---@field OnCombatStart fun(self: DBMMod, delay: number, startedByCastOrRegenDisabledOrMessage: boolean, startedByEncounter: boolean)
 ---@field OnCombatEnd fun(self: DBMMod, wipe: boolean, delayedSecondCall: boolean?)
+---@field StartEngageTimers fun(self: DBMMod, guid: string, cid: number, delay: number)
 ---@field OnLeavingCombat fun()
+---@field EnteringZoneCombat fun(self: DBMMod)
+---@field LeavingZoneCombat fun(self: DBMMod)
 ---@field OnSync fun(self: DBMMod, event: string, ...: string)
----@field OnBWSync fun(self: DBMMod, msg: string, extra: string, sender: string)
----@field OnTranscriptorSync fun(self: DBMMod, msg: string, sender: string)
+---@field OnBWSync fun(self: DBMMod, msg: string, extra: string, sender: string) Used to Snoop Bigwigs comms when maintaining compat between DBM and BW on boss fights
+---@field OnTranscriptorSync fun(self: DBMMod, msg: string, sender: string) Used to snoop RAID_BOSS_WHISPER event syncs sent by both DBM and BigWigs
 ---@field OnInitialize fun(self: DBMMod, mod: DBMMod)
 ---@field OnTimerRecovery fun(self: DBMMod)
 ---@field CustomHealthUpdate fun(self: DBMMod): string
 ---@field stats ModStats
 ---@field registeredUnitEvents table<string, boolean>?
 ---@field bossHealthUpdateTime number?
----@field isTrashModBossFightAllowed boolean?
----@field respawnTime number?
----@field noStatistics boolean?
+---@field isTrashModBossFightAllowed boolean? Used to flag a trash mod that is continue firing events during a boss fight (should be true in all M+ mods)
+---@field respawnTime number? Time until the boss respawns after ENCOUNTER_END event
+---@field noStatistics boolean? Used in modules that should not have stats panels such as trash mods
 ---@field statTypes string?
----@field upgradedMPlus boolean?
+---@field upgradedMPlus boolean? Used to flag a dungeon that used to be a challenge mode in MoP or WoD but has since upgraded to M+
 ---@field onlyHighest boolean?
 ---@field soloChallenge boolean?
 ---@field disableHealthCombat boolean?
@@ -55,7 +58,7 @@ function DBM:NewMod(name, modId, modSubTab, instanceId, nameModifier)
 	name = tostring(name) -- the name should never be a number of something as it confuses sync handlers that just receive some string and try to get the mod from it
 	if name == "DBM-ProfilesDummy" then return {} end
 	if modsById[name] then error("DBM:NewMod(): Mod names are used as IDs and must therefore be unique.", 2) end
-	---@type table
+	---@type table?
 	local addon = nil
 	for _, v in ipairs(self.AddOns) do
 		if v.modId == modId then
@@ -103,8 +106,9 @@ function DBM:NewMod(name, modId, modSubTab, instanceId, nameModifier)
 		test.Mocks:SetModEnvironment(2)
 	end
 
-	if tonumber(name) and EJ_GetEncounterInfo and EJ_GetEncounterInfo(tonumber(name)) then
-		local t = EJ_GetEncounterInfo(tonumber(name))
+	local encounterId = tonumber(name)
+	if encounterId and EJ_GetEncounterInfo and EJ_GetEncounterInfo(encounterId) then
+		local t = EJ_GetEncounterInfo(encounterId)
 		if type(nameModifier) == "number" then--Get name form EJ_GetCreatureInfo
 			t = select(2, EJ_GetCreatureInfo(nameModifier, tonumber(name)))
 		elseif type(nameModifier) == "function" then--custom name modify function
@@ -143,8 +147,8 @@ function DBM:NewMod(name, modId, modSubTab, instanceId, nameModifier)
 			t = string.split(",", t or obj.localization.general.name or name)
 		end
 		obj.localization.general.name = t or name
-	else
-		obj.localization.general.name = obj.localization.general.name or name
+	elseif not rawget(obj.localization.general, "name") then
+		obj.localization.general.name = name
 	end
 	tinsert(self.Mods, obj)
 	if modId then
@@ -204,9 +208,13 @@ function bossModPrototype:DisableMod()
 	self.Options.Enabled = false
 end
 
-function bossModPrototype:Stop()
+---@param killNameplates boolean? Should only be called by trash mods. Bosses should never call this
+function bossModPrototype:Stop(killNameplates)
 	for _, v in ipairs(self.timers) do
 		v:Stop()
+	end
+	if killNameplates then
+		DBM:FireEvent("DBM_NameplateStopAll")
 	end
 	self:Unschedule()
 end
@@ -255,13 +263,20 @@ function bossModPrototype:SetStage(stage)
 		DBM:FireEvent("DBM_SetStage", self, self.id, self.vb.phase, self.multiEncounterPullDetection and self.multiEncounterPullDetection[1] or self.encounterId, self.vb.stageTotality)--Mod, modId, Stage, Encounter Id (if available), total number of times SetStage has been called since combat start
 		--Note, some encounters have more than one encounter Id, for these encounters, the first ID from mod is always returned regardless of actual engage ID triggered fight
 		DBM:Debug("DBM_SetStage: " .. self.vb.phase .. "/" .. self.vb.stageTotality)
+		test:Trace(self, "SetStage", self.vb.phase, self.vb.stageTotality)
 	end
 end
 
 ---If args are passed, returns true or false for specific Stage
 ---<br>If no args given, just returns current stage and stage total
+---@meta
+---@alias stageChecks
+---|0: 0 or nil for current stage match
+---|1: 1 for less than check
+---|2: 2 for greater than check
+---|3: 3 not equal check
 ---@param stage number? stage value to checkf or true/false rules
----@param checkType number? 0 or nil for just current stage match, 1 for less than check, 2 for greater than check, 3 not equal check
+---@param checkType stageChecks|nil
 ---@param useTotal boolean? uses stage total instead of current
 function bossModPrototype:GetStage(stage, checkType, useTotal)
 	local currentStage, currentTotal = self.vb.phase or 0, self.vb.stageTotality or 0
@@ -293,14 +308,40 @@ function bossModPrototype:AffixEvent(eventType, stage, timeAdjust, spellDebit)
 	end
 end
 
+local function addIdsToExistingEvent(event, ...)
+	for i = 1, select("#", ...) do
+		local id = select(i, ...)
+		if not event:match(" " .. id .. " ") and not event:match(" " .. id .. "$") then
+			event = event .. " " .. id
+		end
+	end
+	return event
+end
+
 ---@param ... DBMEvent|string
 function bossModPrototype:RegisterEventsInCombat(...)
 	test:Trace(self, "RegisterEvents", "InCombat", ...)
-	if self.inCombatOnlyEvents then
+	if self.inCombatOnlyEvents and select("#", ...) > 1 then
 		geterrorhandler()("combat events already set")
 	end
-	self.inCombatOnlyEvents = {...}
-	for k, v in pairs(self.inCombatOnlyEvents) do
+	if self.inCombatOnlyEvents then
+		-- Special case: allow registrating additional events if you do it one-by-one (check in the abort above)
+		-- FIXME: allow this in general if we end up keeping the new event handlers
+		local event = ...
+		local prefix, ids = string.split(" ", event, 2)
+		for i, v in ipairs(self.inCombatOnlyEvents) do
+			if string.split(" ", v, 2) == prefix then
+				-- Warning: Registering an event twice with different spell IDs will not work -- it will trigger the handler twice for both IDs
+				-- This is kinda annoying to fix in the handler, so we instead modify the existing event definition here.
+				self.inCombatOnlyEvents[i] = addIdsToExistingEvent(v, string.split(" ", ids))
+				return
+			end
+		end
+		self.inCombatOnlyEvents[#self.inCombatOnlyEvents + 1] = event
+	else
+		self.inCombatOnlyEvents = {...}
+	end
+	for k, v in ipairs(self.inCombatOnlyEvents) do
 		if v:sub(0, 5) == "UNIT_" and v:sub(-11) ~= "_UNFILTERED" and not v:find(" ") and v ~= "UNIT_DIED" and v ~= "UNIT_DESTROYED" then
 			-- legacy event, oh noes
 			self.inCombatOnlyEvents[k] = v .. " boss1 boss2 boss3 boss4 boss5 target focus"
@@ -537,14 +578,14 @@ do
 	if private.isClassic then
 		interruptSpells[8042] = true -- Shaman Earth Shock
 	end
-	---@param sourceGUID string
+	---@param sourceGUID string source GUID of the caster
 	---@param checkOnlyTandF boolean? is used when CheckInterruptFilter is actually being used for a simpe target/focus check and nothing more.
 	---@param checkCooldown boolean? should always be passed true except for special rotations like count warnings when you should be alerted it's your turn even if you dropped ball and put it on CD at wrong time
 	---@param ignoreTandF boolean? is usually used when interrupt is on a main boss or event that is global to entire raid and should always be alerted regardless of targetting.
 	---@return boolean
 	function bossModPrototype:CheckInterruptFilter(sourceGUID, checkOnlyTandF, checkCooldown, ignoreTandF)
 		--Check healer spec filter
-		if self:IsHealer() and (self.isTrashMod and DBM.Options.FilterTInterruptHealer or not self.isTrashMod and DBM.Options.FilterBInterruptHealer) then
+		if not checkOnlyTandF and self:IsHealer() and (self.isTrashMod and DBM.Options.FilterTInterruptHealer or not self.isTrashMod and DBM.Options.FilterBInterruptHealer) then
 			return false
 		end
 
@@ -578,7 +619,7 @@ do
 
 		--Check if it's casting something that's not interruptable at the moment
 		--needed for torghast since many mobs can have interrupt immunity with same spellIds as other mobs that can be interrupted
-		if private.isRetail and unitID then
+		if not checkOnlyTandF and private.isRetail and unitID then
 			if UnitCastingInfo(unitID) then
 				local _, _, _, _, _, _, _, notInterruptible = UnitCastingInfo(unitID)
 				if notInterruptible then return false end
@@ -821,9 +862,7 @@ function bossModPrototype:EnablePrivateAuraSound(auraspellId, voice, voiceVersio
 			local isVoicePackUsed
 			--Vet if user has voice pack enabled by sound ID
 			if type(soundId) == "number" and soundId < 5 then--Value 1-4 are SW1 defaults, otherwise it's file data ID and handled by Custom
-				isVoicePackUsed = DBM.Options["VPReplacesSA" .. soundId]
-			else
-				isVoicePackUsed = DBM.Options.VPReplacesCustom
+				isVoicePackUsed = DBM.Options.VPReplacesSADefault
 			end
 			if isVoicePackUsed then
 				mediaPath = "Interface\\AddOns\\DBM-VP" .. chosenVoice .. "\\" .. voice .. ".ogg"
@@ -932,4 +971,11 @@ end
 function bossModPrototype:GetLocalizedStrings()
 	self.localization.miscStrings.name = self.localization.general.name
 	return self.localization.miscStrings
+end
+
+
+-- Test support
+
+function bossModPrototype:TestTrace(...)
+	test:Trace(self, "ModTrace", ...)
 end

@@ -50,7 +50,7 @@ local function InitResetNotificationsTimer()
 	end)
 end
 
-function RSNotificationTracker.AddNotification(vignetteID, isNavigating, entityID)	
+function RSNotificationTracker.AddNotification(vignetteID, isNavigating, entityID)
 	-- When navigating never check notifications
 	if (isNavigating) then
 		return
@@ -62,7 +62,7 @@ function RSNotificationTracker.AddNotification(vignetteID, isNavigating, entityI
 	local currentTime = time()
 	
 	-- If not spawning in multiple places at the same time stores entityID
-	if (entityID and not RSUtils.Contains(RSConstants.NPCS_WITH_MULTIPLE_SPAWNS, entityID) and not RSUtils.Contains(RSConstants.CONTAINERS_WITH_MULTIPLE_SPAWNS, entityID)) then
+	if (entityID and not RSNpcDB.IsMultiZoneSpawn(entityID) and not RSUtils.Contains(RSConstants.CONTAINERS_WITH_MULTIPLE_SPAWNS, entityID)) then
 		current_notifications[entityID] = currentTime
 		--RSLogger:PrintDebugMessage(string.format("AddNotification[%s] at [%s]", entityID, RSTimeUtils.TimeStampToClock(currentTime)))
 	-- Otherwise vignetteID

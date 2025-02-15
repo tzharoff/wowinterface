@@ -240,7 +240,7 @@ function addon:OnInitialize()
 	addon.db = LibStub("AceDB-3.0"):New(addonName .. "DB", AddonDB_Defaults)
 
 	-- Compatibility test:
-    if not (GetAddOnMetadata("DataStore", "Author") == "Teelo") then return end
+    if not (C_AddOns.GetAddOnMetadata("DataStore", "Author") == "Teelo") then return end
     
     DataStore:RegisterModule(addonName, addon, PublicMethods)
 
@@ -252,7 +252,7 @@ function addon:OnInitialize()
 end
 
 function addon:OnEnable()
-    if not (GetAddOnMetadata("DataStore", "Author") == "Teelo") then return end
+    if not (C_AddOns.GetAddOnMetadata("DataStore", "Author") == "Teelo") then return end
     
 	addon:RegisterEvent("PLAYER_ALIVE", OnPlayerAlive)
 	addon:RegisterEvent("BAG_UPDATE", OnItemReceived)

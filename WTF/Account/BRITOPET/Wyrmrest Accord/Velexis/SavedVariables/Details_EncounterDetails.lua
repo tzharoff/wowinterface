@@ -807,14 +807,14 @@ EncounterDetailsDB = {
 },
 ["source"] = "Rashok",
 },
-[407327] = {
-["school"] = 64,
+[408857] = {
+["school"] = 36,
 ["type"] = "DEBUFF",
 ["token"] = {
 ["SPELL_AURA_APPLIED"] = true,
 ["SPELL_PERIODIC_DAMAGE"] = true,
 },
-["source"] = "Thadrion",
+["source"] = "Rashok",
 },
 [409749] = {
 ["school"] = 1,
@@ -831,12 +831,14 @@ EncounterDetailsDB = {
 },
 ["source"] = "Neldris",
 },
-[409367] = {
+[407327] = {
 ["school"] = 64,
+["type"] = "DEBUFF",
 ["token"] = {
-["SPELL_DAMAGE"] = true,
+["SPELL_AURA_APPLIED"] = true,
+["SPELL_PERIODIC_DAMAGE"] = true,
 },
-["source"] = "Neldris",
+["source"] = "Thadrion",
 },
 [389541] = {
 ["school"] = 8,
@@ -855,13 +857,13 @@ EncounterDetailsDB = {
 },
 ["source"] = "Kazzara, the Hellforged",
 },
-[193473] = {
-["school"] = 32,
-["type"] = "DEBUFF",
+[405812] = {
+["school"] = 1,
 ["token"] = {
-["SPELL_AURA_APPLIED"] = true,
+["SPELL_CAST_SUCCESS"] = true,
+["SPELL_CAST_START"] = true,
 },
-["source"] = "Void Tendril",
+["source"] = "Zskarn",
 },
 [397383] = {
 ["school"] = 1,
@@ -896,13 +898,14 @@ EncounterDetailsDB = {
 ["SPELL_PERIODIC_DAMAGE"] = true,
 },
 },
-[405812] = {
+[407597] = {
 ["school"] = 1,
+["type"] = "DEBUFF",
 ["token"] = {
-["SPELL_CAST_SUCCESS"] = true,
-["SPELL_CAST_START"] = true,
+["SPELL_AURA_APPLIED"] = true,
+["SPELL_DAMAGE"] = true,
 },
-["source"] = "Zskarn",
+["source"] = "Rashok",
 },
 [405819] = {
 ["school"] = 4,
@@ -1311,14 +1314,13 @@ EncounterDetailsDB = {
 },
 ["source"] = "Flamebound Huntsman",
 },
-[407597] = {
-["school"] = 1,
+[193473] = {
+["school"] = 32,
 ["type"] = "DEBUFF",
 ["token"] = {
 ["SPELL_AURA_APPLIED"] = true,
-["SPELL_DAMAGE"] = true,
 },
-["source"] = "Rashok",
+["source"] = "Void Tendril",
 },
 [403326] = {
 ["school"] = 36,
@@ -1329,14 +1331,12 @@ EncounterDetailsDB = {
 },
 ["source"] = "Kazzara, the Hellforged",
 },
-[408857] = {
-["school"] = 36,
-["type"] = "DEBUFF",
+[409367] = {
+["school"] = 64,
 ["token"] = {
-["SPELL_AURA_APPLIED"] = true,
-["SPELL_PERIODIC_DAMAGE"] = true,
+["SPELL_DAMAGE"] = true,
 },
-["source"] = "Rashok",
+["source"] = "Neldris",
 },
 [410369] = {
 ["school"] = 4,

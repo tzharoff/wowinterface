@@ -3,6 +3,12 @@ VER 3 0100000000000003 "DC" "INV_MISC_QUESTIONMARK"
 /cast Lichborne;
 /cast [@player] Death Coil
 END
+VER 3 0100000000000004 "Opener" "134400"
+#showtooltip
+/cast Pillar of Frost
+/cast Howling Blast
+/cast Empower Rune Weapon
+END
 VER 3 0100000000000001 "VuhDoDCShieldData" "Ability_Repair"
 P[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]1EM[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
 END

@@ -57,7 +57,7 @@ _detalhes_database = {
 ["pos"] = {
 },
 },
-["last_version"] = "11.0.0 12822",
+["last_version"] = "11.0.7 13317",
 ["player_stats"] = {
 },
 ["SoloTablesSaved"] = {
@@ -105,45 +105,12 @@ _detalhes_database = {
 ["reverse"] = false,
 },
 ["active_profile"] = "Seratia-Wyrmrest Accord",
-["last_realversion"] = 159,
+["last_realversion"] = 161,
 ["benchmark_db"] = {
 ["frame"] = {
 },
 },
-["local_instances_config"] = {
-{
-["modo"] = 2,
-["sub_attribute"] = 1,
-["sub_atributo_last"] = {
-1,
-1,
-1,
-1,
-1,
-},
-["is_open"] = true,
-["isLocked"] = false,
-["snap"] = {
-},
-["segment"] = 0,
-["mode"] = 2,
-["attribute"] = 1,
-["pos"] = {
-["normal"] = {
-["y"] = 57.2183837890625,
-["x"] = -661.9525146484375,
-["w"] = 287.0000305175781,
-["h"] = 158.0002136230469,
-},
-["solo"] = {
-["y"] = 2,
-["x"] = 1,
-["w"] = 300,
-["h"] = 200,
-},
-},
-},
-},
+["last_day"] = "28",
 ["combat_log"] = {
 ["track_hunter_frenzy"] = false,
 ["inverse_deathlog_raid"] = false,
@@ -155,10 +122,7 @@ _detalhes_database = {
 ["evoker_show_realtimedps"] = true,
 ["inverse_deathlog_mplus"] = false,
 },
-["announce_firsthit"] = {
-["enabled"] = true,
-["channel"] = "SELF",
-},
+["last_instance_time"] = 1685644013,
 ["mythic_plus_log"] = {
 "20/03/23 11:00:57|MergeSegmentsOnEnd started | creating the overall segment at the end of the run.",
 "20/03/23 11:00:57|MythicDungeonFinished() | merge_boss_trash = true",
@@ -174,9 +138,19 @@ _detalhes_database = {
 },
 ["cached_roles"] = {
 },
-["last_encounter"] = "The Forgotten Experiments",
-["ignore_nicktag"] = false,
-["last_instance_time"] = 1685644013,
+["mythic_dungeon_currentsaved"] = {
+["dungeon_name"] = "The Nokhud Offensive",
+["started"] = false,
+["segment_id"] = 5,
+["ej_id"] = 1198,
+["started_at"] = 1679333631.7,
+["run_id"] = 1,
+["level"] = 8,
+["dungeon_zone_id"] = 2516,
+["previous_boss_killed_at"] = 1679335254,
+},
+["data_harvested_for_charts"] = {
+},
 ["plugin_database"] = {
 ["DETAILS_PLUGIN_TINY_THREAT"] = {
 ["enabled"] = true,
@@ -264,7 +238,10 @@ _detalhes_database = {
 0.5,
 },
 ["scale"] = 1,
-["arrow_anchor_y"] = 0,
+["main_frame_size"] = {
+300,
+500.0000305175781,
+},
 ["minimap"] = {
 ["minimapPos"] = 155.2472387522797,
 ["radius"] = 160,
@@ -285,21 +262,6 @@ _detalhes_database = {
 ["square_amount"] = 5,
 ["enabled"] = false,
 ["arrow_size"] = 10,
-["font_size"] = 10,
-["row_spacement"] = 21,
-["main_frame_color"] = {
-0,
-0,
-0,
-0.2,
-},
-["row_color"] = {
-0.1,
-0.1,
-0.1,
-0.4,
-},
-["arrow_texture"] = "Interface\\CHATFRAME\\ChatFrameExpandArrow",
 ["per_second"] = {
 ["enabled"] = false,
 ["point"] = "CENTER",
@@ -311,21 +273,34 @@ _detalhes_database = {
 ["update_speed"] = 0.05,
 ["attribute_type"] = 1,
 },
-["use_spark"] = true,
+["row_spacement"] = 21,
+["main_frame_color"] = {
+0,
+0,
+0,
+0.2,
+},
+["author"] = "Terciob",
+["arrow_texture"] = "Interface\\CHATFRAME\\ChatFrameExpandArrow",
+["y"] = 4.57763671875e-05,
+["font_size"] = 10,
 ["x"] = 0,
 ["font_face"] = "Friz Quadrata TT",
 ["square_size"] = 32,
-["y"] = 4.57763671875e-05,
-["author"] = "Terciob",
+["use_spark"] = true,
+["row_color"] = {
+0.1,
+0.1,
+0.1,
+0.4,
+},
 ["main_frame_locked"] = false,
-["main_frame_size"] = {
-300,
-500.0000305175781,
+["arrow_anchor_y"] = 0,
 },
 },
-},
+["last_encounter"] = "The Forgotten Experiments",
 ["nick_tag_cache"] = {
-["nextreset"] = 1724130836,
+["nextreset"] = 1736739174,
 ["last_version"] = 16,
 },
 ["force_font_outline"] = "",
@@ -333,9 +308,9 @@ _detalhes_database = {
 ["savedStyles"] = {
 },
 ["character_data"] = {
-["logons"] = 197,
+["logons"] = 211,
 },
-["combat_counter"] = 674,
+["combat_counter"] = 702,
 ["announce_deaths"] = {
 ["enabled"] = false,
 ["last_hits"] = 1,
@@ -370,7 +345,7 @@ _detalhes_database = {
 },
 ["raid_roster"] = {
 },
-["tempo_start"] = 5605.68,
+["tempo_start"] = 1803994.677,
 ["last_events_tables"] = {
 },
 ["alternate_power"] = {
@@ -433,11 +408,11 @@ _detalhes_database = {
 ["data_inicio"] = 0,
 ["amountCasts"] = {
 },
-["mapId"] = 974,
+["mapId"] = 2552,
 ["cleu_events"] = {
 ["n"] = 1,
 },
-["zoneName"] = "Darkmoon Faire",
+["zoneName"] = "Khaz Algar (Surface)",
 ["boss_hp"] = 1,
 ["is_challenge"] = false,
 ["frags"] = {
@@ -464,22 +439,47 @@ _detalhes_database = {
 ["start_time"] = 0,
 ["TimeData"] = {
 },
-["combat_counter"] = 673,
+["combat_counter"] = 701,
 },
-["data_harvested_for_charts"] = {
+["ignore_nicktag"] = false,
+["announce_firsthit"] = {
+["enabled"] = true,
+["channel"] = "SELF",
 },
-["mythic_dungeon_currentsaved"] = {
-["dungeon_name"] = "The Nokhud Offensive",
-["started"] = false,
-["segment_id"] = 5,
-["ej_id"] = 1198,
-["started_at"] = 1679333631.7,
-["run_id"] = 1,
-["level"] = 8,
-["dungeon_zone_id"] = 2516,
-["previous_boss_killed_at"] = 1679335254,
+["local_instances_config"] = {
+{
+["modo"] = 2,
+["sub_attribute"] = 1,
+["sub_atributo_last"] = {
+1,
+1,
+1,
+1,
+1,
 },
-["last_day"] = "04",
+["is_open"] = true,
+["isLocked"] = false,
+["snap"] = {
+},
+["segment"] = 0,
+["mode"] = 2,
+["attribute"] = 1,
+["pos"] = {
+["normal"] = {
+["y"] = 57.2186279296875,
+["x"] = -661.9525146484375,
+["w"] = 287.0000305175781,
+["h"] = 158.0003356933594,
+},
+["solo"] = {
+["y"] = 2,
+["x"] = 1,
+["w"] = 300,
+["h"] = 200,
+},
+},
+},
+},
 ["announce_cooldowns"] = {
 ["enabled"] = false,
 ["ignored_cooldowns"] = {
@@ -496,6 +496,14 @@ _detalhes_database = {
 ["channel"] = "SELF",
 },
 ["cached_specs"] = {
-["Player-1171-0670C5D9"] = 63,
+["Player-1171-08919625"] = 268,
+["Player-1171-0670C5D9"] = 62,
+["Player-1171-085AE349"] = 267,
+["Player-1171-0AE15FF1"] = 266,
+["Player-1171-0ADC549F"] = 265,
+["Player-1171-0AAA3877"] = 104,
+["Player-1171-0A73932D"] = 104,
+["Player-1171-0A9E8A7B"] = 62,
+["Player-1171-0699F240"] = 65,
 },
 }

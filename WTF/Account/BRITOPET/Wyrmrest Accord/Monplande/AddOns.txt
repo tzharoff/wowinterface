@@ -77,7 +77,7 @@ LittleWigs_WarlordsOfDraenor: enabled
 BigWigs_VaultOfTheIncarnates: enabled
 Auctionator: disabled
 TradeSkillMaster: disabled
-CraftSim: disabled
+CraftSim: enabled
 APR: disabled
 LittleWigs_BurningCrusade: enabled
 BigWigs_Aberrus: enabled
@@ -104,3 +104,22 @@ MythicDungeonTools: enabled
 BigWigs_BurningCrusade: enabled
 LittleWigs_WrathOfTheLichKing: enabled
 BigWigs_MistsOfPandaria: enabled
+RemixCheckList: disabled
+Remix Gem Helper: disabled
+CopyPasta2: disabled
+MythicDungeonPortals: disabled
+LittleWigs_Dragonflight: enabled
+BigWigs_Dragonflight: enabled
+BigWigs_NerubarPalace: enabled
+DBM-Raids-WarWithin: enabled
+DBM-KhazAlgar: enabled
+DBM-Test: enabled
+BigWigs_Cataclysm: enabled
+BigWigs_Classic: enabled
+BigWigs_KhazAlgar: enabled
+FriendGroups: disabled
+DBM-Party-Shadowlands: enabled
+LittleWigs_Shadowlands: enabled
+LittleWigs_Classic: enabled
+RXPGuides: disabled
+Hekili: disabled

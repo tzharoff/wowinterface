@@ -1,496 +1,1972 @@
 
 _detalhes_database = {
-	["savedbuffs"] = {
-	},
-	["mythic_dungeon_id"] = 0,
-	["tabela_historico"] = {
-		["tabelas"] = {
-		},
-	},
-	["ocd_tracker"] = {
-		["show_title"] = true,
-		["current_cooldowns"] = {
-		},
-		["filters"] = {
-			["defensive-raid"] = false,
-			["ofensive"] = true,
-			["defensive-target"] = false,
-			["utility"] = false,
-			["defensive-personal"] = false,
-		},
-		["show_options"] = false,
-		["group_frames"] = true,
-		["own_frame"] = {
-			["defensive-raid"] = false,
-			["ofensive"] = false,
-			["defensive-target"] = false,
-			["utility"] = false,
-			["defensive-personal"] = false,
-		},
-		["frames"] = {
-			["defensive-raid"] = {
-			},
-			["main"] = {
-			},
-			["ofensive"] = {
-			},
-			["defensive-target"] = {
-			},
-			["utility"] = {
-			},
-			["defensive-personal"] = {
-			},
-		},
-		["width"] = 120,
-		["ignored_cooldowns"] = {
-		},
-		["height"] = 18,
-		["framme_locked"] = false,
-		["lines_per_column"] = 12,
-		["cooldowns"] = {
-		},
-		["show_conditions"] = {
-			["only_inside_instance"] = true,
-			["only_in_group"] = true,
-		},
-		["enabled"] = false,
-		["pos"] = {
-		},
-	},
-	["last_version"] = "10.2.6 12579",
-	["player_stats"] = {
-	},
-	["SoloTablesSaved"] = {
-		["Mode"] = 1,
-	},
-	["tabela_instancias"] = {
-	},
-	["coach"] = {
-		["enabled"] = false,
-		["welcome_panel_pos"] = {
-		},
-		["last_coach_name"] = false,
-	},
-	["on_death_menu"] = false,
-	["cached_talents"] = {
-	},
-	["last_instance_id"] = 632,
-	["data_harvest_for_charsts"] = {
-		["players"] = {
-			{
-				["playerKey"] = "total",
-				["combatObjectContainer"] = 1,
-				["name"] = "Damage of Each Individual Player",
-				["playerOnly"] = true,
-			}, -- [1]
-		},
-		["totals"] = {
-			{
-				["combatObjectSubTableKey"] = 1,
-				["name"] = "Damage of All Player Combined",
-				["combatObjectSubTableName"] = "totals",
-			}, -- [1]
-		},
-	},
-	["announce_interrupts"] = {
-		["enabled"] = false,
-		["whisper"] = "",
-		["channel"] = "SAY",
-		["custom"] = "",
-		["next"] = "",
-	},
-	["announce_prepots"] = {
-		["enabled"] = false,
-		["channel"] = "SELF",
-		["reverse"] = false,
-	},
-	["active_profile"] = "Zodji-Wyrmrest Accord",
-	["last_realversion"] = 156,
-	["benchmark_db"] = {
-		["frame"] = {
-		},
-	},
-	["combat_log"] = {
-		["inverse_deathlog_overalldata"] = false,
-		["merge_gemstones_1007"] = false,
-		["track_hunter_frenzy"] = false,
-		["inverse_deathlog_raid"] = false,
-		["merge_critical_heals"] = false,
-		["calc_evoker_damage"] = true,
-		["evoker_show_realtimedps"] = false,
-		["inverse_deathlog_mplus"] = false,
-	},
-	["local_instances_config"] = {
-		{
-			["modo"] = 2,
-			["sub_attribute"] = 1,
-			["sub_atributo_last"] = {
-				1, -- [1]
-				1, -- [2]
-				1, -- [3]
-				1, -- [4]
-				1, -- [5]
-			},
-			["is_open"] = true,
-			["isLocked"] = false,
-			["snap"] = {
-			},
-			["segment"] = 0,
-			["mode"] = 2,
-			["attribute"] = 1,
-			["pos"] = {
-				["normal"] = {
-					["y"] = -318.769287109375,
-					["x"] = -882.2563781738281,
-					["w"] = 309.9998168945313,
-					["h"] = 157.9999542236328,
-				},
-				["solo"] = {
-					["y"] = 2,
-					["x"] = 1,
-					["w"] = 300,
-					["h"] = 200,
-				},
-			},
-		}, -- [1]
-	},
-	["plugin_database"] = {
-		["DETAILS_PLUGIN_TINY_THREAT"] = {
-			["enabled"] = true,
-			["animate"] = false,
-			["hide_pull_bar"] = false,
-			["author"] = "Terciob",
-			["playercolor"] = {
-				1, -- [1]
-				1, -- [2]
-				1, -- [3]
-			},
-			["usefocus"] = false,
-			["updatespeed"] = 1,
-			["disable_gouge"] = false,
-			["showamount"] = false,
-			["useplayercolor"] = false,
-			["absolute_mode"] = false,
-			["playSound"] = false,
-			["playSoundFile"] = "Details Threat Warning Volume 3",
-			["useclasscolors"] = false,
-		},
-		["DETAILS_PLUGIN_RAIDCHECK"] = {
-			["enabled"] = true,
-			["food_tier1"] = true,
-			["mythic_1_4"] = true,
-			["food_tier2"] = true,
-			["author"] = "Terciob",
-			["use_report_panel"] = true,
-			["pre_pot_healers"] = false,
-			["pre_pot_tanks"] = false,
-			["food_tier3"] = true,
-		},
-		["DETAILS_PLUGIN_VANGUARD"] = {
-			["tank_block_size_height"] = 50,
-			["show_power_bar"] = false,
-			["first_run"] = false,
-			["aura_timer_text_size"] = 14,
-			["tank_block_castbar_size_height"] = 16,
-			["show_health_bar"] = true,
-			["aura_offset_y"] = 0,
-			["enabled"] = true,
-			["show_cast_bar"] = false,
-			["author"] = "Terciob",
-			["tank_block_size"] = 150,
-			["bar_height"] = 24,
-			["tank_block_texture"] = "Details Serenity",
-			["tank_block_color"] = {
-				0.074509, -- [1]
-				0.035294, -- [2]
-				0.035294, -- [3]
-				0.832845, -- [4]
-			},
-			["tank_block_height"] = 40,
-			["tank_block_powerbar_size_height"] = 10,
-			["show_inc_bars"] = true,
-		},
-		["DETAILS_PLUGIN_ENCOUNTER_DETAILS"] = {
-			["enabled"] = true,
-			["encounter_timers_bw"] = {
-			},
-			["max_emote_segments"] = 3,
-			["last_section_selected"] = "main",
-			["author"] = "Terciob",
-			["window_scale"] = 1,
-			["hide_on_combat"] = false,
-			["show_icon"] = 5,
-			["opened"] = 0,
-			["encounter_timers_dbm"] = {
-			},
-		},
-		["DETAILS_PLUGIN_COMPARETWO_WINDOW"] = {
-			["enabled"] = true,
-			["author"] = "Terciob",
-			["max_compares"] = 4,
-			["compare_type"] = 1,
-		},
-		["DETAILS_PLUGIN_STREAM_OVERLAY"] = {
-			["use_square_mode"] = false,
-			["is_first_run"] = false,
-			["grow_direction"] = "right",
-			["arrow_color"] = {
-				1, -- [1]
-				1, -- [2]
-				1, -- [3]
-				0.5, -- [4]
-			},
-			["scale"] = 1,
-			["main_frame_size"] = {
-				300, -- [1]
-				500.0000305175781, -- [2]
-			},
-			["minimap"] = {
-				["minimapPos"] = 155.2472387522797,
-				["radius"] = 160,
-				["hide"] = false,
-			},
-			["row_height"] = 20,
-			["arrow_anchor_x"] = 0,
-			["font_color"] = {
-				1, -- [1]
-				1, -- [2]
-				1, -- [3]
-				1, -- [4]
-			},
-			["row_texture"] = "Details Serenity",
-			["square_grow_direction"] = "right",
-			["point"] = "CENTER",
-			["main_frame_strata"] = "LOW",
-			["square_amount"] = 5,
-			["enabled"] = false,
-			["arrow_size"] = 10,
-			["use_spark"] = true,
-			["row_spacement"] = 21,
-			["main_frame_color"] = {
-				0, -- [1]
-				0, -- [2]
-				0, -- [3]
-				0.2, -- [4]
-			},
-			["author"] = "Terciob",
-			["arrow_texture"] = "Interface\\CHATFRAME\\ChatFrameExpandArrow",
-			["font_size"] = 10,
-			["y"] = 4.57763671875e-05,
-			["x"] = 0,
-			["font_face"] = "Friz Quadrata TT",
-			["square_size"] = 32,
-			["per_second"] = {
-				["enabled"] = false,
-				["point"] = "CENTER",
-				["scale"] = 1,
-				["font_shadow"] = true,
-				["y"] = 3.0517578125e-05,
-				["x"] = 3.0517578125e-05,
-				["size"] = 32,
-				["update_speed"] = 0.05,
-				["attribute_type"] = 1,
-			},
-			["row_color"] = {
-				0.1, -- [1]
-				0.1, -- [2]
-				0.1, -- [3]
-				0.4, -- [4]
-			},
-			["main_frame_locked"] = false,
-			["arrow_anchor_y"] = 0,
-		},
-	},
-	["last_day"] = "02",
-	["cached_roles"] = {
-	},
-	["ignore_nicktag"] = false,
-	["last_instance_time"] = 1664838984,
-	["mythic_dungeon_currentsaved"] = {
-		["dungeon_name"] = "",
-		["started"] = false,
-		["segment_id"] = 0,
-		["ej_id"] = 0,
-		["started_at"] = 0,
-		["run_id"] = 0,
-		["level"] = 0,
-		["dungeon_zone_id"] = 0,
-		["previous_boss_killed_at"] = 0,
-	},
-	["nick_tag_cache"] = {
-		["last_version"] = 16,
-		["nextreset"] = 1713409486,
-	},
-	["force_font_outline"] = "",
-	["combat_id"] = 64,
-	["savedStyles"] = {
-	},
-	["character_data"] = {
-		["logons"] = 23,
-	},
-	["combat_counter"] = 103,
-	["announce_deaths"] = {
-		["enabled"] = false,
-		["last_hits"] = 1,
-		["only_first"] = 5,
-		["where"] = 1,
-	},
-	["tabela_overall"] = {
-		{
-			["tipo"] = 2,
-			["_ActorTable"] = {
-			},
-		}, -- [1]
-		{
-			["tipo"] = 3,
-			["_ActorTable"] = {
-			},
-		}, -- [2]
-		{
-			["tipo"] = 7,
-			["_ActorTable"] = {
-			},
-		}, -- [3]
-		{
-			["tipo"] = 9,
-			["_ActorTable"] = {
-			},
-		}, -- [4]
-		{
-			["tipo"] = 2,
-			["_ActorTable"] = {
-			},
-		}, -- [5]
-		["raid_roster"] = {
-		},
-		["tempo_start"] = 707115.2220000001,
-		["last_events_tables"] = {
-		},
-		["alternate_power"] = {
-		},
-		["totals_grupo"] = {
-			0, -- [1]
-			0, -- [2]
-			{
-				0, -- [1]
-				[0] = 0,
-				["alternatepower"] = 0,
-				[3] = 0,
-				[6] = 0,
-			}, -- [3]
-			{
-				["buff_uptime"] = 0,
-				["ress"] = 0,
-				["debuff_uptime"] = 0,
-				["cooldowns_defensive"] = 0,
-				["interrupt"] = 0,
-				["dispell"] = 0,
-				["cc_break"] = 0,
-				["dead"] = 0,
-			}, -- [4]
-		},
-		["bossTimers"] = {
-		},
-		["trinketProcs"] = {
-		},
-		["playerTalents"] = {
-		},
-		["totals"] = {
-			0, -- [1]
-			0, -- [2]
-			{
-				0, -- [1]
-				[0] = 0,
-				["alternatepower"] = 0,
-				[3] = 0,
-				[6] = 0,
-			}, -- [3]
-			{
-				["buff_uptime"] = 0,
-				["ress"] = 0,
-				["debuff_uptime"] = 0,
-				["cooldowns_defensive"] = 0,
-				["interrupt"] = 0,
-				["dispell"] = 0,
-				["cc_break"] = 0,
-				["dead"] = 0,
-			}, -- [4]
-			["frags_total"] = 0,
-			["voidzone_damage"] = 0,
-		},
-		["player_last_events"] = {
-		},
-		["frags_need_refresh"] = false,
-		["aura_timeline"] = {
-		},
-		["data_inicio"] = 0,
-		["amountCasts"] = {
-		},
-		["mapId"] = 2444,
-		["cleu_events"] = {
-			["n"] = 1,
-		},
-		["zoneName"] = "Dragon Isles",
-		["boss_hp"] = 1,
-		["is_challenge"] = false,
-		["frags"] = {
-		},
-		["data_fim"] = 0,
-		["cleu_timeline"] = {
-		},
-		["spells_cast_timeline"] = {
-		},
-		["PhaseData"] = {
-			{
-				1, -- [1]
-				1, -- [2]
-			}, -- [1]
-			["heal_section"] = {
-			},
-			["heal"] = {
-			},
-			["damage_section"] = {
-			},
-			["damage"] = {
-			},
-		},
-		["start_time"] = 0,
-		["TimeData"] = {
-		},
-		["combat_counter"] = 102,
-	},
-	["announce_firsthit"] = {
-		["enabled"] = true,
-		["channel"] = "SELF",
-	},
-	["mythic_plus_log"] = {
-	},
-	["data_harvested_for_charts"] = {
-	},
-	["announce_cooldowns"] = {
-		["enabled"] = false,
-		["ignored_cooldowns"] = {
-		},
-		["custom"] = "",
-		["channel"] = "RAID",
-	},
-	["rank_window"] = {
-		["last_difficulty"] = 15,
-		["last_raid"] = "",
-	},
-	["announce_damagerecord"] = {
-		["enabled"] = true,
-		["channel"] = "SELF",
-	},
-	["cached_specs"] = {
-		["Player-1171-086E7D7E"] = 64,
-		["Player-1171-0A9C118E"] = 260,
-		["Player-1171-0AAA5135"] = 1467,
-		["Player-1171-066C2985"] = 263,
-		["Player-118-084A2E1A"] = 268,
-		["Player-1171-0AC6AA85"] = 267,
-		["Player-1171-06717A5B"] = 257,
-		["Player-118-06297F7F"] = 66,
-		["Player-125-0A688BD3"] = 259,
-	},
+["savedbuffs"] = {
+},
+["mythic_dungeon_id"] = 0,
+["tabela_historico"] = {
+["tabelas"] = {
+{
+{
+["combatId"] = 65,
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["totalabsorbed"] = 0.007604,
+["pets"] = {
+},
+["classe"] = "SHAMAN",
+["total_without_pet"] = 266159.007604,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 266159.007604,
+["spec"] = 262,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-1171-066C2985",
+["damage_from"] = {
+["Bloated Sea Gull"] = true,
+},
+["targets"] = {
+["Bloated Sea Gull"] = 266159,
+},
+["colocacao"] = 1,
+["aID"] = "1171-066C2985",
+["grupo"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1731826678,
+["nome"] = "Zodji",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+[192109] = {
+["c_amt"] = 5,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 2124,
+["targets"] = {
+["Bloated Sea Gull"] = 40521,
+},
+["n_total"] = 14572,
+["n_min"] = 2041,
+["g_dmg"] = 0,
+["counter"] = 12,
+["total"] = 40521,
+["c_max"] = 5250,
+["id"] = 192109,
+["r_dmg"] = 0,
+["spellschool"] = 8,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 5133,
+["successful_casted"] = 0,
+["c_total"] = 25949,
+["n_amt"] = 7,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[285452] = {
+["c_amt"] = 1,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 18371,
+["targets"] = {
+["Bloated Sea Gull"] = 62933,
+},
+["n_total"] = 18371,
+["n_min"] = 18371,
+["g_dmg"] = 0,
+["counter"] = 2,
+["total"] = 62933,
+["c_max"] = 44562,
+["id"] = 285452,
+["r_dmg"] = 0,
+["spellschool"] = 4,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 44562,
+["successful_casted"] = 0,
+["c_total"] = 44562,
+["n_amt"] = 1,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[8042] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 54226,
+["targets"] = {
+["Bloated Sea Gull"] = 54226,
+},
+["n_total"] = 54226,
+["n_min"] = 54226,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 54226,
+["c_max"] = 0,
+["id"] = 8042,
+["r_dmg"] = 0,
+["spellschool"] = 8,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[188196] = {
+["c_amt"] = 1,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 15394,
+["targets"] = {
+["Bloated Sea Gull"] = 108479,
+},
+["n_total"] = 71748,
+["n_min"] = 3762,
+["g_dmg"] = 0,
+["counter"] = 8,
+["total"] = 108479,
+["c_max"] = 36731,
+["id"] = 188196,
+["r_dmg"] = 0,
+["spellschool"] = 8,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 36731,
+["successful_casted"] = 0,
+["c_total"] = 36731,
+["n_amt"] = 7,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 10951.24290668035,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 153310.007604,
+["start_time"] = 1731826654,
+["delay"] = 0,
+["last_event"] = 1731826678,
+},
+{
+["flag_original"] = 68168,
+["totalabsorbed"] = 0.001661,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 153310.001661,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 153310.001661,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-3132-2552-29309-224018-00003988AC",
+["aID"] = "224018",
+["fight_component"] = true,
+["damage_from"] = {
+["Zodji"] = true,
+},
+["targets"] = {
+["Zodji"] = 153310,
+},
+["monster"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1731826678,
+["nome"] = "Bloated Sea Gull",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 1,
+["b_amt"] = 1,
+["g_amt"] = 0,
+["n_max"] = 10805,
+["targets"] = {
+["Zodji"] = 95385,
+},
+["n_total"] = 77297,
+["n_min"] = 5008,
+["g_dmg"] = 0,
+["counter"] = 10,
+["total"] = 95385,
+["c_max"] = 18088,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 18088,
+["successful_casted"] = 0,
+["c_total"] = 18088,
+["n_amt"] = 9,
+["b_dmg"] = 5008,
+["r_amt"] = 0,
+},
+[384366] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 11187,
+["targets"] = {
+["Zodji"] = 57925,
+},
+["n_total"] = 57925,
+["n_min"] = 2979,
+["g_dmg"] = 0,
+["counter"] = 12,
+["total"] = 57925,
+["c_max"] = 0,
+["id"] = 384366,
+["r_dmg"] = 0,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 2,
+["c_total"] = 0,
+["n_amt"] = 12,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 266159.001661,
+["start_time"] = 1731826654,
+["delay"] = 0,
+["last_event"] = 1731826678,
+},
+},
+},
+{
+["combatId"] = 65,
+["tipo"] = 3,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["iniciar_hps"] = false,
+["heal_enemy_amt"] = 0,
+["totalover"] = 0.005676,
+["total_without_pet"] = 2682.005676,
+["total"] = 2682.005676,
+["targets_absorbs"] = {
+},
+["heal_enemy"] = {
+},
+["on_hold"] = false,
+["totalabsorb"] = 0.005676,
+["last_hps"] = 0,
+["aID"] = "1171-066C2985",
+["spec"] = 262,
+["targets"] = {
+["Zodji"] = 2682,
+},
+["fight_component"] = true,
+["serial"] = "Player-1171-066C2985",
+["totalover_without_pet"] = 0.005676,
+["grupo"] = true,
+["healing_taken"] = 2682.005676,
+["healing_from"] = {
+["Zodji"] = true,
+},
+["classe"] = "SHAMAN",
+["end_time"] = 1731826678,
+["targets_overheal"] = {
+},
+["start_time"] = 1731826658,
+["nome"] = "Zodji",
+["spells"] = {
+["tipo"] = 3,
+["_ActorTable"] = {
+[143924] = {
+["c_amt"] = 0,
+["totalabsorb"] = 0,
+["targets_overheal"] = {
+},
+["n_max"] = 644,
+["targets"] = {
+["Zodji"] = 2682,
+},
+["n_total"] = 2682,
+["n_min"] = 44,
+["counter"] = 10,
+["overheal"] = 0,
+["total"] = 2682,
+["c_max"] = 0,
+["id"] = 143924,
+["targets_absorbs"] = {
+},
+["c_min"] = 0,
+["spellschool"] = 1,
+["c_total"] = 0,
+["totaldenied"] = 0,
+["n_amt"] = 10,
+["absorbed"] = 0,
+},
+},
+},
+["custom"] = 0,
+["last_event"] = 1731826678,
+["totaldenied"] = 0.005676,
+["delay"] = 0,
+["tipo"] = 2,
+},
+},
+},
+{
+["combatId"] = 65,
+["tipo"] = 7,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["resource"] = 112.002199,
+["pets"] = {
+},
+["aID"] = "1171-066C2985",
+["passiveover"] = 0.002199,
+["total"] = 0.002199,
+["spec"] = 262,
+["received"] = 0.002199,
+["targets"] = {
+},
+["powertype"] = 0,
+["alternatepower"] = 0.002199,
+["fight_component"] = true,
+["resource_type"] = 11,
+["nome"] = "Zodji",
+["spells"] = {
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+["grupo"] = true,
+["classe"] = "SHAMAN",
+["last_event"] = 1731826678,
+["totalover"] = 0.002199,
+["serial"] = "Player-1171-066C2985",
+["tipo"] = 3,
+},
+},
+},
+{
+["combatId"] = 65,
+["tipo"] = 9,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["buff_uptime_targets"] = {
+},
+["pets"] = {
+},
+["fight_component"] = true,
+["classe"] = "SHAMAN",
+["serial"] = "Player-1171-066C2985",
+["buff_uptime_spells"] = {
+["tipo"] = 9,
+["_ActorTable"] = {
+[455020] = {
+["activedamt"] = 1,
+["id"] = 455020,
+["targets"] = {
+},
+["uptime"] = 24,
+["appliedamt"] = 1,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+[396194] = {
+["activedamt"] = 1,
+["id"] = 396194,
+["targets"] = {
+},
+["uptime"] = 2,
+["appliedamt"] = 1,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+[462810] = {
+["activedamt"] = 1,
+["id"] = 462810,
+["targets"] = {
+},
+["uptime"] = 24,
+["appliedamt"] = 1,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+[457399] = {
+["activedamt"] = 1,
+["id"] = 457399,
+["targets"] = {
+},
+["uptime"] = 24,
+["appliedamt"] = 1,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+[396204] = {
+["activedamt"] = 1,
+["id"] = 396204,
+["targets"] = {
+},
+["uptime"] = 2,
+["appliedamt"] = 1,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+[225788] = {
+["activedamt"] = 1,
+["id"] = 225788,
+["targets"] = {
+},
+["uptime"] = 24,
+["appliedamt"] = 1,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+[394651] = {
+["activedamt"] = 2,
+["id"] = 394651,
+["targets"] = {
+},
+["uptime"] = 16,
+["appliedamt"] = 2,
+["refreshamt"] = 10,
+["actived"] = false,
+["counter"] = 0,
+},
+[397734] = {
+["activedamt"] = 1,
+["id"] = 397734,
+["targets"] = {
+},
+["uptime"] = 24,
+["appliedamt"] = 1,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+[192106] = {
+["activedamt"] = 1,
+["id"] = 192106,
+["targets"] = {
+},
+["uptime"] = 24,
+["appliedamt"] = 1,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+[430191] = {
+["activedamt"] = 1,
+["id"] = 430191,
+["targets"] = {
+},
+["uptime"] = 24,
+["appliedamt"] = 1,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+[546] = {
+["activedamt"] = 0,
+["id"] = 546,
+["targets"] = {
+},
+["uptime"] = 0,
+["appliedamt"] = 0,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+[452307] = {
+["activedamt"] = 1,
+["id"] = 452307,
+["targets"] = {
+},
+["uptime"] = 24,
+["appliedamt"] = 1,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+},
+},
+["buff_uptime"] = 212,
+["grupo"] = true,
+["aID"] = "1171-066C2985",
+["nome"] = "Zodji",
+["spec"] = 262,
+["last_event"] = 1731826678,
+["tipo"] = 4,
+},
+{
+["flag_original"] = 68168,
+["pets"] = {
+},
+["serial"] = "Creature-0-3132-2552-29309-224018-00003988AC",
+["classe"] = "UNKNOW",
+["fight_component"] = true,
+["monster"] = true,
+["aID"] = "224018",
+["nome"] = "Bloated Sea Gull",
+["last_event"] = 0,
+["tipo"] = 4,
+},
+},
+},
+{
+["combatId"] = 65,
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["Zodji"] = "Player-1171-066C2985",
+},
+["tempo_start"] = 1731826654,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+["Bloated Sea Gull"] = {
+["total"] = 0,
+["last"] = 0,
+},
+["Zodji"] = {
+["total"] = 0,
+["last"] = 0,
+},
+},
+["bossTimers"] = {
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["playerTalents"] = {
+},
+["totals"] = {
+1315442,
+2682,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 111,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 1,
+["dispell"] = 1,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+["Zodji"] = {
+["Lava Burst"] = 2,
+["Temporal Acceleration"] = 1,
+["Temporal Dilation"] = 1,
+["Lightning Bolt"] = 5,
+["Earth Shock"] = 1,
+},
+["Bloated Sea Gull"] = {
+["Talon Rake"] = 2,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "Khaz Algar (Surface)",
+["data_fim"] = "22:57:59",
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "Bloated Sea Gull",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 403132.483,
+["CombatEndedAt"] = 403132.483,
+["aura_timeline"] = {
+},
+["data_inicio"] = "22:57:35",
+["end_time"] = 403132.483,
+["mapId"] = 2552,
+["combat_id"] = 65,
+["overall_added"] = true,
+["playing_solo"] = true,
+["boss_hp"] = 1,
+["is_challenge"] = false,
+["frags"] = {
+["Bloated Sea Gull"] = 1,
+},
+["combat_counter"] = 108,
+["totals_grupo"] = {
+266159,
+2682,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+["Zodji"] = 2682.005676,
+},
+},
+["damage_section"] = {
+},
+["damage"] = {
+{
+["Zodji"] = 266159.007604,
+},
+},
+},
+["spells_cast_timeline"] = {
+},
+["start_time"] = 403108.179,
+["TimeData"] = {
+},
+["contra"] = "Bloated Sea Gull",
+},
+{
+{
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 3,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["_ActorTable"] = {
+{
+["flag_original"] = 1047,
+["pets"] = {
+},
+["buff_uptime"] = 0,
+["classe"] = "SHAMAN",
+["buff_uptime_targets"] = {
+},
+["buff_uptime_spells"] = {
+["tipo"] = 9,
+["_ActorTable"] = {
+[397734] = {
+["activedamt"] = 0,
+["id"] = 397734,
+["targets"] = {
+},
+["uptime"] = 0,
+["appliedamt"] = 0,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+[462810] = {
+["activedamt"] = 0,
+["id"] = 462810,
+["targets"] = {
+},
+["uptime"] = 0,
+["appliedamt"] = 0,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+[430191] = {
+["activedamt"] = 0,
+["id"] = 430191,
+["targets"] = {
+},
+["uptime"] = 0,
+["appliedamt"] = 0,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+[192106] = {
+["activedamt"] = 0,
+["id"] = 192106,
+["targets"] = {
+},
+["uptime"] = 0,
+["appliedamt"] = 0,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+[452307] = {
+["activedamt"] = 0,
+["id"] = 452307,
+["targets"] = {
+},
+["uptime"] = 0,
+["appliedamt"] = 0,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+[455020] = {
+["activedamt"] = 0,
+["id"] = 455020,
+["targets"] = {
+},
+["uptime"] = 0,
+["appliedamt"] = 0,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+[134359] = {
+["activedamt"] = 0,
+["id"] = 134359,
+["targets"] = {
+},
+["uptime"] = 0,
+["appliedamt"] = 0,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+[225788] = {
+["activedamt"] = 0,
+["id"] = 225788,
+["targets"] = {
+},
+["uptime"] = 0,
+["appliedamt"] = 0,
+["refreshamt"] = 0,
+["actived"] = false,
+["counter"] = 0,
+},
+},
+},
+["grupo"] = true,
+["serial"] = "Player-1171-066C2985",
+["aID"] = "1171-066C2985",
+["nome"] = "Zodji",
+["spec"] = 262,
+["last_event"] = 1731826146,
+["tipo"] = 4,
+},
+},
+},
+{
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+},
+["CombatStartedAt"] = 403104.562,
+["tempo_start"] = 402446.492,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+["Zodji"] = {
+["total"] = 0,
+["last"] = 0,
+},
+},
+["bossTimers"] = {
+},
+["cleu_events"] = {
+["n"] = 1,
+},
+["playerTalents"] = {
+},
+["totals"] = {
+2546463,
+10146,
+{
+25,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = false,
+["amountCasts"] = {
+},
+["instance_type"] = "none",
+["zoneName"] = "Kalimdor",
+["data_fim"] = "22:49:07",
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "Unknown",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 14.61300000001211,
+["CombatEndedAt"] = 402996.016,
+["aura_timeline"] = {
+},
+["data_inicio"] = 0,
+["end_time"] = 402600.09,
+["mapId"] = 1,
+["overall_added"] = true,
+["boss_hp"] = 1,
+["is_challenge"] = false,
+["frags"] = {
+},
+["playing_solo"] = true,
+["combat_counter"] = 107,
+["totals_grupo"] = {
+0,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage_section"] = {
+},
+["damage"] = {
+{
+},
+},
+},
+["start_time"] = 0,
+["TimeData"] = {
+},
+["spells_cast_timeline"] = {
+},
+},
+},
+},
+["ocd_tracker"] = {
+["show_title"] = true,
+["current_cooldowns"] = {
+},
+["filters"] = {
+["defensive-raid"] = false,
+["ofensive"] = true,
+["defensive-target"] = false,
+["utility"] = false,
+["defensive-personal"] = false,
+},
+["show_options"] = false,
+["group_frames"] = true,
+["own_frame"] = {
+["defensive-raid"] = false,
+["ofensive"] = false,
+["defensive-target"] = false,
+["utility"] = false,
+["defensive-personal"] = false,
+},
+["frames"] = {
+["defensive-raid"] = {
+},
+["main"] = {
+},
+["ofensive"] = {
+},
+["defensive-target"] = {
+},
+["utility"] = {
+},
+["defensive-personal"] = {
+},
+},
+["width"] = 120,
+["ignored_cooldowns"] = {
+},
+["height"] = 18,
+["framme_locked"] = false,
+["lines_per_column"] = 12,
+["cooldowns"] = {
+},
+["show_conditions"] = {
+["only_inside_instance"] = true,
+["only_in_group"] = true,
+},
+["enabled"] = false,
+["pos"] = {
+},
+},
+["last_version"] = "11.0.5 13190",
+["player_stats"] = {
+},
+["SoloTablesSaved"] = {
+["Mode"] = 1,
+},
+["tabela_instancias"] = {
+},
+["coach"] = {
+["enabled"] = false,
+["welcome_panel_pos"] = {
+},
+["last_coach_name"] = false,
+},
+["on_death_menu"] = false,
+["cached_talents"] = {
+},
+["last_instance_id"] = 632,
+["data_harvest_for_charsts"] = {
+["players"] = {
+{
+["playerKey"] = "total",
+["combatObjectContainer"] = 1,
+["name"] = "Damage of Each Individual Player",
+["playerOnly"] = true,
+},
+},
+["totals"] = {
+{
+["combatObjectSubTableKey"] = 1,
+["name"] = "Damage of All Player Combined",
+["combatObjectSubTableName"] = "totals",
+},
+},
+},
+["announce_interrupts"] = {
+["enabled"] = false,
+["whisper"] = "",
+["channel"] = "SAY",
+["custom"] = "",
+["next"] = "",
+},
+["announce_prepots"] = {
+["enabled"] = false,
+["channel"] = "SELF",
+["reverse"] = false,
+},
+["active_profile"] = "Zodji-Wyrmrest Accord",
+["last_realversion"] = 161,
+["benchmark_db"] = {
+["frame"] = {
+},
+},
+["combat_log"] = {
+["inverse_deathlog_overalldata"] = false,
+["merge_gemstones_1007"] = false,
+["track_hunter_frenzy"] = false,
+["inverse_deathlog_raid"] = false,
+["merge_critical_heals"] = false,
+["calc_evoker_damage"] = true,
+["evoker_show_realtimedps"] = false,
+["inverse_deathlog_mplus"] = false,
+},
+["mythic_dungeon_currentsaved"] = {
+["dungeon_name"] = "",
+["started"] = false,
+["segment_id"] = 0,
+["ej_id"] = 0,
+["started_at"] = 0,
+["run_id"] = 0,
+["level"] = 0,
+["dungeon_zone_id"] = 0,
+["previous_boss_killed_at"] = 0,
+},
+["mythic_plus_log"] = {
+},
+["plugin_database"] = {
+["DETAILS_PLUGIN_TINY_THREAT"] = {
+["enabled"] = true,
+["animate"] = false,
+["hide_pull_bar"] = false,
+["author"] = "Terciob",
+["playercolor"] = {
+1,
+1,
+1,
+},
+["usefocus"] = false,
+["updatespeed"] = 1,
+["disable_gouge"] = false,
+["showamount"] = false,
+["useplayercolor"] = false,
+["absolute_mode"] = false,
+["playSound"] = false,
+["playSoundFile"] = "Details Threat Warning Volume 3",
+["useclasscolors"] = false,
+},
+["DETAILS_PLUGIN_RAIDCHECK"] = {
+["enabled"] = true,
+["food_tier1"] = true,
+["mythic_1_4"] = true,
+["food_tier2"] = true,
+["author"] = "Terciob",
+["use_report_panel"] = true,
+["pre_pot_healers"] = false,
+["pre_pot_tanks"] = false,
+["food_tier3"] = true,
+},
+["DETAILS_PLUGIN_VANGUARD"] = {
+["tank_block_size_height"] = 50,
+["show_power_bar"] = false,
+["first_run"] = false,
+["aura_timer_text_size"] = 14,
+["tank_block_castbar_size_height"] = 16,
+["show_health_bar"] = true,
+["aura_offset_y"] = 0,
+["enabled"] = true,
+["show_cast_bar"] = false,
+["author"] = "Terciob",
+["tank_block_size"] = 150,
+["bar_height"] = 24,
+["tank_block_texture"] = "Details Serenity",
+["tank_block_color"] = {
+0.074509,
+0.035294,
+0.035294,
+0.832845,
+},
+["tank_block_height"] = 40,
+["tank_block_powerbar_size_height"] = 10,
+["show_inc_bars"] = true,
+},
+["DETAILS_PLUGIN_ENCOUNTER_DETAILS"] = {
+["enabled"] = true,
+["encounter_timers_bw"] = {
+},
+["max_emote_segments"] = 3,
+["last_section_selected"] = "main",
+["author"] = "Terciob",
+["window_scale"] = 1,
+["hide_on_combat"] = false,
+["show_icon"] = 5,
+["opened"] = 0,
+["encounter_timers_dbm"] = {
+},
+},
+["DETAILS_PLUGIN_COMPARETWO_WINDOW"] = {
+["enabled"] = true,
+["author"] = "Terciob",
+["max_compares"] = 4,
+["compare_type"] = 1,
+},
+["DETAILS_PLUGIN_STREAM_OVERLAY"] = {
+["use_square_mode"] = false,
+["is_first_run"] = false,
+["grow_direction"] = "right",
+["arrow_color"] = {
+1,
+1,
+1,
+0.5,
+},
+["scale"] = 1,
+["arrow_anchor_y"] = 0,
+["minimap"] = {
+["minimapPos"] = 155.2472387522797,
+["radius"] = 160,
+["hide"] = false,
+},
+["row_height"] = 20,
+["arrow_anchor_x"] = 0,
+["font_color"] = {
+1,
+1,
+1,
+1,
+},
+["row_texture"] = "Details Serenity",
+["square_grow_direction"] = "right",
+["point"] = "CENTER",
+["main_frame_strata"] = "LOW",
+["square_amount"] = 5,
+["enabled"] = false,
+["arrow_size"] = 10,
+["y"] = 4.57763671875e-05,
+["row_spacement"] = 21,
+["main_frame_color"] = {
+0,
+0,
+0,
+0.2,
+},
+["row_color"] = {
+0.1,
+0.1,
+0.1,
+0.4,
+},
+["arrow_texture"] = "Interface\\CHATFRAME\\ChatFrameExpandArrow",
+["use_spark"] = true,
+["per_second"] = {
+["enabled"] = false,
+["point"] = "CENTER",
+["scale"] = 1,
+["font_shadow"] = true,
+["y"] = 3.0517578125e-05,
+["x"] = 3.0517578125e-05,
+["size"] = 32,
+["update_speed"] = 0.05,
+["attribute_type"] = 1,
+},
+["x"] = 0,
+["font_face"] = "Friz Quadrata TT",
+["square_size"] = 32,
+["font_size"] = 10,
+["author"] = "Terciob",
+["main_frame_locked"] = false,
+["main_frame_size"] = {
+300,
+500.0000305175781,
+},
+},
+},
+["cached_roles"] = {
+},
+["local_instances_config"] = {
+{
+["modo"] = 2,
+["sub_attribute"] = 1,
+["sub_atributo_last"] = {
+1,
+1,
+1,
+1,
+1,
+},
+["is_open"] = true,
+["isLocked"] = false,
+["snap"] = {
+},
+["segment"] = 0,
+["mode"] = 2,
+["attribute"] = 1,
+["pos"] = {
+["normal"] = {
+["y"] = -318.769287109375,
+["x"] = -882.2563781738281,
+["w"] = 309.9998168945313,
+["h"] = 157.9999542236328,
+},
+["solo"] = {
+["y"] = 2,
+["x"] = 1,
+["w"] = 300,
+["h"] = 200,
+},
+},
+},
+},
+["last_day"] = "16",
+["last_instance_time"] = 1664838984,
+["nick_tag_cache"] = {
+["last_version"] = 16,
+["nextreset"] = 1733121993,
+},
+["force_font_outline"] = "",
+["combat_id"] = 65,
+["savedStyles"] = {
+},
+["character_data"] = {
+["logons"] = 25,
+},
+["combat_counter"] = 108,
+["announce_deaths"] = {
+["enabled"] = false,
+["last_hits"] = 1,
+["only_first"] = 5,
+["where"] = 1,
+},
+["tabela_overall"] = {
+{
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["flag_original"] = 68168,
+["totalabsorbed"] = 0.003382,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 153310.003382,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 153310.003382,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-3132-2552-29309-224018-00003988AC",
+["aID"] = "224018",
+["fight_component"] = true,
+["damage_from"] = {
+["Zodji"] = true,
+},
+["targets"] = {
+["Zodji"] = 153310,
+},
+["monster"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1731826679,
+["nome"] = "Bloated Sea Gull",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 1,
+["b_amt"] = 1,
+["g_amt"] = 0,
+["n_max"] = 10805,
+["targets"] = {
+["Zodji"] = 95385,
+},
+["n_total"] = 77297,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 10,
+["total"] = 95385,
+["c_max"] = 18088,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 18088,
+["n_amt"] = 9,
+["b_dmg"] = 5008,
+["r_amt"] = 0,
+},
+[384366] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 11187,
+["targets"] = {
+["Zodji"] = 57925,
+},
+["n_total"] = 57925,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 12,
+["total"] = 57925,
+["c_max"] = 0,
+["id"] = 384366,
+["r_dmg"] = 0,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 2,
+["c_total"] = 0,
+["n_amt"] = 12,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 266159.003382,
+["start_time"] = 1731826652,
+["delay"] = 0,
+["last_event"] = 0,
+},
+{
+["flag_original"] = 1297,
+["totalabsorbed"] = 0.010307,
+["pets"] = {
+},
+["classe"] = "SHAMAN",
+["total_without_pet"] = 266159.010307,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 266159.010307,
+["spec"] = 262,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-1171-066C2985",
+["aID"] = "1171-066C2985",
+["damage_from"] = {
+["Bloated Sea Gull"] = true,
+},
+["targets"] = {
+["Bloated Sea Gull"] = 266159,
+},
+["grupo"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1731826679,
+["nome"] = "Zodji",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+[192109] = {
+["c_amt"] = 5,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 2124,
+["targets"] = {
+["Bloated Sea Gull"] = 40521,
+},
+["n_total"] = 14572,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 12,
+["total"] = 40521,
+["c_max"] = 5250,
+["id"] = 192109,
+["r_dmg"] = 0,
+["spellschool"] = 8,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 25949,
+["n_amt"] = 7,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[285452] = {
+["c_amt"] = 1,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 18371,
+["targets"] = {
+["Bloated Sea Gull"] = 62933,
+},
+["n_total"] = 18371,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 2,
+["total"] = 62933,
+["c_max"] = 44562,
+["id"] = 285452,
+["r_dmg"] = 0,
+["spellschool"] = 4,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 44562,
+["n_amt"] = 1,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[188196] = {
+["c_amt"] = 1,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 15394,
+["targets"] = {
+["Bloated Sea Gull"] = 108479,
+},
+["n_total"] = 71748,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 8,
+["total"] = 108479,
+["c_max"] = 36731,
+["id"] = 188196,
+["r_dmg"] = 0,
+["spellschool"] = 8,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 36731,
+["n_amt"] = 7,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[8042] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 54226,
+["targets"] = {
+["Bloated Sea Gull"] = 54226,
+},
+["n_total"] = 54226,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 1,
+["total"] = 54226,
+["c_max"] = 0,
+["id"] = 8042,
+["r_dmg"] = 0,
+["spellschool"] = 8,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 1,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 153310.010307,
+["start_time"] = 1731826652,
+["delay"] = 0,
+["last_event"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["iniciar_hps"] = false,
+["heal_enemy_amt"] = 0,
+["totalover"] = 0.008239999999999999,
+["total_without_pet"] = 2682.00824,
+["total"] = 2682.00824,
+["targets_absorbs"] = {
+},
+["heal_enemy"] = {
+},
+["on_hold"] = false,
+["aID"] = "1171-066C2985",
+["totalabsorb"] = 0.008239999999999999,
+["last_hps"] = 0,
+["spec"] = 262,
+["fight_component"] = true,
+["targets"] = {
+["Zodji"] = 2682,
+},
+["serial"] = "Player-1171-066C2985",
+["totalover_without_pet"] = 0.008239999999999999,
+["grupo"] = true,
+["healing_taken"] = 2682.00824,
+["healing_from"] = {
+["Zodji"] = true,
+},
+["classe"] = "SHAMAN",
+["end_time"] = 1731826679,
+["targets_overheal"] = {
+},
+["start_time"] = 1731826656,
+["nome"] = "Zodji",
+["spells"] = {
+["tipo"] = 3,
+["_ActorTable"] = {
+[143924] = {
+["c_amt"] = 0,
+["totalabsorb"] = 0,
+["targets_overheal"] = {
+},
+["n_max"] = 644,
+["targets"] = {
+["Zodji"] = 2682,
+},
+["n_total"] = 2682,
+["n_min"] = 0,
+["counter"] = 10,
+["overheal"] = 0,
+["total"] = 2682,
+["c_max"] = 0,
+["id"] = 143924,
+["targets_absorbs"] = {
+},
+["c_min"] = 0,
+["spellschool"] = 1,
+["c_total"] = 0,
+["totaldenied"] = 0,
+["n_amt"] = 10,
+["absorbed"] = 0,
+},
+},
+},
+["custom"] = 0,
+["last_event"] = 0,
+["totaldenied"] = 0.008239999999999999,
+["delay"] = 0,
+["tipo"] = 2,
+},
+},
+},
+{
+["tipo"] = 7,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["resource"] = 112.004456,
+["pets"] = {
+},
+["aID"] = "1171-066C2985",
+["totalover"] = 0.002257,
+["total"] = 0.004456,
+["spec"] = 262,
+["received"] = 0.004456,
+["targets"] = {
+},
+["powertype"] = 0,
+["alternatepower"] = 0.004456,
+["resource_type"] = 11,
+["fight_component"] = true,
+["nome"] = "Zodji",
+["spells"] = {
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+["classe"] = "SHAMAN",
+["passiveover"] = 0.002257,
+["last_event"] = 0,
+["grupo"] = true,
+["serial"] = "Player-1171-066C2985",
+["tipo"] = 3,
+},
+},
+},
+{
+["tipo"] = 9,
+["_ActorTable"] = {
+{
+["flag_original"] = 1047,
+["buff_uptime_targets"] = {
+},
+["pets"] = {
+},
+["fight_component"] = true,
+["aID"] = "1171-066C2985",
+["tipo"] = 4,
+["buff_uptime_spells"] = {
+["tipo"] = 9,
+["_ActorTable"] = {
+[455020] = {
+["refreshamt"] = 0,
+["activedamt"] = 1,
+["appliedamt"] = 1,
+["id"] = 455020,
+["uptime"] = 24,
+["targets"] = {
+},
+["counter"] = 0,
+},
+[396194] = {
+["refreshamt"] = 0,
+["activedamt"] = 1,
+["appliedamt"] = 1,
+["id"] = 396194,
+["uptime"] = 2,
+["targets"] = {
+},
+["counter"] = 0,
+},
+[462810] = {
+["refreshamt"] = 0,
+["activedamt"] = 1,
+["appliedamt"] = 1,
+["id"] = 462810,
+["uptime"] = 24,
+["targets"] = {
+},
+["counter"] = 0,
+},
+[134359] = {
+["refreshamt"] = 0,
+["activedamt"] = 0,
+["appliedamt"] = 0,
+["id"] = 134359,
+["uptime"] = 0,
+["targets"] = {
+},
+["counter"] = 0,
+},
+[546] = {
+["refreshamt"] = 0,
+["activedamt"] = 0,
+["appliedamt"] = 0,
+["id"] = 546,
+["uptime"] = 0,
+["targets"] = {
+},
+["counter"] = 0,
+},
+[452307] = {
+["refreshamt"] = 0,
+["activedamt"] = 1,
+["appliedamt"] = 1,
+["id"] = 452307,
+["uptime"] = 24,
+["targets"] = {
+},
+["counter"] = 0,
+},
+[394651] = {
+["refreshamt"] = 10,
+["activedamt"] = 2,
+["appliedamt"] = 2,
+["id"] = 394651,
+["uptime"] = 16,
+["targets"] = {
+},
+["counter"] = 0,
+},
+[396204] = {
+["refreshamt"] = 0,
+["activedamt"] = 1,
+["appliedamt"] = 1,
+["id"] = 396204,
+["uptime"] = 2,
+["targets"] = {
+},
+["counter"] = 0,
+},
+[397734] = {
+["refreshamt"] = 0,
+["activedamt"] = 1,
+["appliedamt"] = 1,
+["id"] = 397734,
+["uptime"] = 24,
+["targets"] = {
+},
+["counter"] = 0,
+},
+[192106] = {
+["refreshamt"] = 0,
+["activedamt"] = 1,
+["appliedamt"] = 1,
+["id"] = 192106,
+["uptime"] = 24,
+["targets"] = {
+},
+["counter"] = 0,
+},
+[457399] = {
+["refreshamt"] = 0,
+["activedamt"] = 1,
+["appliedamt"] = 1,
+["id"] = 457399,
+["uptime"] = 24,
+["targets"] = {
+},
+["counter"] = 0,
+},
+[430191] = {
+["refreshamt"] = 0,
+["activedamt"] = 1,
+["appliedamt"] = 1,
+["id"] = 430191,
+["uptime"] = 24,
+["targets"] = {
+},
+["counter"] = 0,
+},
+[225788] = {
+["refreshamt"] = 0,
+["activedamt"] = 1,
+["appliedamt"] = 1,
+["id"] = 225788,
+["uptime"] = 24,
+["targets"] = {
+},
+["counter"] = 0,
+},
+},
+},
+["buff_uptime"] = 212,
+["classe"] = "SHAMAN",
+["grupo"] = true,
+["nome"] = "Zodji",
+["spec"] = 262,
+["serial"] = "Player-1171-066C2985",
+["last_event"] = 0,
+},
+{
+["flag_original"] = 68168,
+["serial"] = "Creature-0-3132-2552-29309-224018-00003988AC",
+["fight_component"] = true,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["tipo"] = 4,
+["monster"] = true,
+["aID"] = "224018",
+["nome"] = "Bloated Sea Gull",
+["last_event"] = 0,
+},
+},
+},
+{
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["boss_hp"] = 1,
+["last_events_tables"] = {
+},
+["tempo_start"] = 402446.492,
+["cleu_timeline"] = {
+},
+["alternate_power"] = {
+["Bloated Sea Gull"] = {
+["total"] = 0,
+["last"] = 0,
+},
+["Zodji"] = {
+["total"] = 0,
+["last"] = 0,
+},
+},
+["raid_roster"] = {
+},
+["bossTimers"] = {
+},
+["combat_counter"] = 106,
+["playerTalents"] = {
+},
+["totals"] = {
+524893.03268,
+2682.005676,
+{
+0,
+[0] = 0.007119,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["totals_grupo"] = {
+266159.007604,
+2682.005676,
+{
+0,
+[0] = 0.002199,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["end_time"] = 403132.483,
+["frags_need_refresh"] = false,
+["aura_timeline"] = {
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["heal_section"] = {
+},
+["heal"] = {
+},
+["damage_section"] = {
+},
+["damage"] = {
+},
+},
+["amountCasts"] = {
+["Zodji"] = {
+["Lava Burst"] = 2,
+["Temporal Acceleration"] = 1,
+["Temporal Dilation"] = 1,
+["Lightning Bolt"] = 5,
+["Earth Shock"] = 1,
+},
+["Bloated Sea Gull"] = {
+["Talon Rake"] = 2,
+},
+},
+["mapId"] = 1,
+["trinketProcs"] = {
+},
+["zoneName"] = "Kalimdor",
+["player_last_events"] = {
+},
+["segments_added"] = {
+{
+["elapsed"] = 24.30400000000373,
+["type"] = 0,
+["name"] = "Bloated Sea Gull",
+["clock"] = "22:57:35",
+},
+{
+["elapsed"] = 402600.09,
+["type"] = 0,
+["name"] = "Unknown",
+["clock"] = 0,
+},
+},
+["is_challenge"] = false,
+["spells_cast_timeline"] = {
+},
+["data_fim"] = "22:57:59",
+["overall_enemy_name"] = "-- x -- x --",
+["data_inicio"] = "22:57:35",
+["cleu_events"] = {
+["n"] = 1,
+},
+["start_time"] = 403108.179,
+["TimeData"] = {
+},
+["frags"] = {
+},
+},
+["announce_firsthit"] = {
+["enabled"] = true,
+["channel"] = "SELF",
+},
+["data_harvested_for_charts"] = {
+},
+["ignore_nicktag"] = false,
+["announce_cooldowns"] = {
+["enabled"] = false,
+["ignored_cooldowns"] = {
+},
+["custom"] = "",
+["channel"] = "RAID",
+},
+["rank_window"] = {
+["last_difficulty"] = 15,
+["last_raid"] = "",
+},
+["announce_damagerecord"] = {
+["enabled"] = true,
+["channel"] = "SELF",
+},
+["cached_specs"] = {
+["Player-1171-066C2985"] = 262,
+},
 }

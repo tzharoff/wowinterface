@@ -16,7 +16,7 @@ RaiderIO_DB_EU_R: disabled
 RaiderIO_DB_EU_M: disabled
 RaiderIO_DB_EU_F: disabled
 Craftility: disabled
-CraftSim: disabled
+CraftSim: enabled
 DataStore_Keystones: disabled
 DataStore: disabled
 APR: disabled
@@ -74,3 +74,20 @@ VuhDo: disabled
 VuhDoOptions: disabled
 BigWigs_MistsOfPandaria: enabled
 LittleWigs_MistsOfPandaria: enabled
+RemixCheckList: disabled
+Remix Gem Helper: disabled
+CopyPasta2: disabled
+MythicDungeonPortals: disabled
+LittleWigs_Dragonflight: enabled
+BigWigs_Dragonflight: enabled
+BigWigs_NerubarPalace: enabled
+DBM-Raids-WarWithin: enabled
+DBM-KhazAlgar: enabled
+DBM-Test: enabled
+BigWigs_Cataclysm: enabled
+BigWigs_Classic: enabled
+BigWigs_KhazAlgar: enabled
+FriendGroups: disabled
+DBM-Party-Shadowlands: enabled
+LittleWigs_Shadowlands: enabled
+LittleWigs_Classic: enabled

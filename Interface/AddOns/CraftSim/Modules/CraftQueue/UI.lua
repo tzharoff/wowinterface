@@ -13,16 +13,16 @@ CraftSim.CRAFTQ.UI = {}
 local L = CraftSim.UTIL:GetLocalizer()
 local f = GUTIL:GetFormatter()
 
-local print = CraftSim.DEBUG:SetDebugPrint(CraftSim.CONST.DEBUG_IDS.CRAFTQ)
+local print = CraftSim.DEBUG:RegisterDebugID("Modules.CraftQueue.UI")
 
 function CraftSim.CRAFTQ.UI:Init()
-    local sizeX = 1200
+    local sizeX = 880
     local sizeY = 420
 
     ---@class CraftSim.CraftQueue.Frame : GGUI.Frame
     CraftSim.CRAFTQ.frame = GGUI.Frame({
-        parent = ProfessionsFrame.CraftingPage.SchematicForm,
-        anchorParent = ProfessionsFrame.CraftingPage.SchematicForm,
+        parent = ProfessionsFrame,
+        anchorParent = ProfessionsFrame,
         sizeX = sizeX,
         sizeY = sizeY,
         frameID = CraftSim.CONST.FRAMES.CRAFT_QUEUE,
@@ -47,6 +47,59 @@ function CraftSim.CRAFTQ.UI:Init()
         ---@class CraftSim.CraftQueue.Frame.Content : Frame
         frame.content = frame.content
 
+        frame.content.craftQueueOptionsButton = CraftSim.WIDGETS.OptionsButton {
+            parent = frame.content,
+            anchorPoints = { { anchorParent = frame.title.frame, anchorA = "LEFT", anchorB = "RIGHT", offsetX = 5 } },
+            menuUtilCallback = function(ownerRegion, rootDescription)
+                local autoShow = rootDescription:CreateCheckbox(
+                    f.g("Automatically Open ") .. "when a recipe is queued",
+                    function()
+                        return CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_AUTO_SHOW")
+                    end, function()
+                        local value = CraftSim.DB.OPTIONS:Get(
+                            "CRAFTQUEUE_AUTO_SHOW")
+                        CraftSim.DB.OPTIONS:Save("CRAFTQUEUE_AUTO_SHOW",
+                            not value)
+                    end)
+
+                local ingenuityIgnoreCB = rootDescription:CreateCheckbox(
+                    f.r("Ignore ") .. "Queue Amount Reduction on " .. f.gold("Ingenuity Procs"),
+                    function()
+                        return CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_IGNORE_INGENUITY_PROCS")
+                    end, function()
+                        local value = CraftSim.DB.OPTIONS:Get(
+                            "CRAFTQUEUE_IGNORE_INGENUITY_PROCS")
+                        CraftSim.DB.OPTIONS:Save("CRAFTQUEUE_IGNORE_INGENUITY_PROCS",
+                            not value)
+                    end)
+
+                local dequeueConcentrationCB = rootDescription:CreateCheckbox(
+                    f.r("Remove ") .. "on full " .. f.gold("Concentration") .. " used",
+                    function()
+                        return CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_REMOVE_ON_ALL_CONCENTRATION_USED")
+                    end, function()
+                        local value = CraftSim.DB.OPTIONS:Get(
+                            "CRAFTQUEUE_REMOVE_ON_ALL_CONCENTRATION_USED")
+                        CraftSim.DB.OPTIONS:Save("CRAFTQUEUE_REMOVE_ON_ALL_CONCENTRATION_USED",
+                            not value)
+                    end)
+
+                dequeueConcentrationCB:SetTooltip(function(tooltip, elementDescription)
+                    GameTooltip_AddInstructionLine(tooltip,
+                        "Autoremove a crafted recipe when remaining concentration does not allow further crafts.");
+                end);
+            end
+        }
+
+        GGUI.HelpIcon {
+            parent = frame.content,
+            anchorParent = frame.content.craftQueueOptionsButton.frame,
+            anchorA = "LEFT", anchorB = "RIGHT",
+            text = f.bb("Left Click") .. " .. Jump to Recipe\n" ..
+                f.bb("Right Click") .. " .. Open Recipe Options\n" ..
+                f.bb("Middle Click") .. " .. Remove Recipe from Queue",
+        }
+
         ---@type GGUI.BlizzardTab
         frame.content.queueTab = GGUI.BlizzardTab({
             buttonOptions = {
@@ -64,47 +117,18 @@ function CraftSim.CRAFTQ.UI:Init()
             initialTab = true,
             top = true,
         })
-        ---@type GGUI.BlizzardTab
-        frame.content.restockOptionsTab = GGUI.BlizzardTab({
-            buttonOptions = {
-                parent = frame.content,
-                anchorParent = frame.content.queueTab.button,
-                anchorA = "LEFT",
-                anchorB = "RIGHT",
-                label = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_RESTOCK_OPTIONS_TAB_LABEL),
-                tooltipOptions = {
-                    owner = frame.content,
-                    anchor = "ANCHOR_CURSOR",
-                    text = f.white("Configure the restock behaviour when importing from Recipe Scan"),
-                    textWrap = true,
-                },
-            },
-            parent = frame.content,
-            anchorParent = frame.content,
-            sizeX = tabContentSizeX,
-            sizeY = tabContentSizeY,
-            canBeEnabled = true,
-            offsetY = -30,
-            top = true,
-        })
-        local restockOptionsTab = frame.content.restockOptionsTab
         ---@class CraftSim.CraftQueue.QueueTab : GGUI.BlizzardTab
         local queueTab = frame.content.queueTab
         ---@class CraftSim.CraftQueue.QueueTab.Content
         queueTab.content = queueTab.content
 
-        GGUI.BlizzardTabSystem({ queueTab, restockOptionsTab })
+        GGUI.BlizzardTabSystem({ queueTab })
 
         ---@type GGUI.FrameList.ColumnOption[]
         local columnOptions = {
             {
-                label = "", -- edit button
-                width = 30,
-                justifyOptions = { type = "H", align = "CENTER" }
-            },
-            {
                 label = L(CraftSim.CONST.TEXT.RECIPE_SCAN_CRAFTER_HEADER),
-                width = 130,
+                width = 100,
                 justifyOptions = { type = "H", align = "CENTER" }
             },
             {
@@ -131,29 +155,29 @@ function CraftSim.CRAFTQ.UI:Init()
                 justifyOptions = { type = "H", align = "CENTER" },
             },
             {
-                label = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_CRAFT_PROFESSION_GEAR_HEADER), -- here a button is needed to switch to the top gear for this recipe
-                width = 110,
+                label = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_CRAFT_PROFESSION_GEAR_HEADER),
+                width = 50,
                 justifyOptions = { type = "H", align = "CENTER" }
             },
             {
                 label = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_CRAFT_AVAILABLE_AMOUNT),
-                width = 100,
+                width = 60,
                 justifyOptions = { type = "H", align = "CENTER" }
             },
             {
                 label = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_CRAFT_AMOUNT_LEFT_HEADER),
-                width = 100,
+                width = 50,
                 justifyOptions = { type = "H", align = "CENTER" }
             },
             {
-                label = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_RECIPE_REQUIREMENTS_HEADER), -- Status Icon List
-                width = 130,
+                label = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_RECIPE_REQUIREMENTS_HEADER), -- Status
+                width = 50,
                 justifyOptions = { type = "H", align = "CENTER" },
                 tooltipOptions = {
                     ---@diagnostic disable-next-line: assign-type-mismatch
                     anchor = nil,
                     owner = nil,
-                    text = f.white("All Requirements need to be fulfilled in order to craft a recipe"),
+                    text = f.white(L(CraftSim.CONST.TEXT.CRAFT_QUEUE_RECIPE_REQUIREMENTS_TOOLTIP)),
                     textWrap = true,
                 },
             },
@@ -162,11 +186,6 @@ function CraftSim.CRAFTQ.UI:Init()
                 width = 60,
                 justifyOptions = { type = "H", align = "CENTER" }
             },
-            {
-                label = "", -- remove row column
-                width = 30,
-                justifyOptions = { type = "H", align = "CENTER" }
-            }
         }
 
         ---@class CraftSim.CraftQueue.CraftList : GGUI.FrameList
@@ -184,8 +203,58 @@ function CraftSim.CRAFTQ.UI:Init()
                     ---@type CraftSim.CraftQueueItem
                     local craftQueueItem = row.craftQueueItem
                     if craftQueueItem then
-                        if craftQueueItem.recipeData then
-                            C_TradeSkillUI.OpenRecipe(craftQueueItem.recipeData.recipeID)
+                        local recipeData = craftQueueItem.recipeData
+                        if recipeData then
+                            if IsMouseButtonDown("LeftButton") then
+                                if recipeData:IsWorkOrder() and C_CraftingOrders.ShouldShowCraftingOrderTab() and ProfessionsFrame.isCraftingOrdersTabEnabled then
+                                    if not ProfessionsFrame.OrdersPage:IsVisible() then
+                                        ProfessionsFrame:GetTabButton(3):Click() -- 3 is Crafting Orders Tab
+                                    end
+                                    ProfessionsFrame.OrdersPage:ViewOrder(recipeData.orderData)
+                                    CraftSim.INIT:TriggerModulesByRecipeType()
+                                else
+                                    if not ProfessionsFrame.CraftingPage:IsVisible() then
+                                        ProfessionsFrame:GetTabButton(1):Click()
+                                        C_TradeSkillUI.OpenRecipe(recipeData.recipeID)
+                                    else
+                                        RunNextFrame(function()
+                                            C_TradeSkillUI.OpenRecipe(recipeData.recipeID)
+                                        end)
+                                    end
+                                end
+                            elseif IsMouseButtonDown("RightButton") then
+                                MenuUtil.CreateContextMenu(UIParent, function(ownerRegion, rootDescription)
+                                    rootDescription:CreateTitle(recipeData.recipeName)
+                                    rootDescription:CreateDivider()
+
+                                    if recipeData:IsCrafter() then
+                                        if not recipeData.professionGearSet:IsEquipped() then
+                                            rootDescription:CreateButton(f.g("Equip Tools"), function()
+                                                recipeData.professionGearSet:Equip()
+                                            end)
+                                            rootDescription:CreateButton(f.l("Force Equipped Tools"), function()
+                                                recipeData:SetEquippedProfessionGearSet()
+                                                CraftSim.CRAFTQ.UI:UpdateDisplay()
+                                            end)
+                                        end
+                                    end
+
+                                    rootDescription:CreateButton(L(CraftSim.CONST.TEXT.CRAFT_QUEUE_BUTTON_EDIT),
+                                        function()
+                                            CraftSim.CRAFTQ.UI:UpdateEditRecipeFrameDisplay(craftQueueItem)
+                                            if not CraftSim.CRAFTQ.frame.content.queueTab.content.editRecipeFrame:IsVisible() then
+                                                CraftSim.CRAFTQ.frame.content.queueTab.content.editRecipeFrame:Show()
+                                            end
+                                        end)
+                                    rootDescription:CreateButton(f.r("Remove"), function()
+                                        CraftSim.CRAFTQ.craftQueue:Remove(craftQueueItem, true)
+                                        CraftSim.CRAFTQ.UI:UpdateDisplay()
+                                    end)
+                                end)
+                            elseif IsMouseButtonDown("MiddleButton") then
+                                CraftSim.CRAFTQ.craftQueue:Remove(craftQueueItem, true)
+                                CraftSim.CRAFTQ.UI:UpdateDisplay()
+                            end
                         end
                     end
                 end
@@ -195,43 +264,32 @@ function CraftSim.CRAFTQ.UI:Init()
             offsetX = -10,
             columnOptions = columnOptions,
             rowConstructor = function(columns, row)
-                ---@class CraftSim.CraftQueue.CraftList.EditButtonColumn : Frame
-                local editButtonColumn = columns[1]
                 ---@class CraftSim.CraftQueue.CraftList.CrafterColumn : Frame
-                local crafterColumn = columns[2]
+                local crafterColumn = columns[1]
                 ---@class CraftSim.CraftQueue.CraftList.RecipeColumn : Frame
-                local recipeColumn = columns[3]
+                local recipeColumn = columns[2]
                 ---@class CraftSim.CraftQueue.CraftList.ResultColumn : Frame
-                local resultColumn = columns[4]
+                local resultColumn = columns[3]
                 ---@class CraftSim.CraftQueue.CraftList.AverageProfitColumn : Frame
-                local averageProfitColumn = columns[5]
+                local averageProfitColumn = columns[4]
                 ---@class CraftSim.CraftQueue.CraftList.CraftingCostColumn : Frame
-                local craftingCostsColumn = columns[6]
+                local craftingCostsColumn = columns[5]
                 ---@class CraftSim.CraftQueue.CraftList.ConcentrationColumn : Frame
-                local concentrationColumn = columns[7]
+                local concentrationColumn = columns[6]
                 ---@class CraftSim.CraftQueue.CraftList.TopGearColumn : Frame
-                local topGearColumn = columns[8]
+                local topGearColumn = columns[7]
                 ---@class CraftSim.CraftQueue.CraftList.CraftAbleColumn : Frame
-                local craftAbleColumn = columns[9]
+                local craftAbleColumn = columns[8]
                 ---@class CraftSim.CraftQueue.CraftList.CraftAmountColumn : Frame
-                local craftAmountColumn = columns[10]
+                local craftAmountColumn = columns[9]
                 ---@class CraftSim.CraftQueue.CraftList.StatusColumn : Frame
-                local statusColumn = columns[11]
+                local statusColumn = columns[10]
                 ---@class CraftSim.CraftQueue.CraftList.CraftButtonColumn : Frame
-                local craftButtonColumn = columns[12]
-                ---@class CraftSim.CraftQueue.CraftList.RemoveRowColumn : Frame
-                local removeRowColumn = columns[13]
-
-                editButtonColumn.editButton = GGUI.Button({
-                    parent = editButtonColumn,
-                    anchorParent = editButtonColumn,
-                    sizeX = 25,
-                    sizeY = 25,
-                    label = CraftSim.MEDIA:GetAsTextIcon(CraftSim.MEDIA.IMAGES.EDIT_PEN, 0.7),
-                })
+                local craftButtonColumn = columns[11]
 
                 crafterColumn.text = GGUI.Text {
                     parent = crafterColumn, anchorParent = crafterColumn,
+                    scale = 0.9
                 }
 
                 recipeColumn.text = GGUI.Text({
@@ -283,65 +341,92 @@ function CraftSim.CRAFTQ.UI:Init()
                     scale = 0.9,
                 }
 
-                topGearColumn.gear2Icon = GGUI.Icon({
-                    parent = topGearColumn, anchorParent = topGearColumn, sizeX = iconSize, sizeY = iconSize, qualityIconScale = 1.2,
-                })
+                local statusIconSize = 17
 
-                topGearColumn.gear1Icon = GGUI.Icon({
-                    parent = topGearColumn,
-                    anchorParent = topGearColumn.gear2Icon.frame,
-                    anchorA = "RIGHT",
-                    anchorB =
-                    "LEFT",
-                    sizeX = iconSize,
-                    sizeY = iconSize,
-                    qualityIconScale = 1.2,
-                    offsetX = -5,
-                })
-                topGearColumn.toolIcon = GGUI.Icon({
-                    parent = topGearColumn,
-                    anchorParent = topGearColumn.gear2Icon.frame,
-                    anchorA = "LEFT",
-                    anchorB =
-                    "RIGHT",
-                    sizeX = iconSize,
-                    sizeY = iconSize,
-                    qualityIconScale = 1.2,
-                    offsetX = 5
-                })
-                topGearColumn.equippedText = GGUI.Text({
-                    parent = topGearColumn, anchorParent = topGearColumn
-                })
+                topGearColumn.statusIcon = GGUI.Texture {
+                    parent = topGearColumn, anchorParent = topGearColumn,
+                    sizeX = statusIconSize, sizeY = statusIconSize,
+                    atlas = CraftSim.CONST.ATLAS_TEXTURES.CHECKMARK,
+                    tooltipOptions = {
+                        anchor = "ANCHOR_CURSOR_RIGHT",
+                        text = "",
+                    },
+                }
 
-                topGearColumn.equipButton = GGUI.Button({
-                    parent = topGearColumn,
-                    anchorParent = topGearColumn.toolIcon.frame,
-                    anchorA = "LEFT",
-                    anchorB = "RIGHT",
-                    offsetX = 2,
-                    label = L(CraftSim.CONST.TEXT.TOP_GEAR_EQUIP),
-                    clickCallback = nil, -- will be set in Add dynamically
-                    adjustWidth = true,
-                })
+                ---@param professionGearSet CraftSim.ProfessionGearSet
+                ---@param isEquipped boolean
+                function topGearColumn.statusIcon:SetTools(professionGearSet, isEquipped)
+                    if isEquipped then
+                        self:SetAtlas(CraftSim.CONST.ATLAS_TEXTURES.CHECKMARK)
+                    else
+                        self:SetAtlas(CraftSim.CONST.ATLAS_TEXTURES.CROSS)
+                    end
 
-                function topGearColumn.equippedText:SetEquipped()
-                    topGearColumn.equippedText:SetText(GUTIL:ColorizeText(
-                        L(CraftSim.CONST.TEXT.RECIPE_SCAN_EQUIPPED), GUTIL.COLORS.GREEN))
-                end
+                    local tooltipText = ""
+                    local toolIconSize = 25
+                    local emptySlotIcon = GUTIL:IconToText(CraftSim.CONST.EMPTY_SLOT_TEXTURE, toolIconSize, toolIconSize)
 
-                function topGearColumn.equippedText:SetIrrelevant()
-                    topGearColumn.equippedText:SetText(GUTIL:ColorizeText("-", GUTIL.COLORS.GREY))
+                    if professionGearSet.gear1 then
+                        local item = professionGearSet.gear1.item
+                        if item then
+                            local icon = item:GetItemIcon()
+                            tooltipText = tooltipText ..
+                                GUTIL:IconToText(icon, toolIconSize, toolIconSize) .. " " .. item:GetItemLink() .. "\n"
+                        else
+                            tooltipText = tooltipText .. emptySlotIcon .. f.grey(" [Empty Slot]\n")
+                        end
+                    end
+
+                    if professionGearSet.gear2 then
+                        local item = professionGearSet.gear2.item
+                        if item then
+                            local icon = item:GetItemIcon()
+                            tooltipText = tooltipText ..
+                                GUTIL:IconToText(icon, toolIconSize, toolIconSize) .. " " .. item:GetItemLink() .. "\n"
+                        else
+                            tooltipText = tooltipText .. emptySlotIcon .. f.grey(" [Empty Slot]\n")
+                        end
+                    end
+
+                    if professionGearSet.tool then
+                        local item = professionGearSet.tool.item
+                        if item then
+                            local icon = item:GetItemIcon()
+                            local statText = ""
+                            if professionGearSet.tool.professionStats.craftingspeed.value > 0 then
+                                statText = string.format(" (%s)", L("STAT_CRAFTINGSPEED"))
+                            elseif professionGearSet.tool.professionStats.multicraft.value > 0 then
+                                statText = string.format(" (%s)", L("STAT_MULTICRAFT"))
+                            elseif professionGearSet.tool.professionStats.resourcefulness.value > 0 then
+                                statText = string.format(" (%s)", L("STAT_RESOURCEFULNESS"))
+                            elseif professionGearSet.tool.professionStats.ingenuity.value > 0 then
+                                statText = string.format(" (%s)", L("STAT_INGENUITY"))
+                            end
+                            tooltipText = tooltipText ..
+                                GUTIL:IconToText(icon, toolIconSize, toolIconSize) ..
+                                " " .. item:GetItemLink() .. f.bb(statText) .. "\n"
+                        else
+                            tooltipText = tooltipText .. emptySlotIcon .. f.grey(" [Empty Slot]")
+                        end
+                    end
+
+                    self.tooltipOptions.text = tooltipText
                 end
 
                 craftAbleColumn.text = GGUI.Text({
                     parent = craftAbleColumn, anchorParent = craftAbleColumn
                 })
 
+                craftAmountColumn.inputText = GGUI.Text {
+                    parent = craftAmountColumn, anchorPoints = { { anchorParent = craftAmountColumn, anchorA = "LEFT", anchorB = "LEFT", offsetX = -1 } },
+                    hide = true, scale = 0.95,
+                }
+
                 craftAmountColumn.input = GGUI.NumericInput({
                     parent = craftAmountColumn,
                     anchorParent = craftAmountColumn,
-                    sizeX = 100,
-                    borderAdjustWidth = 0.95,
+                    sizeX = 35,
+                    borderAdjustWidth = 1.3,
                     minValue = 1,
                     initialValue = 1,
                     onEnterPressedCallback = nil, -- set dynamically on Add
@@ -353,7 +438,7 @@ function CraftSim.CRAFTQ.UI:Init()
                             if nextRow then
                                 input.textInput.frame:ClearFocus()
                                 local craftAmountColumn = nextRow.columns
-                                    [8] --[[@as CraftSim.CraftQueue.CraftList.CraftAmountColumn]]
+                                    [9] --[[@as CraftSim.CraftQueue.CraftList.CraftAmountColumn]]
                                 craftAmountColumn.input.textInput.frame:SetFocus()
                             end
                         end
@@ -374,118 +459,25 @@ function CraftSim.CRAFTQ.UI:Init()
                     hide = true,
                 }
 
-                -- target mode frame
-                craftAmountColumn.targetList = GGUI.FrameList {
-                    parent = craftAmountColumn, anchorParent = craftAmountColumn, disableScrolling = true,
-                    anchorA = "TOPLEFT", anchorB = "TOPLEFT", sizeY = 25, autoAdjustHeight = true,
-                    hideScrollbar = true, scale = 1, rowHeight = 18, offsetX = -10, offsetY = 2,
-                    selectionOptions = { noSelectionColor = true, hoverRGBA = CraftSim.CONST.FRAME_LIST_SELECTION_COLORS.HOVER_LIGHT_WHITE },
-                    columnOptions = {
-                        {
-                            width = 20, -- qualityIcon
-                        },
-                        {
-                            width = 40, -- count
-                        },
-                        {
-                            width = 40, -- target
-                        },
+                statusColumn.statusIcon = GGUI.Texture {
+                    parent = statusColumn, anchorParent = statusColumn,
+                    sizeX = statusIconSize, sizeY = statusIconSize,
+                    atlas = CraftSim.CONST.ATLAS_TEXTURES.CHECKMARK,
+                    tooltipOptions = {
+                        anchor = "ANCHOR_CURSOR_RIGHT",
+                        text = f.g("Ready to Craft"),
                     },
-                    rowConstructor = function(columns, row)
-                        local qualityColumn = columns[1]
-                        local countColumn = columns[2]
-                        local targetColumn = columns[3]
+                }
 
-                        ---@type QualityID
-                        row.qualityID = nil
-
-                        local qualityIconSize = 18
-                        qualityColumn.icon = GGUI.QualityIcon {
-                            parent = qualityColumn, anchorParent = qualityColumn,
-                            initialQuality = 1, sizeX = qualityIconSize, sizeY = qualityIconSize,
-                        }
-                        countColumn.text = GGUI.Text {
-                            parent = countColumn, anchorParent = countColumn, anchorA = "RIGHT", anchorB = "RIGHT",
-                            justifyOptions = { type = "H", align = "RIGHT" }, scale = 0.9, offsetX = 1,
-                        }
-                        targetColumn.text = GGUI.Text {
-                            parent = targetColumn, anchorParent = targetColumn, anchorA = "LEFT", anchorB = "LEFT",
-                            justifyOptions = { type = "H", align = "LEFT" }, scale = 0.9, offsetX = 2,
-                        }
-
-                        countColumn.SetCount = function(self, count, targetCount)
-                            if count >= targetCount then
-                                countColumn.text:SetText(f.g(count))
-                                targetColumn.text:SetText(f.g("/ " .. targetCount))
-                            elseif count == 0 then
-                                countColumn.text:SetText(f.r(count))
-                                targetColumn.text:SetText("/ " .. targetCount)
-                            else
-                                countColumn.text:SetText(f.l(count))
-                                targetColumn.text:SetText("/ " .. targetCount)
-                            end
-                        end
+                function statusColumn.statusIcon:SetStatus(enabled, tooltipText)
+                    if enabled then
+                        self:SetAtlas(CraftSim.CONST.ATLAS_TEXTURES.CHECKMARK)
+                        self.tooltipOptions.text = f.g("Ready to Craft")
+                    else
+                        self:SetAtlas(CraftSim.CONST.ATLAS_TEXTURES.CROSS)
+                        self.tooltipOptions.text = tooltipText
                     end
-                }
-                craftAmountColumn.targetList:Hide()
-
-                local statusIconsOffsetX = 8
-                local statusIconsSpacingX = 0
-                local statusIconSize = 20
-                statusColumn.learned = GGUI.Texture {
-                    parent = statusColumn, anchorParent = statusColumn, anchorA = "LEFT", anchorB = "LEFT",
-                    offsetX = statusIconsOffsetX, sizeX = statusIconSize * 1.1, sizeY = statusIconSize * 1.1,
-                    atlas = CraftSim.CONST.CRAFT_QUEUE_STATUS_TEXTURES.LEARNED.texture,
-                    tooltipOptions = {
-                        anchor = "ANCHOR_CURSOR_RIGHT",
-                        text = L("CRAFT_QUEUE_STATUSBAR_LEARNED"),
-                    },
-                }
-                statusColumn.cooldown = GGUI.Texture {
-                    parent = statusColumn, anchorParent = statusColumn.learned.frame, anchorA = "LEFT", anchorB = "RIGHT",
-                    offsetX = statusIconsSpacingX, sizeX = statusIconSize * 0.8, sizeY = statusIconSize * 0.8,
-                    atlas = CraftSim.CONST.CRAFT_QUEUE_STATUS_TEXTURES.COOLDOWN.texture,
-                    tooltipOptions = {
-                        anchor = "ANCHOR_CURSOR_RIGHT",
-                        text = L("CRAFT_QUEUE_STATUSBAR_COOLDOWN"),
-                    },
-                }
-                statusColumn.reagents = GGUI.Texture {
-                    parent = statusColumn, anchorParent = statusColumn.cooldown.frame, anchorA = "LEFT", anchorB = "RIGHT",
-                    offsetX = statusIconsSpacingX, sizeX = statusIconSize * 0.9, sizeY = statusIconSize * 0.9,
-                    atlas = CraftSim.CONST.CRAFT_QUEUE_STATUS_TEXTURES.REAGENTS.texture,
-                    tooltipOptions = {
-                        anchor = "ANCHOR_CURSOR_RIGHT",
-                        text = L("CRAFT_QUEUE_STATUSBAR_MATERIALS"),
-                    },
-                }
-                statusColumn.tools = GGUI.Texture {
-                    parent = statusColumn, anchorParent = statusColumn.reagents.frame, anchorA = "LEFT", anchorB = "RIGHT",
-                    offsetX = statusIconsSpacingX, sizeX = statusIconSize, sizeY = statusIconSize,
-                    atlas = CraftSim.CONST.CRAFT_QUEUE_STATUS_TEXTURES.TOOLS.texture,
-                    tooltipOptions = {
-                        anchor = "ANCHOR_CURSOR_RIGHT",
-                        text = L("CRAFT_QUEUE_STATUSBAR_GEAR"),
-                    },
-                }
-                statusColumn.crafter = GGUI.Texture {
-                    parent = statusColumn, anchorParent = statusColumn.tools.frame, anchorA = "LEFT", anchorB = "RIGHT",
-                    offsetX = statusIconsSpacingX, sizeX = statusIconSize, sizeY = statusIconSize,
-                    atlas = CraftSim.CONST.CRAFT_QUEUE_STATUS_TEXTURES.CRAFTER.texture,
-                    tooltipOptions = {
-                        anchor = "ANCHOR_CURSOR_RIGHT",
-                        text = L("CRAFT_QUEUE_STATUSBAR_CRAFTER"),
-                    },
-                }
-                statusColumn.profession = GGUI.Texture {
-                    parent = statusColumn, anchorParent = statusColumn.crafter.frame, anchorA = "LEFT", anchorB = "RIGHT",
-                    offsetX = statusIconsSpacingX, sizeX = statusIconSize, sizeY = statusIconSize,
-                    atlas = CraftSim.CONST.CRAFT_QUEUE_STATUS_TEXTURES.PROFESSION.texture,
-                    tooltipOptions = {
-                        anchor = "ANCHOR_CURSOR_RIGHT",
-                        text = L("CRAFT_QUEUE_STATUSBAR_PROFESSION"),
-                    },
-                }
+                end
 
                 craftButtonColumn.craftButton = GGUI.Button({
                     parent = craftButtonColumn,
@@ -494,79 +486,381 @@ function CraftSim.CRAFTQ.UI:Init()
                     adjustWidth = true,
                     secure = true,
                 })
-
-                removeRowColumn.removeButton = GGUI.Button({
-                    parent = removeRowColumn,
-                    anchorParent = removeRowColumn,
-                    label = CraftSim.MEDIA:GetAsTextIcon(CraftSim.MEDIA.IMAGES.FALSE, 0.1),
-                    sizeX = 25,
-                    clickCallback = nil -- set dynamically in Add
-                })
             end
         })
 
         local craftQueueButtonsOffsetY = -5
-
+        local fixedButtonWidth = 180
         ---@type GGUI.Button
-        queueTab.content.importRecipeScanButton = GGUI.Button({
+        queueTab.content.queueFavoritesButton = GGUI.Button({
             parent = queueTab.content,
             anchorParent = queueTab.content.craftList.frame,
             anchorA = "TOPLEFT",
             anchorB = "BOTTOMLEFT",
             offsetY = craftQueueButtonsOffsetY,
             offsetX = 0,
-            adjustWidth = true,
-            label = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_IMPORT_RECIPE_SCAN_BUTTON_LABEL),
+            sizeX = fixedButtonWidth,
+            label = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_RESTOCK_FAVORITES_BUTTON_LABEL),
             initialStatusID = "Ready",
             clickCallback = function()
-                CraftSim.CRAFTQ:ImportRecipeScan()
+                CraftSim.CRAFTQ:QueueFavorites()
             end
         })
 
-        queueTab.content.importRecipeScanButton:SetStatusList {
+        queueTab.content.queueFavoritesButton:SetStatusList {
             {
                 statusID = "Ready",
                 enabled = true,
-                adjustWidth = true,
-                sizeX = 15,
-                label = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_IMPORT_RECIPE_SCAN_BUTTON_LABEL),
+                sizeX = fixedButtonWidth,
+                label = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_RESTOCK_FAVORITES_BUTTON_LABEL),
             },
         }
 
-        queueTab.content.importAllProfessionsCB = GGUI.Checkbox {
-            parent = queueTab.content, anchorParent = queueTab.content.importRecipeScanButton.frame,
-            label = L(CraftSim.CONST.TEXT.RECIPE_SCAN_IMPORT_ALL_PROFESSIONS_CHECKBOX_LABEL),
-            offsetX = 5, anchorA = "LEFT", anchorB = "RIGHT",
-            initialValue = CraftSim.DB.OPTIONS:Get("RECIPESCAN_IMPORT_ALL_PROFESSIONS"),
-            clickCallback = function(_, checked)
-                CraftSim.DB.OPTIONS:Save("RECIPESCAN_IMPORT_ALL_PROFESSIONS", checked)
-            end,
-            tooltip = L(CraftSim.CONST.TEXT.RECIPE_SCAN_IMPORT_ALL_PROFESSIONS_CHECKBOX_TOOLTIP)
+        queueTab.content.queueFavoritesButtonOptions = GGUI.Button {
+            parent = queueTab.content,
+            anchorPoints = { { anchorParent = queueTab.content.queueFavoritesButton.frame, anchorA = "LEFT", anchorB = "RIGHT", offsetX = 5 } },
+            cleanTemplate = true,
+            buttonTextureOptions = CraftSim.CONST.BUTTON_TEXTURE_OPTIONS.OPTIONS,
+            sizeX = 20, sizeY = 20,
+            clickCallback = function(_, _)
+                MenuUtil.CreateContextMenu(UIParent, function(ownerRegion, rootDescription)
+                    local smartQueueCB = rootDescription:CreateCheckbox(
+                        f.bb("Smart ") .. f.gold("Concentration") .. f.bb(" Queueing"),
+                        function()
+                            return CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_RESTOCK_FAVORITES_SMART_CONCENTRATION_QUEUING")
+                        end, function()
+                            local value = CraftSim.DB.OPTIONS:Get(
+                                "CRAFTQUEUE_RESTOCK_FAVORITES_SMART_CONCENTRATION_QUEUING")
+                            CraftSim.DB.OPTIONS:Save("CRAFTQUEUE_RESTOCK_FAVORITES_SMART_CONCENTRATION_QUEUING",
+                                not value)
+                        end)
+                    smartQueueCB:SetTooltip(function(tooltip, elementDescription)
+                        GameTooltip_AddInstructionLine(tooltip,
+                            "If enabled, " ..
+                            f.l("CraftSim") ..
+                            " first determines the " ..
+                            f.g("best valued concentration") ..
+                            " recipe. Then queues it for the maximum craftable amount.");
+                    end);
+
+                    local concentrationCraftsCB = rootDescription:CreateCheckbox(
+                        "Offset " .. f.gold("Concentration") .. f.bb(" Queue Amount"),
+                        function()
+                            return CraftSim.DB.OPTIONS:Get(
+                                "CRAFTQUEUE_RESTOCK_FAVORITES_OFFSET_CONCENTRATION_CRAFT_AMOUNT")
+                        end, function()
+                            local value = CraftSim.DB.OPTIONS:Get(
+                                "CRAFTQUEUE_RESTOCK_FAVORITES_OFFSET_CONCENTRATION_CRAFT_AMOUNT")
+                            CraftSim.DB.OPTIONS:Save("CRAFTQUEUE_RESTOCK_FAVORITES_OFFSET_CONCENTRATION_CRAFT_AMOUNT",
+                                not value)
+                        end)
+                    concentrationCraftsCB:SetTooltip(function(tooltip, elementDescription)
+                        GameTooltip_AddInstructionLine(tooltip,
+                            "If enabled, concentration crafts will be queued for the amount of expected crafts based on your " ..
+                            f.bb("Ingenuity"));
+                    end);
+
+                    local mainProfessionsCB = rootDescription:CreateCheckbox(
+                        "Queue " .. f.bb("Current Main Professions"),
+                        function()
+                            return CraftSim.DB.OPTIONS:Get(
+                                "CRAFTQUEUE_QUEUE_FAVORITES_QUEUE_MAIN_PROFESSIONS")
+                        end, function()
+                            local value = CraftSim.DB.OPTIONS:Get(
+                                "CRAFTQUEUE_QUEUE_FAVORITES_QUEUE_MAIN_PROFESSIONS")
+                            CraftSim.DB.OPTIONS:Save("CRAFTQUEUE_QUEUE_FAVORITES_QUEUE_MAIN_PROFESSIONS",
+                                not value)
+                        end)
+                    mainProfessionsCB:SetTooltip(function(tooltip, elementDescription)
+                        GameTooltip_AddInstructionLine(tooltip,
+                            "If enabled, CraftSim will process both main professions of the current character at once");
+                    end);
+
+                    GUTIL:CreateReuseableMenuUtilContextMenuFrame(rootDescription, function(frame)
+                        frame.label = GGUI.Text {
+                            parent = frame,
+                            anchorPoints = { { anchorParent = frame, anchorA = "LEFT", anchorB = "LEFT" } },
+                            text = "Offset Queue Amount: ",
+                            justifyOptions = { type = "H", align = "LEFT" },
+                        }
+                        frame.input = GGUI.NumericInput {
+                            parent = frame, anchorParent = frame,
+                            sizeX = 30, sizeY = 25, offsetX = 5,
+                            anchorA = "RIGHT", anchorB = "RIGHT",
+                            initialValue = CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_QUEUE_FAVORITES_OFFSET_QUEUE_AMOUNT"),
+                            borderAdjustWidth = 1.32,
+                            minValue = 1,
+                            tooltipOptions = {
+                                anchor = "ANCHOR_TOP",
+                                owner = frame,
+                                text = "Always add given amount to the number of queued crafts",
+                            },
+                            onNumberValidCallback = function(input)
+                                CraftSim.DB.OPTIONS:Save("CRAFTQUEUE_QUEUE_FAVORITES_OFFSET_QUEUE_AMOUNT",
+                                    tonumber(input.currentValue))
+                            end,
+                        }
+                    end, 200, 25, "RECIPE_SCAN_SEND_TO_CRAFT_QUEUE_OFFSET_QUEUE_AMOUNT_INPUT")
+                end)
+            end
         }
 
-        ---@type GGUI.Button
-        queueTab.content.addCurrentRecipeButton = GGUI.Button({
+        queueTab.content.addAllFirstCraftsButton = GGUI.Button({
             parent = queueTab.content,
-            anchorParent = queueTab.content.importRecipeScanButton.frame,
+            anchorParent = queueTab.content.queueFavoritesButton.frame,
             anchorA = "TOPLEFT",
             anchorB = "BOTTOMLEFT",
             offsetY = 0,
-            adjustWidth = true,
-            label = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_ADD_OPEN_RECIPE_BUTTON_LABEL),
+            sizeX = fixedButtonWidth,
+            label = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_ADD_FIRST_CRAFTS_BUTTON_LABEL),
             clickCallback = function()
-                CraftSim.CRAFTQ:AddOpenRecipe()
+                CraftSim.CRAFTQ:QueueFirstCrafts()
             end
         })
+
+        queueTab.content.addAllFirstCraftsOptions = GGUI.Button {
+            parent = queueTab.content,
+            anchorPoints = { { anchorParent = queueTab.content.addAllFirstCraftsButton.frame, anchorA = "LEFT", anchorB = "RIGHT", offsetX = 5 } },
+            cleanTemplate = true,
+            buttonTextureOptions = CraftSim.CONST.BUTTON_TEXTURE_OPTIONS.OPTIONS,
+            sizeX = 20, sizeY = 20,
+            clickCallback = function(_, _)
+                MenuUtil.CreateContextMenu(UIParent, function(ownerRegion, rootDescription)
+                    local acuityCB = rootDescription:CreateCheckbox(
+                        L(CraftSim.CONST.TEXT.CRAFT_QUEUE_IGNORE_ACUITY_RECIPES_CHECKBOX_LABEL),
+                        function()
+                            return CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_FIRST_CRAFTS_IGNORE_ACUITY_RECIPES")
+                        end, function()
+                            local value = CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_FIRST_CRAFTS_IGNORE_ACUITY_RECIPES")
+                            CraftSim.DB.OPTIONS:Save("CRAFTQUEUE_FIRST_CRAFTS_IGNORE_ACUITY_RECIPES", not value)
+                        end)
+
+                    acuityCB:SetTooltip(function(tooltip, elementDescription)
+                        --GameTooltip_SetTitle(tooltip, MenuUtil.GetElementText(elementDescription));
+                        GameTooltip_AddInstructionLine(tooltip,
+                            L("CRAFT_QUEUE_IGNORE_ACUITY_RECIPES_CHECKBOX_TOOLTIP"));
+                        --GameTooltip_AddNormalLine(tooltip, "Test Tooltip Normal Line");
+                        --GameTooltip_AddErrorLine(tooltip, "Test Tooltip Colored Line");
+                    end);
+
+                    local sparksCB = rootDescription:CreateCheckbox(
+                        "Ignore " .. f.e("Spark") .. " Recipes",
+                        function()
+                            return CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_FIRST_CRAFTS_IGNORE_SPARK_RECIPES")
+                        end, function()
+                            local value = CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_FIRST_CRAFTS_IGNORE_SPARK_RECIPES")
+                            CraftSim.DB.OPTIONS:Save("CRAFTQUEUE_FIRST_CRAFTS_IGNORE_SPARK_RECIPES", not value)
+                        end)
+
+                    sparksCB:SetTooltip(function(tooltip, elementDescription)
+                        GameTooltip_AddInstructionLine(tooltip,
+                            "Ignore recipes that require a spark reagent");
+                    end);
+                end)
+            end
+        }
+
+        queueTab.content.addWorkOrdersButton = GGUI.Button({
+            parent = queueTab.content,
+            anchorParent = queueTab.content.addAllFirstCraftsButton.frame,
+            anchorA = "TOPLEFT",
+            anchorB = "BOTTOMLEFT",
+            offsetY = 0,
+            sizeX = fixedButtonWidth,
+            label = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_ADD_WORK_ORDERS_BUTTON_LABEL),
+            clickCallback = function()
+                CraftSim.CRAFTQ:QueueWorkOrders()
+            end
+        })
+
+        queueTab.content.addWorkOrdersOptions = GGUI.Button {
+            parent = queueTab.content,
+            anchorPoints = { { anchorParent = queueTab.content.addWorkOrdersButton.frame, anchorA = "LEFT", anchorB = "RIGHT", offsetX = 5 } },
+            cleanTemplate = true,
+            buttonTextureOptions = CraftSim.CONST.BUTTON_TEXTURE_OPTIONS.OPTIONS,
+            sizeX = 20, sizeY = 20,
+            clickCallback = function(_, _)
+                MenuUtil.CreateContextMenu(UIParent, function(ownerRegion, rootDescription)
+                    local concentrationCB = rootDescription:CreateCheckbox("Allow " .. f.gold("Concentration"),
+                        function()
+                            return CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_WORK_ORDERS_ALLOW_CONCENTRATION")
+                        end, function()
+                            local value = CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_WORK_ORDERS_ALLOW_CONCENTRATION")
+                            CraftSim.DB.OPTIONS:Save("CRAFTQUEUE_WORK_ORDERS_ALLOW_CONCENTRATION", not value)
+                        end)
+
+                    concentrationCB:SetTooltip(function(tooltip, elementDescription)
+                        GameTooltip_AddInstructionLine(tooltip,
+                            L("CRAFT_QUEUE_ADD_WORK_ORDERS_ALLOW_CONCENTRATION_TOOLTIP"));
+                    end);
+
+                    local orderTypeSubMenu = rootDescription:CreateButton("Work Order Type")
+
+                    orderTypeSubMenu:CreateCheckbox("Patron Orders", function()
+                        return CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_WORK_ORDERS_INCLUDE_PATRON_ORDERS")
+                    end, function()
+                        local value = CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_WORK_ORDERS_INCLUDE_PATRON_ORDERS")
+                        CraftSim.DB.OPTIONS:Save("CRAFTQUEUE_WORK_ORDERS_INCLUDE_PATRON_ORDERS", not value)
+                    end)
+
+                    orderTypeSubMenu:CreateCheckbox("Guild Orders", function()
+                        return CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_WORK_ORDERS_INCLUDE_GUILD_ORDERS")
+                    end, function()
+                        local value = CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_WORK_ORDERS_INCLUDE_GUILD_ORDERS")
+                        CraftSim.DB.OPTIONS:Save("CRAFTQUEUE_WORK_ORDERS_INCLUDE_GUILD_ORDERS", not value)
+                    end)
+
+                    orderTypeSubMenu:CreateCheckbox("Personal Orders", function()
+                        return CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_WORK_ORDERS_INCLUDE_PERSONAL_ORDERS")
+                    end, function()
+                        local value = CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_WORK_ORDERS_INCLUDE_PERSONAL_ORDERS")
+                        CraftSim.DB.OPTIONS:Save("CRAFTQUEUE_WORK_ORDERS_INCLUDE_PERSONAL_ORDERS", not value)
+                    end)
+
+                    local guildOrderOptions = rootDescription:CreateButton("Guild Orders")
+                    local altCharsOnlyGuild = guildOrderOptions:CreateCheckbox(f.r("Only ") .. "Alt Characters",
+                        function()
+                            return CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_WORK_ORDERS_GUILD_ALTS_ONLY")
+                        end, function()
+                            local value = CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_WORK_ORDERS_GUILD_ALTS_ONLY")
+                            CraftSim.DB.OPTIONS:Save("CRAFTQUEUE_WORK_ORDERS_GUILD_ALTS_ONLY", not value)
+                        end)
+
+                    local patronOrderOptions = rootDescription:CreateButton("Patron Orders")
+
+                    local forceConcentrationCB = patronOrderOptions:CreateCheckbox(
+                        f.r("Force " .. f.gold("Concentration")),
+                        function()
+                            return CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_WORK_ORDERS_FORCE_CONCENTRATION")
+                        end, function()
+                            local value = CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_WORK_ORDERS_FORCE_CONCENTRATION")
+                            CraftSim.DB.OPTIONS:Save("CRAFTQUEUE_WORK_ORDERS_FORCE_CONCENTRATION", not value)
+                        end)
+
+                    forceConcentrationCB:SetTooltip(function(tooltip, elementDescription)
+                        GameTooltip_AddInstructionLine(tooltip,
+                            "Force the use of concentration for all patron orders if possible");
+                    end);
+
+                    local sparkCB = patronOrderOptions:CreateCheckbox("Include " .. f.e("Spark") .. " Recipes",
+                        function()
+                            return CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_PATRON_ORDERS_SPARK_RECIPES")
+                        end, function()
+                            local value = CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_PATRON_ORDERS_SPARK_RECIPES")
+                            CraftSim.DB.OPTIONS:Save("CRAFTQUEUE_PATRON_ORDERS_SPARK_RECIPES", not value)
+                        end)
+
+                    sparkCB:SetTooltip(function(tooltip, elementDescription)
+                        GameTooltip_AddInstructionLine(tooltip,
+                            "Include Orders that use a Spark as Reagent");
+                    end);
+
+                    local acuityCB = patronOrderOptions:CreateCheckbox(
+                        "Include " .. f.bb("Acuity") .. " Rewards",
+                        function()
+                            return CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_PATRON_ORDERS_ACUITY")
+                        end, function()
+                            local value = CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_PATRON_ORDERS_ACUITY")
+                            CraftSim.DB.OPTIONS:Save("CRAFTQUEUE_PATRON_ORDERS_ACUITY", not value)
+                        end)
+
+                    acuityCB:SetTooltip(function(tooltip, elementDescription)
+                        GameTooltip_AddInstructionLine(tooltip,
+                            "Include Orders with Acuity Rewards");
+                    end);
+
+                    local powerRuneCB = patronOrderOptions:CreateCheckbox(
+                        "Include " .. f.bb("Augment Rune") .. " Rewards",
+                        function()
+                            return CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_PATRON_ORDERS_POWER_RUNE")
+                        end, function()
+                            local value = CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_PATRON_ORDERS_POWER_RUNE")
+                            CraftSim.DB.OPTIONS:Save("CRAFTQUEUE_PATRON_ORDERS_POWER_RUNE", not value)
+                        end)
+
+                    powerRuneCB:SetTooltip(function(tooltip, elementDescription)
+                        GameTooltip_AddInstructionLine(tooltip,
+                            "Include Orders with Augment Rune Rewards");
+                    end);
+
+                    local knowledgeCB = patronOrderOptions:CreateCheckbox(
+                        "Include " .. f.bb("Knowledge Point") .. " Rewards",
+                        function()
+                            return CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_PATRON_ORDERS_KNOWLEDGE_POINTS")
+                        end, function()
+                            local value = CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_PATRON_ORDERS_KNOWLEDGE_POINTS")
+                            CraftSim.DB.OPTIONS:Save("CRAFTQUEUE_PATRON_ORDERS_KNOWLEDGE_POINTS", not value)
+                        end)
+
+                    knowledgeCB:SetTooltip(function(tooltip, elementDescription)
+                        GameTooltip_AddInstructionLine(tooltip,
+                            "Include Orders with Knowledge Point Rewards");
+                    end);
+
+                    GUTIL:CreateReuseableMenuUtilContextMenuFrame(patronOrderOptions, function(frame)
+                        frame.label = GGUI.Text {
+                            parent = frame,
+                            anchorPoints = { { anchorParent = frame, anchorA = "LEFT", anchorB = "LEFT" } },
+                            text = f.bb("Knowledge Point") .. " Max Cost: ",
+                            justifyOptions = { type = "H", align = "LEFT" },
+                        }
+                        frame.input = GGUI.CurrencyInput {
+                            parent = frame, anchorParent = frame,
+                            sizeX = 60, sizeY = 25, offsetX = 5,
+                            anchorA = "RIGHT", anchorB = "RIGHT",
+                            initialValue = CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_QUEUE_PATRON_ORDERS_KP_MAX_COST"),
+                            borderAdjustWidth = 1,
+                            minValue = 0.94,
+                            tooltipOptions = {
+                                anchor = "ANCHOR_TOP",
+                                owner = frame,
+                                text = f.white("Maximum allowed gold cost of 1 Knowledge Point\n\nFormat: " .. GUTIL:FormatMoney(1000000, false, nil, false, false)),
+                            },
+                            onValueValidCallback = function(input)
+                                CraftSim.DB.OPTIONS:Save("CRAFTQUEUE_QUEUE_PATRON_ORDERS_KP_MAX_COST",
+                                    tonumber(input.total))
+                            end,
+                        }
+                    end, 210, 25, "CRAFTQUEUE_QUEUE_PATRON_ORDERS_KP_MAX_COST_INPUT")
+
+                    GUTIL:CreateReuseableMenuUtilContextMenuFrame(patronOrderOptions, function(frame)
+                        frame.label = GGUI.Text {
+                            parent = frame,
+                            anchorPoints = { { anchorParent = frame, anchorA = "LEFT", anchorB = "LEFT" } },
+                            text = f.bb("Reagent Bag") .. " Value: ",
+                            justifyOptions = { type = "H", align = "LEFT" },
+                        }
+                        frame.input = GGUI.CurrencyInput {
+                            parent = frame, anchorParent = frame,
+                            sizeX = 60, sizeY = 25, offsetX = 5,
+                            anchorA = "RIGHT", anchorB = "RIGHT",
+                            initialValue = CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_QUEUE_PATRON_ORDERS_REAGENT_BAG_VALUE"),
+                            borderAdjustWidth = 1,
+                            minValue = 0.94,
+                            tooltipOptions = {
+                                anchor = "ANCHOR_TOP",
+                                owner = frame,
+                                text = f.white("Value of the " .. f.bb("Reagent Bag Reward") .. " that will be added to your profit.\n\nFormat: " .. GUTIL:FormatMoney(1000000, false, nil, false, false)),
+                            },
+                            onValueValidCallback = function(input)
+                                CraftSim.DB.OPTIONS:Save("CRAFTQUEUE_QUEUE_PATRON_ORDERS_REAGENT_BAG_VALUE",
+                                    tonumber(input.total))
+                            end,
+                        }
+                    end, 210, 25, "CRAFTQUEUE_QUEUE_PATRON_ORDERS_REAGENT_BAG_VALUE_INPUT")
+                end)
+            end
+        }
 
         ---@type GGUI.Button
         queueTab.content.clearAllButton = GGUI.Button({
             parent = queueTab.content,
-            anchorParent = queueTab.content.addCurrentRecipeButton.frame,
+            anchorParent = queueTab.content.addWorkOrdersButton.frame,
             anchorA = "TOPLEFT",
             anchorB = "BOTTOMLEFT",
             offsetY = 0,
-            adjustWidth = true,
-            label = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_CLEAR_ALL_BUTTON_LABEL),
+            sizeX = fixedButtonWidth,
+            label = f.l(L(CraftSim.CONST.TEXT.CRAFT_QUEUE_CLEAR_ALL_BUTTON_LABEL)),
             clickCallback = function()
                 CraftSim.CRAFTQ:ClearAll()
             end
@@ -594,27 +888,13 @@ function CraftSim.CRAFTQ.UI:Init()
                 anchorA = "BOTTOM",
                 anchorB = "BOTTOM",
                 adjustWidth = true,
-                offsetY = 0,
+                sizeX = 15,
+                offsetY = -2,
+                offsetX = 5,
                 clickCallback = function()
                     CraftSim.CRAFTQ:CreateAuctionatorShoppingList()
                 end,
                 label = L(CraftSim.CONST.TEXT.CRAFTQUEUE_AUCTIONATOR_SHOPPING_LIST_BUTTON_LABEL)
-            })
-
-            queueTab.content.shoppingListPerCharacterCB = GGUI.Checkbox({
-                parent = queueTab.content,
-                anchorParent = queueTab.content.createAuctionatorShoppingList.frame,
-                anchorA = "LEFT",
-                anchorB = "RIGHT",
-                offsetX = 5,
-                labelOptions = {
-                    text = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_AUCTIONATOR_SHOPPING_LIST_PER_CHARACTER_CHECKBOX),
-                },
-                tooltip = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_AUCTIONATOR_SHOPPING_LIST_PER_CHARACTER_CHECKBOX_TOOLTIP),
-                initialValue = CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_SHOPPING_LIST_PER_CHARACTER"),
-                clickCallback = function(_, checked)
-                    CraftSim.DB.OPTIONS:Save("CRAFTQUEUE_SHOPPING_LIST_PER_CHARACTER", checked)
-                end
             })
         end
 
@@ -622,11 +902,12 @@ function CraftSim.CRAFTQ.UI:Init()
 
         queueTab.content.totalAverageProfitLabel = GGUI.Text({
             parent = queueTab.content,
-            anchorParent = queueTab.content.importRecipeScanButton.frame,
-            scale = 1,
-            anchorA = "LEFT",
-            anchorB = "RIGHT",
-            offsetX = 300,
+            anchorParent = queueTab.content.craftList.frame,
+            scale = 0.95,
+            anchorA = "TOP",
+            anchorB = "BOTTOM",
+            offsetX = 0,
+            offsetY = -15,
             text = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_TOTAL_PROFIT_LABEL),
             justifyOptions = { type = "H", align = "RIGHT" }
         })
@@ -637,13 +918,13 @@ function CraftSim.CRAFTQ.UI:Init()
             anchorA = "LEFT",
             anchorB = "RIGHT",
             offsetX = 5,
-            text = GUTIL:FormatMoney(0, true),
+            text = CraftSim.UTIL:FormatMoney(0, true),
             justifyOptions = { type = "H", align = "LEFT" }
         })
         queueTab.content.totalCraftingCostsLabel = GGUI.Text({
             parent = queueTab.content,
             anchorParent = queueTab.content.totalAverageProfitLabel.frame,
-            scale = 1,
+            scale = 0.95,
             anchorA = "TOPRIGHT",
             anchorB = "BOTTOMRIGHT",
             offsetY = -19,
@@ -657,226 +938,76 @@ function CraftSim.CRAFTQ.UI:Init()
             anchorA = "LEFT",
             anchorB = "RIGHT",
             offsetX = 5,
-            text = GUTIL:FormatMoney(0, true),
+            text = CraftSim.UTIL:FormatMoney(0, true),
             justifyOptions = { type = "H", align = "RIGHT" }
         })
 
         queueTab.content.editRecipeFrame = CraftSim.CRAFTQ.UI:InitEditRecipeFrame(queueTab.content, frame.content)
-
-        -- restock Options
-
-        restockOptionsTab.content.generalOptionsFrame = CreateFrame("frame", nil, restockOptionsTab.content)
-        restockOptionsTab.content.generalOptionsFrame:SetSize(150, 70)
-        restockOptionsTab.content.generalOptionsFrame:SetPoint("TOP", restockOptionsTab.content, "TOP", 0, -10)
-        local generalOptionsFrame = restockOptionsTab.content.generalOptionsFrame
-
-        generalOptionsFrame.title = GGUI.Text {
-            parent = generalOptionsFrame, anchorParent = generalOptionsFrame, anchorA = "TOP", anchorB = "TOP",
-            text = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_RESTOCK_OPTIONS_GENERAL_OPTIONS_LABEL), scale = 1.2,
-        }
-
-        local profitMarginLabel = GGUI.Text({
-            parent = generalOptionsFrame,
-            anchorParent = generalOptionsFrame,
-            anchorA = "TOP",
-            anchorB = "TOP",
-            text = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_RESTOCK_OPTIONS_GENERAL_PROFIT_THRESHOLD_LABEL),
-            offsetX = -25,
-            offsetY = -30
-        })
-
-        generalOptionsFrame.profitMarginThresholdInput = GGUI.NumericInput({
-            parent = generalOptionsFrame,
-            anchorParent = profitMarginLabel.frame,
-            initialValue = CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_GENERAL_RESTOCK_PROFIT_MARGIN_THRESHOLD"),
-            anchorA = "LEFT",
-            anchorB = "RIGHT",
-            offsetX = 10,
-            allowDecimals = true,
-            minValue = -math.huge,
-            sizeX = 40,
-            borderAdjustWidth = 1.2,
-            onNumberValidCallback = function(numberInput)
-                CraftSim.DB.OPTIONS:Save("CRAFTQUEUE_GENERAL_RESTOCK_PROFIT_MARGIN_THRESHOLD",
-                    tonumber(numberInput.currentValue or 0))
-            end
-        })
-        -- %
-        GGUI.Text({
-            parent = generalOptionsFrame,
-            anchorParent = generalOptionsFrame.profitMarginThresholdInput.textInput.frame,
-            anchorA = "LEFT",
-            anchorB = "RIGHT",
-            text = "%",
-            offsetX = 2
-        })
-
-        generalOptionsFrame.restockAmountLabel = GGUI.Text({
-            parent = generalOptionsFrame,
-            anchorParent = profitMarginLabel.frame,
-            anchorA = "TOPRIGHT",
-            anchorB = "BOTTOMRIGHT",
-            text = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_RESTOCK_OPTIONS_AMOUNT_LABEL),
-            offsetY = -10,
-        })
-
-        generalOptionsFrame.restockAmountInput = GGUI.NumericInput {
-            parent = generalOptionsFrame, anchorParent = generalOptionsFrame.restockAmountLabel.frame,
-            initialValue = CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_GENERAL_RESTOCK_RESTOCK_AMOUNT"),
-            anchorA = "LEFT", anchorB = "RIGHT", offsetX = 10, minValue = 1,
-            sizeX = 40, borderAdjustWidth = 1.2, onNumberValidCallback = function(input)
-            local value = tostring(input.currentValue)
-            CraftSim.DB.OPTIONS:Save("CRAFTQUEUE_GENERAL_RESTOCK_RESTOCK_AMOUNT", tonumber(value) or 1)
-        end,
-        }
-
-        local qualityIconSize = 20
-        local qualityCheckboxBaseOffsetX = 10
-        local qualityCheckboxSpacingX = 50
-        local function createQualityCheckbox(p, a, qualityID, oX, oY)
-            oX = oX or -2
-            oY = oY or -2.8
-            return GGUI.Checkbox {
-                parent = p, anchorParent = a,
-                anchorA = "LEFT", anchorB = "RIGHT", offsetX = qualityCheckboxBaseOffsetX + qualityCheckboxSpacingX * (qualityID - 1),
-                label = GUTIL:GetQualityIconString(qualityID, qualityIconSize, qualityIconSize, oX, oY) }
-        end
-
-        -- always create the inputs and such but only show when tsm is loaded
-        generalOptionsFrame.saleRateTitle = GGUI.Text { parent = generalOptionsFrame, anchorParent = generalOptionsFrame.restockAmountLabel.frame,
-            anchorA = "TOPRIGHT", anchorB = "BOTTOMRIGHT", offsetY = -10,
-            text = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_RESTOCK_OPTIONS_SALE_RATE_INPUT_LABEL)
-        }
-
-        generalOptionsFrame.saleRateInput = GGUI.NumericInput {
-            parent = generalOptionsFrame, anchorParent = generalOptionsFrame.saleRateTitle.frame, initialValue = CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_GENERAL_RESTOCK_SALE_RATE_THRESHOLD"),
-            anchorA = "LEFT", anchorB = "RIGHT", offsetX = 10,
-            allowDecimals = true, minValue = 0,
-            sizeX = 40, borderAdjustWidth = 1.2, onNumberValidCallback = function(input)
-            local value = input.currentValue
-            CraftSim.DB.OPTIONS:Save("CRAFTQUEUE_GENERAL_RESTOCK_SALE_RATE_THRESHOLD", tonumber(value))
-        end
-        }
-
-        generalOptionsFrame.saleRateHelpIcon = GGUI.HelpIcon { parent = generalOptionsFrame, anchorParent = generalOptionsFrame.saleRateTitle.frame,
-            anchorA = "RIGHT", anchorB = "LEFT", offsetX = -2, text = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_RESTOCK_OPTIONS_TSM_SALE_RATE_TOOLTIP_GENERAL)
-        }
-
-        restockOptionsTab.content.recipeOptionsFrame = CreateFrame("Frame", nil, restockOptionsTab.content)
-        restockOptionsTab.content.recipeOptionsFrame:SetSize(150, 50)
-        restockOptionsTab.content.recipeOptionsFrame:SetPoint("TOP", generalOptionsFrame, "BOTTOM", 0, -60)
-
-        ---@class CraftSim.CraftQueue.RestockOptions.RecipeOptionsFrame : Frame
-        local recipeOptionsFrame = restockOptionsTab.content.recipeOptionsFrame
-
-        ---@type number | nil
-        recipeOptionsFrame.recipeID = nil
-
-        recipeOptionsFrame.recipeTitle = GGUI.Text({
-            parent = recipeOptionsFrame,
-            anchorParent = recipeOptionsFrame,
-            anchorA = "TOP",
-            anchorB = "TOP",
-            justifyOptions = { type = 'H', align = "LEFT" },
-            scale = 1.2
-        })
-
-        local enableRecipeLabel = GGUI.Text { parent = recipeOptionsFrame, anchorParent = recipeOptionsFrame,
-            anchorA = "TOP", anchorB = "BOTTOM", text = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_RESTOCK_OPTIONS_ENABLE_RECIPE_LABEL),
-            offsetY = 10, offsetX = 0 }
-
-        recipeOptionsFrame.enableRecipeCheckbox = GGUI.Checkbox {
-            parent = recipeOptionsFrame, anchorParent = enableRecipeLabel.frame, anchorA = "LEFT", anchorB = "RIGHT",
-            tooltip = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_RESTOCK_OPTIONS_ENABLE_RECIPE_TOOLTIP), offsetX = 15,
-        }
-        local recipeProfitMarginLabel = GGUI.Text({
-            parent = recipeOptionsFrame,
-            anchorParent = enableRecipeLabel.frame,
-            anchorA = "TOPRIGHT",
-            anchorB = "BOTTOMRIGHT",
-            text = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_RESTOCK_OPTIONS_GENERAL_PROFIT_THRESHOLD_LABEL),
-            offsetY = -10,
-        })
-
-        recipeOptionsFrame.profitMarginThresholdInput = GGUI.NumericInput({
-            parent = recipeOptionsFrame,
-            anchorParent = recipeProfitMarginLabel.frame,
-            initialValue = 0,
-            anchorA = "LEFT",
-            anchorB = "RIGHT",
-            offsetX = 10,
-            allowDecimals = true,
-            minValue = -math.huge,
-            sizeX = 40,
-            borderAdjustWidth = 1.2
-        })
-
-        -- %
-        GGUI.Text({
-            parent = recipeOptionsFrame,
-            anchorParent = recipeOptionsFrame.profitMarginThresholdInput.textInput.frame,
-            anchorA = "LEFT",
-            anchorB = "RIGHT",
-            text = "%",
-            offsetX = 2
-        })
-
-        recipeOptionsFrame.restockAmountLabel = GGUI.Text { parent = recipeOptionsFrame, anchorParent = recipeProfitMarginLabel.frame,
-            anchorA = "TOPRIGHT", anchorB = "BOTTOMRIGHT", text = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_RESTOCK_OPTIONS_AMOUNT_LABEL),
-            offsetY = -10,
-        }
-        GGUI.HelpIcon { parent = recipeOptionsFrame, anchorParent = recipeOptionsFrame.restockAmountLabel.frame,
-            anchorA = "RIGHT", anchorB = "LEFT", offsetX = -2, text = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_RESTOCK_OPTIONS_RESTOCK_TOOLTIP)
-        }
-
-        recipeOptionsFrame.restockAmountInput = GGUI.NumericInput {
-            parent = recipeOptionsFrame, anchorParent = recipeOptionsFrame.restockAmountLabel.frame, initialValue = 1,
-            anchorA = "LEFT", anchorB = "RIGHT", offsetX = 10, minValue = 1,
-            sizeX = 40, borderAdjustWidth = 1.2, onNumberValidCallback = nil -- set dynamically
-        }
-
-        recipeOptionsFrame.restockQualityCheckboxes = {
-            createQualityCheckbox(recipeOptionsFrame, recipeOptionsFrame.restockAmountInput.textInput.frame, 1, 0, -3),
-            createQualityCheckbox(recipeOptionsFrame, recipeOptionsFrame.restockAmountInput.textInput.frame, 2, 0, -3),
-            createQualityCheckbox(recipeOptionsFrame, recipeOptionsFrame.restockAmountInput.textInput.frame, 3),
-            createQualityCheckbox(recipeOptionsFrame, recipeOptionsFrame.restockAmountInput.textInput.frame, 4),
-            createQualityCheckbox(recipeOptionsFrame, recipeOptionsFrame.restockAmountInput.textInput.frame, 5),
-        }
-
-        recipeOptionsFrame.tsmSaleRateFrame = CreateFrame("Frame", nil, recipeOptionsFrame)
-        recipeOptionsFrame.tsmSaleRateFrame:SetSize(150, 30)
-        recipeOptionsFrame.tsmSaleRateFrame:SetPoint("TOP", recipeOptionsFrame.restockAmountInput.textInput.frame,
-            "BOTTOM", 0, -10)
-        ---@class CraftSim.CraftQueue.RestockOptions.TSMSaleRateFrame : Frame
-        local tsmSaleRateFrame = recipeOptionsFrame.tsmSaleRateFrame
-
-        -- always create the inputs and such but only show when tsm is loaded
-        tsmSaleRateFrame.saleRateTitle = GGUI.Text { parent = tsmSaleRateFrame, anchorParent = recipeOptionsFrame.restockAmountLabel.frame,
-            anchorA = "TOPRIGHT", anchorB = "BOTTOMRIGHT", offsetY = -10,
-            text = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_RESTOCK_OPTIONS_SALE_RATE_INPUT_LABEL)
-        }
-
-        tsmSaleRateFrame.saleRateInput = GGUI.NumericInput {
-            parent = tsmSaleRateFrame, anchorParent = tsmSaleRateFrame.saleRateTitle.frame, initialValue = 0,
-            anchorA = "LEFT", anchorB = "RIGHT", offsetX = 10,
-            allowDecimals = true, minValue = 0,
-            sizeX = 40, borderAdjustWidth = 1.2, onNumberValidCallback = nil -- set dynamically
-        }
-
-        tsmSaleRateFrame.helpIcon = GGUI.HelpIcon { parent = tsmSaleRateFrame, anchorParent = tsmSaleRateFrame.saleRateTitle.frame,
-            anchorA = "RIGHT", anchorB = "LEFT", offsetX = -2, text = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_RESTOCK_OPTIONS_TSM_SALE_RATE_TOOLTIP)
-        }
-
-        tsmSaleRateFrame.qualityCheckboxes = {
-            createQualityCheckbox(tsmSaleRateFrame, tsmSaleRateFrame.saleRateInput.textInput.frame, 1, 0, -3),
-            createQualityCheckbox(tsmSaleRateFrame, tsmSaleRateFrame.saleRateInput.textInput.frame, 2, 0, -3),
-            createQualityCheckbox(tsmSaleRateFrame, tsmSaleRateFrame.saleRateInput.textInput.frame, 3),
-            createQualityCheckbox(tsmSaleRateFrame, tsmSaleRateFrame.saleRateInput.textInput.frame, 4),
-            createQualityCheckbox(tsmSaleRateFrame, tsmSaleRateFrame.saleRateInput.textInput.frame, 5),
-        }
     end
 
     createContent(CraftSim.CRAFTQ.frame)
+
+    -- add to queue button in crafting ui
+    CraftSim.CRAFTQ.queueRecipeButton = GGUI.Button {
+        parent = ProfessionsFrame.CraftingPage.SchematicForm,
+        anchorPoints = { {
+            anchorParent = ProfessionsFrame.CraftingPage.SchematicForm.TrackRecipeCheckbox,
+            anchorA = "RIGHT", anchorB = "LEFT", offsetX = -18, offsetY = -19,
+        } },
+        adjustWidth = true,
+        sizeX = 15,
+        label = "+ CraftQueue",
+        tooltipOptions = {
+            anchor = "ANCHOR_CURSOR_RIGHT",
+            text = "Hold " .. f.bb("Shift") .. " to queue without optimizations",
+        },
+        clickCallback = function(_, _)
+            CraftSim.CRAFTQ:QueueOpenRecipe()
+        end,
+    }
+
+    CraftSim.CRAFTQ.queueRecipeButtonOptions = GGUI.Button {
+        parent = ProfessionsFrame.CraftingPage.SchematicForm,
+        anchorPoints = { {
+            anchorParent = CraftSim.CRAFTQ.queueRecipeButton.frame,
+            anchorA = "LEFT", anchorB = "RIGHT", offsetX = 5,
+        } },
+        sizeX = 20, sizeY = 20,
+        buttonTextureOptions = CraftSim.CONST.BUTTON_TEXTURE_OPTIONS.OPTIONS,
+        cleanTemplate = true,
+        clickCallback = function(_, _)
+            CraftSim.CRAFTQ:ShowQueueOpenRecipeOptions()
+        end
+    }
+
+    -- add to queue button in crafting ui for work orders
+    CraftSim.CRAFTQ.queueRecipeButtonWO = GGUI.Button {
+        parent = ProfessionsFrame.OrdersPage.OrderView.OrderDetails.SchematicForm,
+        anchorPoints = { {
+            anchorParent = ProfessionsFrame.OrdersPage.OrderView.OrderDetails.SchematicForm.TrackRecipeCheckbox,
+            anchorA = "RIGHT", anchorB = "LEFT", offsetX = -15,
+        } },
+        adjustWidth = true,
+        sizeX = 15,
+        label = "+ CraftQueue",
+        clickCallback = function(_, _)
+            CraftSim.CRAFTQ:QueueOpenRecipe()
+        end,
+    }
+
+    CraftSim.CRAFTQ.queueRecipeButtonOptionsWO = GGUI.Button {
+        parent = ProfessionsFrame.OrdersPage.OrderView.OrderDetails.SchematicForm,
+        anchorPoints = { {
+            anchorParent = CraftSim.CRAFTQ.queueRecipeButtonWO.frame,
+            anchorA = "LEFT", anchorB = "RIGHT", offsetX = 5,
+        } },
+        sizeX = 20, sizeY = 20,
+        buttonTextureOptions = CraftSim.CONST.BUTTON_TEXTURE_OPTIONS.OPTIONS,
+        cleanTemplate = true,
+        clickCallback = function(_, _)
+            CraftSim.CRAFTQ:ShowQueueOpenRecipeOptions()
+        end
+    }
 end
 
 ---@param parent frame
@@ -884,7 +1015,7 @@ end
 ---@return CraftSim.CRAFTQ.EditRecipeFrame editRecipeFrame
 function CraftSim.CRAFTQ.UI:InitEditRecipeFrame(parent, anchorParent)
     local editFrameX = 600
-    local editFrameY = 330
+    local editFrameY = 350
     ---@class CraftSim.CRAFTQ.EditRecipeFrame : GGUI.Frame
     local editRecipeFrame = GGUI.Frame {
         parent = parent, anchorParent = anchorParent,
@@ -1148,6 +1279,17 @@ function CraftSim.CRAFTQ.UI:InitEditRecipeFrame(parent, anchorParent)
             editRecipeFrame.content.finishingReagentSelectors, OnSelectOptionalReagent)
     end
 
+    editRecipeFrame.content.requiredSelectableReagentTitle = GGUI.Text {
+        parent = editRecipeFrame.content, anchorParent = optionalReagentsFrame, anchorA = "TOPLEFT", anchorB = "BOTTOMLEFT", offsetY = -65,
+        text = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_EDIT_RECIPE_SPARK_LABEL), justifyOptions = { type = "H", align = "LEFT" }
+    }
+
+
+    ---@type CraftSim.CRAFTQ.EditRecipeFrame.OptionalReagentSelector[]
+    editRecipeFrame.content.requiredSelectableReagentSelectors = {}
+    CreateItemSelector(editRecipeFrame.content, editRecipeFrame.content.requiredSelectableReagentTitle.frame,
+        editRecipeFrame.content.requiredSelectableReagentSelectors, OnSelectOptionalReagent)
+
     editRecipeFrame.content.professionGearTitle = GGUI.Text {
         parent = editRecipeFrame.content, anchorParent = editRecipeFrame.content.optionalReagentsTitle.frame, anchorA = "LEFT", anchorB = "RIGHT", offsetX = 20,
         text = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_EDIT_RECIPE_PROFESSION_GEAR_LABEL), justifyOptions = { type = "H", align = "LEFT" }
@@ -1189,28 +1331,140 @@ function CraftSim.CRAFTQ.UI:InitEditRecipeFrame(parent, anchorParent)
             editRecipeFrame.content.professionGearSelectors, OnSelectProfessionGear, "TOPRIGHT", "TOPLEFT", 0, -25)
     end
 
-    editRecipeFrame.content.optimizeReagents = GGUI.Button {
+    editRecipeFrame.content.optimizeProfitButton = GGUI.Button {
         parent = editRecipeFrame.content, anchorParent = editRecipeFrame.content.professionGearTitle.frame, anchorA = "TOPLEFT", anchorB = "BOTTOMLEFT", offsetY = -50,
-        label = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_EDIT_RECIPE_OPTIMIZE_PROFIT_BUTTON), adjustWidth = true,
-        clickCallback = function()
+        label = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_EDIT_RECIPE_OPTIMIZE_PROFIT_BUTTON), sizeX = 150,
+        clickCallback = function(optimizeButton)
+            -- TODO: Rewrite using task list schema and export into module function
             if editRecipeFrame.craftQueueItem and editRecipeFrame.craftQueueItem.recipeData then
-                editRecipeFrame.craftQueueItem.recipeData:OptimizeProfit({
-                    optimizeGear = true,
-                    optimizeReagents = true,
-                })
-                CraftSim.CRAFTQ.UI:UpdateFrameListByCraftQueue()
-                CraftSim.CRAFTQ.UI:UpdateEditRecipeFrameDisplay(editRecipeFrame.craftQueueItem)
+                local recipeData = editRecipeFrame.craftQueueItem.recipeData
+                local optimizeProfessionGear = CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_EDIT_RECIPE_OPTIMIZE_PROFESSION_GEAR")
+                local optimizeConcentration = CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_EDIT_RECIPE_OPTIMIZE_CONCENTRATION")
+                local optimizeFinishingReagents = CraftSim.DB.OPTIONS:Get(
+                    "CRAFTQUEUE_EDIT_RECIPE_OPTIMIZE_FINISHING_REAGENTS")
+
+                if optimizeProfessionGear then
+                    recipeData:OptimizeGear(CraftSim.TOPGEAR:GetSimMode(CraftSim.TOPGEAR.SIM_MODES.PROFIT))
+                end
+
+                RunNextFrame(function()
+                    recipeData:OptimizeReagents {
+                        highestProfit = CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_EDIT_RECIPE_OPTIMIZE_TOP_PROFIT_QUALITY"),
+                    }
+
+                    if recipeData.supportsQualities and optimizeConcentration then
+                        optimizeButton:SetEnabled(false)
+                        recipeData:OptimizeConcentration {
+                            finally = function()
+                                if optimizeFinishingReagents then
+                                    recipeData:OptimizeFinishingReagents {
+                                        finally = function()
+                                            CraftSim.CRAFTQ.UI:UpdateFrameListByCraftQueue()
+                                            CraftSim.CRAFTQ.UI:UpdateEditRecipeFrameDisplay(editRecipeFrame
+                                                .craftQueueItem)
+                                            optimizeButton:SetEnabled(true)
+                                            optimizeButton:SetText(L(CraftSim.CONST.TEXT
+                                                .CRAFT_QUEUE_EDIT_RECIPE_OPTIMIZE_PROFIT_BUTTON))
+                                        end,
+                                        progressUpdateCallback = function(progress)
+                                            optimizeButton:SetText(string.format("FIN: %.0f%%", progress))
+                                        end
+                                    }
+                                else
+                                    CraftSim.CRAFTQ.UI:UpdateFrameListByCraftQueue()
+                                    CraftSim.CRAFTQ.UI:UpdateEditRecipeFrameDisplay(editRecipeFrame.craftQueueItem)
+                                    optimizeButton:SetEnabled(true)
+                                    optimizeButton:SetText(L(CraftSim.CONST.TEXT
+                                        .CRAFT_QUEUE_EDIT_RECIPE_OPTIMIZE_PROFIT_BUTTON))
+                                end
+                            end,
+                            progressUpdateCallback = function(progress)
+                                optimizeButton:SetText(string.format("CON: %.0f%%", progress))
+                            end
+                        }
+                    else
+                        if optimizeFinishingReagents then
+                            optimizeButton:SetEnabled(false)
+                            recipeData:OptimizeFinishingReagents {
+                                finally = function()
+                                    CraftSim.CRAFTQ.UI:UpdateFrameListByCraftQueue()
+                                    CraftSim.CRAFTQ.UI:UpdateEditRecipeFrameDisplay(editRecipeFrame
+                                        .craftQueueItem)
+                                    optimizeButton:SetEnabled(true)
+                                    optimizeButton:SetText(L(CraftSim.CONST.TEXT
+                                        .CRAFT_QUEUE_EDIT_RECIPE_OPTIMIZE_PROFIT_BUTTON))
+                                end,
+                                progressUpdateCallback = function(progress)
+                                    optimizeButton:SetText(string.format("FIN: %.0f%%", progress))
+                                end
+                            }
+                        else
+                            CraftSim.CRAFTQ.UI:UpdateFrameListByCraftQueue()
+                            CraftSim.CRAFTQ.UI:UpdateEditRecipeFrameDisplay(editRecipeFrame.craftQueueItem)
+                            optimizeButton:SetEnabled(true)
+                            optimizeButton:SetText(L(CraftSim.CONST.TEXT
+                                .CRAFT_QUEUE_EDIT_RECIPE_OPTIMIZE_PROFIT_BUTTON))
+                        end
+                    end
+                end)
             end
+        end
+    }
+
+    editRecipeFrame.content.optimizeProfitButtonOptions = GGUI.Button {
+        parent = editRecipeFrame.content, anchorPoints = { { anchorParent = editRecipeFrame.content.optimizeProfitButton.frame, anchorA = "LEFT", anchorB = "RIGHT", offsetX = 5 } },
+        buttonTextureOptions = CraftSim.CONST.BUTTON_TEXTURE_OPTIONS.OPTIONS, sizeX = 20, sizeY = 20,
+        cleanTemplate = true,
+        clickCallback = function(_, _)
+            MenuUtil.CreateContextMenu(UIParent, function(ownerRegion, rootDescription)
+                local recipeData = editRecipeFrame.craftQueueItem.recipeData
+                if recipeData.supportsQualities then
+                    rootDescription:CreateCheckbox(
+                        "Optimize " .. f.g("Top Profit Quality"),
+                        function()
+                            return CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_EDIT_RECIPE_OPTIMIZE_TOP_PROFIT_QUALITY")
+                        end, function()
+                            local value = CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_EDIT_RECIPE_OPTIMIZE_TOP_PROFIT_QUALITY")
+                            CraftSim.DB.OPTIONS:Save("CRAFTQUEUE_EDIT_RECIPE_OPTIMIZE_TOP_PROFIT_QUALITY", not value)
+                        end)
+                end
+                rootDescription:CreateCheckbox(
+                    "Optimize " .. f.bb("Profession Gear"),
+                    function()
+                        return CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_EDIT_RECIPE_OPTIMIZE_PROFESSION_GEAR")
+                    end, function()
+                        local value = CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_EDIT_RECIPE_OPTIMIZE_PROFESSION_GEAR")
+                        CraftSim.DB.OPTIONS:Save("CRAFTQUEUE_EDIT_RECIPE_OPTIMIZE_PROFESSION_GEAR", not value)
+                    end)
+                if recipeData.supportsQualities then
+                    rootDescription:CreateCheckbox(
+                        "Optimize " .. f.gold("Concentration"),
+                        function()
+                            return CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_EDIT_RECIPE_OPTIMIZE_CONCENTRATION")
+                        end, function()
+                            local value = CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_EDIT_RECIPE_OPTIMIZE_CONCENTRATION")
+                            CraftSim.DB.OPTIONS:Save("CRAFTQUEUE_EDIT_RECIPE_OPTIMIZE_CONCENTRATION", not value)
+                        end)
+                end
+                rootDescription:CreateCheckbox(
+                    "Optimize " .. f.bb("Finishing Reagents"),
+                    function()
+                        return CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_EDIT_RECIPE_OPTIMIZE_FINISHING_REAGENTS")
+                    end, function()
+                        local value = CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_EDIT_RECIPE_OPTIMIZE_FINISHING_REAGENTS")
+                        CraftSim.DB.OPTIONS:Save("CRAFTQUEUE_EDIT_RECIPE_OPTIMIZE_FINISHING_REAGENTS", not value)
+                    end)
+            end)
         end
     }
 
     editRecipeFrame.content.craftingCostsTitle = GGUI.Text {
         parent = editRecipeFrame.content, anchorParent = editRecipeFrame.content, anchorA = "BOTTOM", anchorB = "BOTTOM", offsetX = -30,
-        offsetY = 40, text = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_EDIT_RECIPE_CRAFTING_COSTS_LABEL),
+        offsetY = 60, text = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_EDIT_RECIPE_CRAFTING_COSTS_LABEL),
     }
     editRecipeFrame.content.craftingCostsValue = GGUI.Text {
         parent = editRecipeFrame.content, anchorParent = editRecipeFrame.content.craftingCostsTitle.frame, anchorA = "LEFT", anchorB = "RIGHT", offsetX = 5,
-        text = GUTIL:FormatMoney(0, true), justifyOptions = { type = "H", align = "LEFT" }, scale = 0.9, offsetY = -1,
+        text = CraftSim.UTIL:FormatMoney(0, true), justifyOptions = { type = "H", align = "LEFT" }, scale = 0.9, offsetY = -1,
     }
     editRecipeFrame.content.averageProfitTitle = GGUI.Text {
         parent = editRecipeFrame.content, anchorParent = editRecipeFrame.content.craftingCostsTitle.frame, anchorA = "TOPLEFT", anchorB = "BOTTOMLEFT",
@@ -1218,13 +1472,21 @@ function CraftSim.CRAFTQ.UI:InitEditRecipeFrame(parent, anchorParent)
     }
     editRecipeFrame.content.averageProfitValue = GGUI.Text {
         parent = editRecipeFrame.content, anchorParent = editRecipeFrame.content.averageProfitTitle.frame, anchorA = "LEFT", anchorB = "RIGHT", offsetX = 5,
-        text = GUTIL:FormatMoney(0, true), justifyOptions = { type = "H", align = "LEFT" }, scale = 0.9, offsetY = -1,
+        text = CraftSim.UTIL:FormatMoney(0, true), justifyOptions = { type = "H", align = "LEFT" }, scale = 0.9, offsetY = -1,
+    }
+    editRecipeFrame.content.concentrationValueTitle = GGUI.Text {
+        parent = editRecipeFrame.content, anchorParent = editRecipeFrame.content.averageProfitTitle.frame, anchorA = "TOPRIGHT", anchorB = "BOTTOMRIGHT",
+        offsetY = -5, text = "Concentration Value:",
+    }
+    editRecipeFrame.content.concentrationValue = GGUI.Text {
+        parent = editRecipeFrame.content, anchorParent = editRecipeFrame.content.concentrationValueTitle.frame, anchorA = "LEFT", anchorB = "RIGHT", offsetX = 5,
+        text = CraftSim.UTIL:FormatMoney(0, true), justifyOptions = { type = "H", align = "LEFT" }, scale = 0.9, offsetY = -1,
     }
 
 
 
     editRecipeFrame.content.resultTitle = GGUI.Text {
-        parent = editRecipeFrame.content, anchorParent = editRecipeFrame.content.optimizeReagents.frame, anchorA = "TOPLEFT", anchorB = "BOTTOMLEFT",
+        parent = editRecipeFrame.content, anchorParent = editRecipeFrame.content.optimizeProfitButton.frame, anchorA = "TOPLEFT", anchorB = "BOTTOMLEFT",
         offsetY = -40, text = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_EDIT_RECIPE_RESULTS_LABEL),
     }
 
@@ -1282,7 +1544,7 @@ function CraftSim.CRAFTQ.UI:UpdateFrameListByCraftQueue()
 
     local craftQueue = CraftSim.CRAFTQ.craftQueue or CraftSim.CraftQueue()
 
-    craftQueue:UpdateSubRecipesTargetItemCounts()
+    craftQueue:UpdateSubRecipes()
 
     --- precalculate craftable status and subrecipetargetcounts before sorting to increase performance
     table.foreach(craftQueue.craftQueueItems,
@@ -1319,6 +1581,38 @@ function CraftSim.CRAFTQ.UI:UpdateFrameListByCraftQueue()
     CraftSim.DEBUG:StopProfiling("FrameListUpdate")
 end
 
+---@param recipeData CraftSim.RecipeData
+function CraftSim.CRAFTQ.UI:UpdateAddOpenRecipeButton(recipeData)
+    local exportMode = CraftSim.UTIL:GetExportModeByVisibility()
+
+    local button = CraftSim.CRAFTQ.queueRecipeButton
+    local buttonOptions = CraftSim.CRAFTQ.queueRecipeButtonOptions
+    local buttonWO = CraftSim.CRAFTQ.queueRecipeButtonWO
+    local buttonOptionsWO = CraftSim.CRAFTQ.queueRecipeButtonOptionsWO
+
+    local isTradeSkillAllowed = not CraftSim.CONST.GATHERING_PROFESSIONS
+        [recipeData.professionData.professionInfo.profession] and not C_TradeSkillUI.IsTradeSkillGuild() and
+        not C_TradeSkillUI.IsTradeSkillLinked() and not C_TradeSkillUI.IsNPCCrafting() and
+        not C_TradeSkillUI.IsRuneforging()
+
+    local isRecipeAllowed = not recipeData.isSalvageRecipe and not recipeData.isRecraft and not recipeData
+        .isBaseRecraftRecipe
+
+    -- reset state if changed by anything
+    button:SetEnabled(true)
+    button:SetText("+ CraftQueue")
+    buttonWO:SetEnabled(true)
+    buttonWO:SetText("+ CraftQueue")
+
+    button:SetVisible(isTradeSkillAllowed and isRecipeAllowed and exportMode == CraftSim.CONST.EXPORT_MODE
+        .NON_WORK_ORDER)
+    buttonOptions:SetVisible(isTradeSkillAllowed and isRecipeAllowed and exportMode == CraftSim.CONST.EXPORT_MODE
+        .NON_WORK_ORDER)
+    buttonWO:SetVisible(isTradeSkillAllowed and isRecipeAllowed and exportMode == CraftSim.CONST.EXPORT_MODE.WORK_ORDER)
+    buttonOptionsWO:SetVisible(isTradeSkillAllowed and isRecipeAllowed and
+        exportMode == CraftSim.CONST.EXPORT_MODE.WORK_ORDER)
+end
+
 function CraftSim.CRAFTQ.UI:UpdateQueueDisplay()
     --- use a cache to prevent multiple redundant calls of ItemCount thus increasing performance
     CraftSim.CRAFTQ.itemCountCache = {}
@@ -1330,32 +1624,18 @@ function CraftSim.CRAFTQ.UI:UpdateQueueDisplay()
     --- update craft next button
     local itemsPresent = CraftSim.CRAFTQ.craftQueue and #CraftSim.CRAFTQ.craftQueue.craftQueueItems > 0
     if itemsPresent then
+        -- set the craft next button to the same status as the button in the queue on pos 1
         -- if first item can be crafted (so if anything can be crafted cause the items are sorted by craftable status)
-        local firstQueueItem = CraftSim.CRAFTQ.craftQueue.craftQueueItems[1]
-        queueTab.content.craftNextButton:SetEnabled(firstQueueItem.allowedToCraft)
-
-        if firstQueueItem.allowedToCraft then
-            -- set callback to craft the recipe of the top row
-            queueTab.content.craftNextButton.clickCallback =
-                function()
-                    CraftSim.CRAFTQ.CraftSimCalledCraftRecipe = true
-                    firstQueueItem.recipeData:Craft(math.min(firstQueueItem.craftAbleAmount, firstQueueItem.amount))
-                    CraftSim.CRAFTQ.CraftSimCalledCraftRecipe = false
-                end
-        else
-            queueTab.content.craftNextButton.clickCallback = nil
-        end
+        local firstRow = queueTab.content.craftList.activeRows[1]
+        local craftButton = firstRow.columns[11].craftButton --[[@as GGUI.Button]]
+        local button = craftButton.frame --[[@as Button]]
+        queueTab.content.craftNextButton:SetEnabled(button:IsEnabled())
+        queueTab.content.craftNextButton.clickCallback = craftButton.clickCallback
+        queueTab.content.craftNextButton:SetText(L(CraftSim.CONST.TEXT.CRAFT_QUEUE_BUTTON_NEXT) .. button:GetText(), 10,
+            true)
     else
         queueTab.content.craftNextButton:SetEnabled(false)
-    end
-
-    local currentRecipeData = CraftSim.INIT.currentRecipeData
-
-    if currentRecipeData then
-        -- disable addCurrentRecipeButton if the currently open recipe is not suitable for queueing
-        queueTab.content.addCurrentRecipeButton:SetEnabled(CraftSim.CRAFTQ:IsRecipeQueueable(currentRecipeData))
-    else
-        queueTab.content.addCurrentRecipeButton:SetEnabled(false)
+        queueTab.content.craftNextButton:SetText(L(CraftSim.CONST.TEXT.CRAFT_QUEUE_BUTTON_NOTHING_QUEUED), 10, true)
     end
 
     if queueTab.content.createAuctionatorShoppingList then
@@ -1381,113 +1661,14 @@ function CraftSim.CRAFTQ.UI:UpdateCraftQueueTotalProfitDisplay()
             totalAverageProfit = totalAverageProfit + row.averageProfit
             totalCraftingCosts = totalCraftingCosts + row.craftingCosts
         end
-
-        queueTab.content.totalAverageProfit:SetText(GUTIL:FormatMoney(totalAverageProfit, true, totalCraftingCosts))
-        queueTab.content.totalCraftingCosts:SetText(f.r(GUTIL:FormatMoney(totalCraftingCosts)))
     end
-end
 
---- called when switching tab or when ending scan on selected row
----@param activeTabResults CraftSim.RecipeData[]
-function CraftSim.CRAFTQ.UI:UpdateRecipeScanRestockButton(activeTabResults)
-    local craftQueueFrame = CraftSim.CRAFTQ.frame
-    local queueTab = craftQueueFrame.content.queueTab --[[@as CraftSim.CraftQueue.QueueTab]]
-    local resultsPresent = #activeTabResults > 0
-    queueTab.content.importRecipeScanButton:SetEnabled(resultsPresent)
-end
-
-function CraftSim.CRAFTQ.UI:UpdateRestockOptionsDisplay()
-    if not CraftSim.CRAFTQ.frame then
-        return
-    end
-    if CraftSim.INIT.currentRecipeData then
-        local recipeData = CraftSim.INIT.currentRecipeData
-        local restockOptionsTab = CraftSim.CRAFTQ.frame.content.restockOptionsTab
-        ---@type CraftSim.CraftQueue.RestockOptions.RecipeOptionsFrame
-        local recipeOptionsFrame = restockOptionsTab.content.recipeOptionsFrame
-        local restockOptions = CraftSim.DB.OPTIONS:Get("CRAFTQUEUE_RESTOCK_PER_RECIPE_OPTIONS")
-
-        if not CraftSim.CRAFTQ:IsRecipeQueueable(recipeData) then
-            recipeOptionsFrame:Hide()
-            return
-        end
-
-        local tsmLoaded = select(2, C_AddOns.IsAddOnLoaded(CraftSim.CONST.SUPPORTED_PRICE_API_ADDONS[1]))
-
-        recipeOptionsFrame:Show()
-
-        local generalOptionsFrame = restockOptionsTab.content.generalOptionsFrame
-        generalOptionsFrame.saleRateTitle:SetVisible(tsmLoaded)
-        generalOptionsFrame.saleRateInput:SetVisible(tsmLoaded)
-        generalOptionsFrame.saleRateHelpIcon:SetVisible(tsmLoaded)
-
-        local recipeIconText = GUTIL:IconToText(recipeData.recipeIcon, 25, 25)
-        recipeOptionsFrame.recipeTitle:SetText(recipeIconText .. " " .. recipeData.recipeName)
-
-        local initialRestockOptions = CraftSim.CRAFTQ:GetRestockOptionsForRecipe(recipeData.recipeID)
-
-        ---@type CraftSim.CraftQueue.RestockOptions.TSMSaleRateFrame
-        local tsmSaleRateFrame = recipeOptionsFrame.tsmSaleRateFrame
-
-        -- adjust Quality Checkboxes Visibility, initialValue and Callbacks
-        for qualityID = 1, 5 do
-            local restockCB = recipeOptionsFrame.restockQualityCheckboxes[qualityID]
-            local tsmSaleRateCB = tsmSaleRateFrame.qualityCheckboxes[qualityID]
-            local hasQualityID = recipeData.resultData.itemsByQuality[qualityID] ~= nil
-            restockCB:SetVisible(hasQualityID)
-            restockCB:SetChecked(initialRestockOptions.restockPerQuality[qualityID])
-            restockCB.clickCallback = function(_, checked)
-                restockOptions[recipeData.recipeID].restockPerQuality = restockOptions[recipeData.recipeID]
-                    .restockPerQuality or {}
-                restockOptions[recipeData.recipeID].restockPerQuality[qualityID] = checked
-            end
-
-            tsmSaleRateCB:SetVisible(hasQualityID)
-            tsmSaleRateCB:SetChecked(initialRestockOptions.saleRatePerQuality[qualityID])
-            tsmSaleRateCB.clickCallback = function(_, checked)
-                restockOptions[recipeData.recipeID].saleRatePerQuality =
-                    restockOptions[recipeData.recipeID].saleRatePerQuality or {}
-                restockOptions[recipeData.recipeID].saleRatePerQuality[qualityID] = checked
-            end
-        end
-        recipeOptionsFrame.enableRecipeCheckbox:SetChecked(initialRestockOptions.enabled or false)
-        recipeOptionsFrame.enableRecipeCheckbox.clickCallback = function(_, checked)
-            restockOptions[recipeData.recipeID].enabled = checked
-        end
-
-        -- adjust numericInputs Visibility, initialValue and Callbacks
-        recipeOptionsFrame.restockAmountInput.textInput:SetText(initialRestockOptions.restockAmount or 0)
-        recipeOptionsFrame.restockAmountInput.onNumberValidCallback = function(input)
-            local inputValue = tonumber(input.currentValue)
-            restockOptions[recipeData.recipeID].restockAmount = inputValue
-        end
-        recipeOptionsFrame.profitMarginThresholdInput.textInput:SetText(initialRestockOptions.profitMarginThreshold or 0)
-        recipeOptionsFrame.profitMarginThresholdInput.onNumberValidCallback = function(input)
-            local inputValue = tonumber(input.currentValue)
-            restockOptions[recipeData.recipeID].profitMarginThreshold = inputValue
-        end
-        -- Only show Sale Rate Input Stuff if TSM is loaded
-
-        tsmSaleRateFrame.saleRateInput.textInput:SetText(initialRestockOptions.saleRateThreshold)
-        tsmSaleRateFrame.saleRateInput.onNumberValidCallback = function(input)
-            local inputValue = tonumber(input.currentValue)
-            restockOptions[recipeData.recipeID].saleRateThreshold = inputValue
-        end
-        if tsmLoaded then
-            tsmSaleRateFrame:Show()
-        else
-            tsmSaleRateFrame:Hide()
-        end
-    else
-        local restockOptionsTab = CraftSim.CRAFTQ.frame.content.restockOptionsTab
-        local recipeOptionsFrame = restockOptionsTab.content.recipeOptionsFrame
-        recipeOptionsFrame:Hide()
-    end
+    queueTab.content.totalAverageProfit:SetText(CraftSim.UTIL:FormatMoney(totalAverageProfit, true, totalCraftingCosts))
+    queueTab.content.totalCraftingCosts:SetText(f.r(CraftSim.UTIL:FormatMoney(totalCraftingCosts)))
 end
 
 function CraftSim.CRAFTQ.UI:UpdateDisplay()
     CraftSim.CRAFTQ.UI:UpdateQueueDisplay()
-    CraftSim.CRAFTQ.UI:UpdateRestockOptionsDisplay()
 end
 
 ---@param craftQueueItem CraftSim.CraftQueueItem
@@ -1501,7 +1682,7 @@ function CraftSim.CRAFTQ.UI:UpdateEditRecipeFrameDisplay(craftQueueItem)
 
     editRecipeFrame.content.recipeName:SetText(GUTIL:IconToText(recipeData.recipeIcon, 15, 15) ..
         " " .. recipeData.recipeName)
-    editRecipeFrame.content.averageProfitValue:SetText(GUTIL:FormatMoney(recipeData.averageProfitCached, true,
+    editRecipeFrame.content.averageProfitValue:SetText(CraftSim.UTIL:FormatMoney(recipeData.averageProfitCached, true,
         recipeData.priceData.craftingCosts))
     local concentrationCostText = ""
     if editRecipeFrame.craftQueueItem.concentrating then
@@ -1509,8 +1690,17 @@ function CraftSim.CRAFTQ.UI:UpdateEditRecipeFrameDisplay(craftQueueItem)
             GUTIL:IconToText(CraftSim.CONST.CONCENTRATION_ICON, 15, 15) ..
             " " .. f.gold(editRecipeFrame.craftQueueItem.recipeData.concentrationCost)
     end
+
+    local craftingCosts
+    if recipeData.orderData then
+        craftingCosts = recipeData.priceData.craftingCostsNoOrderReagents
+    else
+        craftingCosts = recipeData.priceData.craftingCosts
+    end
     editRecipeFrame.content.craftingCostsValue:SetText(GUTIL:ColorizeText(
-        GUTIL:FormatMoney(recipeData.priceData.craftingCosts), GUTIL.COLORS.RED) .. concentrationCostText)
+        CraftSim.UTIL:FormatMoney(craftingCosts), GUTIL.COLORS.RED) .. concentrationCostText)
+    local concentrationValue = recipeData:GetConcentrationValue()
+    editRecipeFrame.content.concentrationValue:SetText(CraftSim.UTIL:FormatMoney(concentrationValue, true))
 
     local reagentFrames = editRecipeFrame.content.reagentFrames
 
@@ -1600,6 +1790,27 @@ function CraftSim.CRAFTQ.UI:UpdateEditRecipeFrameDisplay(craftQueueItem)
         end
     end
 
+    -- Required Selectable
+    local requiredSelectableReagentSelector = editRecipeFrame.content.requiredSelectableReagentSelectors[1]
+    editRecipeFrame.content.requiredSelectableReagentTitle:SetVisible(recipeData.reagentData
+        :HasRequiredSelectableReagent())
+    local requiredSelectableReagentSlot = recipeData.reagentData.requiredSelectableReagentSlot
+    if requiredSelectableReagentSlot then
+        requiredSelectableReagentSelector.slot = requiredSelectableReagentSlot
+        requiredSelectableReagentSelector:SetItems(GUTIL:Map(requiredSelectableReagentSlot.possibleReagents,
+            function(reagent)
+                return reagent.item:GetItemID()
+            end))
+        if requiredSelectableReagentSlot.activeReagent then
+            requiredSelectableReagentSelector:SetSelectedItem(requiredSelectableReagentSlot.activeReagent.item)
+        else
+            requiredSelectableReagentSelector:SetSelectedItem(nil)
+        end
+        requiredSelectableReagentSelector:Show()
+    else
+        requiredSelectableReagentSelector.slot = nil
+        requiredSelectableReagentSelector:Hide()
+    end
 
     local gearSelectors = editRecipeFrame.content.professionGearSelectors
     local professionGearSet = recipeData.professionGearSet
@@ -1711,6 +1922,8 @@ function CraftSim.CRAFTQ.UI:UpdateEditRecipeFrameDisplay(craftQueueItem)
 
     resultList:UpdateDisplay()
 
+    editRecipeFrame.content.concentrationCB:SetVisible(craftQueueItem.recipeData.supportsQualities)
+
     editRecipeFrame.content.concentrationCB:SetChecked(craftQueueItem.concentrating)
 end
 
@@ -1721,47 +1934,43 @@ function CraftSim.CRAFTQ.UI:UpdateCraftQueueRowByCraftQueueItem(row, craftQueueI
     local profilingID = "- FrameListUpdate Add Recipe: " .. craftQueueItem.recipeData.recipeName
     CraftSim.DEBUG:StartProfiling(profilingID)
     local columns = row.columns
-    local editButtonColumn = columns[1] --[[@as CraftSim.CraftQueue.CraftList.EditButtonColumn]]
-    local crafterColumn = columns[2] --[[@as CraftSim.CraftQueue.CraftList.CrafterColumn]]
-    local recipeColumn = columns[3] --[[@as CraftSim.CraftQueue.CraftList.RecipeColumn]]
-    local resultColumn = columns[4] --[[@as CraftSim.CraftQueue.CraftList.ResultColumn]]
-    local averageProfitColumn = columns[5] --[[@as CraftSim.CraftQueue.CraftList.AverageProfitColumn]]
-    local craftingCostsColumn = columns[6] --[[@as CraftSim.CraftQueue.CraftList.CraftingCostColumn]]
-    local concentrationColumn = columns[7] --[[@as CraftSim.CraftQueue.CraftList.ConcentrationColumn]]
-    local topGearColumn = columns[8] --[[@as CraftSim.CraftQueue.CraftList.TopGearColumn]]
-    local craftAbleColumn = columns[9] --[[@as CraftSim.CraftQueue.CraftList.CraftAbleColumn]]
-    local craftAmountColumn = columns[10] --[[@as CraftSim.CraftQueue.CraftList.CraftAmountColumn]]
-    local statusColumn = columns[11] --[[@as CraftSim.CraftQueue.CraftList.StatusColumn]]
-    local craftButtonColumn = columns[12] --[[@as CraftSim.CraftQueue.CraftList.CraftButtonColumn]]
-    local removeRowColumn = columns[13] --[[@as CraftSim.CraftQueue.CraftList.RemoveRowColumn]]
+    local crafterColumn = columns[1] --[[@as CraftSim.CraftQueue.CraftList.CrafterColumn]]
+    local recipeColumn = columns[2] --[[@as CraftSim.CraftQueue.CraftList.RecipeColumn]]
+    local resultColumn = columns[3] --[[@as CraftSim.CraftQueue.CraftList.ResultColumn]]
+    local averageProfitColumn = columns[4] --[[@as CraftSim.CraftQueue.CraftList.AverageProfitColumn]]
+    local craftingCostsColumn = columns[5] --[[@as CraftSim.CraftQueue.CraftList.CraftingCostColumn]]
+    local concentrationColumn = columns[6] --[[@as CraftSim.CraftQueue.CraftList.ConcentrationColumn]]
+    local topGearColumn = columns[7] --[[@as CraftSim.CraftQueue.CraftList.TopGearColumn]]
+    local craftAbleColumn = columns[8] --[[@as CraftSim.CraftQueue.CraftList.CraftAbleColumn]]
+    local craftAmountColumn = columns[9] --[[@as CraftSim.CraftQueue.CraftList.CraftAmountColumn]]
+    local statusColumn = columns[10] --[[@as CraftSim.CraftQueue.CraftList.StatusColumn]]
+    local craftButtonColumn = columns[11] --[[@as CraftSim.CraftQueue.CraftList.CraftButtonColumn]]
 
     row.craftQueueItem = craftQueueItem
 
-    editButtonColumn.editButton.clickCallback = function()
-        print("show edit recipe frame")
-        CraftSim.CRAFTQ.UI:UpdateEditRecipeFrameDisplay(craftQueueItem)
-        if not CraftSim.CRAFTQ.frame.content.queueTab.content.editRecipeFrame:IsVisible() then
-            CraftSim.CRAFTQ.frame.content.queueTab.content.editRecipeFrame:Show()
-        end
-    end
-
-    crafterColumn.text:SetText(recipeData:GetFormattedCrafterText(true, true, 20, 20))
+    crafterColumn.text:SetText(recipeData:GetFormattedCrafterText(false, true, 20, 20))
 
     -- update price data and profit?
     recipeData.priceData:Update()
     recipeData:GetAverageProfit()
 
-    row.craftingCosts = recipeData.priceData.craftingCosts * craftQueueItem.amount
-
+    if recipeData.orderData then
+        row.craftingCosts = recipeData.priceData.craftingCostsNoOrderReagents * craftQueueItem.amount
+    else
+        row.craftingCosts = recipeData.priceData.craftingCosts * craftQueueItem.amount
+    end
 
     row.averageProfit = (recipeData.averageProfitCached or recipeData:GetAverageProfit()) *
         craftQueueItem.amount
 
     local upCraftText = ""
-    if craftQueueItem.recipeData.subRecipeDepth > 0 then
+    if recipeData:IsSubRecipe() then
         local upgradeArrow = CreateAtlasMarkup(CraftSim.CONST.ATLAS_TEXTURES.UPGRADE_ARROW_2, 10, 10)
         upCraftText = " " ..
             upgradeArrow --.. "(" .. craftQueueItem.recipeData.subRecipeDepth .. ")"
+    end
+    if recipeData.orderData then
+        upCraftText = upCraftText .. " " .. CraftSim.UTIL:GetOrderTypeText(recipeData.orderData.orderType)
     end
     recipeColumn.text:SetText(recipeData.recipeName .. upCraftText)
 
@@ -1771,8 +1980,8 @@ function CraftSim.CRAFTQ.UI:UpdateCraftQueueRowByCraftQueueItem(row, craftQueueI
         averageProfitColumn.text:SetText(f.g("-"))
         craftingCostsColumn.text:SetText(f.g("-"))
     else
-        averageProfitColumn.text:SetText(GUTIL:FormatMoney(select(1, row.averageProfit), true, row.craftingCosts))
-        craftingCostsColumn.text:SetText(f.r(GUTIL:FormatMoney(row.craftingCosts)))
+        averageProfitColumn.text:SetText(CraftSim.UTIL:FormatMoney(select(1, row.averageProfit), true, row.craftingCosts))
+        craftingCostsColumn.text:SetText(f.r(CraftSim.UTIL:FormatMoney(row.craftingCosts)))
     end
 
     local concentrationData = craftQueueItem.recipeData.concentrationData
@@ -1793,50 +2002,67 @@ function CraftSim.CRAFTQ.UI:UpdateCraftQueueRowByCraftQueueItem(row, craftQueueI
         concentrationColumn.text:SetText(f.g("-"))
     end
 
+    local craftOrderInfoText = ""
 
-    local craftAmountTooltipText = ""
-    craftAmountTooltipText = "\n\nQueued Crafts: " .. craftQueueItem.amount
+    if recipeData.orderData then
+        craftOrderInfoText = L(CraftSim.CONST.TEXT.CRAFT_QUEUE_ORDER_CUSTOMER) .. f.bb(recipeData.orderData.customerName)
 
-    row.tooltipOptions = {
-        text = recipeData.reagentData:GetTooltipText(craftQueueItem.amount,
-            craftQueueItem.recipeData:GetCrafterUID()) .. f.white(craftAmountTooltipText),
-        owner = row.frame,
-        anchor = "ANCHOR_CURSOR",
-    }
-
-    if craftQueueItem.gearEquipped and craftQueueItem:IsCrafter() then
-        topGearColumn.equippedText:Show()
-        topGearColumn.equippedText:SetEquipped()
-
-        topGearColumn.gear1Icon:Hide()
-        topGearColumn.gear2Icon:Hide()
-        topGearColumn.toolIcon:Hide()
-        topGearColumn.equipButton:Hide()
-        topGearColumn.equipButton.clickCallback = nil
-    else
-        topGearColumn.equippedText:Hide()
-        if recipeData.isCooking then
-            topGearColumn.gear1Icon:Hide()
-        else
-            topGearColumn.gear1Icon:SetItem(recipeData.professionGearSet.gear1.item)
-            topGearColumn.gear1Icon:Show()
+        if recipeData.orderData.orderType == Enum.CraftingOrderType.Npc then
+            craftOrderInfoText = craftOrderInfoText .. f.grey(" (NPC)")
         end
 
-        topGearColumn.gear2Icon:SetItem(recipeData.professionGearSet.gear2.item)
-        topGearColumn.toolIcon:SetItem(recipeData.professionGearSet.tool.item)
+        if recipeData.orderData.customerNotes ~= "" then
+            craftOrderInfoText = craftOrderInfoText .. f.grey("\n" .. recipeData.orderData.customerNotes)
+        end
 
-        topGearColumn.gear2Icon:Show()
-        topGearColumn.toolIcon:Show()
-        if craftQueueItem:IsCrafter() then
-            topGearColumn.equipButton:Show()
-            topGearColumn.equipButton.clickCallback = function()
-                recipeData.professionGearSet:Equip()
-            end
-        else
-            topGearColumn.equipButton:Hide()
-            topGearColumn.equipButton.clickCallback = nil
+        if recipeData.orderData.minQuality then
+            craftOrderInfoText = craftOrderInfoText ..
+                L(CraftSim.CONST.TEXT.CRAFT_QUEUE_ORDER_MINIMUM_QUALITY) ..
+                GUTIL:GetQualityIconString(recipeData.orderData.minQuality, 15, 15)
         end
     end
+
+    -- if we got npcOrderRewards than we need to delay the tooltip display data
+
+    local tooltipHeader = recipeData:GetFormattedCrafterText(true, true, 20, 20) ..
+        "\n" .. f.bb(recipeData.recipeName) .. "\n\n"
+
+    if recipeData.orderData and recipeData.orderData.npcOrderRewards then
+        craftOrderInfoText = craftOrderInfoText .. L(CraftSim.CONST.TEXT.CRAFT_QUEUE_ORDER_REWARDS)
+        local rewardItems = GUTIL:Map(recipeData.orderData.npcOrderRewards, function(reward)
+            return {
+                count = reward.count,
+                item = Item:CreateFromItemLink(reward.itemLink)
+            }
+        end)
+        GUTIL:ContinueOnAllItemsLoaded(GUTIL:Map(rewardItems, function(reward) return reward.item end), function()
+            for _, reward in ipairs(rewardItems) do
+                -- itemLinks might contain no name but can be used to fetch id
+                craftOrderInfoText = craftOrderInfoText ..
+                    "\n- " ..
+                    GUTIL:IconToText(reward.item:GetItemIcon(), 20, 20) ..
+                    " " .. (reward.item:GetItemLink() or "<?>") .. " x" .. reward.count
+            end
+
+            row.tooltipOptions = {
+                text = tooltipHeader .. recipeData.reagentData:GetTooltipText(craftQueueItem.amount,
+                        craftQueueItem.recipeData:GetCrafterUID()) ..
+                    f.white(craftOrderInfoText),
+                owner = row.frame,
+                anchor = "ANCHOR_CURSOR",
+            }
+        end)
+    else
+        row.tooltipOptions = {
+            text = tooltipHeader .. recipeData.reagentData:GetTooltipText(craftQueueItem.amount,
+                    craftQueueItem.recipeData:GetCrafterUID()) ..
+                f.white(craftOrderInfoText),
+            owner = row.frame,
+            anchor = "ANCHOR_CURSOR",
+        }
+    end
+
+    topGearColumn.statusIcon:SetTools(craftQueueItem.recipeData.professionGearSet, craftQueueItem.gearEquipped)
 
     local craftAbleAmount = math.min(craftQueueItem.craftAbleAmount, craftQueueItem.amount)
 
@@ -1848,10 +2074,7 @@ function CraftSim.CRAFTQ.UI:UpdateCraftQueueRowByCraftQueueItem(row, craftQueueI
         craftAbleColumn.text:SetText(f.l(craftAbleAmount))
     end
 
-    local targetList = craftAmountColumn.targetList
     row.frame:SetSize(row:GetWidth(), row.frameList.rowHeight)
-    craftAmountColumn.input:Show()
-    targetList:Hide()
     craftAmountColumn.input.textInput:SetText(craftQueueItem.amount, false)
     craftAmountColumn.input.onEnterPressedCallback =
         function(_, value)
@@ -1860,65 +2083,102 @@ function CraftSim.CRAFTQ.UI:UpdateCraftQueueRowByCraftQueueItem(row, craftQueueI
             CraftSim.CRAFTQ.UI:UpdateQueueDisplay()
         end
 
+    craftAmountColumn.input:SetVisible(not craftQueueItem.recipeData:IsSubRecipe())
+
+    craftAmountColumn.inputText:SetVisible(craftQueueItem.recipeData:IsSubRecipe())
+    craftAmountColumn.inputText:SetText(craftQueueItem.amount)
+
     craftButtonColumn.craftButton.clickCallback = nil
-    craftButtonColumn.craftButton:SetEnabled(craftQueueItem.allowedToCraft)
 
-    local statusIconDesaturationAlpha = 0.3
+    local statusColumnTooltip = ""
 
-    if craftQueueItem.learned then
-        statusColumn.learned:SetDesatured(false)
-        statusColumn.learned:SetAlpha(1)
-    else
-        statusColumn.learned:SetDesatured(true)
-        statusColumn.learned:SetAlpha(statusIconDesaturationAlpha)
+    if not craftQueueItem.learned then
+        local nL = (statusColumnTooltip ~= "" and "\n") or ""
+        statusColumnTooltip = statusColumnTooltip .. f.r(nL .. "Not Learned")
     end
-    if craftQueueItem.notOnCooldown then
-        statusColumn.cooldown:SetDesatured(false)
-        statusColumn.cooldown:SetAlpha(1)
-    else
-        statusColumn.cooldown:SetDesatured(true)
-        statusColumn.cooldown:SetAlpha(statusIconDesaturationAlpha)
+    if not craftQueueItem.notOnCooldown then
+        local nL = (statusColumnTooltip ~= "" and "\n") or ""
+        statusColumnTooltip = statusColumnTooltip .. f.r(nL .. "On Cooldown")
     end
-    if craftQueueItem.isCrafter then
-        statusColumn.crafter:SetDesatured(false)
-        statusColumn.crafter:SetAlpha(1)
-    else
-        statusColumn.crafter:SetDesatured(true)
-        statusColumn.crafter:SetAlpha(statusIconDesaturationAlpha)
+    if not craftQueueItem.isCrafter then
+        local nL = (statusColumnTooltip ~= "" and "\n") or ""
+        statusColumnTooltip = statusColumnTooltip .. f.r(nL .. "Alt Character")
     end
-    if craftQueueItem.canCraftOnce then
-        statusColumn.reagents:SetDesatured(false)
-        statusColumn.reagents:SetAlpha(1)
-    else
-        statusColumn.reagents:SetDesatured(true)
-        statusColumn.reagents:SetAlpha(statusIconDesaturationAlpha)
+    if not craftQueueItem.canCraftOnce then
+        local nL = (statusColumnTooltip ~= "" and "\n") or ""
+        statusColumnTooltip = statusColumnTooltip .. f.r(nL .. "Missing Reagents")
     end
-    if craftQueueItem.gearEquipped then
-        statusColumn.tools:SetDesatured(false)
-        statusColumn.tools:SetAlpha(1)
-    else
-        statusColumn.tools:SetDesatured(true)
-        statusColumn.tools:SetAlpha(statusIconDesaturationAlpha)
+    if not craftQueueItem.gearEquipped then
+        local nL = (statusColumnTooltip ~= "" and "\n") or ""
+        statusColumnTooltip = statusColumnTooltip .. f.r(nL .. "Wrong Profession Tools")
     end
-    if craftQueueItem.correctProfessionOpen then
-        statusColumn.profession:SetDesatured(false)
-        statusColumn.profession:SetAlpha(1)
-    else
-        statusColumn.profession:SetDesatured(true)
-        statusColumn.profession:SetAlpha(statusIconDesaturationAlpha)
+    if not craftQueueItem.correctProfessionOpen then
+        local nL = (statusColumnTooltip ~= "" and "\n") or ""
+        statusColumnTooltip = statusColumnTooltip .. f.r(nL .. "Wrong Profession")
     end
 
-    if craftQueueItem.allowedToCraft then
-        craftButtonColumn.craftButton.clickCallback = function()
-            CraftSim.CRAFTQ.CraftSimCalledCraftRecipe = true
-            recipeData:Craft()
-            CraftSim.CRAFTQ.CraftSimCalledCraftRecipe = false
+    statusColumn.statusIcon:SetStatus(craftQueueItem.allowedToCraft, statusColumnTooltip)
+
+    craftButtonColumn.craftButton:SetText(L(CraftSim.CONST.TEXT.CRAFT_QUEUE_BUTTON_CRAFT))
+
+    if recipeData.orderData and craftQueueItem.isCrafter and craftQueueItem.correctProfessionOpen then
+        local accessToOrders = C_TradeSkillUI.IsNearProfessionSpellFocus(recipeData.professionData.professionInfo
+            .profession)
+
+        if accessToOrders then
+            local claimedOrder = C_CraftingOrders.GetClaimedOrder()
+
+            if claimedOrder and claimedOrder.orderID == recipeData.orderData.orderID then
+                if claimedOrder.isFulfillable then
+                    craftButtonColumn.craftButton:SetEnabled(true)
+                    craftButtonColumn.craftButton:SetText(L(CraftSim.CONST.TEXT.CRAFT_QUEUE_BUTTON_SUBMIT))
+
+                    craftButtonColumn.craftButton.clickCallback = function()
+                        C_CraftingOrders.FulfillOrder(recipeData.orderData.orderID, "",
+                            recipeData.professionData.professionInfo.profession)
+                        CraftSim.CRAFTQ.craftQueue:Remove(craftQueueItem)
+                        self:UpdateDisplay()
+                    end
+                elseif claimedOrder.minQuality and (craftQueueItem.recipeData.resultData.expectedQuality < claimedOrder.minQuality) then
+                    craftButtonColumn.craftButton:SetEnabled(false)
+                    craftButtonColumn.craftButton:SetText(GUTIL:GetQualityIconString(claimedOrder.minQuality, 25, 25))
+                elseif craftQueueItem.allowedToCraft then
+                    craftButtonColumn.craftButton:SetEnabled(true)
+                    craftButtonColumn.craftButton:SetText(L(CraftSim.CONST.TEXT.CRAFT_QUEUE_BUTTON_CRAFT))
+                    craftButtonColumn.craftButton.clickCallback = function()
+                        CraftSim.CRAFTQ.CraftSimCalledCraftRecipe = true
+                        recipeData:Craft(math.min(craftQueueItem.craftAbleAmount, craftQueueItem.amount))
+                        CraftSim.CRAFTQ.CraftSimCalledCraftRecipe = false
+                    end
+                else
+                    craftButtonColumn.craftButton:SetEnabled(false)
+                    craftButtonColumn.craftButton:SetText(L(CraftSim.CONST.TEXT.CRAFT_QUEUE_BUTTON_CLAIMED))
+                end
+            elseif claimedOrder then
+                craftButtonColumn.craftButton:SetEnabled(false)
+                craftButtonColumn.craftButton:SetText(L(CraftSim.CONST.TEXT.CRAFT_QUEUE_BUTTON_CRAFT))
+            else
+                craftButtonColumn.craftButton:SetEnabled(true)
+                craftButtonColumn.craftButton:SetText(L(CraftSim.CONST.TEXT.CRAFT_QUEUE_BUTTON_CLAIM))
+                craftButtonColumn.craftButton.clickCallback = function()
+                    C_CraftingOrders.ClaimOrder(recipeData.orderData.orderID,
+                        recipeData.professionData.professionInfo.profession)
+                end
+            end
+        else
+            craftButtonColumn.craftButton:SetEnabled(false) --[[@as GGUI.Button]]
+            craftButtonColumn.craftButton:SetText(L(CraftSim.CONST.TEXT.CRAFT_QUEUE_BUTTON_ORDER))
         end
-    end
-
-    removeRowColumn.removeButton.clickCallback = function()
-        CraftSim.CRAFTQ.craftQueue:Remove(craftQueueItem)
-        CraftSim.CRAFTQ.UI:UpdateDisplay()
+    else
+        craftButtonColumn.craftButton:SetEnabled(craftQueueItem.allowedToCraft)
+        if craftQueueItem.allowedToCraft then
+            craftButtonColumn.craftButton:SetText(L(CraftSim.CONST.TEXT.CRAFT_QUEUE_BUTTON_CRAFT))
+            craftButtonColumn.craftButton.clickCallback = function()
+                CraftSim.CRAFTQ.CraftSimCalledCraftRecipe = true
+                recipeData:Craft(math.min(craftQueueItem.craftAbleAmount, craftQueueItem.amount))
+                CraftSim.CRAFTQ.CraftSimCalledCraftRecipe = false
+            end
+        end
     end
 
     CraftSim.DEBUG:StopProfiling(profilingID)

@@ -4,49 +4,75 @@ VMRT = {
 ["BlackNames"] = {
 },
 ["Strata"] = "HIGH",
-["AutoLoad"] = {
-},
-["PersonalHeight"] = 200,
-["Profiles"] = {
-["Now"] = "default",
-["List"] = {
-},
-},
-["Width"] = 300.0000610351563,
-["BlackLastUpdateName"] = {
-},
-["PersonalWidth"] = 300.0000610351563,
-["OnlyPromoted"] = true,
 ["Black"] = {
 "",
 "",
 "",
 },
-["Height"] = 200,
 ["FontSize"] = 12,
+["AutoLoad"] = {
+},
+["PersonalHeight"] = 199.9999389648438,
+["CustomRoster"] = {
+},
+["Profiles"] = {
+["Now"] = "default",
+["List"] = {
+},
+},
+["BlackLastUpdateName"] = {
+},
+["PersonalWidth"] = 300.0000610351563,
+["OnlyPromoted"] = true,
 ["BlackLastUpdateTime"] = {
 },
+["Height"] = 199.9999389648438,
+["Width"] = 300.0000610351563,
 ["OptionsFormatting"] = true,
 },
 ["ProfileKeys"] = {
 ["Felplande-WyrmrestAccord"] = "default",
+["Moltar-WyrmrestAccord"] = "default",
+["Felkzarnbek-WyrmrestAccord"] = "default",
+["Hander-KulTiras"] = "default",
+["Zeejus-WyrmrestAccord"] = "default",
+["Rockguzzler-WyrmrestAccord"] = "default",
+["Zeej-Nemesis"] = "default",
+["Zeeganis-Mal'Ganis"] = "default",
+["Zeejralon-Azralon"] = "default",
 ["Huufar-WyrmrestAccord"] = "default",
-["Zartbertu-WyrmrestAccord"] = "default",
 ["Kalzulkoh-WyrmrestAccord"] = "default",
+["Zartbertu-WyrmrestAccord"] = "default",
 },
 ["Encounter"] = {
 ["names"] = {
 [2677] = "Fyrakk the Blazing",
 },
 ["list"] = {
-["Felplande"] = {
+["Zeejus"] = {
 },
-["Zartbertu"] = {
+["Moltar"] = {
+},
+["Zeej"] = {
+},
+["Hander"] = {
+},
+["Zeejralon"] = {
+},
+["Zeeganis"] = {
+},
+["Rockguzzler"] = {
+},
+["Kalzulkoh"] = {
+},
+["Felplande"] = {
 },
 ["Huufar"] = {
 "^2677^15^1716003215^311^1^16^385.89^Huufar",
 },
-["Kalzulkoh"] = {
+["Felkzarnbek"] = {
+},
+["Zartbertu"] = {
 },
 },
 },
@@ -71,27 +97,39 @@ VMRT = {
 ["ExCD2"] = {
 ["upd4525"] = true,
 ["gnGUIDs"] = {
+["Tikitembo"] = 270,
 ["Jahkrazet"] = 266,
-["Invectiv"] = 259,
-["Lorrain"] = 66,
-["Monplande"] = 71,
-["Kalzulkoh"] = 104,
+["Felkzarnbek"] = 103,
 ["Vivíen"] = 257,
 ["Bollzdepe"] = 269,
-["Felplande"] = 267,
-["Candidly-Illidan"] = 105,
-["Desolyn"] = 253,
-["Huufar"] = 72,
+["Zeej"] = 1449,
+["Punk"] = 71,
 ["Zorsë"] = 253,
 ["Demonmagic-Frostmourne"] = 267,
-["Bladenite-Dalaran"] = 70,
-["Maximar"] = 258,
-["Friedchickæn"] = 581,
-["Azoun"] = 260,
-["Punk"] = 71,
-["Ohyeabud"] = 270,
 ["Rayuta"] = 262,
+["Friedchickæn"] = 581,
+["Ohyeabud"] = 270,
 ["Zartbertu"] = 581,
+["Zeejus"] = 254,
+["Lorrain"] = 66,
+["Bonana"] = 262,
+["Monplande"] = 71,
+["Kalzulkoh"] = 104,
+["Felplande"] = 267,
+["Shaided"] = 253,
+["Zeejee"] = 258,
+["Hander"] = 73,
+["Desolyn"] = 253,
+["Zeeganis"] = 1449,
+["Rockguzzler"] = 268,
+["Candidly-Illidan"] = 105,
+["Invectiv"] = 259,
+["Moltar"] = 262,
+["Huufar"] = 72,
+["Bladenite-Dalaran"] = 70,
+["Azoun"] = 260,
+["Maximar"] = 258,
+["Zeejralon"] = 1449,
 },
 ["NoRaid"] = true,
 ["CDECol"] = {
@@ -370,6 +408,14 @@ true,
 },
 {
 },
+{
+},
+{
+},
+{
+},
+{
+},
 [0] = {
 },
 },
@@ -384,18 +430,20 @@ true,
 ["options"] = {
 },
 ["v21"] = true,
+["v55"] = true,
 ["Profile"] = 1,
 ["generalSound2"] = "Interface\\AddOns\\MRT\\media\\Sounds\\KittenMeow.ogg",
-["generalSound6"] = "Interface\\Addons\\MRT\\media\\Sounds\\bam.ogg",
-["v38"] = true,
-["generalSound3"] = "Interface\\Addons\\MRT\\media\\Sounds\\swordecho.ogg",
-["removed"] = {
+["profilesinfo"] = {
 },
+["v38"] = true,
+["generalSound6"] = "Interface\\Addons\\MRT\\media\\Sounds\\bam.ogg",
+["generalSound3"] = "Interface\\Addons\\MRT\\media\\Sounds\\swordecho.ogg",
 ["FontOutline"] = true,
 },
 ["Addon"] = {
-["Version"] = 4880,
-["PreVersion"] = 4880,
+["Version"] = 5100,
+["EJ_CHECK_VER_PTR"] = "57212",
+["PreVersion"] = 5100,
 ["EJ_DATA"] = {
 ["MapIDToJournalInstance"] = {
 },
@@ -410,15 +458,21 @@ true,
 },
 },
 ["Timer"] = 0.1,
-["EJ_CHECK_VER"] = 110000,
+["EJ_CHECK_VER"] = 110005,
+},
+["Profiles"] = {
 },
 ["LootHistory"] = {
 ["instanceNames"] = {
-[2549] = "Amirdrassil, the Dream's Hope",
 [1677] = "Cathedral of Eternal Night",
+[2601] = "Khaz Algar",
+[2549] = "Amirdrassil, the Dream's Hope",
+[2236] = "Darkmaul Citadel",
 },
 ["bossNames"] = {
 [2677] = "Fyrakk the Blazing",
+[2325] = "Tunk",
+[2326] = "Ravnyr",
 },
 ["list"] = {
 "1716003527#2677#0#0##0#1#item:207793::::::::70:72::5:6:6652:7980:9571:9584:1507:8767::::::",
@@ -433,9 +487,18 @@ true,
 "1716003559#2677#2549#15#Monplande#1#1#item:208396::::::::70:72:::::::::",
 "1716003567#2677#2549#15#Huufar#1#1#item:208396::::::::70:72:::::::::",
 "1716003569#2677#2549#15#Lorrain#2#1#item:208396::::::::70:72:::::::::",
+"1726311021#0#2601#0#Kalzulkoh#11#1#item:226286::::::::70:104::::1:28:2734:::::",
+"1726311146#0#2601#0#Kalzulkoh#11#1#item:226351::::::::70:104::::1:28:2734:::::",
+"1726311219#0#2601#0#Kalzulkoh#11#1#item:226287::::::::70:104::::1:28:2734:::::",
+"1726311327#0#2601#0#Kalzulkoh#11#1#item:226352::::::::70:104::::1:28:2734:::::",
+"1726311404#0#2601#0#Kalzulkoh#11#1#item:226289::::::::70:104::::1:28:2734:::::",
+"1726311469#0#2601#0#Kalzulkoh#11#1#item:226353::::::::70:104::::1:28:2734:::::",
+"1726311481#0#2601#0#Kalzulkoh#11#1#item:226288::::::::70:104::::1:28:2734:::::",
+"1726312242#0#2601#0#Kalzulkoh#11#1#item:226290::::::::70:104::::1:28:2734:::::",
+"1726312273#0#2601#0#Kalzulkoh#11#1#item:226355::::::::70:104::::1:28:2734:::::",
+"1726312542#0#2601#0#Kalzulkoh#11#1#item:226354::::::::70:104::::1:28:2734:::::",
+"1726312680#0#2601#0#Kalzulkoh#11#1#item:226291::::::::70:104::::1:28:2734:::::",
 },
-},
-["Profiles"] = {
 },
 ["BossWatcher"] = {
 ["optionsDamageGraph"] = true,

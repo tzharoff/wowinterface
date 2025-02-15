@@ -740,6 +740,8 @@ local lazyChartUpdate = function(payload, iterationCount, maxIterations)
                 fillLine:SetEndPoint("bottomleft", endX, 0)
                 fillLine:SetDrawLayer("overlay", self.depth)
                 fillLine:SetColorTexture(r, g, b, 0.15 + (self.depth/10))
+
+                fillLine:Show()
             end
         end
     end
@@ -965,6 +967,12 @@ detailsFramework.ChartFrameMixin = {
             bFillChart = bFillChart,
             fillLineThickness = fillLineThickness,
         }
+
+        for i = #fillerLines_InUse, 1, -1 do
+            local line = table.remove(fillerLines_InUse, i)
+            fillerLines_InAvailable[#fillerLines_InAvailable+1] = line
+            line:Hide()
+        end
 
         detailsFramework.Schedules.LazyExecute(lazyChartUpdate, payload)
 
@@ -1451,8 +1459,8 @@ detailsFramework.MultiChartFrameMixin = {
             biggestAverage[i] = {average = chartFrame.average, chartIndex = i}
         end
 
-        --sort the averages by the biggest average placing the biggest average in the first position
-        table.sort(biggestAverage, function(a, b) return a.average > b.average end)
+        -- sort the averages by the biggest average placing the biggest average in the first position
+        table.sort(biggestAverage, function(a, b) if not (a.average and b.average) then return a.average ~= nil end return a.average > b.average end)
 
         local minValue, multiChartMaxValue = multiChartFrame:GetMinMaxValues()
         local plotAreaWidth = multiChartFrame.plotFrame:GetWidth() --if there's no axis, the plotFrame has no width

@@ -29,7 +29,7 @@ BigWigs_Plugins: enabled
 BigWigs_VaultOfTheIncarnates: enabled
 CopyPasta2: enabled
 Craftility: disabled
-CraftSim: disabled
+CraftSim: enabled
 DataStore: enabled
 DataStore_Keystones: enabled
 Details: enabled
@@ -40,7 +40,7 @@ Details_DataStorage: enabled
 Details_Streamer: enabled
 Details_TinyThreat: enabled
 Details_Vanguard: enabled
-FriendGroups: enabled
+FriendGroups: disabled
 HandyNotes: enabled
 Hekili: enabled
 LittleWigs: enabled
@@ -108,3 +108,4 @@ WeakAurasTemplates: enabled
 Blizzard_ObjectiveTracker: enabled
 Blizzard_CompactRaidFrames: enabled
 Blizzard_CombatText: enabled
+BigWigs_KhazAlgar: enabled

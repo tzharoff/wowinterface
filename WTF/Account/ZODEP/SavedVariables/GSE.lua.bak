@@ -1,0 +1,138 @@
+
+GSEOptions = {
+["HideLoginMessage"] = false,
+["STANDARDFUNCS"] = "|cff55ddcc",
+["showGSEUsers"] = false,
+["msClickRate"] = 250,
+["COMMENT"] = "|cff55cc55",
+["filterList"] = {
+["Spec"] = true,
+["Class"] = true,
+["Global"] = true,
+["All"] = false,
+},
+["EQUALS"] = "|cffccddee",
+["NUMBER"] = "|cffffaa00",
+["sendDebugOutputToChatWindow"] = false,
+["debug"] = false,
+["CONCAT"] = "|cffcc7777",
+["CommandColour"] = "|cFF00FF00",
+["UNKNOWN"] = "|cffff6666",
+["showCurrentSpells"] = true,
+["frameLocations"] = {
+},
+["Updates"] = {
+["3214"] = true,
+["3200"] = true,
+["3218"] = true,
+},
+["saveAllMacrosLocal"] = true,
+["sendDebugOutputToDebugOutput"] = false,
+["UseWLMExportFormat"] = true,
+["CreateGlobalButtons"] = false,
+["editorHeight"] = 700,
+["STRING"] = "|cff888888",
+["DebugPrintModConditionsOnKeyPress"] = false,
+["DefaultImportAction"] = "MERGE",
+["PromptSample"] = true,
+["TitleColour"] = "|cFFFF0000",
+["editorWidth"] = 700,
+["initialised"] = true,
+["INDENT"] = "|cffccaa88",
+["DebugModules"] = {
+["Translator"] = false,
+["Startup"] = false,
+["API"] = false,
+["Viewer"] = false,
+["Transmission"] = false,
+["Editor"] = false,
+["GUI"] = false,
+["Storage"] = false,
+["Versions"] = false,
+},
+["resetOOC"] = true,
+["MacroResetModifiers"] = {
+["Alt"] = false,
+["LeftControl"] = false,
+["LeftButton"] = false,
+["LeftAlt"] = false,
+["RightShift"] = false,
+["RightButton"] = false,
+["AnyMod"] = false,
+["Button5"] = false,
+["LeftShift"] = false,
+["Shift"] = false,
+["Control"] = false,
+["RightControl"] = false,
+["MiddleButton"] = false,
+["Button4"] = false,
+["RightAlt"] = false,
+},
+["showGSEoocqueue"] = true,
+["EmphasisColour"] = "|cFFFFFF00",
+["UseVerboseExportFormat"] = false,
+["WOWSHORTCUTS"] = "|cffddaaff",
+["RealtimeParse"] = false,
+["deleteOrphansOnLogout"] = false,
+["OOCQueueDelay"] = 7,
+["shownew"] = true,
+["AuthorColour"] = "|cFF00D1FF",
+["overflowPersonalMacros"] = false,
+["showMiniMap"] = {
+["hide"] = true,
+},
+["autoCreateMacroStubsClass"] = true,
+["DefaultDisabledMacroIcon"] = "Interface\\Icons\\INV_MISC_BOOK_08",
+["autoCreateMacroStubsGlobal"] = false,
+["NormalColour"] = "|cFFFFFFFF",
+["DisabledSequences"] = {
+},
+["ActiveSequenceVersions"] = {
+},
+["setDefaultIconQuestionMark"] = true,
+["AddInPacks"] = {
+["GSE3-Elfyau_Warrior"] = {
+["Name"] = "GSE3-Elfyau_Warrior",
+["Version"] = "v1",
+},
+},
+["KEYWORD"] = "|cff88bbdd",
+}
+GSESequences = {
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+{
+},
+[0] = {
+},
+}
+GSESpellCache = {
+["enUS"] = {
+},
+}
+GSEVariables = {
+}
+GSEMacros = {
+}

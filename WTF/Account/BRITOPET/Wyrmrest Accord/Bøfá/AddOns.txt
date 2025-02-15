@@ -33,7 +33,7 @@ BigWigs_Options: enabled
 BigWigs_Plugins: enabled
 BigWigs_VaultOfTheIncarnates: enabled
 Craftility: disabled
-CraftSim: disabled
+CraftSim: enabled
 DataStore: enabled
 DataStore_Keystones: enabled
 Details: enabled
@@ -53,7 +53,7 @@ LittleWigs_Cataclysm: enabled
 LittleWigs_Classic: enabled
 LittleWigs_Legion: enabled
 LittleWigs_MistsOfPandaria: enabled
-LittleWigs_Shadowlands: disabled
+LittleWigs_Shadowlands: enabled
 LittleWigs_WarlordsOfDraenor: enabled
 LittleWigs_WrathOfTheLichKing: enabled
 MythicDungeonTools: enabled
@@ -104,3 +104,18 @@ BigWigs_BurningCrusade: enabled
 VuhDo: disabled
 VuhDoOptions: disabled
 BigWigs_MistsOfPandaria: enabled
+RemixCheckList: disabled
+Remix Gem Helper: disabled
+CopyPasta2: disabled
+MythicDungeonPortals: disabled
+LittleWigs_Dragonflight: enabled
+BigWigs_Dragonflight: enabled
+BigWigs_NerubarPalace: enabled
+DBM-Raids-WarWithin: enabled
+DBM-KhazAlgar: enabled
+DBM-Test: enabled
+BigWigs_Cataclysm: enabled
+BigWigs_Classic: enabled
+BigWigs_KhazAlgar: enabled
+FriendGroups: disabled
+DBM-Party-Shadowlands: enabled

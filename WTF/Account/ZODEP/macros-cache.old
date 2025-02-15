@@ -1,6 +1,6 @@
 VER 3 000000000000000C " " "INV_MISC_QUESTIONMARK"
-#showtooltip item:165802
-/run if not InCombatLockdown() then RHT.b:SetAttribute("item","Noble Gardener's Hearthstone") end
+#showtooltip item:54452
+/run if not InCombatLockdown() then RHT.b:SetAttribute("item","Ethereal Portal") end
 /click RHTB X 1
 END
 VER 3 0000000000000004 "#show /qDeathStr" "INV_Misc_QuestionMark"
@@ -18,6 +18,25 @@ END
 VER 3 0000000000000007 "Cam" "Ability_CheapShot"
 /console CameraDistanceMaxfactor 4
 END
+VER 3 000000000000000E "ConsolePort_Menu" "136243"
+/click CPMa
+/click CPMb
+/click CPMc
+/click CPMd
+/click CPMe
+/click CPMf
+/click CPMg
+/click CPMh
+/click CPMi
+/click CPMj
+/click CPMk
+/click CPMl
+/click CPMm
+/click CPMn
+/click CPMo
+/click CPMp
+/click CPMq
+END
 VER 3 0000000000000005 "Null" "INV_Misc_QuestionMark"
 END
 VER 3 0000000000000008 "PA" "ABILITY_RACIAL_CANNIBALIZE"
@@ -28,6 +47,10 @@ VER 3 0000000000000001 "Pestilence" "Spell_Shadow_AbominationExplosion"
 END
 VER 3 0000000000000002 "Strangulate" "Spell_Shadow_DestructiveSoul"
 /cast strangulate
+END
+VER 3 000000000000000D "TSM" "132380"
+/click TSMDestroyBtn
+/click TSMCraftNextButton
 END
 VER 3 000000000000000A "ZygorAction1" "134327"
 #showtooltip Talk to Outrunner Alarion

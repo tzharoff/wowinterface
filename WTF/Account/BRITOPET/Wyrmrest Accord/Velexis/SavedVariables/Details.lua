@@ -57,7 +57,7 @@ _detalhes_database = {
 ["pos"] = {
 },
 },
-["last_version"] = "11.0.0 12829",
+["last_version"] = "11.0.7 13317",
 ["player_stats"] = {
 },
 ["SoloTablesSaved"] = {
@@ -105,12 +105,22 @@ _detalhes_database = {
 ["reverse"] = false,
 },
 ["active_profile"] = "Velexis-Wyrmrest Accord",
-["last_realversion"] = 159,
+["last_realversion"] = 161,
 ["benchmark_db"] = {
 ["frame"] = {
 },
 },
-["last_encounter"] = "The Vigilant Steward, Zskarn",
+["mythic_dungeon_currentsaved"] = {
+["dungeon_name"] = "",
+["started"] = false,
+["segment_id"] = 0,
+["ej_id"] = 0,
+["started_at"] = 0,
+["run_id"] = 0,
+["level"] = 0,
+["dungeon_zone_id"] = 0,
+["previous_boss_killed_at"] = 0,
+},
 ["combat_log"] = {
 ["inverse_deathlog_overalldata"] = false,
 ["merge_gemstones_1007"] = false,
@@ -121,11 +131,217 @@ _detalhes_database = {
 ["evoker_show_realtimedps"] = false,
 ["inverse_deathlog_mplus"] = false,
 },
-["data_harvested_for_charts"] = {
-},
+["ignore_nicktag"] = false,
 ["mythic_plus_log"] = {
 },
 ["cached_roles"] = {
+},
+["last_instance_time"] = 1686022660,
+["nick_tag_cache"] = {
+["nextreset"] = 1737957889,
+["Nearby"] = {
+"Nearbee",
+"",
+{
+0,
+1,
+0,
+1,
+},
+"",
+{
+0,
+1,
+0,
+1,
+},
+{
+1,
+1,
+1,
+},
+2,
+},
+["last_version"] = 16,
+},
+["data_harvested_for_charts"] = {
+},
+["last_day"] = "11",
+["announce_firsthit"] = {
+["enabled"] = true,
+["channel"] = "SELF",
+},
+["force_font_outline"] = "",
+["combat_id"] = 51,
+["savedStyles"] = {
+},
+["combat_counter"] = 87,
+["character_data"] = {
+["logons"] = 15,
+},
+["announce_deaths"] = {
+["enabled"] = false,
+["last_hits"] = 1,
+["only_first"] = 5,
+["where"] = 1,
+},
+["tabela_overall"] = {
+{
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 3,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+},
+["tempo_start"] = 111027.801,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["totals_grupo"] = {
+0,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["bossTimers"] = {
+},
+["trinketProcs"] = {
+},
+["playerTalents"] = {
+},
+["totals"] = {
+0,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = false,
+["aura_timeline"] = {
+},
+["data_inicio"] = 0,
+["amountCasts"] = {
+},
+["mapId"] = 2552,
+["cleu_events"] = {
+["n"] = 1,
+},
+["zoneName"] = "Khaz Algar (Surface)",
+["boss_hp"] = 1,
+["is_challenge"] = false,
+["frags"] = {
+},
+["data_fim"] = 0,
+["cleu_timeline"] = {
+},
+["spells_cast_timeline"] = {
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["heal_section"] = {
+},
+["heal"] = {
+},
+["damage_section"] = {
+},
+["damage"] = {
+},
+},
+["start_time"] = 0,
+["TimeData"] = {
+},
+["combat_counter"] = 86,
+},
+["local_instances_config"] = {
+{
+["modo"] = 2,
+["sub_attribute"] = 1,
+["sub_atributo_last"] = {
+1,
+1,
+1,
+1,
+1,
+},
+["is_open"] = true,
+["isLocked"] = false,
+["snap"] = {
+},
+["segment"] = 0,
+["mode"] = 2,
+["attribute"] = 1,
+["pos"] = {
+["normal"] = {
+["y"] = -54.49932861328125,
+["x"] = -840.2563781738281,
+["w"] = 315.9999389648438,
+["h"] = 391.0000915527344,
+},
+["solo"] = {
+["y"] = 2,
+["x"] = 1,
+["w"] = 300,
+["h"] = 200,
+},
+},
+},
 },
 ["plugin_database"] = {
 ["DETAILS_PLUGIN_TINY_THREAT"] = {
@@ -238,6 +454,21 @@ _detalhes_database = {
 ["square_amount"] = 5,
 ["enabled"] = false,
 ["arrow_size"] = 10,
+["use_spark"] = true,
+["row_spacement"] = 21,
+["main_frame_color"] = {
+0,
+0,
+0,
+0.2,
+},
+["author"] = "Terciob",
+["arrow_texture"] = "Interface\\CHATFRAME\\ChatFrameExpandArrow",
+["font_size"] = 10,
+["y"] = 4.57763671875e-05,
+["x"] = 0,
+["font_face"] = "Friz Quadrata TT",
+["square_size"] = 32,
 ["per_second"] = {
 ["enabled"] = false,
 ["point"] = "CENTER",
@@ -249,21 +480,6 @@ _detalhes_database = {
 ["update_speed"] = 0.05,
 ["attribute_type"] = 1,
 },
-["row_spacement"] = 21,
-["main_frame_color"] = {
-0,
-0,
-0,
-0.2,
-},
-["author"] = "Terciob",
-["arrow_texture"] = "Interface\\CHATFRAME\\ChatFrameExpandArrow",
-["y"] = 4.57763671875e-05,
-["font_size"] = 10,
-["x"] = 0,
-["font_face"] = "Friz Quadrata TT",
-["square_size"] = 32,
-["use_spark"] = true,
 ["row_color"] = {
 0.1,
 0.1,
@@ -274,200 +490,7 @@ _detalhes_database = {
 ["arrow_anchor_y"] = 0,
 },
 },
-["last_day"] = "12",
-["mythic_dungeon_currentsaved"] = {
-["dungeon_name"] = "",
-["started"] = false,
-["segment_id"] = 0,
-["ej_id"] = 0,
-["started_at"] = 0,
-["run_id"] = 0,
-["level"] = 0,
-["dungeon_zone_id"] = 0,
-["previous_boss_killed_at"] = 0,
-},
-["last_instance_time"] = 1686022660,
-["announce_firsthit"] = {
-["enabled"] = true,
-["channel"] = "SELF",
-},
-["force_font_outline"] = "",
-["combat_id"] = 51,
-["savedStyles"] = {
-},
-["combat_counter"] = 79,
-["character_data"] = {
-["logons"] = 11,
-},
-["announce_deaths"] = {
-["enabled"] = false,
-["last_hits"] = 1,
-["only_first"] = 5,
-["where"] = 1,
-},
-["tabela_overall"] = {
-{
-["tipo"] = 2,
-["_ActorTable"] = {
-},
-},
-{
-["tipo"] = 3,
-["_ActorTable"] = {
-},
-},
-{
-["tipo"] = 7,
-["_ActorTable"] = {
-},
-},
-{
-["tipo"] = 9,
-["_ActorTable"] = {
-},
-},
-{
-["tipo"] = 2,
-["_ActorTable"] = {
-},
-},
-["raid_roster"] = {
-},
-["tempo_start"] = 680703.006,
-["last_events_tables"] = {
-},
-["alternate_power"] = {
-},
-["totals_grupo"] = {
-0,
-0,
-{
-0,
-[0] = 0,
-["alternatepower"] = 0,
-[3] = 0,
-[6] = 0,
-},
-{
-["buff_uptime"] = 0,
-["ress"] = 0,
-["debuff_uptime"] = 0,
-["cooldowns_defensive"] = 0,
-["interrupt"] = 0,
-["dispell"] = 0,
-["cc_break"] = 0,
-["dead"] = 0,
-},
-},
-["bossTimers"] = {
-},
-["trinketProcs"] = {
-},
-["playerTalents"] = {
-},
-["totals"] = {
-0,
-0,
-{
-0,
-[0] = 0,
-["alternatepower"] = 0,
-[3] = 0,
-[6] = 0,
-},
-{
-["buff_uptime"] = 0,
-["ress"] = 0,
-["debuff_uptime"] = 0,
-["cooldowns_defensive"] = 0,
-["interrupt"] = 0,
-["dispell"] = 0,
-["cc_break"] = 0,
-["dead"] = 0,
-},
-["frags_total"] = 0,
-["voidzone_damage"] = 0,
-},
-["player_last_events"] = {
-},
-["frags_need_refresh"] = false,
-["aura_timeline"] = {
-},
-["data_inicio"] = 0,
-["amountCasts"] = {
-},
-["mapId"] = 2444,
-["cleu_events"] = {
-["n"] = 1,
-},
-["zoneName"] = "Dragon Isles",
-["boss_hp"] = 1,
-["is_challenge"] = false,
-["frags"] = {
-},
-["data_fim"] = 0,
-["cleu_timeline"] = {
-},
-["spells_cast_timeline"] = {
-},
-["PhaseData"] = {
-{
-1,
-1,
-},
-["heal_section"] = {
-},
-["heal"] = {
-},
-["damage_section"] = {
-},
-["damage"] = {
-},
-},
-["start_time"] = 0,
-["TimeData"] = {
-},
-["combat_counter"] = 78,
-},
-["nick_tag_cache"] = {
-["last_version"] = 16,
-["nextreset"] = 1724132363,
-},
-["ignore_nicktag"] = false,
-["local_instances_config"] = {
-{
-["modo"] = 2,
-["sub_attribute"] = 1,
-["sub_atributo_last"] = {
-1,
-1,
-1,
-1,
-1,
-},
-["is_open"] = true,
-["isLocked"] = false,
-["snap"] = {
-},
-["segment"] = 0,
-["mode"] = 2,
-["attribute"] = 1,
-["pos"] = {
-["normal"] = {
-["y"] = -54.49945068359375,
-["x"] = -840.2563781738281,
-["w"] = 315.9999389648438,
-["h"] = 390.9999694824219,
-},
-["solo"] = {
-["y"] = 2,
-["x"] = 1,
-["w"] = 300,
-["h"] = 200,
-},
-},
-},
-},
+["last_encounter"] = "The Vigilant Steward, Zskarn",
 ["announce_cooldowns"] = {
 ["enabled"] = false,
 ["ignored_cooldowns"] = {
@@ -484,6 +507,10 @@ _detalhes_database = {
 ["channel"] = "SELF",
 },
 ["cached_specs"] = {
+["Player-1171-0A26F45F"] = 104,
+["Player-1171-07D77719"] = 104,
+["Player-1171-0690DCC5"] = 104,
 ["Player-1171-066CE7B4"] = 70,
+["Player-1171-0AE08348"] = 270,
 },
 }

@@ -42,6 +42,12 @@ local pin = {}
 function RSHyperlinks.GetEntityHyperLink(entityID, name)
 	-- NPC
 	local alreadyFound = RSGeneralDB.GetAlreadyFoundEntity(entityID)
+	
+	-- Avoid weird error if the database isn't recorded fast enough
+	if (not alreadyFound) then
+		return
+	end
+	
 	if (RSNpcDB.GetInternalNpcInfo(entityID)) then
 		local npcName = name and name or RSNpcDB.GetNpcName(entityID)
 		return string.format("|cff%s|Haddon:RareScanner:%s:%s:%s:%s:%s:%s|h[%s]|h|r", RSConfigDB.GetChatLinkColorNpc(), NPC_TYPE, entityID, alreadyFound.mapID, RSUtils.FixCoord(alreadyFound.coordX), RSUtils.FixCoord(alreadyFound.coordY), alreadyFound.foundTime, npcName)
@@ -53,6 +59,17 @@ function RSHyperlinks.GetEntityHyperLink(entityID, name)
 	elseif (RSEventDB.GetInternalEventInfo(entityID)) then
 		local eventName = name and name or RSEventDB.GetEventName(entityID)
 		return string.format("|cff%s|Haddon:RareScanner:%s:%s:%s:%s:%s:%s|h[%s]|h|r", RSConfigDB.GetChatLinkColorEvent(), EVENT_TYPE, entityID, alreadyFound.mapID, RSUtils.FixCoord(alreadyFound.coordX), RSUtils.FixCoord(alreadyFound.coordY), alreadyFound.foundTime, eventName)
+	end
+end
+
+local function GetGeneralChatID()
+	local general = EnumerateServerChannels()
+	local channels = {GetChannelList()}
+	for i = 1, #channels do
+		local id, name, disabled = channels[i], channels[i+1], channels[i+2]
+		if (name == general and not disabled) then
+			return id
+		end
 	end
 end
 
@@ -153,12 +170,17 @@ function RSHyperlinks.HookHyperLinks()
 						npcID = tonumber(npcIDs)
 					end
 					
+					local generalID = GetGeneralChatID()
+					if (not generalID) then
+						return
+					end
+					
 					-- Notification with health
 					if (npcID and npcID == entityID and unitHealth and unitHealhMax and unitHealhMax > 0) then
-						SendChatMessage(format(AL["CHAT_NOTIFICATION_HEALTH_RARE"], name, unitHealth/unitHealhMax*100, C_Map.GetUserWaypointHyperlink()), "CHANNEL", nil, 1)
+						SendChatMessage(format(AL["CHAT_NOTIFICATION_HEALTH_RARE"], name, string.format("%.2f", unitHealth/unitHealhMax*100), C_Map.GetUserWaypointHyperlink()), "CHANNEL", nil, generalID)
 					-- Notification without health
 					else
-						SendChatMessage(format(AL["CHAT_NOTIFICATION_RARE"], name, C_Map.GetUserWaypointHyperlink()), "CHANNEL", nil, 1)
+						SendChatMessage(format(AL["CHAT_NOTIFICATION_RARE"], name, C_Map.GetUserWaypointHyperlink()), "CHANNEL", nil, generalID)
 					end
 				end
 			end

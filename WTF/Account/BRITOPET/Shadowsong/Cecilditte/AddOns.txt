@@ -105,3 +105,6 @@ WeakAurasModelPaths: enabled
 WeakAurasOptions: enabled
 WeakAurasStopMotion: enabled
 WeakAurasTemplates: enabled
+Blizzard_ObjectiveTracker: enabled
+Blizzard_CompactRaidFrames: enabled
+Blizzard_CombatText: enabled

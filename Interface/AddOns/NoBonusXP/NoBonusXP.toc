@@ -1,0 +1,10 @@
+## Interface: 100207, 110000, 110002, 110005
+## Title: No Bonus XP
+## Notes: An addon to loot everything except bonus experience.
+## Author: ComputingwithCody
+## Version: 2.2.3
+## IconTexture: Interface\AddOns\NoBonusXP\NoBonusXPIcon
+
+ItemIDs.lua
+XPTable.lua
+NoBonusXP.lua

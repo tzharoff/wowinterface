@@ -18,7 +18,7 @@ BigWigs:AddColors("Gehennas", {
 })
 
 BigWigs:AddColors("Garr", {
-	[19492] = "yellow",
+	[19492] = {"red","yellow"},
 })
 
 BigWigs:AddColors("Baron Geddon", {
@@ -46,6 +46,7 @@ BigWigs:AddColors("Sulfuron Harbinger", {
 
 BigWigs:AddColors("Golemagg the Incinerator", {
 	[13880] = {"blue","purple"},
+	[20228] = {"blue","orange"},
 	[461463] = "red",
 })
 
@@ -66,6 +67,7 @@ BigWigs:AddColors("Ragnaros Classic", {
 })
 
 BigWigs:AddColors("The Molten Core", {
+	[460883] = "red",
 	[460885] = "red",
 	[460887] = "orange",
 	[460895] = {"blue","yellow"},

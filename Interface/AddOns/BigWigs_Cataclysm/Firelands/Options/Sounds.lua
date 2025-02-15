@@ -10,9 +10,11 @@ BigWigs:AddSounds("Beth'tilac", {
 
 BigWigs:AddSounds("Lord Rhyolith", {
 	[-2537] = "info",
+	[97225] = "alarm",
 	[97282] = "alert",
 	[98136] = "info",
 	[98255] = "alarm",
+	[98493] = "info",
 	[98552] = "alarm",
 })
 
@@ -41,7 +43,7 @@ BigWigs:AddSounds("Baleroc", {
 BigWigs:AddSounds("Majordomo Staghelm", {
 	[98374] = "alert",
 	[98379] = "alert",
-	[98450] = "alarm",
+	[98450] = "warning",
 	[98476] = "long",
 })
 

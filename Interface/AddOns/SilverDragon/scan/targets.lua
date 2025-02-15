@@ -6,17 +6,15 @@ local Debug = core.Debug
 
 local HBD = LibStub("HereBeDragons-2.0")
 
-local globaldb
 local UnitExists, UnitIsVisible, UnitPlayerControlled, UnitName, UnitLevel, UnitCreatureType, UnitGUID = UnitExists, UnitIsVisible, UnitPlayerControlled, UnitName, UnitLevel, UnitCreatureType, UnitGUID
 function module:OnInitialize()
-	globaldb = core.db.global
-
 	self.db = core.db:RegisterNamespace("Scan_Targets", {
 		profile = {
 			mouseover = true,
 			targets = true,
 			nameplate = true,
 			rare_only = true,
+			dead = true,
 		},
 	})
 
@@ -33,6 +31,7 @@ function module:OnInitialize()
 					targets = config.toggle("Targets", "Check the targets of people in your group.", 20),
 					nameplate = config.toggle("Nameplates", "Check units whose nameplates appear.", 30),
 					rare_only = config.toggle("Rare only", "Only look for mobs that are still flagged as rare", 40),
+					dead = config.toggle("Dead rares", "Targetted dead rares still count", 50),
 				},
 			},
 		}
@@ -88,12 +87,16 @@ function module:ProcessUnit(unit, source)
 	if not UnitIsVisible(unit) then return end
 	local id = core:UnitID(unit)
 	if not id then return end
-	if UnitPlayerControlled(unit) and not globaldb.always[id] then return end -- helps filter out player-pets
+	local zone = HBD:GetPlayerZone()
+	if not zone then return end -- there are only a few places where this will happen
+	if UnitPlayerControlled(unit) and not core:IsCustom(id, zone) then return end -- helps filter out player-pets
 	local unittype = UnitClassification(unit)
 	local is_rare = (id and rare_nonflags[id]) or (unittype == 'rare' or unittype == 'rareelite')
+	local is_dead = UnitIsDead(unit)
+	if is_dead and not self.db.profile.dead then return end
 	local should_process = false
 
-	if globaldb.always[id] then
+	if core:IsCustom(id, zone) then
 		-- Manually-added mobs: always get announced
 		should_process = true
 	elseif is_rare then
@@ -109,11 +112,7 @@ function module:ProcessUnit(unit, source)
 		-- Prime the name cache
 		core:NameForMob(id, unit)
 
-		local x, y, zone = HBD:GetPlayerZonePosition()
-		if not zone then
-			-- there are only a few places where this will happen
-			return
-		end
+		local x, y = HBD:GetPlayerZonePosition()
 
 		if
 			(source == 'target' and not self.db.profile.targets)
@@ -124,6 +123,6 @@ function module:ProcessUnit(unit, source)
 		end
 
 		-- id, zone, x, y, is_dead, source, unit, silent, force, GUID
-		core:NotifyForMob(id, zone, x, y, UnitIsDead(unit), source or 'target', unit, false, false, UnitGUID(unit))
+		core:NotifyForMob(id, zone, x, y, is_dead, source or 'target', unit, false, false, UnitGUID(unit))
 	end
 end

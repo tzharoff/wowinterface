@@ -1,8 +1,15 @@
 # TomTom
 
-## [v4.0.1-release](https://github.com/jnwhiteh/TomTom/tree/v4.0.1-release) (2024-07-26)
-[Full Changelog](https://github.com/jnwhiteh/TomTom/commits/v4.0.1-release) [Previous Releases](https://github.com/jnwhiteh/TomTom/releases)
+## [v4.0.7-release](https://github.com/jnwhiteh/TomTom/tree/v4.0.7-release) (2024-12-18)
+[Full Changelog](https://github.com/jnwhiteh/TomTom/commits/v4.0.7-release) [Previous Releases](https://github.com/jnwhiteh/TomTom/releases)
 
+- Update TOC for 11.0.7  
+- Update TOC for classic and cata  
+- Update for 11.0.5  
+- Update TOC for Classic  
+- Respect the set closest waypoint setting  
+- Fix auto quest tracking  
+- Stupid vscode  
 - Update HereBeDragons embedded library  
 - Update for 11.x codebranch  
 - Better defaults for distance units  
@@ -198,8 +205,8 @@
 - Fix potential crash in 'Save this waypoint between sessions'  
 - DebugListAllWaypoints() was not printing the worldmap\_icon.  
 - Add default\_iconsize controls for world and mini map.  
-- DFortun81: Patch for TomTom:SetWaypoint() _displayID  
-- Fix bugs in SetWaypoint() and add _displayID support. CF#422.  
+- DFortun81: Patch for TomTom:SetWaypoint() \_displayID  
+- Fix bugs in SetWaypoint() and add \_displayID support. CF#422.  
 - CreateFontString arguments in wrong order, CF#212  
 - Duplicate call to InterfaceOptionsFrame\_OpenToCategory in case BlizzBugsSuck not installed.  
 - Set TomTomBlock statum to MEDIUM to avoid it hiding behind everything.  
@@ -220,7 +227,7 @@
 - Update to HereBeDragons 2.0.9 aka gcd7e0dd  
 - Do not register for QUEST\_POI\_UPDATE or QUEST\_LOG\_UPDATE in Classic.  
 - Make sure C\_PetBattles exists before checking IsInBattle()  
-- Add Classic detection and dont register PET\_BATTLE_ events.  
+- Add Classic detection and dont register PET\_BATTLE\_ events.  
 - Fix crash when printing coordinates with no coordinates availible.  
 - Add code to allow TomTom specific overrides of HDB data.  
 - Protect against orphan maps, which the latest HBD now discovers.  
@@ -231,7 +238,7 @@
 - Add missing argument to SetClampedToScreen().  
 - Add /tway arrow to print arrow status.  
 - Add zone/continent/world to '/tway list'. Resolves #3.  
-- Protect against empty _icon properties in DebugListAllWaypoints().  Resolves #2.  
+- Protect against empty \_icon properties in DebugListAllWaypoints().  Resolves #2.  
 - Correct GetCZWFromMapID() and GetClosestWaypoint(). Resolves #1.  
 - Update HereBeDragons to 2.01-release, resolves #6  
 - Merge branch 'master' of github.com:Ludovicus-Maior/TomTom  
@@ -691,10 +698,3 @@
 - * More skeleton work  
 - Added Astrolabe coroutine branch as an external, along with the libs for Ace3Config  
 - * Zomg colors  
-- Updated AStrolabe to fix a typo  
-- * Updated Astrolabe to fix coroutine issues  
-- Zerofill the minutes also  
-- Modified TTA to be a X:XX countdown to avoid having to pluralise minutes/seconds  
-- * Updated to Astrolabe-coroutine branch  
-- * Fix for WorldMap dots, since they were using the wrong texture  
-- * Parent world map icons to the WorldMapDetailFrame  

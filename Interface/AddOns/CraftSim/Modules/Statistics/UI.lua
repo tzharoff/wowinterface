@@ -15,7 +15,7 @@ CraftSim.STATISTICS.UI = {}
 
 CraftSim.STATISTICS.UI.CONCENTRATION_GRAPH_LINE_COLOR = { 0.93, 0.79, 0.0, 0.8 }
 
-local print = CraftSim.DEBUG:SetDebugPrint("STATISTICS")
+local print = CraftSim.DEBUG:RegisterDebugID("Modules.Statistics.UI")
 
 function CraftSim.STATISTICS.UI:Init()
     local sizeX = 500
@@ -47,7 +47,7 @@ function CraftSim.STATISTICS.UI:Init()
         sizeY = sizeY,
         frameID = CraftSim.CONST.FRAMES.STATISTICS_WORKORDER,
         title = L(CraftSim.CONST.TEXT.STATISTICS_TITLE) ..
-            " " .. GUTIL:ColorizeText("WO", GUTIL.COLORS.GREY),
+            " " .. GUTIL:ColorizeText(CraftSim.LOCAL:GetText(CraftSim.CONST.TEXT.SOURCE_COLUMN_WO), GUTIL.COLORS.GREY),
         collapseable = true,
         closeable = true,
         moveable = true,
@@ -73,7 +73,7 @@ function CraftSim.STATISTICS.UI:Init()
                 parent = frame.content,
                 anchorParent = frame.content,
                 offsetY = -2,
-                label = "Probability Table",
+                label = L(CraftSim.CONST.TEXT.STATISTICS_PROBABILITY_TABLE_TAB),
             },
             parent = frame.content,
             anchorParent = frame.content,
@@ -92,7 +92,7 @@ function CraftSim.STATISTICS.UI:Init()
                 anchorParent = frame.content.probabilityTableTab.button,
                 anchorA = "LEFT",
                 anchorB = "RIGHT",
-                label = "Concentration",
+                label = L(CraftSim.CONST.TEXT.STATISTICS_CONCENTRATION_TAB),
 
             },
             parent = frame.content,
@@ -265,7 +265,7 @@ function CraftSim.STATISTICS.UI:InitProbabilityTableTab(tab)
             profitColumn.text = GGUI.Text({
                 parent = profitColumn,
                 anchorParent = profitColumn,
-                text = GUTIL:FormatMoney(11312313, true),
+                text = CraftSim.UTIL:FormatMoney(11312313, true),
                 justifyOptions = { type = "H", align = "LEFT" },
             })
 
@@ -309,7 +309,8 @@ function CraftSim.STATISTICS.UI:InitConcentrationTab(tab)
     ---@class CraftSim.STATISTICS.UI.PROBABILITY_TABLE_TAB.CONTENT : Frame
     local content = tab.content
 
-    content.concentrationCurveGraph = CraftSim.LibGraph:CreateGraphLine("TestLineGraph", content, "TOP", "TOP", 0,
+    content.concentrationCurveGraph = CraftSim.LibGraph:CreateGraphLine("ConcentrationCurveGraph", content, "TOP", "TOP",
+        0,
         -20, 450, 320)
     content.concentrationCurveGraph:SetXAxis(0, 1)
     content.concentrationCurveGraph:SetYAxis(0, 1)
@@ -334,16 +335,14 @@ function CraftSim.STATISTICS.UI:InitConcentrationTab(tab)
             anchorA = "BOTTOM",
             anchorB = "TOP", offsetY = 5,
         } },
-        text = "Concentration Cost Curve"
+        text = L(CraftSim.CONST.TEXT.STATISTICS_CONCENTRATION_CURVE_GRAPH)
     }
 
     GGUI.HelpIcon {
         parent = content,
         anchorParent = content.graphTitle.frame,
         anchorA = "LEFT", anchorB = "RIGHT", offsetX = 5,
-        text = "Concentration Cost based on Player Skill for given Recipe\n" ..
-            f.bb("X Axis: ") .. " Player Skill\n" ..
-            f.bb("Y Axis: ") .. " Concentration Cost",
+        text = L(CraftSim.CONST.TEXT.STATISTICS_CONCENTRATION_CURVE_GRAPH_HELP),
     }
 end
 
@@ -376,7 +375,7 @@ function CraftSim.STATISTICS.UI:UpdateDisplay(recipeData)
 
                 row.chance = probabilityInfo.chance
                 chanceColumn.text:SetText(GUTIL:Round(row.chance * 100, 2) .. "%")
-                profitColumn.text:SetText(GUTIL:FormatMoney(probabilityInfo.profit, true))
+                profitColumn.text:SetText(CraftSim.UTIL:FormatMoney(probabilityInfo.profit, true))
 
                 if recipeData.supportsMulticraft then
                     multicraftColumn:SetChecked(probabilityInfo.multicraft)
@@ -400,7 +399,7 @@ function CraftSim.STATISTICS.UI:UpdateDisplay(recipeData)
         local probabilityPositive = CraftSim.STATISTICS:GetProbabilityOfPositiveProfitByCrafts(probabilityTable,
             numCrafts)
 
-        content.expectedProfitValue:SetText(GUTIL:FormatMoney(meanProfit, true))
+        content.expectedProfitValue:SetText(CraftSim.UTIL:FormatMoney(meanProfit, true))
         local roundedProfit = GUTIL:Round(probabilityPositive * 100, 5)
         if probabilityPositive == 1 then
             -- if e.g. every craft has a positive outcome
@@ -432,8 +431,10 @@ function CraftSim.STATISTICS.UI:UpdateDisplay(recipeData)
             local curveData = concentrationCurveData.curveData
             local costConstantData = concentrationCurveData.costConstantData
 
-
-
+            local specExtraValues = recipeData.specializationData:GetExtraValues()
+            local lessConcentrationUsageFactor = specExtraValues.ingenuity:GetExtraValue(2)
+            local optionalReagentStats = recipeData.reagentData:GetProfessionStatsByOptionals()
+            local lessConcentrationUsageFactor2 = optionalReagentStats.ingenuity:GetExtraValue(2)
 
             local points = {}
             for x, y in pairs(curveData) do
@@ -450,8 +451,10 @@ function CraftSim.STATISTICS.UI:UpdateDisplay(recipeData)
                 local skillCurveValueEnd = (nextCurveData and nextCurveData.data) or 1
                 local skillStart = recipeDifficulty * recipeDifficultyFactor
                 local skillEnd = recipeDifficulty * nextRecipeDifficultyFactor
+
                 local pointCost = CraftSim.UTIL:CalculateConcentrationCost(pointConstant, pointDifficulty, skillStart,
-                    skillEnd, skillCurveValueStart, skillCurveValueEnd)
+                    skillEnd, skillCurveValueStart, skillCurveValueEnd,
+                    { lessConcentrationUsageFactor, lessConcentrationUsageFactor2 })
                 tinsert(points, { pointDifficulty, pointCost })
             end
             table.sort(points, function(a, b)

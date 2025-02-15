@@ -20,7 +20,7 @@ DBM-StatusBarTimers: enabled
 DBM-Brawlers: enabled
 DBM-CastleNathria: disabled
 DBM-DMF: disabled
-DBM-Party-Shadowlands: disabled
+DBM-Party-Shadowlands: enabled
 DBM-SanctumOfDomination: disabled
 DBM-Shadowlands: disabled
 DBM-WorldEvents: enabled
@@ -90,3 +90,20 @@ VuhDo: disabled
 VuhDoOptions: disabled
 BigWigs_MistsOfPandaria: enabled
 LittleWigs_MistsOfPandaria: enabled
+RemixCheckList: disabled
+Remix Gem Helper: disabled
+CopyPasta2: disabled
+MythicDungeonPortals: disabled
+LittleWigs_Dragonflight: enabled
+BigWigs_Dragonflight: enabled
+BigWigs_NerubarPalace: enabled
+DBM-Raids-WarWithin: enabled
+DBM-KhazAlgar: enabled
+DBM-Test: enabled
+BigWigs_Cataclysm: enabled
+BigWigs_Classic: enabled
+CraftSim: enabled
+BigWigs_KhazAlgar: enabled
+FriendGroups: disabled
+LittleWigs_Shadowlands: enabled
+LittleWigs_Classic: enabled

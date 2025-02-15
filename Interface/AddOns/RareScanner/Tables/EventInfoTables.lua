@@ -4,9 +4,14 @@
 local FOLDER_NAME, private = ...
 
 private.EVENT_INFO = {
+	[214985] = { zoneID = {
+				[1] = { x = 5313, y = 1614, artID = { 2 }, overlay = { "5313-1614" } };
+				[84] = { x = 3441, y = 2064, artID = { 89 }, overlay = { "3441-2064" } };
+				[2112] = { x = 6253, y = 6753, artID = { 1748 }, overlay = { "6253-6753" } };
+			  }, reset = true, event = 4 }; --null
 	[150904] = { zoneID = 23, artID = { 24 }, x = 7425, y = 5294, overlay = { "7425-5294" }, resetTimer = 31536000, worldmap = true }; --Free T-Shirt
 	[150905] = { zoneID = 83, artID = { 88 }, x = 5961, y = 5025, overlay = { "5961-5025" }, resetTimer = 31536000, worldmap = true }; --Free T-Shirt
-	[150942] = { zoneID = 84, artID = { 89 }, x = 6660, y = 3760, resetTimer = 31536000, worldmap = true }; --Free T-Shirt
+	[150942] = { zoneID = 84, artID = { 89 }, x = 6660, y = 3760, overlay = { "6660-3760" }, resetTimer = 31536000, worldmap = true }; --Free T-Shirt
 	[145826] = { zoneID = 85, artID = { 90 }, x = 6013, y = 5054, overlay = { "6013-5054" }, resetTimer = 31536000, worldmap = true }; --Free T-Shirt
 	[150945] = { zoneID = 111, artID = { 116 }, x = 6775, y = 2769, overlay = { "6775-2769" }, resetTimer = 31536000, worldmap = true }; --Free T-Shirt
 	[150946] = { zoneID = 116, artID = { 121 }, x = 4980, y = 5155, overlay = { "4980-5155" }, resetTimer = 31536000, worldmap = true }; --Free T-Shirt
@@ -14,33 +19,14 @@ private.EVENT_INFO = {
 	[150950] = { zoneID = 535, artID = { 552 }, x = 8426, y = 3146, overlay = { "8426-3146" }, resetTimer = 31536000, worldmap = true }; --Free T-Shirt
 	[220903] = { zoneID = 554, x = 5849, y = 6012, overlay = { "5849-6012" }, weeklyReset = true }; --Estatua de la Grulla reluciente
 	[71876] = { zoneID = 554, artID = { 571 }, x = 4501, y = 3606, overlay = { "4501-3606" } }; --Zarhym Altogether
-	[90232] = { zoneID = 630, x = 5984, y = 1206 }; --null
 	[150948] = { zoneID = 634, artID = { 657 }, x = 6027, y = 5253, overlay = { "6027-5253" }, resetTimer = 31536000, worldmap = true }; --Free T-Shirt
-	[241528] = { zoneID = 634, x = 5800, y = 4508, overlay = { "5800-4508" } }; --Asaltantes Boca Infernal
-	[112612] = { zoneID = 641, x = 5197, y = 6934, overlay = { "5197-6934" } }; --null
-	[112812] = { zoneID = 641, x = 4799, y = 3754, overlay = { "4799-3754" } }; --null
-	[241127] = { zoneID = 641, x = 5555, y = 7761, overlay = { "5555-7761" } }; --null
 	[241128] = { zoneID = 641, x = 5555, y = 7761 }; --null
-	[93677] = { zoneID = 641, x = 5273, y = 8749 }; --null
-	[97584] = { zoneID = 650, x = 5454, y = 4063, overlay = { "5454-4063" } }; --null
-	[97653] = { zoneID = 650, x = 5370, y = 5127, overlay = { "5370-5127" } }; --null
 	[125230] = { zoneID = 863, x = 8186, y = 3058, overlay = { "8186-3058" } }; --El arcón maldito
 	[141124] = { zoneID = 863, artID = { 888 }, x = 5296, y = 7205, overlay = { "5296-7205" } }; --Aiji el Detestable
 	[282660] = { zoneID = 863, artID = { 888 }, x = 3808, y = 5768, overlay = { "3808-5768" } }; --Urna de Agussu
-	[137180] = { zoneID = 895, x = 6430, y = 1937, overlay = { "6430-1937" } }; --Mercaderes en peligro
-	[137183] = { zoneID = 895, x = 6403, y = 1963, overlay = { "6403-1963" } }; --null
-	[127651] = { zoneID = 896, x = 7315, y = 6010, overlay = { "7315-6010" } }; --null
-	[129904] = { zoneID = 896, x = 5229, y = 4686, overlay = { "5229-4686" } }; --null
 	[277329] = { zoneID = 896, x = 4195, y = 3648, overlay = { "4195-3648" } }; --Sarcófago antiguo
-	[277389] = { zoneID = 896, x = 5206, y = 4696, overlay = { "5206-4696" } }; --Calavera de ritual bestial
 	[277896] = { zoneID = 896, x = 6799, y = 6688, overlay = { "6799-6688" } }; --Alijo hirviente
 	[277897] = { zoneID = 896, x = 6799, y = 6688, overlay = { "6799-6688" } }; --Alijo hirviente
-	[155069] = { zoneID = 942, artID = { 967 }, x = 7232, y = 5224, overlay = { "7232-5224" } }; --Cosechadora mielabdomen
-	[149653] = { zoneID = 1355, artID = { 1186 }, x = 5470, y = 4171, overlay = { "5470-4171" } }; --null
-	[150191] = { zoneID = 1355, artID = { 1186 }, x = 3690, y = 1123, overlay = { "3690-1123" } }; --null
-	[150468] = { zoneID = 1355, artID = { 1186 }, x = 4809, y = 2426, overlay = { "4809-2426" } }; --null
-	[153898] = { zoneID = 1355, artID = { 1186 }, x = 6245, y = 2964, overlay = { "6245-2964" } }; --null
-	[154148] = { zoneID = 1355, artID = { 1186 }, x = 6592, y = 2231, overlay = { "6592-2231" } }; --null
 	[152227] = { zoneID = 1527, artID = { 1343 }, x = 6449, y = 2982, overlay = { "6449-2982" }, zoneQuestId = { 55350 }, questID = { 55359 } }; --Ritual de ascensión
 	[152398] = { zoneID = 1527, artID = { 1343 }, x = 8349, y = 6187, overlay = { "8349-6187" }, zoneQuestId = { 55350 }, questID = { 55357 } }; --Baliza del Rey del Sol
 	[152439] = { zoneID = 1527, artID = { 1343 }, x = 6993, y = 5983, overlay = { "6993-5983" }, zoneQuestId = { 55350 }, questID = { 55360 } }; --La tumba abierta
@@ -65,7 +51,6 @@ private.EVENT_INFO = {
 	[158736] = { zoneID = 1527, artID = { 1343 }, x = 4849, y = 8485, overlay = { "4849-8485" }, zoneQuestId = { 57157 }, questID = { 57522 } }; --Llamada del Vacío
 	[158737] = { zoneID = 1527, artID = { 1343 }, x = 6589, y = 7287, overlay = { "6589-7287" }, zoneQuestId = { 57157 }, questID = { 57541 } }; --Llamada del Vacío
 	[158738] = { zoneID = 1527, artID = { 1343 }, x = 5368, y = 7569, overlay = { "5368-7569" }, questID = { 57585 } }; --Llamada del Vacío
-	[158754] = { zoneID = 1527, artID = { 1343 }, x = 5976, y = 7240, overlay = { "5976-7240" }, zoneQuestId = { 57157 }, questID = { 57429 } }; --Pira del Amalgamado
 	[160818] = { zoneID = 1527, artID = { 1343 }, x = 6202, y = 7070, overlay = { "6202-7070" }, zoneQuestId = { 57157 }, questID = { 58271 } }; --Ritual de llama del Vacío
 	[160915] = { zoneID = 1527, artID = { 1343 }, x = 5055, y = 8232, overlay = { "5055-8232" }, zoneQuestId = { 57157 }, questID = { 58275 } }; --Invocación monstruosa
 	[160928] = { zoneID = 1527, artID = { 1343 }, x = 4940, y = 3935, overlay = { "4940-3935" }, zoneQuestId = { 57157 }, questID = { 58276 } }; --Mar'at en llamas
@@ -150,27 +135,30 @@ private.EVENT_INFO = {
 	[177525] = { zoneID = 1543, artID = { 1693 }, x = 2799, y = 4773, overlay = { "2799-4773" }, resetTimer = 7200, worldmap = true }; --Tormentors event
 	[180293] = { zoneID = 1543, artID = { 1693 }, x = 5765, y = 6330, overlay = { "5765-6330" }, questID = { 64258 }, worldmap = true }; --Assault Supply Carriage
 	[180181] = { zoneID = 1961, artID = { 1648 }, x = 5821, y = 1767, overlay = { "5821-1767" }, questID = { 64258 }, worldmap = true }; --Assault Supply Carriage
-	[204131] = { zoneID = 2133, artID = { 1775 }, x = 4198, y = 4717, overlay = { "4198-4717" }, questID = { 75478 }, questReset = true }; --Hungry Hungry Hydra
-	[204211] = { zoneID = 2133, artID = { 1775 }, x = 4465, y = 2070, overlay = { "4465-2070" }, questID = { 75494 }, questReset = true }; --Strike the Colors
-	[204747] = { zoneID = 2133, artID = { 1775 }, x = 3196, y = 4356, overlay = { "3196-4356" }, questID = { 75455 }, weeklyReset = true }; --Conspiracy of Flames
-	[204768] = { zoneID = 2133, artID = { 1775 }, x = 3511, y = 5206, overlay = { "3511-5206" }, questID = { 75451 }, weeklyReset = true }; --Imperfect Balance
-	[203278] = { zoneID = 2133, artID = { 1775 }, x = 5788, y = 4947, overlay = { "5788-4947" }, questID = { 75222 }, questReset = true }; --Shellfire
-	[203950] = { zoneID = 2133, artID = { 1775 }, x = 4661, y = 2566, overlay = { "4661-2566" }, questID = { 75461 }, questReset = true }; --Magmaclaw Matriarch
-	[204101] = { zoneID = 2133, artID = { 1775 }, x = 6306, y = 4720, overlay = { "6306-4720" }, questID = { 75471 }, questReset = true }; --Crystalline Survey
-	[203065] = { zoneID = 2133, artID = { 1775 }, x = 6592, y = 5075, overlay = { "6592-5075" }, questID = { 75156 }, questReset = true }; --Stress Express
-	[203702] = { zoneID = 2133, artID = { 1775 }, x = 6140, y = 5184, overlay = { "6140-5184" }, questID = { 75370 }, questReset = true }; --Smellincense
-	[203889] = { zoneID = 2133, artID = { 1775 }, x = 5773, y = 5698, overlay = { "5773-5698" }, questID = { 75441 }, questReset = true }; --Smelly Scramble
-	[205006] = { zoneID = 2133, artID = { 1775 }, x = 5656, y = 6552, overlay = { "5656-6552" }, questID = { 75664 }, questReset = true }; --Discordant Crystals
-	[204710] = { zoneID = 2133, artID = { 1775 }, x = 6170, y = 7202, overlay = { "6170-7202" }, questID = { 75705 }, questReset = true }; --Monument Maintenance
-	[204967] = { zoneID = 2133, artID = { 1775 }, x = 5825, y = 6737, overlay = { "5825-6737" }, questID = { 74352 }, questReset = true }; --Whirling Zephyr
-	[204732] = { zoneID = 2133, artID = { 1775 }, x = 4021, y = 4343, overlay = { "4021-4343" }, questID = { 75454 }, weeklyReset = true }; --Mortar Warfare
-	[204389] = { zoneID = 2133, artID = { 1775 }, x = 4194, y = 6734, overlay = { "4194-6734" }, questID = { 75611 }, questReset = true }; --Glimmerfish Before It's Gone
-	[204423] = { zoneID = 2133, artID = { 1775 }, x = 4448, y = 7460, overlay = { "4448-7460" }, questID = { 75612 }, questReset = true }; --Cascades Calling
-	[204460] = { zoneID = 2133, artID = { 1775 }, x = 4535, y = 8318, overlay = { "4535-8318" }, questID = { 75624 }, questReset = true }; --The Champion's Challenge
-	[204763] = { zoneID = 2133, artID = { 1775 }, x = 3435, y = 4790, overlay = { "3435-4790" }, questID = { 75450 }, weeklyReset = true }; --Seismic Ceremony
-	[214985] = { zoneID = {
-			[2112] = { x = 6253, y = 6753, artID = { 1748 }, overlay = { "6253-6753" } };
-			[1] = { x = 5313, y = 1614, artID = { 2 }, overlay = { "5313-1614" } };
-			[84] = { x = 3441, y = 2064, artID = { 89 }, overlay = { "3441-2064" } };
-		  }, reset = true, event = 4 }; --Portal ominoso
+	[203065] = { zoneID = 2133, artID = { 1775 }, x = 6592, y = 5075, overlay = { "6592-5075" }, questReset = true, questID = { 75156 } }; --Stress Express
+	[203278] = { zoneID = 2133, artID = { 1775 }, x = 5788, y = 4947, overlay = { "5788-4947" }, questReset = true, questID = { 75222 } }; --Shellfire
+	[203702] = { zoneID = 2133, artID = { 1775 }, x = 6140, y = 5184, overlay = { "6140-5184" }, questReset = true, questID = { 75370 } }; --Smellincense
+	[203889] = { zoneID = 2133, artID = { 1775 }, x = 5773, y = 5698, overlay = { "5773-5698" }, questReset = true, questID = { 75441 } }; --Smelly Scramble
+	[203950] = { zoneID = 2133, artID = { 1775 }, x = 4661, y = 2566, overlay = { "4661-2566" }, questReset = true, questID = { 75461 } }; --Magmaclaw Matriarch
+	[204101] = { zoneID = 2133, artID = { 1775 }, x = 6306, y = 4720, overlay = { "6306-4720" }, questReset = true, questID = { 75471 } }; --Crystalline Survey
+	[204131] = { zoneID = 2133, artID = { 1775 }, x = 4198, y = 4717, overlay = { "4198-4717" }, questReset = true, questID = { 75478 } }; --Hungry Hungry Hydra
+	[204211] = { zoneID = 2133, artID = { 1775 }, x = 4465, y = 2070, overlay = { "4465-2070" }, questReset = true, questID = { 75494 } }; --Strike the Colors
+	[204389] = { zoneID = 2133, artID = { 1775 }, x = 4194, y = 6734, overlay = { "4194-6734" }, questReset = true, questID = { 75611 } }; --Glimmerfish Before It's Gone
+	[204423] = { zoneID = 2133, artID = { 1775 }, x = 4448, y = 7460, overlay = { "4448-7460" }, questReset = true, questID = { 75612 } }; --Cascades Calling
+	[204460] = { zoneID = 2133, artID = { 1775 }, x = 4535, y = 8318, overlay = { "4535-8318" }, questReset = true, questID = { 75624 } }; --The Champion's Challenge
+	[204710] = { zoneID = 2133, artID = { 1775 }, x = 6170, y = 7202, overlay = { "6170-7202" }, questReset = true, questID = { 75705 } }; --Monument Maintenance
+	[204732] = { zoneID = 2133, artID = { 1775 }, x = 4021, y = 4343, overlay = { "4021-4343" }, weeklyReset = true, questID = { 75454 } }; --Mortar Warfare
+	[204747] = { zoneID = 2133, artID = { 1775 }, x = 3196, y = 4356, overlay = { "3196-4356" }, weeklyReset = true, questID = { 75455 } }; --Conspiracy of Flames
+	[204763] = { zoneID = 2133, artID = { 1775 }, x = 3435, y = 4790, overlay = { "3435-4790" }, weeklyReset = true, questID = { 75450 } }; --Seismic Ceremony
+	[204768] = { zoneID = 2133, artID = { 1775 }, x = 3511, y = 5206, overlay = { "3511-5206" }, weeklyReset = true, questID = { 75451 } }; --Imperfect Balance
+	[204967] = { zoneID = 2133, artID = { 1775 }, x = 5825, y = 6737, overlay = { "5825-6737" }, questReset = true, questID = { 74352 } }; --Whirling Zephyr
+	[205006] = { zoneID = 2133, artID = { 1775 }, x = 5656, y = 6552, overlay = { "5656-6552" }, questReset = true, questID = { 75664 } }; --Discordant Crystals
+	[222165] = { zoneID = {
+				[2213] = { x = 2109, y = 4546, artID = { 1816 }, overlay = { "2109-4546" } };
+				[2214] = { x = 5951, y = 6980, artID = { 1817 }, overlay = { "4357-1069","5951-6980" } };
+				[2215] = { x = 6068, y = 6749, artID = { 1818 }, overlay = { "6068-6749" } };
+				[2248] = { x = 5562, y = 7771, artID = { 1833 }, overlay = { "5562-7771" } };
+				[2255] = { x = 6547, y = 5243, artID = { 1852 }, overlay = { "3862-8056","6547-5243" } };
+			  } }; --Worldsoul Memory
+	[227481] = { zoneID = 2214, artID = { 1817 }, x = 6434, y = 8747, overlay = { "6593-8412","6434-8747" } }; --Point Breaker
 }

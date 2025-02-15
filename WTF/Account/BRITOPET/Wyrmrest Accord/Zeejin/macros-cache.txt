@@ -1,0 +1,19 @@
+VER 3 0100000000000001 "A1" "Ability_Hunter_Efficiency"
+/click ExtraActionButton1
+END
+VER 3 0100000000000005 "MF" "134400"
+#showtooltip
+/targetenemy
+/cast Moonfire
+END
+VER 3 0100000000000002 "moonfire" "INV_ZulGurubTrinket"
+/tar southsea
+/cast Moonfire
+END
+VER 3 0100000000000003 "ST" "SPELL_SHAMAN_GIFTEARTHMOTHER"
+#showtooltip
+/cast [form:5] Spell; Incarnation: Tree of Life
+END
+VER 3 0100000000000004 "TREE" "ABILITY_DRUID_TREEOFLIFE"
+/cast treant form
+END

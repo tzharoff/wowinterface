@@ -1,18 +1,18 @@
 
 EncounterDetailsDB = {
-	["chartData"] = {
-	},
-	["encounter_spells"] = {
-	},
-	["emotes"] = {
-		{
-			["boss"] = "Loatheb",
-		}, -- [1]
-		{
-			["boss"] = "Heigan the Unclean",
-		}, -- [2]
-		{
-			["boss"] = "Noth the Plaguebringer",
-		}, -- [3]
-	},
+["chartData"] = {
+},
+["encounter_spells"] = {
+},
+["emotes"] = {
+{
+["boss"] = "Loatheb",
+},
+{
+["boss"] = "Heigan the Unclean",
+},
+{
+["boss"] = "Noth the Plaguebringer",
+},
+},
 }

@@ -18,15 +18,15 @@ private.CONTINENT_ZONE_IDS = {
 	[875] = { zonefilter = true, npcfilter = true, id = 11, zones = {862,863,864,1165} }; --Zandalar
 	[1355] = { zonefilter = true, npcfilter = true, id = 12, zones = {1355} }; --Nazjatar
 	[1550] = { zonefilter = true, npcfilter = true, id = 13, zones = {1409,1525,1533,1536,1543,1565,1618,1961,1970,2030} }; --Shadowlands
-	[1978] = { zonefilter = true, npcfilter = true, id = 14, zones = {2112,2118,2022,2023,2024,2025,2085,2107,2133,2151,2199,2200,2239} }; --Dragon Isles
-	[2274] = { zonefilter = true, npcfilter = true, id = 15, zones = {2213,2216,2248,2215,2216,2214,2255,2339}, current = { "all" } }; --Khaz Algar
+	[1978] = { zonefilter = true, npcfilter = true, id = 14, zones = {2112,2118,2022,2023,2024,2025,2085,2107,2133,2151,2199,2200,2239,2262} }; --Dragon Isles
+	[2274] = { zonefilter = true, npcfilter = true, id = 15, zones = {2213,2216,2248,2215,2216,2214,2255,2339,2369}, current = { "all" } }; --Khaz Algar
 	[9999] = { zonefilter = true, npcfilter = true, zones = {276,378,628,629,672,734,702,695,747,739} }; --Class Halls
 	[9998] = { zonefilter = true, npcfilter = true, zones = {407}, current = { "all" } }; --Darkmoon Island
-	[9997] = { zonefilter = true, npcfilter = true, zones = {35,219,229,237,243,251,274,279,280,301,306,316,317,318,616,677,703,706,713,731,733,749,845,897,903,974,1004,1015,1041,1663,1666,1675,1669,1674,1677,1683,1692,2093} }; --Dungeons or scenarios
+	[9997] = { zonefilter = true, npcfilter = true, zones = {35,219,229,237,243,251,274,279,280,301,306,316,317,318,616,677,703,706,713,731,733,749,845,897,903,974,1004,1015,1041,1490,1663,1666,1675,1669,1674,1677,1683,1692,2093,2303} }; --Dungeons or scenarios
 	[9996] = { zonefilter = true, npcfilter = true, zones = {366,508,764,850,909,2047,2166} }; --Raids
 	[9995] = { zonefilter = false, npcfilter = true, zones = {0} }; --Unknown
 	[9994] = { zonefilter = true, npcfilter = false, zones = {981,1022,1032,1033,1034,1035,1036,1037,1336,1337,1501,1502} }; --Expedition islands
-	[9993] = { zonefilter = true, npcfilter = false, zones = {2302,2310,2312,2347,2250} }; --Delves
+	[9993] = { zonefilter = true, npcfilter = false, zones = {2302,2310,2312,2347,2249,2250,2251,2259,2269,2277,2301,2302,2310,2347} }; --Delves
 }
 
 private.SUBZONES_IDS = {
@@ -40,6 +40,7 @@ private.SUBZONES_IDS = {
 	[508] = {509,510,511,512,513,514,515}; --Throne of Thunder
 	[616] = {617,618}; --Upper Blackrock Spire
 	[749] = {798}; --The Arcway
+	[680] = {686}; --Suramar
 	[407] = {408}; --Darkmoon Island
 	[734] = {735}; --Hall of the Guardian (mage class hall)
 	[672] = {674,675,719,720,721,879,880,861}; --Mardum, the Shattered Abyss (demon hunter class hall)
@@ -55,7 +56,7 @@ private.SUBZONES_IDS = {
 	[237] = {238}; --Diremaul
 	[251] = {252, 253, 254, 255}; --Blackrock spire
 	[366] = {350,351,352,353,354,355,356,357,358,359,360,361,362,363,364,365}; --Karazhan (Outland raid)
-	[650] = {658}; --Highmountain minimaps
+	[650] = {658,750}; --Highmountain minimaps
 	[7] = {462}; --Mulgore minimaps
 	[504] = {505}; --Isle of Thunder
 	[554] = {555}; --Timeless Isle
@@ -71,7 +72,7 @@ private.SUBZONES_IDS = {
 	[1041] = {1042}; --The underrot
 	[1525] = {1644}; --The ember court
 	[1536] = {1649}; --Vault in Maldraxxus
-	[1618] = {1619,1620,1621,1623,1624,1627,1628,1629,1630,1631,1632,1635,1636,1641,1645,1656,1705,1712,1716,1720,1721,1736,1749,1751,1752,1753,1754,1757,1758,1759,1760,1761,1762,1763,1764,1765,1766,1767,1768,1769,1770,1771,1772,1773,1774,1775,1776,1777,1778,1779,1780,1781,1782,1783,1784,1785,1786,1787,1788,1789,1791,1792,1793,1794,1795,1796,1797,1798,1799,1800,1801,1802,1803,1804,1805,1806,1807,1808,1809,1810,1811,1812}; --Torghast
+	[1618] = {1619,1620,1621,1623,1624,1627,1628,1629,1630,1631,1632,1635,1636,1641,1645,1656,1705,1712,1716,1720,1721,1736,1749,1751,1752,1753,1754,1757,1758,1759,1760,1761,1762,1763,1764,1765,1766,1767,1768,1769,1770,1771,1772,1773,1774,1776,1777,1778,1779,1780,1781,1782,1783,1784,1785,1786,1787,1788,1789,1791,1792,1793,1794,1795,1796,1797,1798,1799,1800,1801,1802,1803,1804,1805,1806,1807,1808,1809,1810,1811,1812}; --Torghast
 	[1663] = {1664,1665}; --Halls of atonement
 	[1675] = {1676}; --Sanguine depths
 	[1677] = {1678,1679,1680}; --The other side
@@ -84,10 +85,14 @@ private.SUBZONES_IDS = {
 	[2024] = {2132}; -- The Azure Span minimaps
 	[2151] = {2100,2101,2102,2154}; --The Forbidden Reach (10.0.7) (Dragonflight)
 	[2133] = {2184,2165}; --Zaralek Cavern minimaps (10.1.0) (Dragonflight)
-	[2166] = {2167,2168,2169,2170}; --Aberrus, the Shadowed Crucible
-	[2025] = {2199}; --Thaldraszus minimaps
+	[2166] = {2167,2168,2169,2170,2171,2172,2173,2174,2211}; --Aberrus, the Shadowed Crucible
+	[2025] = {2199,2112}; --Thaldraszus minimaps
 	[2200] = {2254}; --Emerald Dream minimaps
-	[2256] = {2256}; --Azj-Kahet lower
+	[2255] = {2256,2213,2216}; --Azj-Kahet
+	[2213] = {2216}; --City of Threads
+	[2248] = {2339}; --Isle of Dorn
+	[2369] = {2375}; --Isle Siren
+	[1490] = {1491,1493,1494,1497}--Operation: Mechagon
 }
 
 private.ZONES_WITHOUT_VIGNETTE = {
@@ -209,6 +214,7 @@ private.ZONES_WITHOUT_VIGNETTE = {
 	[2312] = { 1882 }; --Mycomancer Cavern (delve)
 	[2302] = { 1874 }; --The Dead Pit (delve)
 	[2250] = { 1836 }; --Kriegval's Rest (delve)
+	[2269] = { 1861 }; --Earthcrawl Mines (delve)
 }
 
 private.RESETABLE_KILLS_ZONE_IDS = {
@@ -255,6 +261,7 @@ private.RESETABLE_KILLS_ZONE_IDS = {
 	[2214] = { "all" }; --The Ringing Deeps (The War Within)
 	[2255] = { "all" }; --Azj-Kahet (The War Within)
 	[2213] = { "all" }; --Nerub'ar (The War Within)
+	[2369] = { "all" }; --Isle Siren (The War Within)
 }
 
 private.PERMANENT_KILLS_ZONE_IDS = {
@@ -283,8 +290,9 @@ private.PERMANENT_KILLS_ZONE_IDS = {
 	[1618] = { "all" };
 }
 
--- Mechagon construction projects
-private.CONSTRUCTION_PROJECTS = {
+-- Monster emotes
+private.MONSTER_EMOTE = {
+	-- Mechagon construction projects
 	["TR28"] = 153206; --Ol' Big Tusk
 	["TR35"] = 150342; --Earthbreaker Gulroc
 	["CC61"] = 154701; --Gorged Gear-Cruncher
@@ -292,4 +300,9 @@ private.CONSTRUCTION_PROJECTS = {
 	["CC88"] = 152113; --The Kleptoboss
 	["JD41"] = 153200; --Boilburn
 	["JD99"] = 153205; --Gemicide
+	-- Lurker of the deeps
+	["As the earthen machinery turns, something begins to stir in the nearby lake."] = 220285;
+	-- Tka'ktath <Queen's Sweetie>
+	["The shadow of a hungering beast moves over the city."] = 216046;
+	["La sombra de una bestia hambrienta se mueve sobre la ciudad."] = 216046;
 }

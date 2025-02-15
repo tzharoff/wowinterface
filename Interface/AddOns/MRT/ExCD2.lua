@@ -12,8 +12,10 @@ local GetSpellCooldown = ExRT.F.GetSpellCooldown or GetSpellCooldown
 local GetSpellInfo = ExRT.F.GetSpellInfo or GetSpellInfo
 local GetSpellLink = C_Spell and C_Spell.GetSpellLink or GetSpellLink
 local GetSpellTexture = C_Spell and C_Spell.GetSpellTexture or GetSpellTexture
+local GetSpellName = C_Spell and C_Spell.GetSpellName or GetSpellInfo
 local GetItemInfo, GetItemInfoInstant, GetItemSpell = C_Item and C_Item.GetItemInfo or GetItemInfo, C_Item and C_Item.GetItemInfoInstant or GetItemInfoInstant, C_Item and C_Item.GetItemSpell or GetItemSpell
 local GetCVar = C_CVar and C_CVar.GetCVar or C_CVar
+local UnitGroupRolesAssigned = UnitGroupRolesAssigned or ExRT.NULLfunc
 
 local GetSpellLevelLearned = C_Spell and C_Spell.GetSpellLevelLearned or GetSpellLevelLearned
 if ExRT.isClassic then
@@ -219,7 +221,7 @@ end
 
 module.db.historyUsage = {}
 
-module.db.testMode = nil
+module.db.testMode = false
 module.db.isEncounter = nil
 
 local cdsNav_wipe,cdsNav_set = nil
@@ -297,7 +299,7 @@ do
 					local n = {}
 					e = setmetatable({},{
 						__index = function (t1,k1) 
-							return n[k1] or type(k1) == "number" and k1 > 0 and n[GetSpellInfo(k1) or ""]
+							return n[k1] or type(k1) == "number" and k1 > 0 and n[GetSpellName(k1) or ""]
 						end,
 						__newindex = function (t1,k1,v1)
 							n[k1] = v1
@@ -1259,7 +1261,7 @@ do
 			local n = {}
 			for k in pairs(module.db.spell_isTalent) do
 				if type(k) == "number" then
-					n[#n+1] = GetSpellInfo(k) or "spell:"..k
+					n[#n+1] = GetSpellName(k) or "spell:"..k
 				end
 			end
 			for _,v in pairs(n) do
@@ -1295,14 +1297,25 @@ do
 				((data[8] and data[8][1] and data[8][2] and data[8][3]) or not data[8])
 			then
 				spellDB[#spellDB+1] = data
-				if data.itemID and data[2] and strsplit(",",data[2]) == "ITEMS" then
-					_db.itemsToSpells[data.itemID] = data[1]
-					if data.isEquip then
-						_db.spell_isTalent[ data[1] ] = true
-					end
-				end
+				local icon
 				if data.isTalent then
 					_db.spell_isTalent[ data[1] ] = true
+				else
+					_db.spell_isTalent[ data[1] ] = nil
+				end
+				if data.itemID and data[2] and strsplit(",",data[2]) == "ITEMS" then
+					_db.itemsToSpells[data.itemID] = data[1]
+					icon = select(5,GetItemInfoInstant(data.itemID))
+					_db.itemsToSpells[data.itemID] = data[1]
+					_db.spell_isTalent[ data[1] ] = true
+				end
+				if data.icon then
+					icon = tonumber(data.icon) or data.icon
+				end
+				if icon then
+					module.db.differentIcons[ data[1] ] = icon
+				else
+					module.db.differentIcons[ data[1] ] = nil
 				end
 			end
 		end
@@ -1775,6 +1788,16 @@ local function UpdateBarStatus(self,isTitle)
 	 			self.timeline:Show()
 	 		end
 	 	end
+	end
+
+	if parent.optionAnimation and parent.optionStyleAnimation == 3 then
+		if isActive and not self.anim.osa3 then
+			self.anim:SetScript("OnLoop",BarAnimation_Reverse)
+			self.anim.osa3 = true
+		elseif not isActive and self.anim.osa3 then
+			self.anim:SetScript("OnLoop",BarAnimation)
+			self.anim.osa3 = false
+		end
 	end
 
 	local doStandartColors = true
@@ -3021,7 +3044,8 @@ do
 			) then 
 				data.vis = true
 
-				local col = CDECol[spellID..";"..(unitSpecID-3)] or CDECol[spellID..";1"] or def_col[spellID..";"..(unitSpecID-3)] or def_col[spellID..";1"] or db[3] or 1
+				local unitRole = data.checkRole and UnitGroupRolesAssigned(name)
+				local col = (data.checkRole and unitRole and CDECol[spellID..";"..unitRole]) or CDECol[spellID..";"..(unitSpecID-3)] or CDECol[spellID..";1"] or def_col[spellID..";"..(unitSpecID-3)] or def_col[spellID..";1"] or db[3] or 1
 				data.column = col
 
 				local forceUpdate
@@ -3159,6 +3183,7 @@ do
 		timerATFReset = 100
 	end
 
+	local slow_rf = 0
 	function module:timer(elapsed)
 		local forceUpdateAllData
 
@@ -3179,6 +3204,11 @@ do
 			module:toggleCombatVisibility(false,1)
 		end
 
+		slow_rf = slow_rf - 1
+		if slow_rf > 0 then
+			return
+		end
+		slow_rf = 2
 
 		---------> Check status
 		statusTimer2 = statusTimer2 + elapsed
@@ -3716,7 +3746,7 @@ local function UpdateRoster()
 					if _db.spell_isRacial[ SpellID ] and race ~= _db.spell_isRacial[ SpellID ] then
 						AddThisSpell = false
 					end
-					if not GetSpellInfo(SpellID) then	--non exist, removed spells
+					if not GetSpellName(SpellID) then	--non exist, removed spells
 						AddThisSpell = false
 					end
 					local spellClass,spellClass2 = strsplit(",",spellData[2])
@@ -3746,6 +3776,8 @@ local function UpdateRoster()
 						local _specID = globalGUIDs[name] or 0
 						local uSpecID = _db.specInDBase[_specID] or 4
 						local spellColumn = VMRT.ExCD2.CDECol[SpellID..";"..(uSpecID-3)] or VMRT.ExCD2.CDECol[SpellID..";1"] or _db.def_col[SpellID..";"..(uSpecID-3)] or _db.def_col[SpellID..";1"] or spellData[3] or 1
+
+						local checkRaidRole = (VMRT.ExCD2.CDECol[SpellID..";HEALER"] or VMRT.ExCD2.CDECol[SpellID..";TANK"] or VMRT.ExCD2.CDECol[SpellID..";DAMAGER"]) and true or false
 
 						local getSpellColumn = module.frame.colFrame[spellColumn]
 						local prior = nil
@@ -3784,7 +3816,8 @@ local function UpdateRoster()
 							lastUse,nowCd = VMRT.ExCD2.Save[sName][1],VMRT.ExCD2.Save[sName][2]
 						end
 
-						local spellName,_,spellTexture = GetSpellInfo(SpellID)
+						local spellName = GetSpellName(SpellID)
+						local spellTexture = GetSpellTexture(SpellID)
 						spellTexture = spellTexture or "Interface\\Icons\\INV_MISC_QUESTIONMARK"
 						spellName = spellName or "unk"
 						local shownName = DelUnitNameServer(name)
@@ -3795,8 +3828,9 @@ local function UpdateRoster()
 
 						for l=4,8 do
 							if spellData[l] then
-								local h = (ExRT.isClassic and not ExRT.isCata) and _db.cdsNav[name][GetSpellInfo(spellData[l][1])] or _db.cdsNav[name][spellData[l][1]]
+								local h = (ExRT.isClassic and not ExRT.isCata) and _db.cdsNav[name][GetSpellName(spellData[l][1])] or _db.cdsNav[name][spellData[l][1]]
 								if h then
+									local needUpdate
 									h.db = spellData
 									if lastUse ~= 0 and nowCd ~= 0 and h.lastUse == 0 and h.cd == 0 then
 										h.cd = nowCd
@@ -3805,9 +3839,13 @@ local function UpdateRoster()
 									h.sort = prior
 									h.sort2 = secondPrior
 									h.spellName = spellName
+									if h.icon ~= spellTexture then
+										needUpdate = true
+									end
 									h.icon = spellTexture
 									h.column = spellColumn
 									h.guid = h.guid or UnitGUID(name)
+									h.checkRole = checkRaidRole
 
 									alreadyInCds = true
 
@@ -3821,6 +3859,10 @@ local function UpdateRoster()
 										_db.vars.isMage[h.guid] = true
 									elseif spellClass == "HUNTER" and h.guid then
 										_db.vars.isHunter[h.guid] = true
+									end
+
+									if needUpdate and h.bar then
+										h.bar:Update()
 									end
 								end
 							end
@@ -3847,6 +3889,7 @@ local function UpdateRoster()
 								sort2 = secondPrior,
 								column = spellColumn,
 								guid = guid,
+								checkRole = checkRaidRole,
 							}
 							_C [#_C + 1] = new
 
@@ -4679,7 +4722,7 @@ function module.main:UNIT_AURA(unitID)
 		if not FD_Found then
 			local line = _db.cdsNav[UnitName(unitID)][5384]
 			if ExRT.isClassic and not ExRT.isCata and not line then
-				line = _db.cdsNav[UnitName(unitID)][GetSpellInfo(5384)]
+				line = _db.cdsNav[UnitName(unitID)][GetSpellName(5384)]
 			end
 			if line then
 				CLEUstartCD(line)
@@ -4979,6 +5022,7 @@ do
 		bit = bit,
 		print = print,
 		abs = abs,
+		floor = floor,
 		C_Timer = C_Timer,
 		C_UnitAuras = C_UnitAuras,
 		GetAuraDataByIndex = C_UnitAuras.GetAuraDataByIndex,
@@ -4986,6 +5030,8 @@ do
 		UnitHealthMax = UnitHealthMax,
 		UnitHealth = UnitHealth,
 		GetSpellInfo = GetSpellInfo,
+		GetSpellName = GetSpellName,
+		GetSpellTexture = GetSpellTexture,
 		type = type,
 		Gtype = type,
 		pairs = pairs,
@@ -5187,7 +5233,7 @@ do
 				[22812]=true,[198589]=true,[48792]=true,[204021]=true,[109304]=true,[55342]=true,
 				[115203]=true,[19236]=true,[108271]=true,[104773]=true,[871]=true,[118038]=true,
 				[184364]=true,[498]=true,[31850]=true,[185311]=true,[212800]=true,
-				[403876]=true,[363916]=true,[243435]=true,
+				[403876]=true,[363916]=true,[243435]=true,[55233]=true,
 			}
 			thundercharge = {}
 			faerie = {}
@@ -5205,6 +5251,7 @@ do
 			}
 			shiftingpower = {}
 			timeskip = {}
+			BlessingfromBeyond = {}
 
 			return function (timestamp,event,hideCaster,sourceGUID,sourceName,sourceFlags,sourceFlags2,destGUID,destName,destFlags,destFlags2,spellID,spellName,school,auraType)
 				if not sourceName then
@@ -5412,6 +5459,36 @@ do
 						end
 					end, total_len)
 					timeskip[sourceName].t_end = GetTime() + len
+				elseif (spellID == 462661) and destName then	--Blessing from Beyond
+					if BlessingfromBeyond[destName] then
+						BlessingfromBeyond[destName]:Cancel()
+					end
+					local total_len = 20
+					local changePerTick = 0.5
+					--for i=1,60 do
+					--	local auraData = C_UnitAuras.GetAuraDataByIndex(destName,i,"HARMFUL")
+					--	if not auraData then
+					--		break
+					--	elseif auraData.spellId == 462661 then
+					--		changePerTick = (auraData.points and auraData.points[2] or 50)/100
+					--		total_len = floor(auraData.expirationTime - GetTime() + 0.5)
+					--		break
+					--	end
+					--end
+					BlessingfromBeyond[destName] = C_Timer.NewTicker(1,function()
+						local line, updateReq
+						for j=1,#_C do
+							line = _C[j]
+							if line.fullName == destName then
+								line:ReduceCD(changePerTick,true)
+								updateReq = true
+							end
+						end
+						if updateReq then
+							UpdateAllData()
+						end
+					end, total_len)
+					BlessingfromBeyond[destName].t_end = GetTime() + total_len
 				end
 
 				$$$1
@@ -5558,6 +5635,13 @@ do
 							forceUpdateAllData = true
 						end
 					end
+				elseif (spellID == 462661) then	--Blessing from Beyond
+					if BlessingfromBeyond[destName] then
+						local now = GetTime()
+						if abs(now - BlessingfromBeyond[destName].t_end) > 0.2 then
+							BlessingfromBeyond[destName]:Cancel()
+						end
+					end
 				end
 				$$$1
 
@@ -5604,7 +5688,7 @@ do
 				$$$1
 			end
 		]],subevents={RANGE_DAMAGE=true,SPELL_PERIODIC_DAMAGE=true,SWING_DAMAGE=[[
-			local meleeStr = GetSpellInfo(6603)
+			local meleeStr = GetSpellName(6603)
 			return function (timestamp,event,hideCaster,sourceGUID,sourceName,sourceFlags,sourceFlags2,destGUID,destName,destFlags,destFlags2,amount,overkill,school,resisted,blocked,absorbed,critical,glancing,crushing,isOffHand)
 				if not eventsView.SPELL_DAMAGE then return end
 				return eventsView.SPELL_DAMAGE(timestamp,event,hideCaster,sourceGUID,sourceName,sourceFlags,sourceFlags2,destGUID,destName,destFlags,destFlags2,6603,meleeStr,1,amount,overkill,school,resisted,blocked,absorbed,critical,glancing,crushing,isOffHand)
@@ -5628,7 +5712,7 @@ do
 				$$$1
 			end
 		]],subevents={RANGE_MISSED=true,SPELL_PERIODIC_MISSED=true,SWING_MISSED=[[
-			local meleeStr = GetSpellInfo(6603)
+			local meleeStr = GetSpellName(6603)
 			return function (timestamp,event,hideCaster,sourceGUID,sourceName,sourceFlags,sourceFlags2,destGUID,destName,destFlags,destFlags2,missType,isOffHand,amountMissed,critical)
 				if not eventsView.SPELL_MISSED then return end	--temp fix
 				return eventsView.SPELL_MISSED(timestamp,event,hideCaster,sourceGUID,sourceName,sourceFlags,sourceFlags2,destGUID,destName,destFlags,destFlags2,6603,meleeStr,1,missType,isOffHand,amountMissed,critical)
@@ -5736,12 +5820,12 @@ do
 			local guid = UnitGUID(unitID)
 			local name = UnitName(unitID)
 
-			eventsView.SPELL_CAST_SUCCESS(0,"SPELL_CAST_SUCCESS",false,guid,name,0,0,"","",0,0,spellID,GetSpellInfo(spellID),1)
+			eventsView.SPELL_CAST_SUCCESS(0,"SPELL_CAST_SUCCESS",false,guid,name,0,0,"","",0,0,spellID,GetSpellName(spellID),1)
 
 			if spellID == 5384 then
 				local line = _db.cdsNav[name][5384]
 				if ExRT.isClassic and not ExRT.isCata and not line then
-					line = _db.cdsNav[name][GetSpellInfo(5384)]
+					line = _db.cdsNav[name][GetSpellName(5384)]
 				end
 				if line then
 					line:SetCD(360)
@@ -5783,7 +5867,7 @@ do
 			if not UnitIsGhost(unitID) then
 				local hp = UnitHealth(unitID) / max(UnitHealthMax(unitID),1)
 				if hp < 0.45 then
-					eventsView.SPELL_CAST_SUCCESS(0,"SPELL_CAST_SUCCESS",false,UnitGUID(unitID),name,0,0,"","",0,0,20608,GetSpellInfo(20608),1)
+					eventsView.SPELL_CAST_SUCCESS(0,"SPELL_CAST_SUCCESS",false,UnitGUID(unitID),name,0,0,"","",0,0,20608,GetSpellName(20608),1)
 				end
 			end
 			_db.spell_ReincarnationFix[name] = nil
@@ -6086,7 +6170,7 @@ function module.options:Load()
 	local SPELL_LINE_HEIGHT = 32
 
 	local function SpellsListLineOnUpdate(self)
-		if module.options.list.colBySpecFrame:IsShown() then
+		if module.options.list.colBySpecFrame:IsShown() or module.options.list.colByRoleFrame:IsShown() then
 			return
 		end
 		local alpha = 0.4
@@ -6099,6 +6183,12 @@ function module.options:Load()
 			self.colExpand:Show()
 		elseif not self:IsMouseOver() and self.colExpand:IsShown() then
 			self.colExpand:Hide()
+		end
+
+		if self:IsMouseOver() and not self.colExpand2:IsShown() then
+			self.colExpand2:Show()
+		elseif not self:IsMouseOver() and self.colExpand2:IsShown() then
+			self.colExpand2:Hide()
 		end
 	end
 	local function SpellsListTooltipFrameOnEnter(self)
@@ -6144,6 +6234,9 @@ function module.options:Load()
 	end
 	local function SpellsListLineColExpand(self)
 		module.options.list.colBySpecFrame:Open(self:GetParent(),self)
+	end
+	local function SpellsListLineColExpandRole(self)
+		module.options.list.colByRoleFrame:Open(self:GetParent(),self)
 	end
 	local function SpellsListChkOnClick(self)
 		if self.disabled then
@@ -6265,7 +6358,7 @@ function module.options:Load()
 				GameTooltip:AddLine("|cffffffaa"..L.cd2AddSpellFrameCharge.."|r")
 			else
 				GameTooltip:AddLine("|cffffffaa"..L.cd2AddSpellFrameChargeChange..":|r")
-				local sname = GetSpellInfo(module.db.spell_charge_fix[ data[1] ])
+				local sname = GetSpellName(module.db.spell_charge_fix[ data[1] ])
 				GameTooltip:AddLine("|cffffffff - "..(sname or "???") .."|r")
 			end
 		end
@@ -6273,7 +6366,7 @@ function module.options:Load()
 		if module.db.spell_sharingCD[ data[1] ] then
 			GameTooltip:AddLine("|cffffffaa"..L.cd2AddSpellFrameSharing..": |r")
 			for otherID,otherCD in pairs(module.db.spell_sharingCD[ data[1] ]) do
-				local sname = GetSpellInfo(otherID)
+				local sname = GetSpellName(otherID)
 				GameTooltip:AddLine("|cffffffff - "..(sname or "???") .." (".. otherCD ..")|r")
 			end
 		end
@@ -6323,7 +6416,7 @@ function module.options:Load()
 		if module.db.spell_durationByTalent_fix[ data[1] ] then
 			GameTooltip:AddLine("|cffaaffaa"..L.cd2AddSpellFrameDuration..":|r")
 			for j=1,#module.db.spell_durationByTalent_fix[data[1]],2 do
-				local sname = GetSpellInfo(module.db.spell_durationByTalent_fix[ data[1] ][j]) or "???"
+				local sname = GetSpellName(module.db.spell_durationByTalent_fix[ data[1] ][j]) or "???"
 				local cd = module.db.spell_durationByTalent_fix[ data[1] ][j+1]
 				local isRank 
 				if type(cd) == 'table' then
@@ -6349,7 +6442,7 @@ function module.options:Load()
 		do
 			for auraID,sID in pairs(module.db.spell_aura_list) do
 				if sID == data[1] then
-					local sname = GetSpellInfo(auraID) or "???"
+					local sname = GetSpellName(auraID) or "???"
 					GameTooltip:AddLine("|cffaaffaa"..L.cd2AddSpellFrameDurationLost..":|r")
 					GameTooltip:AddLine("|cffffffff - \""..sname.."\"|r")
 
@@ -6368,7 +6461,8 @@ function module.options:Load()
 	end
 	local function SpellsListColSetValue(self,value)
 		local isEnabled = VMRT.ExCD2.colSet[value] and VMRT.ExCD2.colSet[value].enabled
-	  	self.text:SetText(L.cd2AddSpellFrameColumnText.." "..(not isEnabled and "|cffff0000" or "|cffffffff")..value)
+		if value == 0 and self.zeroToNil then value = nil end
+	  	self.text:SetText(value and (L.cd2AddSpellFrameColumnText.." "..(not isEnabled and "|cffff0000" or "|cffffffff")..value) or UNUSED)
 		if self.lock then return end
 		if type(self.keystr) == "table" then
 			for i=1,#self.keystr do
@@ -6532,11 +6626,19 @@ function module.options:Load()
 		line.colBack:SetPoint("LEFT",line.col)
 		line.colBack:SetPoint("RIGHT",line.col)
 
-		line.colExpand = ELib:Button(line,L.cd2BySpec):Size(120,8):Point("LEFT",line.col,0,0):Point("BOTTOM",line,0,0):OnClick(SpellsListLineColExpand)
+		line.colExpand = ELib:Button(line,L.cd2BySpec):Size(90,8):Point("LEFT",line.col,(ExRT.isClassic and not ExRT.isLK) and 15 or -30,0):Point("BOTTOM",line,0,0):OnClick(SpellsListLineColExpand)
 		line.colExpand.Texture:SetGradient("VERTICAL",CreateColor(0.05,0.26,0.09,1), CreateColor(0.20,0.41,0.25,1))
 		local textObj = line.colExpand:GetTextObj()
 		textObj:SetFont(textObj:GetFont(),8,"")
 
+		line.colExpand2 = ELib:Button(line,L.cd2ByRole):Size(90,8):Point("LEFT",line.col,60,0):Point("BOTTOM",line,0,0):OnClick(SpellsListLineColExpandRole)
+		line.colExpand2.Texture:SetGradient("VERTICAL",CreateColor(0.26,0.05,0.09,1), CreateColor(0.41,0.20,0.25,1))
+		local textObj = line.colExpand2:GetTextObj()
+		textObj:SetFont(textObj:GetFont(),8,"")
+		if ExRT.isClassic and not ExRT.isLK then
+			line.colExpand2.Show = line.colExpand2.Hide
+			line.colExpand2:Hide()
+		end
 
 		line.prior = ELib:Slider(line,""):Size(120):Point("LEFT",line.col,"RIGHT",15,0):Range(0,100):SetTo(101):OnChange(SpellsListPrioritySetValue)
 		line.prior:SetObeyStepOnDrag(true)
@@ -6666,6 +6768,87 @@ function module.options:Load()
 		self:Show()
 	end
 
+
+	self.list.colByRoleFrame = CreateFrame("Frame",nil,self)
+	self.list.colByRoleFrame:SetWidth(155)
+	self.list.colByRoleFrame:SetFrameStrata("DIALOG")
+	self.list.colByRoleFrame.background = self.list.colByRoleFrame:CreateTexture(nil,"BACKGROUND")
+	self.list.colByRoleFrame.background:SetAllPoints()
+	self.list.colByRoleFrame.background:SetColorTexture(0,0,0,.8)
+	ELib:Border(self.list.colByRoleFrame,2,0.44,0.45,0.50,1)
+
+	self.list.colByRoleFrame.close = ELib:Button(self.list.colByRoleFrame,"x"):Size(155-2,10):Point("BOTTOM",0,0):OnClick(function(self) self:GetParent():Hide() end):Tooltip(L.cd2ByRoleTip)
+
+	self.list.colByRoleFrame:Hide()
+	self.list.colByRoleFrame.role = {}
+	function self.list.colByRoleFrame:Open(line,clickObj)
+		if self:IsShown() and self.data == line.data[1] then
+			self:Hide()
+			return
+		end
+
+		self:ClearAllPoints()
+		self:SetPoint("TOPRIGHT",clickObj,"BOTTOMRIGHT",5,-2)
+
+		local class = line.data_class
+		local spellID = line.data[1]
+
+		local r,g,b = ExRT.F.classColorNum(class)
+		self.background:SetColorTexture(r*0.5,g*0.5,b*0.5,1)
+
+		for i=1,3 do
+			local slider = self.role[i]
+			if not slider then
+				slider = ELib:Slider(self,UNUSED):Size(120):Point("RIGHT",self,"TOPRIGHT",-5,-3-SPELL_LINE_HEIGHT*(i-1)-SPELL_LINE_HEIGHT/2):Range(0,10):SetTo(0):OnChange(function(self,...) 
+					SpellsListColSetValue(self,...)
+					for j=1,#_C do
+						if _C[j].db[1] == line.data[1] then
+							_C[j].checkRole = (VMRT.ExCD2.CDECol[ line.data[1] ..";HEALER"] or VMRT.ExCD2.CDECol[ line.data[1] ..";TANK"] or VMRT.ExCD2.CDECol[ line.data[1] ..";DAMAGER"]) and true or false
+						end
+					end
+				end)
+				self.role[i] = slider
+				slider.zeroToNil = true
+				slider:SetObeyStepOnDrag(true)
+				slider.Low:Hide()
+				slider.High:Hide()
+				slider:SetScript("OnEnter",nil)
+				slider:SetScript("OnLeave",nil)
+				slider:HideBorders()
+				slider.Thumb:SetSize(12,12)
+				slider.Thumb:SetTexture("Interface\\AddOns\\"..GlobalAddonName.."\\media\\circle256")
+				slider.Thumb:SetVertexColor(0.44,0.45,0.50,1)
+				slider.backline = slider:CreateTexture(nil,"BACKGROUND")
+				slider.backline:SetColorTexture(0.44,0.45,0.50,0.7)
+				slider.backline:SetPoint("LEFT")
+				slider.backline:SetPoint("RIGHT")
+				slider.backline:SetHeight(4)
+				slider.Text:SetFont(GameFontHighlight:GetFont(),10,"")
+				slider.Text:SetTextColor(0.44,0.45,0.50,1)
+				slider:SetScript("OnMouseWheel",nil)
+
+				slider.icon = slider:CreateTexture(nil,"ARTWORK")
+				slider.icon:SetPoint("RIGHT",slider,"LEFT",-5,0)
+				slider.icon:SetSize(20,20)
+			end
+			slider.icon:SetAtlas(i == 1 and "groupfinder-icon-role-large-dps" or i == 2 and "groupfinder-icon-role-large-heal" or "groupfinder-icon-role-large-tank")
+
+			local colStr = line.data[1]..";"..(i == 1 and "DAMAGER" or i == 2 and "HEALER" or "TANK")
+			local col = VMRT.ExCD2.CDECol[colStr] or 0
+			slider.keystr = colStr
+			slider.lock = true
+			slider:SetTo(col)
+			slider.lock = false
+
+			slider:Show()
+		end
+		self:SetHeight(SPELL_LINE_HEIGHT * 3 + 10)
+
+		self.data = line.data[1]
+
+		self:Show()
+	end
+
 	local function SortCategories(cats)
 		local new = {}
 		for k,v in pairs(cats) do 
@@ -6693,7 +6876,7 @@ function module.options:Load()
 					end
 					cats[cat] = true
 				end
-				if (categoryNow == "ENABLED" and data[1] and GetSpellInfo(data[1]) and VMRT.ExCD2.CDE[ data[1] ]) then
+				if (categoryNow == "ENABLED" and data[1] and GetSpellName(data[1]) and VMRT.ExCD2.CDE[ data[1] ]) then
 					list[#list+1] = data
 				end
 				if (categoryNow == "FAV" and data[1] and VMRT.ExCD2.OptFav[ data[1] ]) then
@@ -6703,7 +6886,7 @@ function module.options:Load()
 		end
 		if self.search then
 			for i=#list,1,-1 do
-				local name = GetSpellInfo(list[i][1])
+				local name = GetSpellName(list[i][1])
 				if name and not name:lower():find(self.search) then
 					tremove(list,i)
 				end
@@ -6918,8 +7101,9 @@ function module.options:Load()
 
 				isHideMost = true
 			else
-				local spellName,_,spellTexture = GetSpellInfo(data[1])
-				line.icon:SetTexture(spellTexture)
+				local spellName = GetSpellName(data[1])
+				local spellTexture = GetSpellTexture(data[1])
+				line.icon:SetTexture(data.icon or spellTexture)
 				line.spellName:SetText(spellName or "Removed spell #"..data[1])
 
 				line.tooltipFrame.link = nil
@@ -7184,7 +7368,7 @@ function module.options:Load()
 	self.searchEditBox:SetTextColor(0,1,0,1)
 
 
-	self.addModSpellFrame = ELib:Popup():Size(570,275)
+	self.addModSpellFrame = ELib:Popup():Size(570,300)
 
 	self.addModSpellFrame.Save = ELib:Button(self.addModSpellFrame,L.BossmodsKromogSetupsSave):Size(558,20):Point("BOTTOM",0,1):OnClick(function(self)
 		local parent = self:GetParent()
@@ -7227,7 +7411,7 @@ function module.options:Load()
 		local parent = self:GetParent()
 		local data = parent.data
 		local spellID = data[1]
-		if not GetSpellInfo(spellID) then
+		if not GetSpellName(spellID) then
 			self:Disable()
 			parent.spellIDIcon:ColorBorder(true)
 			return
@@ -7253,27 +7437,56 @@ function module.options:Load()
 		--self.Save:Click()
 	end)
 
-	self.addModSpellFrame.spellIDIcon = ELib:Edit(self.addModSpellFrame):Size(100,20):Point("TOPLEFT",150,-50):LeftText("Spell ID (for icon):"):OnChange(function(self,isUser)
+	self.addModSpellFrame.spellIDIcon = ELib:Edit(self.addModSpellFrame):Size(180,20):Point("TOPLEFT",150,-50):LeftText("Spell ID (for icon):"):OnChange(function(self,isUser)
 		local text = self:GetText() or ""
 		if not tonumber(text) then
 			text = "0"
 		end
 		local spellID = tonumber(text)
 		local parent = self:GetParent()
-		parent.data[1] = spellID
+		if isUser then
+			parent.data[1] = spellID
+		end
 		parent.Save:Check()
 
 		local spellName,_,spellIcon = GetSpellInfo(spellID)
 		self.RightText:SetText((spellIcon and "|T"..spellIcon..":20|t " or "")..(spellName or ""))
+	end):Tooltip(function(self)
+		local parent = self:GetParent()
+		local spellID = parent.data[1]
+		if not spellID or not GetSpellName(spellID) then
+			return "Spell does not exist"
+		end
+		local AllSpells = module.options:GetAllSpells(true)
+		for _,line in pairs(AllSpells) do
+			if line[1] == spellID and line ~= parent.data then
+				return "Spell already found in cooldowns list"
+			end
+		end
 	end)
 	self.addModSpellFrame.spellIDIcon.leftText:Color():Shadow()
 	self.addModSpellFrame.spellIDIcon.RightText = ELib:Text(self.addModSpellFrame.spellIDIcon,"",12):Point("LEFT",self.addModSpellFrame.spellIDIcon,"RIGHT",5,0):Color():Shadow()
 
-	self.addModSpellFrame.chkSpellIsTalent = ELib:Check(self.addModSpellFrame,L.cd2SpellIsTalent):Tooltip(L.cd2SpellIsTalentTip):Point(150,-75):OnClick(function(self) 
+	self.addModSpellFrame.chkSpellIsTalent = ELib:Check(self.addModSpellFrame,L.cd2SpellIsTalent):Tooltip(L.cd2SpellIsTalentTip):Point(150,-100):OnClick(function(self) 
 		local parent = self:GetParent()
 		parent.data.isTalent = self:GetChecked()
 		parent.Save:Check()
 	end)
+
+	self.addModSpellFrame.customIcon = ELib:Edit(self.addModSpellFrame):Size(180,20):Point("TOPLEFT",150,-75):LeftText("Custom icon:"):OnChange(function(self,isUser)
+		local text = self:GetText() or ""
+		if text:trim() == "" then
+			text = nil
+		end
+		if isUser then
+			local parent = self:GetParent()
+			parent.data.icon = text
+		end
+
+		self.RightText:SetText((text and "|T"..text..":20|t " or ""))
+	end):Tooltip("Icon ID or icon path.\nLeave empty to use icon from item or spell")
+	self.addModSpellFrame.customIcon.leftText:Color():Shadow()
+	self.addModSpellFrame.customIcon.RightText = ELib:Text(self.addModSpellFrame.customIcon,"",12):Point("LEFT",self.addModSpellFrame.customIcon,"RIGHT",5,0):Color():Shadow()
 
 	local function addModSpellFrameEditCLEU(self)
 		local text = self:GetText() or ""
@@ -7289,7 +7502,7 @@ function module.options:Load()
 	end
 
 	for i=1,5 do
-		self.addModSpellFrame["spellIDCLEU"..i] = ELib:Edit(self.addModSpellFrame):Size(180,20):Point("TOPLEFT",150,-125-(i-1)*25):OnChange(addModSpellFrameEditCLEU):Tooltip("Leave empty for ignoring"):LeftText("")
+		self.addModSpellFrame["spellIDCLEU"..i] = ELib:Edit(self.addModSpellFrame):Size(180,20):Point("TOPLEFT",150,-150-(i-1)*25):OnChange(addModSpellFrameEditCLEU):Tooltip("Leave empty for ignoring"):LeftText("")
 		self.addModSpellFrame["spellIDCLEU"..i].leftText:Color():Shadow()
 
 		self.addModSpellFrame["cd"..i] = ELib:Edit(self.addModSpellFrame):Size(100,20):Point("LEFT",self.addModSpellFrame["spellIDCLEU"..i],"RIGHT",10,0):OnChange(addModSpellFrameEditCD)
@@ -7300,7 +7513,7 @@ function module.options:Load()
 	self.addModSpellFrame.cdtext = ELib:Text(self.addModSpellFrame,L.cd2EditBoxCDTooltip,12):Point("BOTTOM",self.addModSpellFrame.cd1,"TOP",0,2):Color():Shadow()
 	self.addModSpellFrame.durtext = ELib:Text(self.addModSpellFrame,L.cd2EditBoxDurationTooltip,12):Point("BOTTOM",self.addModSpellFrame.dur1,"TOP",0,2):Color():Shadow()
 
-	self.addModSpellFrame.dropDown = ELib:DropDown(self.addModSpellFrame,200,10):Size(210):Point("TOPLEFT",150,-25)
+	self.addModSpellFrame.dropDown = ELib:DropDown(self.addModSpellFrame,200,10):Size(180):Point("TOPLEFT",150,-25)
 	self.addModSpellFrame.dropDown.LeftText = ELib:Text(self.addModSpellFrame.dropDown,L.cd2Class..":",12):Point("RIGHT",self.addModSpellFrame.dropDown,"LEFT",-5,0):Color():Shadow()
 
 	function self.addModSpellFrame.dropDown:SetValue(newValue)
@@ -7327,7 +7540,7 @@ function module.options:Load()
 	end
 
 	self.addModSpellFrame.dropDown.List[#self.addModSpellFrame.dropDown.List + 1] = {
-		text = L.cd2CatItems,
+		text = BANK_TAB_ASSIGN_EQUIPMENT_CHECKBOX or L.cd2CatItems,
 		justifyH = "CENTER",
 		func = self.addModSpellFrame.dropDown.SetValue,
 		arg1 = "ITEMS",
@@ -7360,17 +7573,6 @@ function module.options:Load()
 		parent:Hide()
 	end)
 
-	self.addModSpellFrame.isEquip = ELib:Check(self.addModSpellFrame,"|cffffffffIs Equipment:"):Left():Point("LEFT",self.addModSpellFrame["spellIDCLEU3"],"LEFT",0,0):OnClick(function(self)
-		local parent = self:GetParent()
-		local data = parent.data
-
-		if self:GetChecked() then
-			data.isEquip = true
-		else
-			data.isEquip = nil
-		end
-	end)
-
 	self.addModSpellFrame.itemToSpell = ELib:Edit(self.addModSpellFrame,nil,true):Size(180,20):Point("LEFT",self.addModSpellFrame["spellIDCLEU4"],"LEFT",0,0):OnChange(function(self,isUser)
 		local parent = self:GetParent()
 		local data = parent.data
@@ -7378,8 +7580,11 @@ function module.options:Load()
 		self.RightText:SetText("")
 		local itemID = tonumber(self:GetText() or "")
 
-		data.itemID = itemID
-		parent.Save:Check()
+		local class = strsplit(",",module.options.addModSpellFrame.data[2])
+		if class ~= "OTHER" then
+			data.itemID = itemID
+			parent.Save:Check()
+		end
 
 		if itemID then
 			local itemName, _, _, _, _, _, _, _, _, itemIcon = GetItemInfo(itemID)
@@ -7397,6 +7602,11 @@ function module.options:Load()
 	end):LeftText("Item ID:"):Run(function(self) 
 		self.leftText:Color() 
 		self.RightText = ELib:Text(self,"",12):Point("TOPLEFT",self,"BOTTOMLEFT",3,-3):Color():Shadow()
+	end):Tooltip(function()
+		local class = strsplit(",",module.options.addModSpellFrame.data[2])
+		if class == "OTHER" then
+			return "This field is only for helping to find out spell id for usable item."
+		end
 	end)
 
 
@@ -7448,10 +7658,14 @@ function module.options:Load()
 		end
 
 		self.itemToSpell:SetText(data.itemID or "")
-		self.isEquip:SetChecked(data.isEquip)
-		self.itemToSpell:SetShown(class == "ITEMS")
-		self.isEquip:SetShown(class == "ITEMS")
+		self.itemToSpell:SetShown(class == "ITEMS" or class == "OTHER")
+		self.itemToSpell:LeftText(class == "ITEMS" and "Item ID:" or "Get spell ID from item ID:")
+		self.customIcon:SetText(data.icon or "")
+		self.customIcon:SetShown(true)
 		self.chkSpellIsTalent:SetShown(class ~= "ITEMS")
+		self.spellIDIcon:LeftText(class == "ITEMS" and "Spell ID (for options):" or "Spell ID (for icon):")
+
+		self.Save:Check()
 
 		local isNew = true
 		local AllSpells = module.options:GetAllSpells(true)
@@ -7613,6 +7827,8 @@ function module.options:Load()
 		optColSet.chkShowOnlyOnCD:SetChecked(VColOpt.methodsShownOnCD)
 		optColSet.chkBotToTop:SetChecked(VColOpt.frameAnchorBottom)
 		optColSet.chkRightToLeft:SetChecked(VColOpt.frameAnchorRightToLeft)
+		optColSet.chkTopBottomCol:SetChecked(VColOpt.frameAnchorTopBottomCol)
+
 		optColSet.chkGeneralMethods:SetChecked(VColOpt.methodsGeneral)
 		do
 			local defStyleAnimation = VColOpt.methodsStyleAnimation or defOpt.methodsStyleAnimation
@@ -8652,7 +8868,7 @@ function module.options:Load()
 
 	--> Method options
 
-	self.optColSet.superTabFrame.tab[6].scroll = ELib:ScrollFrame(self.optColSet.superTabFrame.tab[6]):Point("TOP"):Size(456,444):Height(535+25*2)
+	self.optColSet.superTabFrame.tab[6].scroll = ELib:ScrollFrame(self.optColSet.superTabFrame.tab[6]):Point("TOP"):Size(456,444):Height(610)
 	ELib:Border(self.optColSet.superTabFrame.tab[6].scroll,0)
 	self.optColSet.col6scroll = self.optColSet.superTabFrame.tab[6].scroll.C
 	self.optColSet.col6scroll:SetWidth(456 - 16)
@@ -8684,9 +8900,18 @@ function module.options:Load()
 		module:ReloadAllSplits()
 	end)
 
-	self.optColSet.textStyleAnimation = ELib:Text(self.optColSet.col6scroll,L.cd2OtherSetStyleAnimation..":",11):Size(200,20):Point(10,-105)
-	self.optColSet.dropDownStyleAnimation = ELib:DropDown(self.optColSet.col6scroll,205,2):Size(220):Point(180,-105)
-	self.optColSet.dropDownStyleAnimation.Styles = {L.cd2OtherSetStyleAnimation1,L.cd2OtherSetStyleAnimation2}
+	self.optColSet.chkTopBottomCol = ELib:Check(self.optColSet.col6scroll,L.cd2ColSetTopToBot):Tooltip(L.cd2ColSetTopToBotTip):Point(10,-105):OnClick(function(self) 
+		if self:GetChecked() then
+			currColOpt.frameAnchorTopBottomCol = true
+		else
+			currColOpt.frameAnchorTopBottomCol = nil
+		end
+		module:ReloadAllSplits()
+	end)
+
+	self.optColSet.textStyleAnimation = ELib:Text(self.optColSet.col6scroll,L.cd2OtherSetStyleAnimation..":",11):Size(200,20):Point(10,-130)
+	self.optColSet.dropDownStyleAnimation = ELib:DropDown(self.optColSet.col6scroll,205,3):Size(220):Point(180,-130)
+	self.optColSet.dropDownStyleAnimation.Styles = {L.cd2OtherSetStyleAnimation1,L.cd2OtherSetStyleAnimation2,L.cd2OtherSetStyleAnimation3}
 	for i=1,#self.optColSet.dropDownStyleAnimation.Styles do
 		self.optColSet.dropDownStyleAnimation.List[i] = {
 			text = self.optColSet.dropDownStyleAnimation.Styles[i],
@@ -8700,8 +8925,8 @@ function module.options:Load()
 		}
 	end
 
-	self.optColSet.textTimeLineAnimation = ELib:Text(self.optColSet.col6scroll,L.cd2OtherSetTimeLineAnimation..":",11):Size(200,20):Point(10,-130)
-	self.optColSet.dropDownTimeLineAnimation = ELib:DropDown(self.optColSet.col6scroll,205,2):Size(220):Point(180,-130)
+	self.optColSet.textTimeLineAnimation = ELib:Text(self.optColSet.col6scroll,L.cd2OtherSetTimeLineAnimation..":",11):Size(200,20):Point(10,-155)
+	self.optColSet.dropDownTimeLineAnimation = ELib:DropDown(self.optColSet.col6scroll,205,2):Size(220):Point(180,-155)
 	self.optColSet.dropDownTimeLineAnimation.Styles = {L.cd2OtherSetTimeLineAnimation1,L.cd2OtherSetTimeLineAnimation2}
 	for i=1,#self.optColSet.dropDownTimeLineAnimation.Styles do
 		self.optColSet.dropDownTimeLineAnimation.List[i] = {
@@ -8716,7 +8941,7 @@ function module.options:Load()
 		}
 	end
 
-	self.optColSet.chkIconTooltip = ELib:Check(self.optColSet.col6scroll,L.cd2OtherSetIconToolip):Point(10,-155):OnClick(function(self) 
+	self.optColSet.chkIconTooltip = ELib:Check(self.optColSet.col6scroll,L.cd2OtherSetIconToolip):Point(10,-180):OnClick(function(self) 
 		if self:GetChecked() then
 			currColOpt.methodsIconTooltip = true
 		else
@@ -8725,7 +8950,7 @@ function module.options:Load()
 		module:ReloadAllSplits()
 	end)
 
-	self.optColSet.chkLineClick = ELib:Check(self.optColSet.col6scroll,L.cd2OtherSetLineClick):Point(10,-180):OnClick(function(self) 
+	self.optColSet.chkLineClick = ELib:Check(self.optColSet.col6scroll,L.cd2OtherSetLineClick):Point(10,-205):OnClick(function(self) 
 		if self:GetChecked() then
 			currColOpt.methodsLineClick = true
 		else
@@ -8734,7 +8959,7 @@ function module.options:Load()
 		module:ReloadAllSplits()
 	end)
 
-	self.optColSet.chkLineClickWhisper = ELib:Check(self.optColSet.col6scroll,L.cd2OtherSetLineClickWhisper):Point(10,-205):OnClick(function(self) 
+	self.optColSet.chkLineClickWhisper = ELib:Check(self.optColSet.col6scroll,L.cd2OtherSetLineClickWhisper):Point(10,-230):OnClick(function(self) 
 		if self:GetChecked() then
 			currColOpt.methodsLineClickWhisper = true
 		else
@@ -8743,8 +8968,8 @@ function module.options:Load()
 		module:ReloadAllSplits()
 	end)
 
-	self.optColSet.textLineClickMod = ELib:Text(self.optColSet.col6scroll,L.cd2ClickKeyMod..":",11):Size(200,20):Point(10,-230)
-	self.optColSet.dropDownLineClickMod = ELib:DropDown(self.optColSet.col6scroll,205,4):Size(150):Point(250,-230)
+	self.optColSet.textLineClickMod = ELib:Text(self.optColSet.col6scroll,L.cd2ClickKeyMod..":",11):Size(200,20):Point(10,-255)
+	self.optColSet.dropDownLineClickMod = ELib:DropDown(self.optColSet.col6scroll,205,4):Size(150):Point(250,-255)
 	self.optColSet.dropDownLineClickMod.Mods = {"-",nil,SHIFT_KEY or "Shift","shift",CTRL_KEY or "Ctrl","ctrl",ALT_KEY_TEXT or "Alt","alt"}
 	for i=1,#self.optColSet.dropDownLineClickMod.Mods,2 do
 		local text = self.optColSet.dropDownLineClickMod.Mods[i]
@@ -8760,7 +8985,7 @@ function module.options:Load()
 		}
 	end
 
-	self.optColSet.chkNewSpellNewLine = ELib:Check(self.optColSet.col6scroll,L.cd2NewSpellNewLine):Point(10,-255):Tooltip(L.cd2NewSpellNewLineTooltip):OnClick(function(self) 
+	self.optColSet.chkNewSpellNewLine = ELib:Check(self.optColSet.col6scroll,L.cd2NewSpellNewLine):Point(10,-280):Tooltip(L.cd2NewSpellNewLineTooltip):OnClick(function(self) 
 		if self:GetChecked() then
 			currColOpt.methodsNewSpellNewLine = true
 		else
@@ -8769,8 +8994,8 @@ function module.options:Load()
 		module:ReloadAllSplits()
 	end)
 
-	self.optColSet.textSortingRules = ELib:Text(self.optColSet.col6scroll,L.cd2MethodsSortingRules..":",11):Size(200,20):Point(10,-280)
-	self.optColSet.dropDownSortingRules = ELib:DropDown(self.optColSet.col6scroll,405,6):Size(220):Point(180,-280)
+	self.optColSet.textSortingRules = ELib:Text(self.optColSet.col6scroll,L.cd2MethodsSortingRules..":",11):Size(200,20):Point(10,-305)
+	self.optColSet.dropDownSortingRules = ELib:DropDown(self.optColSet.col6scroll,405,6):Size(220):Point(180,-305)
 	self.optColSet.dropDownSortingRules.Rules = {L.cd2MethodsSortingRules1,L.cd2MethodsSortingRules2,L.cd2MethodsSortingRules3,L.cd2MethodsSortingRules4,L.cd2MethodsSortingRules5,L.cd2MethodsSortingRules6}
 	for i=1,#self.optColSet.dropDownSortingRules.Rules do
 		self.optColSet.dropDownSortingRules.List[i] = {
@@ -8786,7 +9011,7 @@ function module.options:Load()
 		}
 	end
 
-	self.optColSet.chkHideOwnSpells = ELib:Check(self.optColSet.col6scroll,L.cd2MethodsDisableOwn):Point(10,-305):OnClick(function(self) 
+	self.optColSet.chkHideOwnSpells = ELib:Check(self.optColSet.col6scroll,L.cd2MethodsDisableOwn):Point(10,-330):OnClick(function(self) 
 		if self:GetChecked() then
 			currColOpt.methodsHideOwnSpells = true
 		else
@@ -8795,7 +9020,7 @@ function module.options:Load()
 		module:ReloadAllSplits()
 	end)
 
-	self.optColSet.chkAlphaNotInRange = ELib:Check(self.optColSet.col6scroll,L.cd2MethodsAlphaNotInRange):Point(10,-330):OnClick(function(self) 
+	self.optColSet.chkAlphaNotInRange = ELib:Check(self.optColSet.col6scroll,L.cd2MethodsAlphaNotInRange):Point(10,-355):OnClick(function(self) 
 		if self:GetChecked() then
 			currColOpt.methodsAlphaNotInRange = true
 		else
@@ -8812,7 +9037,7 @@ function module.options:Load()
 		self:tooltipReload(self)
 	end)
 
-	self.optColSet.chkDisableActive = ELib:Check(self.optColSet.col6scroll,L.cd2ColSetDisableActive):Point(10,-355):OnClick(function(self) 
+	self.optColSet.chkDisableActive = ELib:Check(self.optColSet.col6scroll,L.cd2ColSetDisableActive):Point(10,-380):OnClick(function(self) 
 		if self:GetChecked() then
 			currColOpt.methodsDisableActive = true
 		else
@@ -8821,7 +9046,7 @@ function module.options:Load()
 		module:ReloadAllSplits()
 	end)
 
-	self.optColSet.chkOneSpellPerCol = ELib:Check(self.optColSet.col6scroll,L.cd2ColSetOneSpellPerCol):Point(10,-380):OnClick(function(self) 
+	self.optColSet.chkOneSpellPerCol = ELib:Check(self.optColSet.col6scroll,L.cd2ColSetOneSpellPerCol):Point(10,-405):OnClick(function(self) 
 		if self:GetChecked() then
 			currColOpt.methodsOneSpellPerCol = true
 		else
@@ -8830,7 +9055,7 @@ function module.options:Load()
 		module:ReloadAllSplits()
 	end):Tooltip(L.cd2ColSetOneSpellPerColTooltip)
 
-	self.optColSet.chkSortByAvailability = ELib:Check(self.optColSet.col6scroll,L.cd2SortByAvailability):Point(10,-405):OnClick(function(self) 
+	self.optColSet.chkSortByAvailability = ELib:Check(self.optColSet.col6scroll,L.cd2SortByAvailability):Point(10,-430):OnClick(function(self) 
 		if self:GetChecked() then
 			currColOpt.methodsSortByAvailability = true
 		else
@@ -8901,7 +9126,9 @@ function module.options:Load()
 
 
 	function self.optColSet.chkGeneralMethods:doAlphas()
-		ExRT.lib.SetAlphas(VMRT.ExCD2.colSet[module.options.optColTabs.selected].methodsGeneral and module.options.optColTabs.selected ~= (module.db.maxColumns + 1) and 0.5 or 1,module.options.optColSet.chkShowOnlyOnCD,module.options.optColSet.chkBotToTop,module.options.optColSet.chkRightToLeft,module.options.optColSet.dropDownStyleAnimation,module.options.optColSet.dropDownTimeLineAnimation,module.options.optColSet.chkIconTooltip,module.options.optColSet.chkLineClick,module.options.optColSet.chkNewSpellNewLine,module.options.optColSet.dropDownSortingRules,module.options.optColSet.textSortingRules,module.options.optColSet.textStyleAnimation,module.options.optColSet.textTimeLineAnimation,module.options.optColSet.chkHideOwnSpells,module.options.optColSet.chkAlphaNotInRange,module.options.optColSet.sliderAlphaNotInRange,module.options.optColSet.chkDisableActive,module.options.optColSet.chkOneSpellPerCol,module.options.optColSet.chkLineClickWhisper,module.options.optColSet.chkSortByAvailability, module.options.optColSet.chkSortByAvailability_activeToTop, module.options.optColSet.chkReverseSorting, module.options.optColSet.chkCDOnlyTimer, module.options.optColSet.chkTextIgnoreActive, module.options.optColSet.chkShowOnlyNotOnCD, module.options.optColSet.dropDownLineClickMod, module.options.optColSet.textLineClickMod)
+		ExRT.lib.SetAlphas(VMRT.ExCD2.colSet[module.options.optColTabs.selected].methodsGeneral and module.options.optColTabs.selected ~= (module.db.maxColumns + 1) and 0.5 or 1,module.options.optColSet.chkShowOnlyOnCD,module.options.optColSet.chkBotToTop,module.options.optColSet.chkRightToLeft,module.options.optColSet.dropDownStyleAnimation,module.options.optColSet.dropDownTimeLineAnimation,module.options.optColSet.chkIconTooltip,module.options.optColSet.chkLineClick,module.options.optColSet.chkNewSpellNewLine,
+			module.options.optColSet.dropDownSortingRules,module.options.optColSet.textSortingRules,module.options.optColSet.textStyleAnimation,module.options.optColSet.textTimeLineAnimation,module.options.optColSet.chkHideOwnSpells,module.options.optColSet.chkAlphaNotInRange,module.options.optColSet.sliderAlphaNotInRange,module.options.optColSet.chkDisableActive,module.options.optColSet.chkOneSpellPerCol,module.options.optColSet.chkLineClickWhisper,module.options.optColSet.chkSortByAvailability, 
+			module.options.optColSet.chkSortByAvailability_activeToTop, module.options.optColSet.chkReverseSorting, module.options.optColSet.chkCDOnlyTimer, module.options.optColSet.chkTextIgnoreActive, module.options.optColSet.chkShowOnlyNotOnCD, module.options.optColSet.dropDownLineClickMod, module.options.optColSet.textLineClickMod,module.options.optColSet.chkTopBottomCol)
 	end
 
 
@@ -11038,6 +11265,7 @@ function module:ColApplyStyle(columnFrame,currColOpt,generalOpt,defOpt,mainWidth
 
 		local frameAnchorBottom = (not currColOpt.methodsGeneral and currColOpt.frameAnchorBottom) or (currColOpt.methodsGeneral and generalOpt.frameAnchorBottom)
 		local frameAnchorRightToLeft = (not currColOpt.methodsGeneral and currColOpt.frameAnchorRightToLeft) or (currColOpt.methodsGeneral and generalOpt.frameAnchorRightToLeft)
+		local frameAnchorTopBottomCol = (not currColOpt.methodsGeneral and currColOpt.frameAnchorTopBottomCol) or (currColOpt.methodsGeneral and generalOpt.frameAnchorTopBottomCol)
 
 		local lastLine = nil
 		for n=1,linesTotal do 
@@ -11048,6 +11276,10 @@ function module:ColApplyStyle(columnFrame,currColOpt,generalOpt,defOpt,mainWidth
 			elseif frameAnchorBottom then
 				local inLine = (n-1) % frameColumns
 				line = ((n-1) - inLine) / frameColumns
+				if frameAnchorTopBottomCol then
+					inLine = floor((n-1) / linesShown)
+					line = (n-1) % linesShown
+				end
 				colLine:ClearAllPoints()
 				if frameAnchorRightToLeft then
 					colLine:SetPoint("BOTTOMRIGHT", -inLine*frameWidth, line*columnFrame.iconSize+line*frameBetweenLines) 
@@ -11058,6 +11290,10 @@ function module:ColApplyStyle(columnFrame,currColOpt,generalOpt,defOpt,mainWidth
 			else
 				local inLine = (n-1) % frameColumns
 				line = ExRT.F.Round( ((n-1) - inLine) / frameColumns )
+				if frameAnchorTopBottomCol then
+					inLine = floor((n-1) / linesShown)
+					line = (n-1) % linesShown
+				end
 				colLine:ClearAllPoints()
 				if frameAnchorRightToLeft then
 					colLine:SetPoint("TOPRIGHT", -inLine*frameWidth, -line*columnFrame.iconSize-line*frameBetweenLines) 
@@ -11232,8 +11468,8 @@ module.db.AllSpells = {
 
 
 	{107574,"WARRIOR,DPS",3,--Аватара
-		{107574,90,20},
-		isTalent=true,cdDiff={296320,"*0.80"},durationDiff={400314,"*2"}},
+		nil,{107574,90,20},{107574,90,20},{401150,90,20},
+		isTalent=true,cdDiff={296320,"*0.80"},durationDiff={400314,"*2"},sameTalent={107574,401150}},
 	{6673,	"WARRIOR",1,--Боевой крик
 		{6673,15,0},nil,nil,nil},
 	{18499,	"WARRIOR,DEF",4,--Ярость берсерка
@@ -11429,6 +11665,10 @@ module.db.AllSpells = {
 	{236320,"WARRIOR,PVP",3,--Боевое знамя
 		nil,{236320,90,15},nil,nil,
 		isTalent=true},
+	{436358,"WARRIOR",3,--Demolish
+		{436358,45,0},
+		isTalent=true},
+
 
 
 
@@ -11479,7 +11719,7 @@ module.db.AllSpells = {
 		nil,nil,{213644,8,0},{213644,8,0},
 		isTalent=true,isDispel=true},
 	{498,	"PALADIN,DEF",4,--Божественная защита
-		nil,{498,60,8},nil,{498,60,8},
+		nil,{498,60,8},nil,{403876,60,8},
 		cdDiff={114154,"*0.7"},icon=524353},
 	{642,	"PALADIN,DEF",2,--Божественный щит
 		{642,300,8},nil,nil,nil,
@@ -11501,7 +11741,7 @@ module.db.AllSpells = {
 		]]},
 	{190784,"PALADIN,MOVE",4,--Божественный скакун
 		{190784,45,3},nil,nil,nil,
-		isTalent=true,hasCharges=230332,durationDiff={432990,2,376996,2,335424,3,199542,2,339268,{"*1.50","*1.55","*1.60","*1.65","*1.70","*1.75","*1.80","*1.85","*1.90","*1.95","*2.00","*2.05","*2.10","*2.15","*2.20"}},ignoreUseWithAura=375253,changeCdWithAura={381752,"*0.85"}},
+		isTalent=true,hasCharges=230332,cdDiff={469409,"*0.8"},durationDiff={432990,2,376996,2,335424,3,199542,2,339268,{"*1.50","*1.55","*1.60","*1.65","*1.70","*1.75","*1.80","*1.85","*1.90","*1.95","*2.00","*2.05","*2.10","*2.15","*2.20"},469409,"*0.6"},ignoreUseWithAura=375253,changeCdWithAura={381752,"*0.85"}},
 	{86659,	"PALADIN,DEFTANK",4,--Защитник древних королей
 		nil,nil,{86659,300,8},nil,
 		isTalent=true,cdDiff={340030,{-15,-16.5,-18,-19.5,-21,-22.5,-24,-25.5,-27,-28.5,-30,-31.5,-33,-34.5,-36}},hideWithTalent=228049,sameSpell={86659,212641},reduceCdAfterCast={{53600,204074},-2,{85673,204074},-2,{53600,204074},-2,{85256,204074},-2,{53385,204074},-2,{215661,204074},-2},
@@ -11515,8 +11755,8 @@ module.db.AllSpells = {
 			end
 		]]},
 	{853,	"PALADIN",3,--Молот правосудия
-		{853,60,6},nil,nil,nil,
-		reduceCdAfterCast={{85673,234299},{-3,-6},{53600,234299},{-3,-6},{85256,234299},{-3,-6},{53385,234299},{-3,-6},{215661,234299},{-3,-6}}},
+		{853,45,6},nil,nil,nil,
+		cdDiff={234299,-15}},
 	{183218,"PALADIN",3,--Преграждающая длань
 		nil,nil,nil,{183218,30,10},
 		CLEU_PREP=[[
@@ -11572,7 +11812,19 @@ module.db.AllSpells = {
 		]]},
 	{96231,	"PALADIN,KICK",5,--Укор
 		{96231,15,0},nil,nil,nil,
-		isTalent=true},
+		isTalent=true,
+		CLEU_SPELL_INTERRUPT=[[
+			if sourceName and session_gGUIDs[sourceName][469886] and spellID == 96231 then
+				local line = CDList[sourceName][96231]
+				if line then
+					line:ReduceCD(1)
+
+					if IsAuraActive(sourceName,432502) then
+						line:ReduceCD(1)
+					end
+				end
+			end
+		]]},
 	{184662,"PALADIN,DEF",4,--Щит возмездия
 		nil,nil,nil,{184662,90,15},
 		isTalent=true,cdDiff={114154,"*0.7"},stopDurWithAuraFade=184662},
@@ -11651,7 +11903,7 @@ module.db.AllSpells = {
 		isTalent=true,cdDiff={384909,-60,216853,"*0.67",378425,{"*0.85","*0.7"}},sameSpell={1022,204018},reduceCdAfterCast={{85256,337600},-3,{85222,337600},-3,{85673,337600},-3,{53385,337600},-3,{152262,337600},-3,{53600,337600},-3}},
 	{115750,"PALADIN",3,--Слепящий свет
 		{115750,90,0},nil,nil,nil,
-		isTalent=true},
+		isTalent=true,cdDiff={469325,-15}},
 	{205191,"PALADIN",3,--Око за око
 		nil,nil,nil,{205191,60,10},
 		isTalent=true},
@@ -11672,13 +11924,13 @@ module.db.AllSpells = {
 		isTalent=true},
 	{387174,"PALADIN,DEFTANK",3,--Око Тира
 		nil,nil,{387174,60,9},nil,
-		isTalent=true,cdDiff={405757,"*0.75"}},
+		isTalent=true,cdDiff={405757,"*0.67"}},
 	{378974,"PALADIN",3,--Бастион Света
 		nil,nil,{378974,120,0},nil,
 		isTalent=true},
 	{20066,	"PALADIN,CC",3,--Покаяние
 		{20066,15,0},nil,nil,nil,
-		isTalent=true},
+		isTalent=true,cdDiff={469325,-15}},
 	{414273,"PALADIN",3,
 		nil,{414273,90,0},nil,nil,
 		isTalent=true},
@@ -12009,10 +12261,10 @@ module.db.AllSpells = {
 		nil,nil,{315508,45,0},nil,
 		isTalent=true},
 	{381989,"ROGUE",3,--Призовая игра
-		nil,nil,{381989,420,0},nil,
+		nil,nil,{381989,360,0},nil,
 		isTalent=true},
 	{121471,"ROGUE,DPS",3,--Теневые клинки
-		nil,nil,nil,{121471,120,20},
+		nil,nil,nil,{121471,90,16},
 		isTalent=true,cdDiff={296320,"*0.80",354825,"0.8"},
 		CLEU_SPELL_ENERGIZE=[[
 			if destGUID and isRogue[destGUID] and destName and session_gGUIDs[sourceName][341559] and spellID == 196911 then
@@ -12190,7 +12442,7 @@ module.db.AllSpells = {
 		nil,nil,{88625,60,0},nil,
 		isTalent=true,resetBy=200183,reduceCdAfterCast={{14914,336314},-4,{14914,390994},{-2,-4},585,-4,{585,196985},{-0.4,-0.8},{585,200183,nil,200183},-12,{585,338345},{-0.24,-0.352,-0.384,-0.416,-0.448,-0.48,-0.512,-0.544,-0.576,-0.608,-0.64,-0.672,-0.704,-0.736,-0.768},{585,338345,nil,200183},{-0.72,-1.056,-1.152,-1.248,-1.344,-1.44,-1.536,-1.632,-1.728,-1.824,-1.92,-2.016,-2.112,-2.208,-2.304}},
 		CLEU_SPELL_CAST_SUCCESS=[[
-			if spellID == 88625 IsAuraActive(sourceName,372760) then
+			if spellID == 88625 and IsAuraActive(sourceName,372760) then
 				local line = CDList[sourceName][88625]
 				if line then
 					line:ReduceCD(15)
@@ -12260,7 +12512,7 @@ module.db.AllSpells = {
 		changeCdWithHaste=true},
 	{34433,	"PRIEST,DPS,HEAL",3,--Исчадие Тьмы
 		{34433,180,15},nil,nil,nil,
-		isTalent=true,cdDiff={296320,"*0.80"},hideWithTalent=123040,reduceCdAfterCast={{47540,390770},-4,{585,390770},-4,{8092,390770},-4}},
+		isTalent=true,cdDiff={296320,"*0.80"},hideWithTalent=123040,reduceCdAfterCast={{47540,390770},-4,{585,390770},-4,{8092,390770},-4},sameSpell={34433,451235}},
 	{15487,	"PRIEST,CC,KICK",3,--Безмолвие
 		nil,nil,nil,{15487,45,4},
 		isTalent=true,cdDiff={263716,-15}},
@@ -12307,7 +12559,7 @@ module.db.AllSpells = {
 		isTalent=true},
 	{123040,"PRIEST",3,--Подчинитель разума
 		nil,{123040,60,12},nil,nil,
-		isTalent=true,cdDiff={296320,"*0.80"},reduceCdAfterCast={{585,390770},-2,{47540,390770},-2,{8092,390770},-2}},
+		isTalent=true,cdDiff={296320,"*0.80"},reduceCdAfterCast={{585,390770},-2,{47540,390770},-2,{8092,390770},-2},sameSpell={123040,451235}},
 	{64044,	"PRIEST,CC",3,--Глубинный ужас
 		nil,nil,nil,{64044,45,4},
 		isTalent=true},
@@ -12364,10 +12616,10 @@ module.db.AllSpells = {
 
 	{48707,	"DEATHKNIGHT,DEF",4,--Антимагический панцирь
 		{48707,60,5},
-		isTalent=true,durationDiff={205727,"*1.4",207321,5},cdDiff={205727,-20},stopDurWithAuraFade=48707},
+		durationDiff={205727,"*1.4",207321,5},cdDiff={205727,-20},stopDurWithAuraFade=48707},
 	{51052,	"DEATHKNIGHT,RAID",3,--Зона антимагии
 		{51052,120,8},
-		isTalent=true,durationDiff={337764,{2,2.2,2.4,2.6,2.8,3,3.2,3.4,3.6,3.8,4,4.2,4.4,4.6,4.8}}},
+		isTalent=true,durationDiff={337764,{2,2.2,2.4,2.6,2.8,3,3.2,3.4,3.6,3.8,4,4.2,4.4,4.6,4.8}},cdDiff={374383,-30}},
 	{275699,"DEATHKNIGHT,DPS",3,--Апокалипсис
 		nil,nil,nil,{275699,45,15},
 		isTalent=true,cdDiff={288848,-15,296320,"*0.80",338553,-1},reduceCdAfterCast={{47541,276837},-1}},
@@ -12758,7 +13010,7 @@ module.db.AllSpells = {
 		isTalent=true,durationDiff={462443,3}},
 	{114052,"SHAMAN,HEAL",3,--Перерождение
 		nil,nil,nil,{114052,180,15},
-		isTalent=true,durationDiff={462443,3}},
+		isTalent=true,durationDiff={462443,3},cdDiff={462440,-60}},
 	{114050,"SHAMAN,DPS",3,--Перерождение
 		nil,{114050,180,15},nil,nil,
 		isTalent=true,cdDiff={462440,-60}},
@@ -12796,7 +13048,7 @@ module.db.AllSpells = {
 		{192077,120,15},nil,nil,nil,
 		isTalent=true,cdDiff={381867,{-3,-6},462791,-30}},
 	{383013,"SHAMAN,DISPEL",3,--Тотем противоядия
-		{383013,45,6},
+		{383013,120,6},
 		isTalent=true,cdDiff={381867,{-3,-6}},
 		CLEU_SPELL_AURA_REMOVED_DOSE=[[
 			if spellID == 53390 and session_gGUIDs[sourceName][382030] then
@@ -12899,7 +13151,10 @@ module.db.AllSpells = {
 		nil,{355580,90,0},nil,nil,
 		isTalent=true},
 	{444995,"SHAMAN",3,--Surging Totem
-		nil,nil,{444995,30,0},nil,
+		nil,nil,{444995,30,0},{444995,30,0},
+		isTalent=true},
+	{108270,"SHAMAN",3,--Stone Bulwark Totem
+		{108270,180,30},
 		isTalent=true},
 
 
@@ -12908,7 +13163,37 @@ module.db.AllSpells = {
 		isTalent=true,stopDurWithAuraFade={342246,110909},startCdAfterAuraApply={110909,342246},cdDiff={342249,-10}},
 	{235313,"MAGE,DEF",3,--Пылающая преграда
 		nil,nil,{235313,25,0},nil,
-		isTalent=true},
+		isTalent=true,
+		CLEU_PREP=[[
+			var_235313 = {}
+		]],CLEU_SPELL_AURA_APPLIED=[[
+			if spellID == 235313 and destName and session_gGUIDs[destName][382800] then
+				if var_235313[destName] then
+					var_235313[destName]:Cancel()
+				end
+				var_235313[destName] = C_Timer.NewTicker(1,function()
+					local line = CDList[destName][235313]
+					if line then
+						line:ReduceCD(0.3)
+					end
+				end, 60)
+			end
+		]],CLEU_SPELL_AURA_REMOVED=[[
+			if spellID == 235313 and destName then
+				if session_gGUIDs[destName][382800] then
+					if var_235313[destName] then
+						var_235313[destName]:Cancel()
+						var_235313[destName] = nil
+					end
+				end
+				if session_gGUIDs[destName][455428] then
+					local line = CDList[destName][235313]
+					if line then
+						line:ReduceCD(4)
+					end
+				end
+			end
+		]]},
 	{1953,	"MAGE,MOVE",4,--Скачок
 		{1953,15,0},nil,nil,nil,
 		cdDiff={382268,{-2,-4},336636,{-2,-2.2,-2.4,-2.6,-2.8,-3,-3.2,-3.4,-3.6,-3.8,-4,-4.2,-4.4,-4.6,-4.8}},hideWithTalent=212653,ignoreUseWithAura=375240,changeCdWithAura={381750,"*0.85"},resetBy={{342245,342249}}},
@@ -13035,10 +13320,40 @@ module.db.AllSpells = {
 		]]},
 	{11426,	"MAGE,DEF",3,--Ледяная преграда
 		nil,nil,nil,{11426,25,0},
-		isTalent=true,stopDurWithAuraFade=11426,resetBy=235219},
+		isTalent=true,stopDurWithAuraFade=11426,resetBy=235219,
+		CLEU_PREP=[[
+			var_11426 = {}
+		]],CLEU_SPELL_AURA_APPLIED=[[
+			if spellID == 11426 and destName and session_gGUIDs[destName][382800] then
+				if var_11426[destName] then
+					var_11426[destName]:Cancel()
+				end
+				var_11426[destName] = C_Timer.NewTicker(1,function()
+					local line = CDList[destName][11426]
+					if line then
+						line:ReduceCD(0.3)
+					end
+				end, 60)
+			end
+		]],CLEU_SPELL_AURA_REMOVED=[[
+			if spellID == 11426 and destName then
+				if session_gGUIDs[destName][382800] then
+					if var_11426[destName] then
+						var_11426[destName]:Cancel()
+						var_11426[destName] = nil
+					end
+				end
+				if session_gGUIDs[destName][455428] then
+					local line = CDList[destName][11426]
+					if line then
+						line:ReduceCD(4)
+					end
+				end
+			end
+		]]},
 	{45438,	"MAGE,DEF",3,--Ледяная глыба
 		{45438,240,10},nil,nil,nil,
-		isTalent=true,cdDiff={336613,{-25,-28,-30,-33,-35,-38,-40,-43,-45,-48,-50,-53,-55,-58,-60},382424,{-30,-60}},stopDurWithAuraFade=45438,resetBy=235219},
+		isTalent=true,cdDiff={336613,{-25,-28,-30,-33,-35,-38,-40,-43,-45,-48,-50,-53,-55,-58,-60},382424,{-30,-60}},stopDurWithAuraFade=45438,resetBy=235219,sameSpell={45438,414659,414658},durationDiff={414659,-4}},
 	{12472,	"MAGE,DPS",3,--Стылая кровь
 		nil,nil,nil,{12472,120,25},
 		isTalent=true,durationDiff={155149,5},cdDiff={296320,"*0.80"},hideWithTalent=198144,
@@ -13090,7 +13405,37 @@ module.db.AllSpells = {
 		isTalent=true,startCdAfterAuraFade=205025},
 	{235450,"MAGE,DEF",4,--Призматический барьер
 		nil,{235450,25,0},nil,nil,
-		isTalent=true,cdDiff={235463,"*0"}},
+		isTalent=true,cdDiff={235463,"*0"},
+		CLEU_PREP=[[
+			var_235450 = {}
+		]],CLEU_SPELL_AURA_APPLIED=[[
+			if spellID == 235450 and destName and session_gGUIDs[destName][382800] then
+				if var_235450[destName] then
+					var_235450[destName]:Cancel()
+				end
+				var_235450[destName] = C_Timer.NewTicker(1,function()
+					local line = CDList[destName][235450]
+					if line then
+						line:ReduceCD(0.3)
+					end
+				end, 60)
+			end
+		]],CLEU_SPELL_AURA_REMOVED=[[
+			if spellID == 235450 and destName then
+				if session_gGUIDs[destName][382800] then
+					if var_235450[destName] then
+						var_235450[destName]:Cancel()
+						var_235450[destName] = nil
+					end
+				end
+				if session_gGUIDs[destName][455428] then
+					local line = CDList[destName][235450]
+					if line then
+						line:ReduceCD(4)
+					end
+				end
+			end
+		]]},
 	{475,	"MAGE,DISPEL",5,--Снятие проклятия
 		{475,8,0},nil,nil,nil,
 		isTalent=true,isDispel=true},
@@ -13158,7 +13503,7 @@ module.db.AllSpells = {
 		{212653,25,0},nil,nil,nil,
 		isTalent=true,hasCharges=1,cdDiff={382268,{-2,-4},336636,{-2,-2.2,-2.4,-2.6,-2.8,-3,-3.2,-3.4,-3.6,-3.8,-4,-4.2,-4.4,-4.6,-4.8}},ignoreUseWithAura=375240,changeCdWithAura={381750,"*0.85"},resetBy={{342245,342249}}},
 	{414660,"MAGE",3,--Массовая преграда
-		{414660,120,0},
+		{414660,180,0},
 		isTalent=true},
 	{414664,"MAGE",3,--Массовая невидимость
 		{414664,300,12},
@@ -13565,7 +13910,7 @@ module.db.AllSpells = {
 		isTalent=true,cdDiff={296320,"*0.80",329802,-54,391174,-60},hideWithTalent=102543,reduceCdAfterCast={{274837,340053,103},-0.2,{106785,340053,103},-0.2,{202028,340053,103},-0.2,{5221,340053,103},-0.2,{1822,340053,103},-0.2,{106830,340053,103},-0.2}},
 	{194223,"DRUID,DPS",3,--Парад планет
 		nil,{194223,180,20},nil,nil,nil,
-		isTalent=true,durationDiff={340706,{5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12}},cdDiff={296320,"*0.80",329802,-54},hideWithTalent=102560},
+		isTalent=true,durationDiff={340706,{5,5.5,6,6.5,7,7.5,8,8.5,9,9.5,10,10.5,11,11.5,12},468743,"*0.8"},cdDiff={468743,-80,329802,-54,434249,-15,296320,"*0.80",},hideWithTalent=102560,hasCharges=468743},
 	{391528,"DRUID,DPS",3,--Созыв духов
 		{391528,120,0},
 		isTalent=true,cdDiff={391548,"*0.5",393991,"*0.5",393371,"*0.5",393414,"*0.5"}},
@@ -13753,7 +14098,7 @@ module.db.AllSpells = {
 		isTalent=true,cdDiff={329802,-54}},
 	{102558,"DRUID,DEFTANK",3,--Воплощение: Страж Урсока
 		nil,nil,nil,{102558,180,30},nil,
-		isTalent=true,cdDiff={339062,-30,329802,-54}},
+		isTalent=true,cdDiff={339062,-30,329802,-54},reduceCdAfterCast={{22842,393414},-0.4,{192081,393414},-1.6,{6807,393414},-1.6,{400254,393414},-1.6,{236716,393414},-1.6}},
 	{102543,"DRUID,DPS",3,--Воплощение: король джунглей
 		nil,nil,{102543,180,30},nil,nil,
 		isTalent=true,cdDiff={329802,-54},reduceCdAfterCast={{274837,340053,103},-0.2,{106785,340053,103},-0.2,{202028,340053,103},-0.2,{5221,340053,103},-0.2,{1822,340053,103},-0.2,{106830,340053,103},-0.2}},
@@ -14148,7 +14493,7 @@ module.db.AllSpells = {
 		nil,nil,nil,{360827,30,0},
 		isTalent=true,cdDiff={412713,"*0.9"}},
 	{406732,"EVOKER",2,--Spatial Paradox
-		nil,nil,nil,{406732,180,10},
+		{406732,180,10},
 		isTalent=true,cdDiff={412713,"*0.9"}},
 	{409311,"EVOKER",3,--Prescience
 		nil,nil,nil,{409311,12,0},
@@ -14312,11 +14657,11 @@ module.db.AllSpells = {
 		{291944,150,6},
 		isRacial="ZandalariTroll"},
 	{357214,"RACIAL",3,--Взмах крыльями
-		{357214,90,0},
-		isRacial="Dracthyr",cdDiff={368838,-45}},
+		{357214,180,0},
+		isRacial="Dracthyr",cdDiff={368838,-120}},
 	{368970,"RACIAL",3,--Взмах крыльями
-		{368970,90,0},
-		isRacial="Dracthyr",cdDiff={375443,-45}},
+		{368970,180,0},
+		isRacial="Dracthyr",cdDiff={375443,-120}},
 
 
 	{67826,	"ITEMS",3,--Дживс
@@ -14414,7 +14759,7 @@ module.db.AllSpells = {
 		item={181333,185304}},
 	{307192,"ITEMS",3,--Духовное зелье исцеления
 		{307192,300,0},
-		sameSpell={307192,213664,216431,216802,216468,338447,301308}},
+		sameSpell={307192,213664,216431,216802,216468,338447,301308,431416}},
 	{6262,	"ITEMS",3,--Камень здоровья
 		{6262,60,0}},
 	{355327,"ITEMS",3,--Зажим черной души
@@ -14492,6 +14837,9 @@ module.db.AllSpells = {
 	{427113,"ITEMS",3,--Dreambinder
 		{427113,120,4},
 		item=208616},
+	{431416,"ITEMS",3,--Algari Healing Potion
+		{431416,300,0},
+		sameSpell={307192,213664,216431,216802,216468,338447,301308,431416,431418},icon=5931169},
 
 
 	{295373,"ESSENCES",3,--Сосредоточенный огонь
@@ -14820,7 +15168,6 @@ if ExRT.isCata then
 		{1038,	"PALADIN",	1,	{1038,	120,	10}},	--Salv
 		{6940,	"PALADIN",	1,	{6940,	120,	12}},	--Sac
 		{62124,	"PALADIN",	1,	{62124,	8,	0}},	--Taunt
-		{64205,	"PALADIN",	1,	{64205,	120,	10}},	--Divine Sacrifice
 		{31821,	"PALADIN",	1,	{31821,	120,	6}},	--Aura Mastery
 		{54428,	"PALADIN",	1,	{54428,	120,	9}},	--Divine Plea
 		{70940, "PALADIN", 	1, 	{70940, 180, 	6}}, 	--Divine Guardian
@@ -14875,7 +15222,7 @@ if ExRT.isCata then
 	module.db.spell_isTalent[48505] = true
 	module.db.spell_isTalent[50334] = true
 	module.db.spell_isTalent[98008] = true
-	module.db.spell_isTalent[97462] = true
+	module.db.spell_isTalent[70940] = true
 
 	module.db.spell_resetOtherSpells[GetSpellInfo(11958) or "spell:11958"] = {GetSpellInfo(45438)}
 
@@ -14885,7 +15232,7 @@ if ExRT.isCata then
 
 	module.db.spell_afterCombatNotReset[GetSpellInfo(20608) or "spell:20608"] = true	module.db.spell_afterCombatNotReset[20608] = true
 
-	module.db.spell_cdByTalent_fix[31884] = {53375,{-20,-40,-60}}
+	module.db.spell_cdByTalent_fix[31884] = {53375,{-20,-40,-60},93417,{-30,-60}}
 	module.db.spell_cdByTalent_fix[871] = {12312,{-30,-60}}
 	module.db.spell_cdByTalent_fix[10278] = {20174,{-60,-120}}
 	module.db.spell_cdByTalent_fix[10310] = {20234,{-120,-240}}

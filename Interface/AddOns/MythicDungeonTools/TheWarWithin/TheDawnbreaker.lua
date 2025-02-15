@@ -1,43 +1,71 @@
+local addonName = ...
 local MDT = MDT
 local L = MDT.L
 
 local dungeonIndex = 111
 MDT.dungeonList[dungeonIndex] = L["The Dawnbreaker"]
-MDT.mapInfo[dungeonIndex] = {};
+MDT.mapInfo[dungeonIndex] = {
+  teleportId = 445414,
+  shortName = L["dawnBreakerShortName"],
+  englishName = "The Dawnbreaker",
+  mapID = 505
+}
 
-local zones = { 0 } -- TODO
+local zones = { 2215, 2215, 2359 } -- TODO remove 2215 WHEN DAWNBREAKER IS GONE FROM ROTATION
 for _, zone in ipairs(zones) do
   MDT.zoneIdToDungeonIdx[zone] = dungeonIndex
 end
 
 MDT.dungeonMaps[dungeonIndex] = {
   [0] = "",
-  [1] = { customTextures = 'Dawnbreaker' },
+  [1] = { customTextures = 'Interface\\AddOns\\'..addonName..'\\TheWarWithin\\Textures\\Dawnbreaker' }
 }
 
 MDT.dungeonSubLevels[dungeonIndex] = {
-  [1] = L["The Dawnbreaker"],
+  [1] = L["The Dawnbreaker"]
 }
 
-MDT.dungeonTotalCount[dungeonIndex] = { normal = 430, teeming = 1000, teemingEnabled = true }
+MDT.dungeonTotalCount[dungeonIndex] = { normal = 460, teeming = 1000, teemingEnabled = true }
 
-MDT.mapPOIs[dungeonIndex] = {};
+MDT.mapPOIs[dungeonIndex] = {
+  [1] = {
+    [1] = {
+      ["template"] = "MapLinkPinTemplate",
+      ["type"] = "dungeonEntrance",
+      ["x"] = 594.33722436621,
+      ["y"] = -518.43239200431,
+    },
+  },
+};
 
 MDT.dungeonEnemies[dungeonIndex] = {
   [1] = {
     ["name"] = "Nightfall Curseblade",
     ["id"] = 213894,
     ["count"] = 5,
-    ["health"] = 19132421,
-    ["scale"] = 1.5,
+    ["health"] = 20885902,
+    ["scale"] = 1.3,
     ["displayId"] = 115528,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Polymorph"] = true,
+      ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Imprison"] = true,
+      ["Sap"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [431493] = {
@@ -45,57 +73,81 @@ MDT.dungeonEnemies[dungeonIndex] = {
     },
     ["clones"] = {
       [1] = {
-        ["x"] = 639.43173032863,
-        ["y"] = -446.32184087253,
+        ["x"] = 643.7891985943,
+        ["y"] = -445.5955983436,
         ["g"] = 1,
         ["sublevel"] = 1,
       },
       [2] = {
-        ["x"] = 660.10270865685,
-        ["y"] = -419.66809992975,
+        ["x"] = 658.52920063357,
+        ["y"] = -423.17826997093,
         ["g"] = 1,
         ["sublevel"] = 1,
       },
       [3] = {
-        ["x"] = 680.79441219764,
-        ["y"] = -440.72621058663,
+        ["x"] = 678.61565842672,
+        ["y"] = -440.48413192566,
         ["g"] = 1,
         ["sublevel"] = 1,
       },
       [4] = {
-        ["x"] = 636.72062975371,
-        ["y"] = -181.09301693712,
+        ["x"] = 657.22739904375,
+        ["y"] = -197.35702659426,
         ["g"] = 3,
         ["sublevel"] = 1,
       },
       [5] = {
-        ["x"] = 604.65431525331,
-        ["y"] = -175.68608481407,
+        ["x"] = 608.42569680819,
+        ["y"] = -174.2717976097,
         ["g"] = 4,
         ["sublevel"] = 1,
       },
       [6] = {
-        ["x"] = 629.59096421392,
-        ["y"] = -152.22030286343,
+        ["x"] = 626.99819357193,
+        ["y"] = -156.69881527297,
         ["g"] = 4,
         ["sublevel"] = 1,
       },
       [7] = {
-        ["x"] = 562.38422072728,
-        ["y"] = -265.01978198349,
+        ["x"] = 716.19439711502,
+        ["y"] = -92.787929625161,
         ["g"] = 5,
         ["sublevel"] = 1,
       },
       [8] = {
-        ["x"] = 585.62006272575,
-        ["y"] = -285.88245368817,
+        ["x"] = 736.83749396656,
+        ["y"] = -108.46493257059,
         ["g"] = 5,
         ["sublevel"] = 1,
       },
       [9] = {
-        ["x"] = 716.69563621171,
-        ["y"] = -114.34724172577,
+        ["x"] = 577.5176527807,
+        ["y"] = -268.62884147108,
         ["g"] = 6,
+        ["sublevel"] = 1,
+      },
+      [10] = {
+        ["x"] = 16.922242950255,
+        ["y"] = -151.75083531668,
+        ["g"] = 32,
+        ["sublevel"] = 1,
+      },
+      [11] = {
+        ["x"] = 58.146458414675,
+        ["y"] = -216.82291738734,
+        ["g"] = 17,
+        ["sublevel"] = 1,
+      },
+      [12] = {
+        ["x"] = 244.66971736573,
+        ["y"] = -359.39473139546,
+        ["g"] = 36,
+        ["sublevel"] = 1,
+      },
+      [13] = {
+        ["x"] = 277.28006198439,
+        ["y"] = -397.01512571507,
+        ["g"] = 46,
         ["sublevel"] = 1,
       },
     },
@@ -104,15 +156,29 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Nightfall Shadowmage",
     ["id"] = 213892,
     ["count"] = 5,
-    ["health"] = 16399218,
-    ["scale"] = 1.5,
+    ["health"] = 17902202,
+    ["scale"] = 1.3,
     ["displayId"] = 115523,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
+      ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Polymorph"] = true,
+      ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Imprison"] = true,
+      ["Sap"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [431303] = {
@@ -124,39 +190,51 @@ MDT.dungeonEnemies[dungeonIndex] = {
     },
     ["clones"] = {
       [1] = {
-        ["x"] = 660.85860133076,
-        ["y"] = -464.27457041032,
+        ["x"] = 660.4955062504,
+        ["y"] = -459.19086943476,
         ["g"] = 1,
         ["sublevel"] = 1,
       },
       [2] = {
-        ["x"] = 670.37503318277,
-        ["y"] = -429.27290341556,
+        ["x"] = 667.95423348102,
+        ["y"] = -432.41993910021,
         ["g"] = 1,
         ["sublevel"] = 1,
       },
       [3] = {
-        ["x"] = 662.3347364007,
-        ["y"] = -202.50112808349,
+        ["x"] = 637.34953118629,
+        ["y"] = -180.81578612314,
         ["g"] = 3,
         ["sublevel"] = 1,
       },
       [4] = {
-        ["x"] = 584.8739896411,
-        ["y"] = -261.82944722859,
+        ["x"] = 718.35881445384,
+        ["y"] = -112.11699477461,
         ["g"] = 5,
         ["sublevel"] = 1,
       },
       [5] = {
-        ["x"] = 715.20198796158,
-        ["y"] = -91.615803202276,
-        ["g"] = 6,
+        ["x"] = 208.69376015096,
+        ["y"] = -351.67252410374,
+        ["g"] = 35,
         ["sublevel"] = 1,
       },
       [6] = {
-        ["x"] = 739.18970632215,
-        ["y"] = -110.04916673972,
-        ["g"] = 6,
+        ["x"] = 238.75593229031,
+        ["y"] = -349.16925030321,
+        ["g"] = 36,
+        ["sublevel"] = 1,
+      },
+      [7] = {
+        ["x"] = 53.239666437928,
+        ["y"] = -206.21951709087,
+        ["g"] = 17,
+        ["sublevel"] = 1,
+      },
+      [8] = {
+        ["x"] = 246.23270722923,
+        ["y"] = -435.82976769389,
+        ["g"] = 42,
         ["sublevel"] = 1,
       },
     },
@@ -165,13 +243,16 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Nightfall Ritualist",
     ["id"] = 214761,
     ["count"] = 12,
-    ["health"] = 30976301,
-    ["scale"] = 2,
+    ["health"] = 33815270,
+    ["scale"] = 1.4,
+    ["stealthDetect"] = true,
     ["displayId"] = 115526,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Slow"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [431364] = {
@@ -191,8 +272,8 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["sublevel"] = 1,
       },
       [2] = {
-        ["x"] = 617.1191338315,
-        ["y"] = -164.14019427068,
+        ["x"] = 618.06191548258,
+        ["y"] = -165.79015776653,
         ["g"] = 4,
         ["sublevel"] = 1,
       },
@@ -202,13 +283,16 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Nightfall Commander",
     ["id"] = 214762,
     ["count"] = 12,
-    ["health"] = 34620572,
-    ["scale"] = 2,
+    ["health"] = 33815270,
+    ["scale"] = 1.4,
+    ["stealthDetect"] = true,
     ["displayId"] = 115535,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Slow"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [431491] = {
@@ -219,9 +303,15 @@ MDT.dungeonEnemies[dungeonIndex] = {
     },
     ["clones"] = {
       [1] = {
-        ["x"] = 650.12479091973,
-        ["y"] = -190.73101232749,
+        ["x"] = 647.76769656922,
+        ["y"] = -189.78819243382,
         ["g"] = 3,
+        ["sublevel"] = 1,
+      },
+      [2] = {
+        ["x"] = 565.39533581353,
+        ["y"] = -271.52883944209,
+        ["g"] = 6,
         ["sublevel"] = 1,
       },
     },
@@ -230,11 +320,17 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Sureki Webmage",
     ["id"] = 210966,
     ["count"] = 12,
-    ["health"] = 36442707,
-    ["scale"] = 1.7,
+    ["health"] = 39782670,
+    ["scale"] = 1.4,
+    ["stealthDetect"] = true,
     ["displayId"] = 117315,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
+    ["characteristics"] = {
+      ["Taunt"] = true,
+      ["Slow"] = true,
+      ["Mind Soothe"] = true,
+    },
     ["spells"] = {
       [451104] = {
       },
@@ -246,14 +342,14 @@ MDT.dungeonEnemies[dungeonIndex] = {
     },
     ["clones"] = {
       [1] = {
-        ["x"] = 573.96882713096,
-        ["y"] = -274.73853402363,
+        ["x"] = 726.12906551791,
+        ["y"] = -100.85671816945,
         ["g"] = 5,
         ["sublevel"] = 1,
       },
       [2] = {
-        ["x"] = 725.93395497369,
-        ["y"] = -101.18449768602,
+        ["x"] = 575.75000838754,
+        ["y"] = -282.15576990657,
         ["g"] = 6,
         ["sublevel"] = 1,
       },
@@ -278,31 +374,39 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Nightfall Darkcaster",
     ["id"] = 213893,
     ["count"] = 5,
-    ["health"] = 17310286,
-    ["scale"] = 1.2,
+    ["health"] = 18896768,
+    ["scale"] = 1.3,
     ["displayId"] = 115520,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
+      ["Taunt"] = true,
       ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Polymorph"] = true,
+      ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Imprison"] = true,
+      ["Sap"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [431333] = {
         ["interruptible"] = true,
       },
       [432520] = {
+        ["interruptible"] = true,
       },
     },
     ["clones"] = {
-      [1] = {
-        ["x"] = 147.21836603952,
-        ["y"] = -158.9429028513,
-        ["g"] = 23,
-        ["sublevel"] = 1,
-      },
       [2] = {
         ["x"] = 367.24319296367,
         ["y"] = -173.67920079313,
@@ -334,8 +438,8 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["sublevel"] = 1,
       },
       [7] = {
-        ["x"] = 53.261578509001,
-        ["y"] = -105.43650547197,
+        ["x"] = 54.686558008175,
+        ["y"] = -116.02205488386,
         ["g"] = 15,
         ["sublevel"] = 1,
       },
@@ -358,14 +462,14 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["sublevel"] = 1,
       },
       [11] = {
-        ["x"] = 121.99612621208,
-        ["y"] = -196.59029679081,
+        ["x"] = 120.52496916705,
+        ["y"] = -193.96320401032,
         ["g"] = 21,
         ["sublevel"] = 1,
       },
       [12] = {
-        ["x"] = 128.29953303427,
-        ["y"] = -206.17623834812,
+        ["x"] = 125.88263990547,
+        ["y"] = -205.54572357393,
         ["g"] = 21,
         ["sublevel"] = 1,
       },
@@ -376,20 +480,8 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["sublevel"] = 1,
       },
       [14] = {
-        ["x"] = 62.401196604433,
-        ["y"] = -146.00288479991,
-        ["g"] = 16,
-        ["sublevel"] = 1,
-      },
-      [15] = {
-        ["x"] = 62.284970702963,
-        ["y"] = -157.65116553747,
-        ["g"] = 16,
-        ["sublevel"] = 1,
-      },
-      [16] = {
-        ["x"] = 61.965490444913,
-        ["y"] = -168.92186406297,
+        ["x"] = 62.042910505465,
+        ["y"] = -157.28870315497,
         ["g"] = 16,
         ["sublevel"] = 1,
       },
@@ -453,27 +545,15 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["g"] = 34,
         ["sublevel"] = 1,
       },
-      [27] = {
-        ["x"] = 204.3589436867,
-        ["y"] = -356.23113533989,
-        ["g"] = 35,
-        ["sublevel"] = 1,
-      },
       [28] = {
-        ["x"] = 215.47475980035,
-        ["y"] = -355.99523349953,
+        ["x"] = 219.320092736,
+        ["y"] = -348.98324106416,
         ["g"] = 35,
-        ["sublevel"] = 1,
-      },
-      [29] = {
-        ["x"] = 237.75335829492,
-        ["y"] = -353.69302601874,
-        ["g"] = 36,
         ["sublevel"] = 1,
       },
       [30] = {
-        ["x"] = 248.81776883123,
-        ["y"] = -353.57294942299,
+        ["x"] = 250.35305419502,
+        ["y"] = -349.4320807441,
         ["g"] = 36,
         ["sublevel"] = 1,
       },
@@ -502,8 +582,8 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["sublevel"] = 1,
       },
       [35] = {
-        ["x"] = 202.18695774258,
-        ["y"] = -412.48041705521,
+        ["x"] = 215.88335206173,
+        ["y"] = -420.66090374661,
         ["g"] = 43,
         ["sublevel"] = 1,
       },
@@ -514,26 +594,26 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["sublevel"] = 1,
       },
       [37] = {
-        ["x"] = 215.78095207892,
-        ["y"] = -393.44091407132,
+        ["x"] = 226.4120615999,
+        ["y"] = -397.51238519967,
         ["g"] = 44,
         ["sublevel"] = 1,
       },
       [38] = {
-        ["x"] = 228.82496629163,
-        ["y"] = -392.88459244804,
+        ["x"] = 226.33690257049,
+        ["y"] = -385.19401717698,
         ["g"] = 44,
         ["sublevel"] = 1,
       },
       [39] = {
-        ["x"] = 249.77922699446,
-        ["y"] = -398.93615375222,
+        ["x"] = 249.55298525863,
+        ["y"] = -392.82892117391,
         ["g"] = 45,
         ["sublevel"] = 1,
       },
       [40] = {
-        ["x"] = 250.27318749123,
-        ["y"] = -386.59066657016,
+        ["x"] = 253.21370879825,
+        ["y"] = -385.0073368203,
         ["g"] = 45,
         ["sublevel"] = 1,
       },
@@ -542,17 +622,30 @@ MDT.dungeonEnemies[dungeonIndex] = {
   [7] = {
     ["name"] = "Nightfall Shadowalker",
     ["id"] = 213895,
-    ["count"] = 3,
-    ["health"] = 18221353,
+    ["count"] = 5,
+    ["health"] = 19891335,
     ["scale"] = 1.2,
     ["displayId"] = 115530,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Polymorph"] = true,
+      ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Imprison"] = true,
+      ["Sap"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [431637] = {
@@ -588,8 +681,8 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["sublevel"] = 1,
       },
       [5] = {
-        ["x"] = 233.87621565861,
-        ["y"] = -436.75709083502,
+        ["x"] = 237.49528097265,
+        ["y"] = -439.9238150492,
         ["g"] = 42,
         ["sublevel"] = 1,
       },
@@ -630,8 +723,8 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["sublevel"] = 1,
       },
       [12] = {
-        ["x"] = 64.428803159601,
-        ["y"] = -105.34567021905,
+        ["x"] = 66.057343294922,
+        ["y"] = -115.72765899479,
         ["g"] = 15,
         ["sublevel"] = 1,
       },
@@ -652,29 +745,75 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["y"] = -196.00934738998,
         ["g"] = 21,
         ["sublevel"] = 1,
+        ["patrol"] = {
+          [1] = {
+            ["x"] = 131.9597313944,
+            ["y"] = -196.00934738998,
+          },
+          [2] = {
+            ["x"] = 137.70702594616,
+            ["y"] = -188.95019322474,
+          },
+          [3] = {
+            ["x"] = 144.06882718161,
+            ["y"] = -182.58835786191,
+          },
+          [4] = {
+            ["x"] = 137.70702594616,
+            ["y"] = -188.95019322474,
+          },
+          [5] = {
+            ["x"] = 131.9597313944,
+            ["y"] = -196.00934738998,
+          },
+          [6] = {
+            ["x"] = 121.28141954429,
+            ["y"] = -198.58880562608,
+          },
+          [7] = {
+            ["x"] = 114.13574978994,
+            ["y"] = -201.42604995491,
+          },
+          [8] = {
+            ["x"] = 103.2702243683,
+            ["y"] = -209.11839337101,
+          },
+          [9] = {
+            ["x"] = 95.599133652681,
+            ["y"] = -215.63356638993,
+          },
+          [10] = {
+            ["x"] = 87.192446375782,
+            ["y"] = -222.04365160885,
+          },
+          [11] = {
+            ["x"] = 95.599133652681,
+            ["y"] = -215.63356638993,
+          },
+          [12] = {
+            ["x"] = 103.2702243683,
+            ["y"] = -209.11839337101,
+          },
+          [13] = {
+            ["x"] = 114.13574978994,
+            ["y"] = -201.42604995491,
+          },
+          [14] = {
+            ["x"] = 121.28141954429,
+            ["y"] = -198.58880562608,
+          },
+        },
       },
       [16] = {
-        ["x"] = 52.599452490678,
-        ["y"] = -220.25810588654,
-        ["g"] = 17,
-        ["sublevel"] = 1,
-      },
-      [17] = {
-        ["x"] = 65.268924081818,
-        ["y"] = -220.25630897374,
-        ["g"] = 17,
+        ["x"] = 147.74241365106,
+        ["y"] = -152.50498506124,
+        ["g"] = 23,
         ["sublevel"] = 1,
       },
       [18] = {
         ["x"] = 106.81968338432,
         ["y"] = -242.35964186646,
         ["g"] = 19,
-        ["sublevel"] = 1,
-      },
-      [19] = {
-        ["x"] = 17.749016077209,
-        ["y"] = -150.65376577483,
-        ["g"] = 32,
         ["sublevel"] = 1,
       },
       [20] = {
@@ -711,18 +850,6 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["x"] = 206.86342144836,
         ["y"] = -257.66445998427,
         ["g"] = 29,
-        ["sublevel"] = 1,
-      },
-      [26] = {
-        ["x"] = 243.4922913829,
-        ["y"] = -363.70298746562,
-        ["g"] = 36,
-        ["sublevel"] = 1,
-      },
-      [27] = {
-        ["x"] = 277.43351166184,
-        ["y"] = -396.16912048198,
-        ["g"] = 46,
         ["sublevel"] = 1,
       },
       [28] = {
@@ -774,15 +901,99 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["sublevel"] = 1,
       },
       [36] = {
-        ["x"] = 209.43360797603,
-        ["y"] = -420.93273008464,
+        ["x"] = 209.39607021599,
+        ["y"] = -412.64269337308,
         ["g"] = 43,
         ["sublevel"] = 1,
       },
       [37] = {
-        ["x"] = 222.83654265199,
-        ["y"] = -402.73952011064,
+        ["x"] = 217.18169000221,
+        ["y"] = -390.97744782544,
         ["g"] = 44,
+        ["sublevel"] = 1,
+        ["patrol"] = {
+          [1] = {
+            ["x"] = 220.34842715928,
+            ["y"] = -393.91794324668,
+          },
+          [2] = {
+            ["x"] = 212.87427400311,
+            ["y"] = -389.19827383709,
+          },
+          [3] = {
+            ["x"] = 208.12420709618,
+            ["y"] = -382.86485129452,
+          },
+          [4] = {
+            ["x"] = 207.67187893921,
+            ["y"] = -378.79335428038,
+          },
+          [5] = {
+            ["x"] = 208.12420709618,
+            ["y"] = -382.86485129452,
+          },
+          [6] = {
+            ["x"] = 212.87427400311,
+            ["y"] = -389.19827383709,
+          },
+          [7] = {
+            ["x"] = 220.34842715928,
+            ["y"] = -393.91794324668,
+          },
+          [8] = {
+            ["x"] = 230.51737595947,
+            ["y"] = -395.75786045815,
+          },
+          [9] = {
+            ["x"] = 240.01748388755,
+            ["y"] = -392.13876925833,
+          },
+          [10] = {
+            ["x"] = 246.57709639439,
+            ["y"] = -385.12678976585,
+          },
+          [11] = {
+            ["x"] = 253.8153305656,
+            ["y"] = -377.43622743768,
+          },
+          [12] = {
+            ["x"] = 253.8153305656,
+            ["y"] = -366.12653508101,
+          },
+          [13] = {
+            ["x"] = 253.8153305656,
+            ["y"] = -377.43622743768,
+          },
+          [14] = {
+            ["x"] = 246.57709639439,
+            ["y"] = -385.12678976585,
+          },
+          [15] = {
+            ["x"] = 240.01748388755,
+            ["y"] = -392.13876925833,
+          },
+          [16] = {
+            ["x"] = 230.51737595947,
+            ["y"] = -395.75786045815,
+          },
+        },
+      },
+      [38] = {
+        ["x"] = 62.042731047953,
+        ["y"] = -168.8939491679,
+        ["g"] = 16,
+        ["sublevel"] = 1,
+      },
+      [39] = {
+        ["x"] = 62.580140820162,
+        ["y"] = -145.24748322525,
+        ["g"] = 16,
+        ["sublevel"] = 1,
+      },
+      [40] = {
+        ["x"] = 147.89592057986,
+        ["y"] = -164.13458584646,
+        ["g"] = 23,
         ["sublevel"] = 1,
       },
     },
@@ -791,17 +1002,17 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Manifested Shadow",
     ["id"] = 211341,
     ["count"] = 16,
-    ["health"] = 23687760,
-    ["scale"] = 1.3,
+    ["health"] = 27847869,
+    ["scale"] = 1.4,
+    ["stealthDetect"] = true,
     ["displayId"] = 117518,
     ["creatureType"] = "Elemental",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Slow"] = true,
     },
     ["spells"] = {
-      [431303] = {
-      },
       [431304] = {
       },
       [431305] = {
@@ -812,26 +1023,18 @@ MDT.dungeonEnemies[dungeonIndex] = {
       },
       [453345] = {
       },
-      [463455] = {
-      },
     },
     ["clones"] = {
       [1] = {
-        ["x"] = 137.01350364112,
-        ["y"] = -152.67554269981,
+        ["x"] = 136.29116043925,
+        ["y"] = -151.95319949794,
         ["g"] = 23,
         ["sublevel"] = 1,
       },
       [2] = {
-        ["x"] = 137.08270433322,
-        ["y"] = -165.8073419343,
+        ["x"] = 135.92696614843,
+        ["y"] = -166.52967732317,
         ["g"] = 23,
-        ["sublevel"] = 1,
-      },
-      [3] = {
-        ["x"] = 244.13696259607,
-        ["y"] = -430.38065156624,
-        ["g"] = 42,
         ["sublevel"] = 1,
       },
       [4] = {
@@ -841,8 +1044,8 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["sublevel"] = 1,
       },
       [5] = {
-        ["x"] = 65.009719293221,
-        ["y"] = -117.02853322804,
+        ["x"] = 60.7347807957,
+        ["y"] = -104.00019012702,
         ["g"] = 15,
         ["sublevel"] = 1,
       },
@@ -850,12 +1053,6 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["x"] = 179.18244696453,
         ["y"] = -152.70796741797,
         ["g"] = 25,
-        ["sublevel"] = 1,
-      },
-      [7] = {
-        ["x"] = 52.807643363973,
-        ["y"] = -207.28528833215,
-        ["g"] = 17,
         ["sublevel"] = 1,
       },
       [8] = {
@@ -877,14 +1074,8 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["sublevel"] = 1,
       },
       [11] = {
-        ["x"] = 30.876885983965,
-        ["y"] = -151.34322990914,
-        ["g"] = 32,
-        ["sublevel"] = 1,
-      },
-      [12] = {
-        ["x"] = 30.102700202954,
-        ["y"] = -165.93116953031,
+        ["x"] = 27.518014477023,
+        ["y"] = -157.50118118879,
         ["g"] = 32,
         ["sublevel"] = 1,
       },
@@ -930,11 +1121,24 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Sureki Militant",
     ["id"] = 213932,
     ["count"] = 12,
-    ["health"] = 30856855,
+    ["health"] = 35835879,
     ["scale"] = 1.8,
+    ["stealthDetect"] = true,
     ["displayId"] = 116834,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
+    ["characteristics"] = {
+      ["Taunt"] = true,
+      ["Mind Soothe"] = true,
+    },
+    ["spells"] = {
+      [451097] = {
+      },
+      [451098] = {
+      },
+      [451099] = {
+      },
+    },
     ["clones"] = {
       [1] = {
         ["x"] = 241.95879565513,
@@ -957,8 +1161,8 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["sublevel"] = 1,
       },
       [5] = {
-        ["x"] = 160.85304358806,
-        ["y"] = -371.84352368957,
+        ["x"] = 131.74278522917,
+        ["y"] = -366.91716295949,
         ["sublevel"] = 1,
       },
       [6] = {
@@ -972,13 +1176,16 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Nightfall Tactician",
     ["id"] = 213934,
     ["count"] = 10,
-    ["health"] = 30976301,
-    ["scale"] = 1.2,
+    ["health"] = 33815270,
+    ["scale"] = 1.3,
+    ["stealthDetect"] = true,
     ["displayId"] = 115534,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Slow"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [431494] = {
@@ -1000,8 +1207,8 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["sublevel"] = 1,
       },
       [3] = {
-        ["x"] = 244.10392403334,
-        ["y"] = -443.52290976925,
+        ["x"] = 245.68727966898,
+        ["y"] = -446.68960809765,
         ["g"] = 42,
         ["sublevel"] = 1,
       },
@@ -1029,12 +1236,6 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["g"] = 14,
         ["sublevel"] = 1,
       },
-      [8] = {
-        ["x"] = 52.994687687468,
-        ["y"] = -117.13372539033,
-        ["g"] = 15,
-        ["sublevel"] = 1,
-      },
       [9] = {
         ["x"] = 179.30147069928,
         ["y"] = -164.9489324029,
@@ -1051,12 +1252,6 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["x"] = 98.658175272593,
         ["y"] = -250.82267343867,
         ["g"] = 19,
-        ["sublevel"] = 1,
-      },
-      [12] = {
-        ["x"] = 72.410133748704,
-        ["y"] = -163.27535625326,
-        ["g"] = 16,
         ["sublevel"] = 1,
       },
       [13] = {
@@ -1114,8 +1309,8 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["sublevel"] = 1,
       },
       [22] = {
-        ["x"] = 210.06170528682,
-        ["y"] = -366.35076528952,
+        ["x"] = 216.39510194361,
+        ["y"] = -359.11258288988,
         ["g"] = 35,
         ["sublevel"] = 1,
       },
@@ -1155,19 +1350,28 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["g"] = 13,
         ["sublevel"] = 1,
       },
+      [29] = {
+        ["x"] = 72.620980073851,
+        ["y"] = -163.13462707277,
+        ["g"] = 16,
+        ["sublevel"] = 1,
+      },
     },
   },
   [11] = {
     ["name"] = "Ascendant Viscoxria",
     ["id"] = 211261,
     ["count"] = 25,
-    ["health"] = 51930859,
-    ["scale"] = 3,
+    ["health"] = 37826761,
+    ["scale"] = 2.5,
+    ["stealthDetect"] = true,
     ["displayId"] = 115760,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Slow"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [427192] = {
@@ -1191,13 +1395,16 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Deathscreamer Ikentak",
     ["id"] = 211263,
     ["count"] = 25,
-    ["health"] = 49197655,
-    ["scale"] = 3,
+    ["health"] = 53706605,
+    ["scale"] = 2.5,
+    ["stealthDetect"] = true,
     ["displayId"] = 115759,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Slow"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [427192] = {
@@ -1215,8 +1422,8 @@ MDT.dungeonEnemies[dungeonIndex] = {
     },
     ["clones"] = {
       [1] = {
-        ["x"] = 99.687439449535,
-        ["y"] = -158.28303459268,
+        ["x"] = 247.92811499821,
+        ["y"] = -412.75017243115,
         ["sublevel"] = 1,
       },
     },
@@ -1225,13 +1432,16 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Ixkreten The Unbreakable",
     ["id"] = 211262,
     ["count"] = 25,
-    ["health"] = 60130467,
-    ["scale"] = 3,
+    ["health"] = 65641406,
+    ["scale"] = 2.5,
+    ["stealthDetect"] = true,
     ["displayId"] = 119262,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Slow"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [427192] = {
@@ -1247,8 +1457,8 @@ MDT.dungeonEnemies[dungeonIndex] = {
     },
     ["clones"] = {
       [1] = {
-        ["x"] = 265.1379157076,
-        ["y"] = -437.19698887139,
+        ["x"] = 99.027899797701,
+        ["y"] = -158.07770182773,
         ["sublevel"] = 1,
       },
     },
@@ -1256,14 +1466,17 @@ MDT.dungeonEnemies[dungeonIndex] = {
   [14] = {
     ["name"] = "Nightfall Dark Architect",
     ["id"] = 213885,
-    ["count"] = 20,
-    ["health"] = 51019789,
-    ["scale"] = 3,
+    ["count"] = 30,
+    ["health"] = 55695738,
+    ["scale"] = 2.5,
+    ["stealthDetect"] = true,
     ["displayId"] = 120116,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Slow"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [431303] = {
@@ -1291,7 +1504,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Speaker Shadowcrown",
     ["id"] = 211087,
     ["count"] = 0,
-    ["health"] = 127376353,
+    ["health"] = 139239345,
     ["scale"] = 2,
     ["displayId"] = 114311,
     ["creatureType"] = "Humanoid",
@@ -1301,16 +1514,10 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["instanceID"] = 0,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Slow"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
-      [425264] = {
-      },
-      [425489] = {
-      },
-      [426712] = {
-      },
-      [426715] = {
-      },
       [426734] = {
       },
       [426735] = {
@@ -1318,8 +1525,6 @@ MDT.dungeonEnemies[dungeonIndex] = {
       [426736] = {
       },
       [428086] = {
-      },
-      [445996] = {
       },
       [451026] = {
       },
@@ -1352,8 +1557,8 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Anubikkaj",
     ["id"] = 211089,
     ["count"] = 0,
-    ["health"] = 127376353,
-    ["scale"] = 2,
+    ["health"] = 139349505,
+    ["scale"] = 1.7,
     ["displayId"] = 114315,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
@@ -1362,6 +1567,8 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["instanceID"] = 0,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Slow"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [426787] = {
@@ -1391,8 +1598,8 @@ MDT.dungeonEnemies[dungeonIndex] = {
     },
     ["clones"] = {
       [1] = {
-        ["x"] = 280.34501167208,
-        ["y"] = -313.78687970194,
+        ["x"] = 173.30886633597,
+        ["y"] = -369.76812667996,
         ["sublevel"] = 1,
       },
     },
@@ -1401,7 +1608,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Rashanan",
     ["id"] = 213937,
     ["count"] = 0,
-    ["health"] = 3275391932,
+    ["health"] = 3580440300,
     ["scale"] = 2,
     ["displayId"] = 118404,
     ["creatureType"] = "Humanoid",
@@ -1411,11 +1618,11 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["instanceID"] = 0,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Slow"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [434089] = {
-      },
-      [434090] = {
       },
       [434093] = {
       },

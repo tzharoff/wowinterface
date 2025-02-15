@@ -1,21 +1,20 @@
 local E = select(2, ...):unpack()
 local P, CM = E.Party, E.Comm
 
-local pairs, next, concat, tonumber, strmatch, strsplit, format, gsub, floor, abs = pairs, next, table.concat, tonumber, string.match, string.split, string.format, string.gsub, math.floor, math.abs
+local pairs, next, concat, tonumber, strmatch, strsplit, format, gsub, floor, abs = pairs, next, table.concat, tonumber, strmatch, strsplit, format, gsub, floor, abs
 local GetTime = GetTime
 local GetSpellCooldown = GetSpellCooldown or function(spellID)
-	local spellCooldownInfo = C_Spell.GetSpellCooldown(spellID);
+	local spellCooldownInfo = C_Spell.GetSpellCooldown(spellID)
 	if spellCooldownInfo then
-		return spellCooldownInfo.startTime, spellCooldownInfo.duration, spellCooldownInfo.isEnabled and 1 or 0, spellCooldownInfo.modRate;
+		return spellCooldownInfo.startTime, spellCooldownInfo.duration, spellCooldownInfo.isEnabled and 1 or 0, spellCooldownInfo.modRate
 	end
 end
 local GetSpellCharges = GetSpellCharges or function(spellID)
-	local spellChargeInfo = C_Spell.GetSpellCharges(spellID);
+	local spellChargeInfo = C_Spell.GetSpellCharges(spellID)
 	if spellChargeInfo then
-		return spellChargeInfo.currentCharges, spellChargeInfo.maxCharges, spellChargeInfo.cooldownStartTime, spellChargeInfo.cooldownDuration, spellChargeInfo.chargeModRate;
+		return spellChargeInfo.currentCharges, spellChargeInfo.maxCharges, spellChargeInfo.cooldownStartTime, spellChargeInfo.cooldownDuration, spellChargeInfo.chargeModRate
 	end
 end
-local GetItemCount = C_Item and C_Item.GetItemCount or GetItemCount
 
 local LibDeflate = LibStub("LibDeflate")
 local CooldownSyncFrame = CreateFrame("Frame")
@@ -244,10 +243,9 @@ local SendUserSyncData_OnTimerEnd = function()
 end
 
 function CM:PLAYER_EQUIPMENT_CHANGED(slotID)
-	if equipmentTimer or slotID > 16 then
-		return
+	if not equipmentTimer then
+		equipmentTimer = C_Timer.NewTicker(0.1, SendUserSyncData_OnTimerEnd, 1)
 	end
-	equipmentTimer = C_Timer.NewTicker(0.1, SendUserSyncData_OnTimerEnd, 1)
 end
 
 CM.PLAYER_TALENT_UPDATE = SendUpdatedUserSyncData
@@ -266,7 +264,7 @@ CM.TRAIT_CONFIG_UPDATED = SendUpdatedUserSyncData
 
 CM.PLAYER_LEAVING_WORLD = CM.DesyncFromGroup
 
-function CM:SyncStrivePvpTalentCD(guid, elapsed, cd)
+function CM:SyncStrivePvpTalentCD(guid, cd)
 	local info = P.groupInfo[guid]
 	if not info then
 		return
@@ -277,11 +275,9 @@ function CM:SyncStrivePvpTalentCD(guid, elapsed, cd)
 	if icon then
 		local active = info.active[spellID]
 		if active then
-			local modRate = active.iconModRate or 1
-			local newTime = GetTime() - elapsed * modRate
+			local modRate = active.modRate or 1
 			local newCd = cd * modRate
-			icon.cooldown:SetCooldown(newTime, newCd, modRate)
-			active.startTime = newTime
+			icon.cooldown:SetCooldown(active.startTime, newCd, modRate)
 			active.duration = newCd
 		end
 		icon.duration = cd
@@ -296,40 +292,49 @@ function CM.SendStrivePvpTalentCD(spellID)
 		return
 	end
 
-	local elapsed = GetTime() - st/modRate
 	cd = cd/modRate
 	if not P.isUserDisabled then
-		CM:SyncStrivePvpTalentCD(E.userGUID, elapsed, cd)
+		CM:SyncStrivePvpTalentCD(E.userGUID, cd)
 	end
-	CM:SendComm(MSG_STRIVE_PVP, E.userGUID, elapsed, cd)
+	CM:SendComm(MSG_STRIVE_PVP, E.userGUID, cd)
 end
 
+function CM:FindSpellIcon(info, spellID)
+	local icon = info.spellIcons[spellID]
+	if icon then
+		return icon, spellID
+	end
+	spellID = E.spell_merged[spellID]
+	if spellID then
+		return self:FindSpellIcon(info, spellID)
+	end
+end
 
-
-
-
-
-
-
-
-
-
-
-
-
+function CM:SetHealthstoneCD(info, icon, charges, isEnabled)
+	if isEnabled then
+		icon.cooldown:Clear()
+		icon.icon:SetVertexColor(0.4, 0.4, 0.4)
+		local statusBar = icon.statusBar
+		if statusBar then
+			statusBar.BG:SetVertexColor(0.7, 0.7, 0.7)
+		end
+	else
+		icon.icon:SetVertexColor(1, 1, 1)
+	end
+	icon.count:SetText(charges)
+	info.auras.healthStoneStacks = charges
+	info.preactiveIcons[6262] = isEnabled and icon
+end
 
 function CM.SyncCooldowns(guid, encodedData)
 	local info = P.groupInfo[guid]
 	if not info then return end
 
 	local compressedData = LibDeflate:DecodeForWoWAddonChannel(encodedData)
-	if not compressedData then
-		return
-	end
+	if not compressedData then return end
+
 	local serializedCooldownData = LibDeflate:DecompressDeflate(compressedData)
-	if not serializedCooldownData then
-		return
-	end
+	if not serializedCooldownData then return end
 
 	local now = GetTime()
 	while ( serializedCooldownData ) do
@@ -337,61 +342,47 @@ function CM.SyncCooldowns(guid, encodedData)
 		serializedCooldownData = rest
 		spellID = tonumber(spellID)
 		if ( spellID ) then
-			local icon = info.spellIcons[spellID]
-			if ( not icon ) then
-				spellID = E.spell_merged[spellID]
-				icon = info.spellIcons[spellID]
-			end
+			local icon, iconSpellID = CM:FindSpellIcon(info, spellID)
 			if ( icon ) then
-				duration = tonumber(duration)
-				remainingTime = tonumber(remainingTime)
-				modRate = tonumber(modRate)
-				charges = tonumber(charges)
-				local rawCharges = charges
-				charges = icon.maxcharges and charges ~= -1 and charges or nil
-				local active = icon.active and info.active[spellID]
-				if ( active and duration == 0 ) then
-					P:ResetCooldown(icon)
+				duration, remainingTime, modRate, charges = tonumber(duration), tonumber(remainingTime), tonumber(modRate), tonumber(charges)
+				local normalizedCharges = icon.maxcharges and charges ~= -1 and charges or nil
+				local active = icon.active and info.active[iconSpellID]
 
-					if spellID == 6262 then
-						icon.cooldown:Clear()
-						info.preactiveIcons[spellID] = icon
-						icon.icon:SetVertexColor(0.4, 0.4, 0.4)
-						icon.count:SetText(rawCharges)
-						info.auras.healthStoneStacks = rawCharges
-						local statusBar = icon.statusBar
-						if statusBar then
-							statusBar.BG:SetVertexColor(0.7, 0.7, 0.7)
-						end
+				if ( active and duration == 0 ) then
+					icon:ResetCooldown(true)
+					info.spellModRates[iconSpellID] = modRate
+					icon.modRate = modRate
+					if iconSpellID == 6262 then
+						CM:SetHealthstoneCD(info, icon, charges, now - active.startTime < 10)
 					end
 
-				elseif ( active and (spellID ~= 642 or not active.forbearanceOvertime or active.forbearanceOvertime ~= 0) and (abs(active.duration - (now - active.startTime) - remainingTime) > 1 or active.charges ~= charges) )
-					or ( not active and duration > 0 and E.sync_periodic[spellID] ) then
+				elseif ( active and (abs(active.duration - (now - active.startTime) - remainingTime) > 1 or active.charges ~= normalizedCharges) )
+					or ( not active and duration > 0 and E.sync_reset[spellID] ) then
+
 					local startTime = now - (duration - remainingTime)
 					icon.cooldown:SetCooldown(startTime, duration, modRate)
-					P:SetCooldownElements(nil, icon, charges)
-
-					if ( not active ) then
-						info.active[spellID] = {}
-						active = info.active[spellID]
+					icon:SetCooldownElements(normalizedCharges)
+					if not active then
+						active = {}
+						info.active[iconSpellID] = active
 					end
 					active.startTime = startTime
 					active.duration = duration
-					active.iconModRate = modRate
-					if ( charges ) then
-						active.charges = charges
-						icon.active = charges
-						icon.count:SetText(charges)
-					elseif ( spellID == 6262 ) then
-						info.preactiveIcons[spellID] = nil
-						icon.icon:SetVertexColor(1, 1, 1)
-						icon.count:SetText(rawCharges)
-						info.auras.healthStoneStacks = rawCharges
+					active.modRate = modRate
+					if normalizedCharges then
+						active.charges = normalizedCharges
+						icon.count:SetText(normalizedCharges)
+					end
+					icon.active = normalizedCharges or 1
+					icon.modRate = modRate
+					info.spellModRates[iconSpellID] = modRate
+					if iconSpellID == 6262 then
+						CM:SetHealthstoneCD(info, icon, charges)
 					end
 
 					local statusBar = icon.statusBar
-					if ( statusBar ) then
-						P.OmniCDCastingBarFrame_OnEvent(statusBar.CastingBar, E.db.extraBars[statusBar.key].reverseFill and 'UNIT_SPELLCAST_CHANNEL_UPDATE' or 'UNIT_SPELLCAST_CAST_UPDATE')
+					if statusBar then
+						statusBar.CastingBar:OnEvent(statusBar.CastingBar.channeling and 'UNIT_SPELLCAST_CHANNEL_UPDATE' or 'UNIT_SPELLCAST_CAST_UPDATE')
 					end
 				end
 			end
@@ -434,12 +425,12 @@ local function CooldownSyncFrame_OnUpdate(_, elapsed)
 		local start, duration, modRate, charges, enabled = GetCooldownFix(id)
 		if start then
 			if id == 6262 then
-				charges = GetItemCount(5512, false, true)
+				charges = C_Item.GetItemCount(5512, false, true)
 			end
 			local prevStart, prevCharges = cooldownInfo[1], cooldownInfo[2]
-			local isPeriodic = E.sync_periodic[id]
+			local isSyncResetID = E.sync_reset[id]
 			if duration == 0 then
-				if isPeriodic and (prevStart ~= 0 or enabled == 0) then
+				if isSyncResetID and (prevStart ~= 0 or enabled == 0) then
 					cooldownInfo[1] = start
 					cooldownInfo[2] = charges
 					cooldownData[c + 1] = id
@@ -447,9 +438,10 @@ local function CooldownSyncFrame_OnUpdate(_, elapsed)
 					cooldownData[c + 3] = charges
 					c = c + 3
 				end
+
 			else
 
-				if abs(start - prevStart) > .49 or charges > prevCharges then
+				if prevStart == 0 or abs(start - prevStart) > .49 or charges > prevCharges then
 					cooldownInfo[1] = start
 					cooldownInfo[2] = charges
 					local remainingTime = start + duration - now

@@ -47,13 +47,14 @@ function Log.SetCurrentThreadNameFunction(func)
 end
 
 ---Enables or disables printing log messages to chat.
----@param enabled boolean
-function Log.SetLoggingToChatEnabled(enabled)
+---@param enabled boolean The logging state to set
+---@param ignoreBuffered boolean Ignore any buffered logs
+function Log.SetLoggingToChatEnabled(enabled, ignoreBuffered)
 	if private.logToChat == enabled then
 		return
 	end
 	private.logToChat = enabled
-	if enabled then
+	if enabled and not ignoreBuffered then
 		-- dump our buffer
 		local len = Log.Length()
 		if len == 0 then

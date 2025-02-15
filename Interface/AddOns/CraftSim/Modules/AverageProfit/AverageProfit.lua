@@ -9,7 +9,7 @@ CraftSim.AVERAGEPROFIT.frame = nil
 ---@type GGUI.Frame
 CraftSim.AVERAGEPROFIT.frameWO = nil
 
-local print = CraftSim.DEBUG:SetDebugPrint(CraftSim.CONST.DEBUG_IDS.AVERAGE_PROFIT)
+local print = CraftSim.DEBUG:RegisterDebugID("Modules.AverageProfit")
 
 local statIncreaseFactor = 5
 
@@ -67,24 +67,6 @@ function CraftSim.AVERAGEPROFIT:GetResourcefulnessWeight(recipeData, baseAverage
 end
 
 ---@param recipeData CraftSim.RecipeData
----@param baseAverageProfit number
----@return number statWeight
-function CraftSim.AVERAGEPROFIT:GetConcentrationWeight(recipeData, baseAverageProfit)
-    if not recipeData.supportsQualities or recipeData.concentrating or recipeData.concentrationCost <= 0 then
-        return 0
-    end
-
-    -- switch on concentration
-    recipeData.concentrating = true
-    recipeData.resultData:Update() -- to make concentration take effect
-    local averageProfitConcentration = recipeData:GetAverageProfit()
-    local profitDiff = averageProfitConcentration - baseAverageProfit
-    local statWeight = profitDiff / recipeData.concentrationCost
-    recipeData.concentrating = false
-    return statWeight
-end
-
----@param recipeData CraftSim.RecipeData
 ---@param skill number
 function CraftSim.AVERAGEPROFIT:GetExpectedQualityBySkill(recipeData, skill)
     local expectedQuality = 1
@@ -106,13 +88,11 @@ function CraftSim.AVERAGEPROFIT:CalculateStatWeights(recipeData)
     print("Get Average Profit", false, true)
     local averageProfit = CraftSim.CALC:GetAverageProfit(recipeData)
 
-    print("calculate stat weights avg profit: " .. tostring(CraftSim.GUTIL:FormatMoney(averageProfit, true)))
+    print("calculate stat weights avg profit: " .. tostring(CraftSim.UTIL:FormatMoney(averageProfit, true)))
 
     local multicraftWeight = CraftSim.AVERAGEPROFIT:GetMulticraftWeight(recipeData, averageProfit)
     local resourcefulnessWeight = CraftSim.AVERAGEPROFIT:GetResourcefulnessWeight(recipeData, averageProfit)
-    local concentrationWeight = CraftSim.AVERAGEPROFIT:GetConcentrationWeight(recipeData, averageProfit)
+    local concentrationValue = recipeData:GetConcentrationValue()
 
-    recipeData:Update() -- revert
-
-    return CraftSim.Statweights(averageProfit, multicraftWeight, resourcefulnessWeight, concentrationWeight)
+    return CraftSim.Statweights(averageProfit, multicraftWeight, resourcefulnessWeight, concentrationValue)
 end

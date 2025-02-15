@@ -17,7 +17,94 @@ function CraftSim.SUPPORTERS:GetList()
     local kofi = CraftSim.MEDIA:GetAsTextIcon(CraftSim.MEDIA.IMAGES.KOFI, 0.45)
     local paypal = " " .. CraftSim.MEDIA:GetAsTextIcon(CraftSim.MEDIA.IMAGES.PAYPAL, 0.35)
     return {
-
+        {
+            name = f.bb("Ian R."),
+            type = kofi,
+            message =
+            "Donating to the author of a great article.",
+            date = "15.09.2024",
+        },
+        {
+            name = f.bb("Red"),
+            type = kofi,
+            message =
+            "I cannot thank you enough for this magnificent S-Tier addon, I would have lost my sanity if I had to do professions without it. <3",
+            date = "10.09.2024",
+        },
+        {
+            name = f.bb("David H."),
+            type = paypal,
+            message =
+            "-",
+            date = "07.09.2024",
+        },
+        {
+            name = f.bb("Gruune"),
+            type = kofi,
+            message = "Fantastic addon, great support on discord. Well deserved Coffee!",
+            date = "06.09.2024",
+        },
+        {
+            name = f.bb("SmoothGeorge1"),
+            type = kofi,
+            message = "-",
+            date = "06.09.2024",
+        },
+        {
+            name = f.bb("sprdl"),
+            type = kofi,
+            message = "Thanks a lot for your work! :)",
+            date = "02.09.2024",
+        },
+        {
+            name = f.bb("Tyranastrasz"),
+            type = kofi,
+            message = "Thanks alot, awesome work",
+            date = "02.09.2024",
+        },
+        {
+            name = f.bb("Zathe"),
+            type = kofi,
+            message = "-",
+            date = "30.08.2024",
+        },
+        {
+            name = f.bb("Celtic"),
+            type = kofi,
+            message = "Cheers.",
+            date = "30.08.2024",
+        },
+        {
+            name = f.bb("Tourn"),
+            type = kofi,
+            message = "You deserve so much more! Tyvm for the service you do for the WoW community.",
+            date = "28.08.2024",
+        },
+        {
+            name = f.bb("DiegoSnoop"),
+            type = kofi,
+            message = "-",
+            date = "25.08.2024",
+        },
+        {
+            name = f.bb("Somebody"),
+            type = kofi,
+            message = "-",
+            date = "22.08.2024",
+        },
+        {
+            name = f.bb("John S."),
+            type = kofi,
+            message =
+            "Love what you do for the game! Donated enough for a cheeseburger (or multiple coffees if that is your preference)",
+            date = "12.08.2024",
+        },
+        {
+            name = f.bb("Ten"),
+            type = kofi,
+            message = "Thank you for the hard work",
+            date = "09.08.2024",
+        },
         {
             name = f.bb("John S."),
             type = kofi,

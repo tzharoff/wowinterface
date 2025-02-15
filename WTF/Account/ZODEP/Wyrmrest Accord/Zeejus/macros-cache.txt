@@ -1,0 +1,4 @@
+VER 3 0100000000000001 "MD" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/cast [@focus,help][help][@pet,exists] Misdirection
+END

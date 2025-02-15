@@ -1,8 +1,8 @@
 Blizzard_ObjectiveTracker: enabled
 Blizzard_CompactRaidFrames: enabled
-BigWigs_Core: disabled
-BigWigs_Options: disabled
-BigWigs_Plugins: disabled
+BigWigs_Core: enabled
+BigWigs_Options: enabled
+BigWigs_Plugins: enabled
 WeakAurasCompanion: enabled
 WeakAurasArchive: enabled
 Blizzard_CombatText: enabled
@@ -35,7 +35,7 @@ BigWigs_DragonIsles: disabled
 BigWigs_VaultOfTheIncarnates: disabled
 BigWigs_Voice: disabled
 Craftility: disabled
-CraftSim: disabled
+CraftSim: enabled
 Details: disabled
 Details_Compare2: disabled
 Details_EncounterDetails: disabled
@@ -76,14 +76,14 @@ TidyPlates_Grey: disabled
 TidyPlates_Neon: disabled
 TidyPlates_Quatre: disabled
 TomPoints: disabled
-TomTom: disabled
+TomTom: enabled
 WeakAuras: disabled
 WeakAurasModelPaths: disabled
 WeakAurasOptions: disabled
 WeakAurasStopMotion: disabled
 WeakAurasTemplates: disabled
 TargetHealthPercent: disabled
-TradeSkillMaster: disabled
+TradeSkillMaster: enabled
 DBM-Core: disabled
 DBM-GUI: disabled
 DBM-StatusBarTimers: disabled
@@ -94,3 +94,4 @@ DBM-VaultoftheIncarnates: disabled
 DBM-VPVEM: disabled
 DBM-DragonIsles: disabled
 DBM-WorldEvents: disabled
+TradeSkillMaster_AppHelper: enabled

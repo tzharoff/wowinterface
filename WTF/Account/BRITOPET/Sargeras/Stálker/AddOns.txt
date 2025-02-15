@@ -62,18 +62,18 @@ OmniCD: disabled
 Plater: enabled
 PreserveAuctionatorAHScan: enabled
 RaiderIO_DB_US_M: enabled
-RaiderIO_DB_EU_M: enabled
-RaiderIO_DB_KR_M: enabled
-RaiderIO_DB_TW_M: enabled
+RaiderIO_DB_EU_M: disabled
+RaiderIO_DB_KR_M: disabled
+RaiderIO_DB_TW_M: disabled
 RaiderIO: enabled
 RaiderIO_DB_US_R: enabled
-RaiderIO_DB_EU_R: enabled
-RaiderIO_DB_KR_R: enabled
-RaiderIO_DB_TW_R: enabled
+RaiderIO_DB_EU_R: disabled
+RaiderIO_DB_KR_R: disabled
+RaiderIO_DB_TW_R: disabled
 RaiderIO_DB_US_F: enabled
-RaiderIO_DB_EU_F: enabled
-RaiderIO_DB_KR_F: enabled
-RaiderIO_DB_TW_F: enabled
+RaiderIO_DB_EU_F: disabled
+RaiderIO_DB_KR_F: disabled
+RaiderIO_DB_TW_F: disabled
 RareScanner: enabled
 RemixCheckList: enabled
 Remix Gem Helper: enabled
@@ -105,3 +105,6 @@ WeakAurasModelPaths: enabled
 WeakAurasOptions: enabled
 WeakAurasStopMotion: enabled
 WeakAurasTemplates: enabled
+Blizzard_ObjectiveTracker: enabled
+Blizzard_CompactRaidFrames: enabled
+Blizzard_CombatText: enabled

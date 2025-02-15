@@ -1,0 +1,53 @@
+
+MHMOTSConfig = {
+["ReceivedColor"] = {
+0.63,
+0.55,
+1,
+1,
+},
+["ShowLargeSymbol"] = true,
+["SavedBackgroundAlpha"] = 0.8500000000000001,
+["ShowAtBoss"] = true,
+["ShowSequenceNumbers"] = true,
+["SavedScale"] = 1,
+["SavedScaleLargeSymbol"] = 1,
+["SavedPosition"] = {
+},
+["PredictedColor"] = {
+1,
+0.9,
+0.71,
+1,
+},
+["PrintResettedPlayerName"] = true,
+["AutoToggleVisibility"] = true,
+["SavedPositionLargeSymbol"] = {
+},
+["SetMarkerOnTargetClone"] = true,
+["AutoAnnouncerAsPartyLeader"] = true,
+["MinimapButton"] = {
+["showInCompartment"] = true,
+["hide"] = false,
+},
+["SetMarkerOnTargetCloneModifier"] = 3,
+["SolutionColor"] = {
+0.2,
+0.8,
+0.4,
+1,
+},
+["SetMarkerOnTargetCloneUseModifier"] = true,
+["SyncEnabled"] = true,
+["SavedBackgroundAlphaLargeSymbol"] = 0.8,
+["AnnounceWithEnglish"] = true,
+["UseCloneAutoMarker"] = true,
+["AutoAnnouncerChannel"] = 1,
+["UseColoredSymbols"] = true,
+["ActiveColor"] = {
+0.4,
+0.52,
+0.95,
+1,
+},
+}

@@ -1,7 +1,7 @@
 ---@class CraftSim
 local CraftSim = select(2, ...)
 
-local print = CraftSim.DEBUG:SetDebugPrint(CraftSim.CONST.DEBUG_IDS.SPECDATA)
+local print = CraftSim.DEBUG:RegisterDebugID("Classes.RecipeData.SpecializationData")
 
 local GUTIL = CraftSim.GUTIL
 
@@ -44,9 +44,11 @@ function CraftSim.SpecializationData:new(recipeData)
 
     for _, perkID in ipairs(recipePerks or {}) do
         local perkData = professionNodeData[perkID]
-        nodePerkMap[perkData.nodeID] = nodePerkMap[perkData.nodeID] or {}
-        if perkID ~= perkData.nodeID then
-            tinsert(nodePerkMap[perkData.nodeID], perkID)
+        local baseNodeID = perkData.nodeID
+        -- perks have max rank 1, base nodes have max rank > 1
+        if perkData.maxRank == 1 then
+            nodePerkMap[baseNodeID] = nodePerkMap[baseNodeID] or {}
+            tinsert(nodePerkMap[baseNodeID], perkID)
         end
     end
 
@@ -178,8 +180,8 @@ end
 function CraftSim.SpecializationData:Deserialize(serializedData, recipeData)
     local specializationData = CraftSim.SpecializationData()
     self.isImplemented = recipeData:IsSpecializationInfoImplemented()
-    specializationData.professionStats = CraftSim.ProfessionStats()
-    specializationData.maxProfessionStats = CraftSim.ProfessionStats()
+    specializationData.professionStats = CraftSim.ProfessionStats:Deserialize(serializedData.professionStats)
+    specializationData.maxProfessionStats = CraftSim.ProfessionStats:Deserialize(serializedData.maxProfessionStats)
 
     specializationData.nodeData = GUTIL:Map(serializedData.nodeData, function(nodeDataSerialized)
         return CraftSim.NodeData:Deserialize(nodeDataSerialized, recipeData)

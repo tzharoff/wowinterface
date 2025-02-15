@@ -1,4 +1,11 @@
 Version: 1
+Frame: TargetHealthPercentBar
+FrameLevel: 1
+Anchor: RIGHT
+X: -235
+Y: -84
+W: 38
+H: 16
 Frame: ScriptErrorsFrame
 FrameLevel: 0
 Anchor: BOTTOM
@@ -13,3 +20,10 @@ X: -26
 Y: -30
 W: 261
 H: 590
+Frame: ST_Maze_Helper
+FrameLevel: 1
+Anchor: RIGHT
+X: -359
+Y: 181
+W: 306
+H: 225

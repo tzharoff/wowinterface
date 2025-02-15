@@ -31,3 +31,7 @@ APR-Vanilla: disabled
 APR-WarlordsOfDraenor: disabled
 APR-WrathOfTheLichKing: disabled
 ZygorGuidesViewer: disabled
+TomTom: enabled
+TradeSkillMaster: enabled
+CraftSim: enabled
+TradeSkillMaster_AppHelper: enabled

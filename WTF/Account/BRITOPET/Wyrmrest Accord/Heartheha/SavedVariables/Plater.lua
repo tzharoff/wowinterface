@@ -9,6 +9,7 @@ PlaterDBChr = {
 },
 ["first_run3"] = {
 ["Player-1171-08F50DE3"] = true,
+["Player-1171-0AD16E28"] = true,
 },
 ["spellRangeCheckRangeEnemy"] = {
 [266] = 40,

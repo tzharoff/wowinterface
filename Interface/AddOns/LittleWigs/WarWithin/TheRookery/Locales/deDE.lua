@@ -1,15 +1,15 @@
 local L = BigWigs:NewBossLocale("The Rookery Trash", "deDE")
 if not L then return end
 if L then
-	--L.quartermaster_koratite = "Quartermaster Koratite"
-	--L.cursed_stormrider = "Cursed Stormrider"
-	--L.cursed_rooktender = "Cursed Rooktender"
-	--L.unruly_stormrook = "Unruly Stormrook"
-	--L.corrupted_rookguard = "Corrupted Rookguard"
-	--L.corrupted_oracle = "Corrupted Oracle"
-	--L.corrupted_thunderer = "Corrupted Thunderer"
-	--L.inflicted_civilian = "Inflicted Civilian"
-	--L.void_ascendant = "Void Ascendant"
-	--L.radiating_voidstone = "Radiating Voidstone"
-	--L.void_fragment = "Void Fragment"
+	L.quartermaster_koratite = "Rüstmeister Koratit"
+	L.voidrider = "Leerenreiter"
+	L.cursed_rooktender = "Verfluchter Krähenhüter"
+	L.unruly_stormrook = "Widerspenstige Sturmkrähe"
+	L.void_cursed_crusher = "Leerenverfluchter Zermalmer"
+	L.corrupted_oracle = "Verderbtes Orakel"
+	L.coalescing_void_diffuser = "Verdichtender Leerenzerstreuer"
+	L.inflicted_civilian = "Betroffener Bürger"
+	L.void_ascendant = "Leerenaszendentin"
+	--L.consuming_voidstone = "Consuming Voidstone"
+	L.void_fragment = "Leerenfragment"
 end

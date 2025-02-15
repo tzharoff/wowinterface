@@ -325,4 +325,12 @@ private.LOOT_QUEST_IDS = {
 	[180785] = { 61146 }; --Condensed Essence
 	[183436] = { 62362 }; --Animated Catalyst
 	[183061] = { 63158 }; --Wailing Coin
+	[220737] = { 81993, 83024 }; --Storm Spirit
+	[225741] = { 82679, 82678 }; --Titan Disc Fragment
+	[226136] = { 83721 }; --Nerubian Blood
+	[225950] = { 83719 }; --Nerubian Chitin
+	[226135] = { 83720 }; --Nerubian Venom
+	[212755] = { 79329 }; --Remnant Satchel
+	[219934] = { 81796, 81795, 81793, 81794 }; --Sparks of War
+	[206519] = { 76338 }; --Cleanbrass Bolts
 }

@@ -618,6 +618,13 @@ EncounterDetailsDB = {
 },
 ["source"] = "Shadowflame Amalgamation",
 },
+[408717] = {
+["school"] = 32,
+["token"] = {
+["SPELL_DAMAGE"] = true,
+},
+["source"] = "Essence of Shadow",
+},
 [322527] = {
 ["school"] = 8,
 ["type"] = "DEBUFF",
@@ -626,13 +633,6 @@ EncounterDetailsDB = {
 },
 ["source"] = "Tred'ova",
 },
-[408717] = {
-["school"] = 32,
-["token"] = {
-["SPELL_DAMAGE"] = true,
-},
-["source"] = "Essence of Shadow",
-},
 [405082] = {
 ["school"] = 32,
 ["token"] = {
@@ -640,13 +640,12 @@ EncounterDetailsDB = {
 },
 ["source"] = "Essence of Shadow",
 },
-[400430] = {
-["school"] = 1,
+[322655] = {
+["school"] = 8,
 ["token"] = {
-["SPELL_CAST_SUCCESS"] = true,
-["SPELL_CAST_START"] = true,
+["SPELL_DAMAGE"] = true,
 },
-["source"] = "Kazzara, the Hellforged",
+["source"] = "Tred'ova",
 },
 [321471] = {
 ["school"] = 8,
@@ -682,22 +681,23 @@ EncounterDetailsDB = {
 },
 ["source"] = "Thadrion",
 },
-[322655] = {
-["school"] = 8,
+[400430] = {
+["school"] = 1,
 ["token"] = {
-["SPELL_DAMAGE"] = true,
+["SPELL_CAST_SUCCESS"] = true,
+["SPELL_CAST_START"] = true,
 },
-["source"] = "Tred'ova",
+["source"] = "Kazzara, the Hellforged",
 },
-[68872] = {
-["school"] = 32,
+[384620] = {
+["school"] = 8,
 ["type"] = "BUFF",
 ["token"] = {
 ["SPELL_AURA_APPLIED"] = true,
 ["SPELL_CAST_START"] = true,
 ["SPELL_CAST_SUCCESS"] = true,
 },
-["source"] = "Bronjahm",
+["source"] = "The Raging Tempest",
 },
 [405084] = {
 ["school"] = 32,
@@ -811,21 +811,6 @@ EncounterDetailsDB = {
 },
 ["source"] = "Balakar Khan",
 },
-[405492] = {
-["school"] = 1,
-["token"] = {
-["SPELL_CAST_SUCCESS"] = true,
-["SPELL_CAST_START"] = true,
-},
-["source"] = "Thadrion",
-},
-[104318] = {
-["school"] = 4,
-["token"] = {
-["SPELL_DAMAGE"] = true,
-},
-["source"] = "Wild Imp",
-},
 [404472] = {
 ["school"] = 1,
 ["token"] = {
@@ -835,14 +820,28 @@ EncounterDetailsDB = {
 },
 ["source"] = "Neldris",
 },
-[386411] = {
-["school"] = 1,
+[104318] = {
+["school"] = 4,
 ["token"] = {
-["SPELL_CAST_START"] = true,
-["SPELL_CAST_SUCCESS"] = true,
 ["SPELL_DAMAGE"] = true,
 },
-["source"] = "Teera",
+["source"] = "Wild Imp",
+},
+[405492] = {
+["school"] = 1,
+["token"] = {
+["SPELL_CAST_SUCCESS"] = true,
+["SPELL_CAST_START"] = true,
+},
+["source"] = "Thadrion",
+},
+[386921] = {
+["school"] = 1,
+["token"] = {
+["SPELL_CAST_SUCCESS"] = true,
+["SPELL_CAST_START"] = true,
+},
+["source"] = "Dragonkiller Lance",
 },
 [68921] = {
 ["school"] = 32,
@@ -853,26 +852,28 @@ EncounterDetailsDB = {
 },
 ["source"] = "Bronjahm",
 },
-[68858] = {
-["school"] = 32,
+[321834] = {
+["school"] = 1,
 ["token"] = {
-["SPELL_HEAL"] = true,
+["SPELL_CAST_SUCCESS"] = true,
+["SPELL_CAST_START"] = true,
 },
-["source"] = "Bronjahm",
+["source"] = "Mistcaller",
 },
-[403559] = {
-["school"] = 32,
-["token"] = {
-["SPELL_DAMAGE"] = true,
-},
-["source"] = "Essence of Shadow",
-},
-[384628] = {
-["school"] = 8,
+[405599] = {
+["school"] = 64,
 ["token"] = {
 ["SPELL_DAMAGE"] = true,
 },
-["source"] = "The Raging Tempest",
+["source"] = "Thadrion",
+},
+[376723] = {
+["school"] = 1,
+["token"] = {
+["SPELL_CAST_SUCCESS"] = true,
+["SPELL_CAST_START"] = true,
+},
+["source"] = "Nokhud Stormcaster",
 },
 [392151] = {
 ["school"] = 1,
@@ -883,13 +884,14 @@ EncounterDetailsDB = {
 },
 ["source"] = "Teera",
 },
-[386921] = {
+[386411] = {
 ["school"] = 1,
 ["token"] = {
-["SPELL_CAST_SUCCESS"] = true,
 ["SPELL_CAST_START"] = true,
+["SPELL_CAST_SUCCESS"] = true,
+["SPELL_DAMAGE"] = true,
 },
-["source"] = "Dragonkiller Lance",
+["source"] = "Teera",
 },
 [406365] = {
 ["school"] = 1,
@@ -919,12 +921,11 @@ EncounterDetailsDB = {
 },
 ["source"] = "Kazzara, the Hellforged",
 },
-[188046] = {
-["school"] = 72,
+[69034] = {
+["school"] = 32,
 ["token"] = {
 ["SPELL_DAMAGE"] = true,
 },
-["source"] = "Denizen of the Dream",
 },
 [405601] = {
 ["school"] = 64,
@@ -940,21 +941,19 @@ EncounterDetailsDB = {
 },
 ["source"] = "Balakar Khan",
 },
-[321834] = {
-["school"] = 1,
+[68858] = {
+["school"] = 32,
 ["token"] = {
-["SPELL_CAST_SUCCESS"] = true,
-["SPELL_CAST_START"] = true,
+["SPELL_HEAL"] = true,
 },
-["source"] = "Mistcaller",
+["source"] = "Bronjahm",
 },
-[376723] = {
-["school"] = 1,
+[384628] = {
+["school"] = 8,
 ["token"] = {
-["SPELL_CAST_SUCCESS"] = true,
-["SPELL_CAST_START"] = true,
+["SPELL_DAMAGE"] = true,
 },
-["source"] = "Nokhud Stormcaster",
+["source"] = "The Raging Tempest",
 },
 [336752] = {
 ["school"] = 1,
@@ -1002,14 +1001,12 @@ EncounterDetailsDB = {
 },
 ["source"] = "Droman Oulfarran",
 },
-[405413] = {
-["school"] = 1,
-["type"] = "BUFF",
+[188046] = {
+["school"] = 72,
 ["token"] = {
-["SPELL_AURA_APPLIED"] = true,
-["SPELL_CAST_SUCCESS"] = true,
+["SPELL_DAMAGE"] = true,
 },
-["source"] = "Rionthus",
+["source"] = "Denizen of the Dream",
 },
 [376725] = {
 ["school"] = 8,
@@ -1029,20 +1026,24 @@ EncounterDetailsDB = {
 },
 ["source"] = "Broggok Poison Cloud",
 },
-[69034] = {
-["school"] = 32,
-["token"] = {
-["SPELL_DAMAGE"] = true,
-},
-},
-[407327] = {
-["school"] = 64,
-["type"] = "DEBUFF",
+[405413] = {
+["school"] = 1,
+["type"] = "BUFF",
 ["token"] = {
 ["SPELL_AURA_APPLIED"] = true,
-["SPELL_PERIODIC_DAMAGE"] = true,
+["SPELL_CAST_SUCCESS"] = true,
 },
-["source"] = "Thadrion",
+["source"] = "Rionthus",
+},
+[376727] = {
+["school"] = 1,
+["type"] = "BUFF",
+["token"] = {
+["SPELL_AURA_APPLIED"] = true,
+["SPELL_CAST_START"] = true,
+["SPELL_CAST_SUCCESS"] = true,
+},
+["source"] = "Balakar Khan",
 },
 [384186] = {
 ["school"] = 8,
@@ -1077,15 +1078,12 @@ EncounterDetailsDB = {
 },
 ["source"] = "Neldris",
 },
-[376727] = {
-["school"] = 1,
-["type"] = "BUFF",
+[409367] = {
+["school"] = 64,
 ["token"] = {
-["SPELL_AURA_APPLIED"] = true,
-["SPELL_CAST_START"] = true,
-["SPELL_CAST_SUCCESS"] = true,
+["SPELL_DAMAGE"] = true,
 },
-["source"] = "Balakar Khan",
+["source"] = "Neldris",
 },
 [389541] = {
 ["school"] = 8,
@@ -1147,6 +1145,20 @@ EncounterDetailsDB = {
 ["SPELL_PERIODIC_DAMAGE"] = true,
 },
 },
+[386037] = {
+["school"] = 8,
+["token"] = {
+["SPELL_DAMAGE"] = true,
+},
+},
+[384316] = {
+["school"] = 8,
+["token"] = {
+["SPELL_CAST_SUCCESS"] = true,
+["SPELL_CAST_START"] = true,
+},
+["source"] = "The Raging Tempest",
+},
 [386547] = {
 ["school"] = 1,
 ["token"] = {
@@ -1164,20 +1176,6 @@ EncounterDetailsDB = {
 ["SPELL_CAST_SUCCESS"] = true,
 },
 ["source"] = "Devourer of Souls",
-},
-[386037] = {
-["school"] = 8,
-["token"] = {
-["SPELL_DAMAGE"] = true,
-},
-},
-[384316] = {
-["school"] = 8,
-["token"] = {
-["SPELL_CAST_SUCCESS"] = true,
-["SPELL_CAST_START"] = true,
-},
-["source"] = "The Raging Tempest",
 },
 [376730] = {
 ["school"] = 1,
@@ -1219,13 +1217,12 @@ EncounterDetailsDB = {
 },
 ["source"] = "Neldris",
 },
-[384510] = {
-["school"] = 1,
-["type"] = "BUFF",
+[404910] = {
+["school"] = 4,
 ["token"] = {
-["SPELL_AURA_APPLIED"] = true,
+["SPELL_DAMAGE"] = true,
 },
-["source"] = "Nokhud Defender",
+["source"] = "Eternal Blaze",
 },
 [405042] = {
 ["school"] = 1,
@@ -1235,13 +1232,14 @@ EncounterDetailsDB = {
 },
 ["source"] = "Thadrion",
 },
-[68988] = {
-["school"] = 64,
+[403699] = {
+["school"] = 32,
 ["token"] = {
-["SPELL_CAST_SUCCESS"] = true,
 ["SPELL_CAST_START"] = true,
+["SPELL_CAST_SUCCESS"] = true,
+["SPELL_DAMAGE"] = true,
 },
-["source"] = "Bronjahm",
+["source"] = "Essence of Shadow",
 },
 [376732] = {
 ["school"] = 8,
@@ -1258,21 +1256,23 @@ EncounterDetailsDB = {
 },
 ["source"] = "Essence of Shadow",
 },
-[404910] = {
-["school"] = 4,
+[384510] = {
+["school"] = 1,
+["type"] = "BUFF",
 ["token"] = {
-["SPELL_DAMAGE"] = true,
+["SPELL_AURA_APPLIED"] = true,
 },
-["source"] = "Eternal Blaze",
+["source"] = "Nokhud Defender",
 },
-[403699] = {
-["school"] = 32,
+[385339] = {
+["school"] = 1,
+["type"] = "BUFF",
 ["token"] = {
+["SPELL_AURA_APPLIED"] = true,
 ["SPELL_CAST_START"] = true,
 ["SPELL_CAST_SUCCESS"] = true,
-["SPELL_DAMAGE"] = true,
 },
-["source"] = "Essence of Shadow",
+["source"] = "Maruuk",
 },
 [406313] = {
 ["school"] = 64,
@@ -1310,22 +1310,6 @@ EncounterDetailsDB = {
 },
 ["source"] = "Primal Tsunami",
 },
-[402617] = {
-["school"] = 4,
-["type"] = "DEBUFF",
-["token"] = {
-["SPELL_AURA_APPLIED"] = true,
-["SPELL_PERIODIC_DAMAGE"] = true,
-},
-["source"] = "Eternal Blaze",
-},
-[196816] = {
-["school"] = 2,
-["token"] = {
-["SPELL_PERIODIC_HEAL"] = true,
-},
-["source"] = "Divine Image",
-},
 [323057] = {
 ["school"] = 32,
 ["token"] = {
@@ -1334,6 +1318,22 @@ EncounterDetailsDB = {
 ["SPELL_DAMAGE"] = true,
 },
 ["source"] = "Ingra Maloch",
+},
+[196816] = {
+["school"] = 2,
+["token"] = {
+["SPELL_PERIODIC_HEAL"] = true,
+},
+["source"] = "Divine Image",
+},
+[402617] = {
+["school"] = 4,
+["type"] = "DEBUFF",
+["token"] = {
+["SPELL_AURA_APPLIED"] = true,
+["SPELL_PERIODIC_DAMAGE"] = true,
+},
+["source"] = "Eternal Blaze",
 },
 [345561] = {
 ["school"] = 1,
@@ -1400,15 +1400,13 @@ EncounterDetailsDB = {
 },
 ["source"] = "Balakar Khan",
 },
-[385339] = {
-["school"] = 1,
-["type"] = "BUFF",
+[68988] = {
+["school"] = 64,
 ["token"] = {
-["SPELL_AURA_APPLIED"] = true,
-["SPELL_CAST_START"] = true,
 ["SPELL_CAST_SUCCESS"] = true,
+["SPELL_CAST_START"] = true,
 },
-["source"] = "Maruuk",
+["source"] = "Bronjahm",
 },
 [376737] = {
 ["school"] = 8,
@@ -1463,12 +1461,14 @@ EncounterDetailsDB = {
 },
 ["source"] = "Balakar Khan",
 },
-[409367] = {
+[407327] = {
 ["school"] = 64,
+["type"] = "DEBUFF",
 ["token"] = {
-["SPELL_DAMAGE"] = true,
+["SPELL_AURA_APPLIED"] = true,
+["SPELL_PERIODIC_DAMAGE"] = true,
 },
-["source"] = "Neldris",
+["source"] = "Thadrion",
 },
 [404789] = {
 ["school"] = 36,
@@ -1507,12 +1507,12 @@ EncounterDetailsDB = {
 ["SPELL_AURA_APPLIED"] = true,
 },
 },
-[405599] = {
-["school"] = 64,
+[403559] = {
+["school"] = 32,
 ["token"] = {
 ["SPELL_DAMAGE"] = true,
 },
-["source"] = "Thadrion",
+["source"] = "Essence of Shadow",
 },
 [38459] = {
 ["school"] = 8,
@@ -1578,15 +1578,15 @@ EncounterDetailsDB = {
 },
 ["source"] = "Kazzara, the Hellforged",
 },
-[384620] = {
-["school"] = 8,
+[68872] = {
+["school"] = 32,
 ["type"] = "BUFF",
 ["token"] = {
 ["SPELL_AURA_APPLIED"] = true,
 ["SPELL_CAST_START"] = true,
 ["SPELL_CAST_SUCCESS"] = true,
 },
-["source"] = "The Raging Tempest",
+["source"] = "Bronjahm",
 },
 [68863] = {
 ["school"] = 32,

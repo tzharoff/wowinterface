@@ -1,5 +1,7 @@
 local L = select(2, ...).L('enUS')
 
+L["MDP_TITLE"] = "Mythic Dungeon Portals"
+
 -- Expansions
 L["Cataclysm"] = "Cataclysm"
 L["Mists of Pandaria"] = "Mists of Pandaria"
@@ -68,10 +70,20 @@ L["DUNGEON_THE_ROOKERY"] = "The Rookery"
 L["DUNGEON_DARKFLAME_CLEFT"] = "Darkflame Cleft"
 L["DUNGEON_CINDERBREW_BREWERY"] = "Cinderbrew Brewery"
 L["DUNGEON_PRIORY_OF_THE_SACRED_FLAME"] = "Priory of the Sacred Flame"
+L["DUNGEON_GRIM_BATOL"] = "Grim Batol"
+L["DUNGEON_SEIGE_OF_BORALUS"] = "Seige of Boralus"
+
+-- Raids
+L["RAID_VAULT_OF_THE_INCARNATES"] = "Vault of the Incarnates"
+L["RAID_ABBERUS_THE_SHADOWED_CRUCIBLE"] = "Aberrus, the Shadowed Crucible"
+L["RAID_AMIRDRASSIL_THE_DREAMS_HOPE"] = "Amirdrassil, the Dream's Hope"
+L["RAID_CASTLE_NATHRIA"] = "Castle Nathria"
+L["RAID_SANCTUM_OF_DOMINATION"] = "Sanctum of Domination"
+L["RAID_SEPULCHER_OF_THE_FIRST_ONES"] = "Sepulcher of the First Ones"
 
 -- Settings
-L["Left click to open Portals"] = "Left click to open Portals"
-L["Right click to open settings"] = "Right click to open settings"
-L["Show/Hide Backgrounds"] = "Show/Hide Backgrounds"
-L["Show/Hide Minimap Icon"] = "Show/Hide Minimap Icon"
-L["Mythic Dungeon Portals Settings"] = "Mythic Dungeon Portals Settings"
+L["LEFT_CLICK"] = "Left click to open Portals"
+L["RIGHT_CLICK"] = "Right click to open settings"
+L["SHOW_BACKGROUNDS"] = "Show/Hide Backgrounds"
+L["SHOW_MINIMAP"] = "Show/Hide Minimap Icon"
+L["SETTINGS_TITLE"] = "Mythic Dungeon Portals Settings"

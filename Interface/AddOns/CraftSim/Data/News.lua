@@ -1,48 +1,49 @@
 ---@class CraftSim
 local CraftSim = select(2, ...)
 
+local GUTIL = CraftSim.GUTIL
+
 CraftSim.NEWS = {}
 
-local print = CraftSim.DEBUG:SetDebugPrint(CraftSim.CONST.DEBUG_IDS.NEWS)
+local print = CraftSim.DEBUG:RegisterDebugID("Data.News")
 
 ---@param itemMap table<string, ItemMixin>
 function CraftSim.NEWS:GET_NEWS(itemMap)
     -- minimize names to make manual formatting easier :p
-    local f = CraftSim.GUTIL:GetFormatter()
+    local f = GUTIL:GetFormatter()
     local function newP(v) return f.l("\n                                   --- Version " .. v .. " ---\n") end
     local supporterListUpdate = f.p .. f.patreon("Supporter List Update ") ..
         CraftSim.MEDIA:GetAsTextIcon(CraftSim.MEDIA.IMAGES.PIXEL_HEART, 0.15)
     local news = {
         f.bb("                   Hello and thank you for using CraftSim!\n"),
         f.bb("                                 ( You are awesome! )"),
-        newP("17.0.8"),
-        f.p .. "DB2 Data Update",
-        supporterListUpdate,
-        newP("17.0.7"),
-        f.P .. "Optional Reagents now based on Datamined Data",
-        f.P .. "Enchant Mapping now based on Datamined Data",
-        f.P .. "Concentration Calculation now based on Datamined Data",
-        f.a .. f.r("WARNING: ") .. "Cost Simulation only working in TWW BETA",
-        f.P .. "Specialization Info now based on Datamined Data",
-        f.P .. f.bb("Statistics Module"),
-        f.a .. "Added a Concentration Cost Visualization",
-        newP("17.0.6"),
-        f.p .. "Fixed Enchanting Specialization Data Bug",
-        newP("17.0.5"),
-        f.P .. f.l("The War Within") .. " Update",
-        f.P .. "Behold! Many updates to come to adapt" .. f.l(" CraftSim"),
-        f.P .. "Goodbye " .. f.bb("Inspiration") .. "!",
-        f.a .. "Inspiration support replaced with concentration support",
-        f.a .. "to the new profession changes!",
-        f.P .. f.g("BIG THANKS") .. " to " .. f.bb("Jechett") .. " from the",
-        f.a .. f.l("www.wowforgefinder.com") .. " crew for all the",
-        f.a .. "help with the specialization data mining!",
-        f.P .. f.g("New: Concentration Tracker with Alt-Overview"),
-        f.P .. f.b("Craft Results") .. " now includes a craft analyser tab",
-        f.s .. "Thanks a lot to contributers:",
-        f.a .. f.bb("https://github.com/Williwams"),
-        f.a .. f.bb("https://github.com/rowaasr13"),
-        f.a .. f.bb("https://github.com/EloMoose"),
+        newP("19.8.2"),
+        f.p .. f.bb("CraftBuffs"),
+        f.a .. "Fixed Ignition Buff Base Stats",
+        f.a .. "- Thanks to " .. f.bb("https://github.com/avilene"),
+        newP("19.8.1"),
+        f.p .. f.bb("CraftBuffs"),
+        f.a .. "Updated Weaver's Buffs",
+        f.a .. "- Thanks to " .. f.bb("https://github.com/avilene"),
+        newP("19.8.0"),
+        f.P .. f.bb("CraftQueue") .. " - " .. f.g("Queue Work Orders"),
+        f.a .. "- Added support for a custom " .. f.bb("Reagent Bag Value"),
+        f.p .. "Fixed " .. f.bb("CraftLog") .. " lua error for pvp items",
+        newP("19.7.5"),
+        f.p .. "Fixed " .. f.bb("Reagent Optimization") .. " for non quality recipes",
+        f.p .. "Fixed " .. f.bb("RestockAmount") .. " for TSM Expression allowing 0",
+        f.a .. "Thanks to " .. f.bb("https://github.com/chris-merritt"),
+        f.p .. "Fixed " .. f.bb("QuickBuy") .. " for lists longer than 20 items",
+        f.a .. "Thanks to " .. f.bb("https://github.com/syspro86"),
+        newP("19.7.4"),
+        f.p .. "11.0.7.58533 Data Update",
+        newP("19.7.3"),
+        f.p .. "11.0.7.58238 Data Update",
+        newP("19.7.2"),
+        f.p .. "Fixed " .. f.bb("QuickBuy") .. " reset on list refresh",
+        f.a .. "- Now always starts a new search",
+        f.p .. "Locals Update",
+        f.a .. "- " .. f.bb("esES") .. " by: " .. f.bb("https://github.com/GarikGangrel")
     }
     return table.concat(news, "\n")
 end
@@ -83,7 +84,7 @@ end
 ---@async
 function CraftSim.NEWS:ShowNews(force)
     local itemMap = {
-        chocolate = Item:CreateFromItemID(194902),
+        enchantingRod = Item:CreateFromItemID(224116),
     }
     CraftSim.GUTIL:ContinueOnAllItemsLoaded(CraftSim.GUTIL:Map(itemMap, function(i) return i end), function()
         local newsText = CraftSim.NEWS:GET_NEWS(itemMap)

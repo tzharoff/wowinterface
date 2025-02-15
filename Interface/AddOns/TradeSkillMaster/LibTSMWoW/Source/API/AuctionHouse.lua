@@ -14,7 +14,9 @@ local private = {
 	auctionIdToLink = {},
 	auctionIdToItemBuyout = {},
 	postHookFuncs = {},
+	itemPostedCallbacks = {},
 	purchaseHookFuncs = {},
+	getAllHookFuncs = {},
 	lastPurchase = {
 		link = nil,
 		name = nil,
@@ -22,6 +24,12 @@ local private = {
 		buyout = nil,
 	},
 	notificationCallbacks = {},
+	pendingPost = {
+		itemLink = nil,
+		quantity = nil,
+		unitPrice = nil,
+		timestamp = nil,
+	},
 }
 AuctionHouse.DURATIONS = {
 	not LibTSMWoW.IsVanillaClassic() and AUCTION_DURATION_ONE or gsub(AUCTION_DURATION_ONE, "12", "2"),
@@ -34,6 +42,7 @@ local NOTIFICATION = EnumType.New("AUCTION_NOTIFICATION", {
 	OUTBID = EnumType.NewValue(),
 	EXPIRED = EnumType.NewValue(),
 	SOLD = EnumType.NewValue(),
+	CANCELLED = EnumType.NewValue(),
 })
 AuctionHouse.NOTIFICATION = NOTIFICATION
 local AUCTIONABLE_WOW_TOKEN_ITEM_ID = 122270
@@ -51,6 +60,8 @@ AuctionHouse:OnModuleLoad(function()
 	if ClientInfo.HasFeature(ClientInfo.FEATURES.C_AUCTION_HOUSE) then
 		-- Maintain our auctionId maps
 		Event.Register("ITEM_SEARCH_RESULTS_UPDATED", private.HandleItemSearchResultsUpdated)
+		-- Handle auctions being created
+		Event.Register("AUCTION_HOUSE_AUCTION_CREATED", private.AuctionCreatedHandler)
 	end
 	-- Setup Hooks
 	if ClientInfo.HasFeature(ClientInfo.FEATURES.C_AUCTION_HOUSE) then
@@ -185,6 +196,12 @@ function AuctionHouse.SecureHookPost(func)
 	tinsert(private.postHookFuncs, func)
 end
 
+---Register a callback when an item is posted.
+---@param func fun(itemLink: string, quantity: number, price: number) The function to call
+function AuctionHouse.RegisterItemPostedCallback(func)
+	tinsert(private.itemPostedCallbacks, func)
+end
+
 ---Register a secure hook function for when an auction is cancelled.
 ---@param func fun(auctionId: number) The function to call
 function AuctionHouse.SecureHookCancel(func)
@@ -199,6 +216,16 @@ end
 ---@param func fun(itemLink: string?, quantity: number?, price: number?) The function to call
 function AuctionHouse.SecureHookPurchase(func)
 	tinsert(private.purchaseHookFuncs, func)
+end
+
+---Register a secure hook function for when a GetAll scan is started
+---@param func fun() The function to call
+function AuctionHouse.SecureHookGetAllScan(func)
+	assert(not ClientInfo.HasFeature(ClientInfo.FEATURES.C_AUCTION_HOUSE))
+	if #private.getAllHookFuncs == 0 then
+		hooksecurefunc("QueryAuctionItems", private.QueryAuctionItemsHook)
+	end
+	tinsert(private.getAllHookFuncs, func)
 end
 
 ---Gets info on the last purchase made.
@@ -325,6 +352,18 @@ function AuctionHouse.GetBrowseResult(index)
 	return rawName, itemLink, stackSize, timeLeft, buyout, seller, minIncrement, minBid, bid, isHighBidder
 end
 
+---Gets a limited subset of browse query result data appropriate for a GetAll scan.
+---@param index number The result index
+---@return string? itemLink
+---@return number? stackSize
+---@return number? buyout
+function AuctionHouse.GetGetAllResult(index)
+	assert(not ClientInfo.HasFeature(ClientInfo.FEATURES.C_AUCTION_HOUSE))
+	local itemLink = GetAuctionItemLink("list", index)
+	local _, _, stackSize, _, _, _, _, _, _, buyout = GetAuctionItemInfo("list", index)
+	return itemLink, stackSize, buyout
+end
+
 ---Gets the search result info.
 ---@param item number|ItemKey Either the item ID or item key (for commodities / items respectively)
 ---@param index number The result index
@@ -445,9 +484,28 @@ function private.PostAuctionHook(_, _, duration)
 end
 
 function private.HandlePostHook(duration, itemLink, quantity, price)
+	if itemLink then
+		private.pendingPost.itemLink = itemLink
+		private.pendingPost.quantity = quantity
+		private.pendingPost.unitPrice = price
+		private.pendingPost.timestamp = LibTSMWoW.GetTime()
+	else
+		wipe(private.pendingPost)
+	end
 	for _, func in ipairs(private.postHookFuncs) do
 		func(duration, itemLink, quantity, price)
 	end
+end
+
+function private.AuctionCreatedHandler()
+	if LibTSMWoW.GetTime() - (private.pendingPost.timestamp or 0) > 5 then
+		-- Too much time elapsed or nothing pending
+		return
+	end
+	for _, func in ipairs(private.itemPostedCallbacks) do
+		func(private.pendingPost.itemLink, private.pendingPost.quantity, private.pendingPost.unitPrice)
+	end
+	wipe(private.pendingPost)
 end
 
 function private.PlaceBidHook(auctionId, bidPlaced)
@@ -507,6 +565,8 @@ function private.HandleNotification(_, msg, msgArg)
 			callback(NOTIFICATION.EXPIRED, format(ERR_AUCTION_EXPIRED_S, msgArg))
 		elseif msg == Enum.AuctionHouseNotification.BidPlaced then
 			callback(NOTIFICATION.BID, ERR_AUCTION_BID_PLACED)
+		elseif msg == Enum.AuctionHouseNotification.AuctionRemoved then
+			callback(NOTIFICATION.CANCELLED, ERR_AUCTION_REMOVED)
 		end
 	end
 end
@@ -514,5 +574,14 @@ end
 function private.HandleCommodityNotification(_, _, quantity)
 	for _, callback in ipairs(private.notificationCallbacks) do
 		callback(NOTIFICATION.BUY, quantity)
+	end
+end
+
+function private.QueryAuctionItemsHook(_, _, _, _, _, _, isGetAll)
+	if not isGetAll then
+		return
+	end
+	for _, func in ipairs(private.getAllHookFuncs) do
+		func()
 	end
 end

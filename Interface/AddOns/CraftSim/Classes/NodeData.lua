@@ -7,7 +7,7 @@ local GUTIL = CraftSim.GUTIL
 ---@overload fun(recipeData: CraftSim.RecipeData?, baseNodeData: CraftSim.RawPerkData?, perkMap?: table<number, CraftSim.RawPerkData>): CraftSim.NodeData
 CraftSim.NodeData = CraftSim.CraftSimObject:extend()
 
-local print = CraftSim.DEBUG:SetDebugPrint(CraftSim.CONST.DEBUG_IDS.SPECDATA)
+local print = CraftSim.DEBUG:RegisterDebugID("Classes.RecipeData.SpecializationData.NodeData")
 
 ---@param recipeData CraftSim.RecipeData?
 ---@param baseNodeData CraftSim.RawPerkData
@@ -57,17 +57,36 @@ function CraftSim.NodeData:new(recipeData, baseNodeData, perkMap)
         return a.threshold < b.threshold
     end)
 
-    local stat = baseNodeData.stat
-    local amount = baseNodeData.stat_amount or 0
-
     -- for base node equality stat assignments
-    self.equalsSkill = (stat == "skill" and amount) or 0
-    self.equalsMulticraft = (stat == "multicraft" and amount) or 0
-    self.equalsResourcefulness = (stat == "resourcefulness" and amount) or 0
-    self.equalsIngenuity = (stat == "ingenuity" and amount) or 0
-    self.equalsResourcefulnessExtraItemsFactor = (stat == "reagentssavedfromresourcefulness" and amount) or 0
-    self.equalsIngenuityExtraConcentrationFactor = (stat == "ingenuityrefundincrease" and amount) or 0
-    self.equalsCraftingspeed = (stat == "craftingspeed" and amount) or 0
+
+    self.raw_stats = baseNodeData.stats or {}
+
+    self.equalsSkill = 0
+    self.equalsMulticraft = 0
+    self.equalsResourcefulness = 0
+    self.equalsIngenuity = 0
+    self.equalsResourcefulnessExtraItemsFactor = 0
+    self.equalsIngenuityExtraConcentrationFactor = 0
+    self.equalsCraftingspeed = 0
+
+    for stat, amount in pairs(self.raw_stats) do
+        amount = amount or 0
+        if stat == "skill" then
+            self.equalsSkill = amount
+        elseif stat == "multicraft" then
+            self.equalsMulticraft = amount
+        elseif stat == "resourcefulness" then
+            self.equalsResourcefulness = amount
+        elseif stat == "ingenuity" then
+            self.equalsIngenuity = amount
+        elseif stat == "reagentssavedfromresourcefulness" then
+            self.equalsResourcefulnessExtraItemsFactor = amount / 100
+        elseif stat == "ingenuityrefundincrease" then
+            self.equalsIngenuityExtraConcentrationFactor = amount / 100
+        elseif stat == "craftingspeed" then
+            self.equalsCraftingspeed = amount / 100
+        end
+    end
 end
 
 function CraftSim.NodeData:Debug()
@@ -131,7 +150,7 @@ function CraftSim.NodeData:UpdateProfessionStats()
 
     self.professionStats.ingenuity:SetExtraValue(math.max(0, rank * self.equalsIngenuityExtraConcentrationFactor))
     self.maxProfessionStats.ingenuity:SetExtraValue(math.max(0, maxRank * self
-        .equalsIngenuityExtraConcentrationFactor), 2)
+        .equalsIngenuityExtraConcentrationFactor))
 
     -- then add stats from perks
     for _, perkData in pairs(self.perkData) do
@@ -151,7 +170,7 @@ function CraftSim.NodeData:GetTooltipText()
     local tooltipText = header ..
         "\n\n" .. GUTIL:ColorizeText(tostring(C_ProfSpecs.GetDescriptionForPath(self.nodeID)), GUTIL.COLORS.WHITE)
     for _, perkData in ipairs(self.perkData) do
-        local rankText = "Rank " .. perkData.threshold .. ":\n"
+        local rankText = CraftSim.LOCAL:GetText(CraftSim.CONST.TEXT.NODE_DATA_RANK_TEXT) .. perkData.threshold .. ":\n"
         local perkDescription = C_ProfSpecs.GetDescriptionForPerk(perkData.perkID)
 
         if perkData.active then
@@ -165,7 +184,7 @@ function CraftSim.NodeData:GetTooltipText()
     end
 
     tooltipText = tooltipText ..
-        "\n\nTotal Stats from Talent:\n" ..
+        CraftSim.LOCAL:GetText(CraftSim.CONST.TEXT.NODE_DATA_TOOLTIP) ..
         GUTIL:ColorizeText(self.professionStats:GetTooltipText(self.maxProfessionStats), GUTIL.COLORS.WHITE)
 
     return tooltipText

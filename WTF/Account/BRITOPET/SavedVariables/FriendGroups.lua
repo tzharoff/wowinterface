@@ -18,7 +18,7 @@ FriendGroups_SavedVars = {
 ["collapsed"] = {
 ["[No Group]"] = false,
 ["OG's"] = false,
-["Ancestral Ties"] = true,
+["Ancestral Ties"] = false,
 ["IRL"] = false,
 },
 ["sort_by_status"] = false,

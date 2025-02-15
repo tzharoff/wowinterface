@@ -1,12 +1,38 @@
-VER 3 0000000000000040 " " "INV_MISC_QUESTIONMARK"
-#showtooltip item:193588
-/run if not InCombatLockdown() then RHT.b:SetAttribute("item","Timewalker's Hearthstone") end
-/click RHTB X 1
-END
 VER 3 000000000000001F " " "Ability_Warrior_VictoryRush"
 #showtooltip Intervene
 /cast [target=focus] Intervene
 /cast |cffffd100|HclubFinder:ClubFinder-1-23986-1171-40780995|h[Guild: Kame House]|h|r
+END
+VER 3 0000000000000040 " " "INV_MISC_QUESTIONMARK"
+#showtooltip item:165802
+/run if not InCombatLockdown() then RHT.b:SetAttribute("item","Noble Gardener's Hearthstone") end
+/click RHTB X 1
+END
+VER 3 000000000000004F "..mountspecial" "134400"
+#showtooltip
+/mountspecial
+END
+VER 3 0000000000000051 "13" "134400"
+#showtooltip
+/use 13
+END
+VER 3 0000000000000052 "14" "134400"
+#showtooltip
+/use 14
+END
+VER 3 0000000000000049 "7" "136103"
+/pull 7
+END
+VER 3 0000000000000047 "_buy" "134400"
+/run BuyMerchantItem(2,1)
+END
+VER 3 0000000000000048 "_sell" "134400"
+/equip Guild Tabard
+/run PickupInventoryItem(19)PutItemInBag(34)
+END
+VER 3 000000000000004A "AA" "4914670"
+/script C_PartyInfo.LeaveParty()
+/click LFDQueueFrameFindGroupButton
 END
 VER 3 0000000000000029 "AAP_MACRO" "INV_MISC_QUESTIONMARK"
 #showtooltip
@@ -84,12 +110,24 @@ END
 VER 3 000000000000002B "crackling" "136222"
 /tar crackling
 END
+VER 3 000000000000004E "ExtraAction" "6012025"
+/click ExtraActionButton1
+END
+VER 3 000000000000004B "findspider" "134400"
+/cleartarget
+/tar Conscripted Ascendant
+/stopmacro [noexists]
+/run PlaySound(12867); SetRaidTarget("target", 01);
+END
 VER 3 0000000000000015 "FS" "Ability_DualWieldSpecialization"
 /cast Frost Strike(Rank 6)
 /cast Rune Strike
 END
 VER 3 0000000000000027 "Gang" "Ability_Creature_Cursed_01"
 /e represents the Nether Angel's with a gang sign to %t.
+END
+VER 3 000000000000004D "GFX" "133205"
+/run local o = GetCVarBool("ResampleAlwaysSharpen"); SetCVar("ResampleAlwaysSharpen", not o); print("Sharpening is now " .. (o and "off" or "on"))
 END
 VER 3 000000000000001B "GNO" "Spell_Nature_UnrelentingStorm"
 #showtooltip Shield Block
@@ -124,6 +162,9 @@ VER 3 000000000000000E "LOA" "SPELL_MISC_PETHEAL"
 /tar shadowed
 /script SetRaidTarget("target",8)
 /targetlasttarget
+END
+VER 3 0000000000000050 "Love" "132531"
+/love
 END
 VER 3 000000000000002C "night terror" "136123"
 /tar night terror
@@ -160,6 +201,9 @@ VER 3 0000000000000025 "Rev" "Spell_Shaman_TotemRecall"
 /cast Devastate(Rank 5)
 /cast Heroic Strike(Rank 13)
 END
+VER 3 000000000000004C "RXPTargeting" "Ability_eyeoftheowl"
+//RestedXP Guides - current step has no configured targets
+END
 VER 3 0000000000000019 "SBF" "Spell_unused2"
 /sbf options
 END
@@ -183,13 +227,13 @@ VER 3 000000000000001A "SW" "Ability_Warrior_ShieldWall"
 /e is empowered by an anchient spirit to be more resilient against damage.
 /cast Shield Wall
 END
+VER 3 000000000000000C "Taunt" "Spell_Nature_Reincarnation"
+/e calls %t a motherless ogre!
+/cast Taunt
+END
 VER 3 000000000000001C "Taunt" "Ability_Warrior_Rampage"
 #showtooltip Taunt
 /e calls %t's a motherless ogre!
-/cast Taunt
-END
-VER 3 000000000000000C "Taunt" "Spell_Nature_Reincarnation"
-/e calls %t a motherless ogre!
 /cast Taunt
 END
 VER 3 000000000000003D "Testing" "136103"

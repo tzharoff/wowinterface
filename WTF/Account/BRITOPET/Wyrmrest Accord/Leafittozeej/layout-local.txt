@@ -13,3 +13,10 @@ X: -26
 Y: -30
 W: 261
 H: 590
+Frame: ST_Maze_Helper
+FrameLevel: 1
+Anchor: RIGHT
+X: -390
+Y: -88
+W: 306
+H: 225

@@ -51,8 +51,8 @@ function CraftSim.LOCAL_TW:GetData()
         [CraftSim.CONST.TEXT.MULTICRAFT_LABEL] = "複數製造：",
         [CraftSim.CONST.TEXT.RESOURCEFULNESS_LABEL] = "精明：",
         [CraftSim.CONST.TEXT.RESOURCEFULNESS_BONUS_LABEL] = "精明節省加成: ",
-        [CraftSim.CONST.TEXT.MATERIAL_QUALITY_BONUS_LABEL] = "材料品質加成: ",
-        [CraftSim.CONST.TEXT.MATERIAL_QUALITY_MAXIMUM_LABEL] = "材料品質最大佔比: ",
+        [CraftSim.CONST.TEXT.REAGENT_QUALITY_BONUS_LABEL] = "材料品質加成: ",
+        [CraftSim.CONST.TEXT.REAGENT_QUALITY_MAXIMUM_LABEL] = "材料品質最大佔比: ",
         [CraftSim.CONST.TEXT.EXPECTED_QUALITY_LABEL] = "預期品質: ",
         [CraftSim.CONST.TEXT.NEXT_QUALITY_LABEL] = "下一級品質: ",
         [CraftSim.CONST.TEXT.MISSING_SKILL_LABEL] = "不足技能: ",
@@ -91,8 +91,10 @@ function CraftSim.LOCAL_TW:GetData()
             "所以如果我們有一個 " ..
             f.bb("情況 A 機率 30%") ..
             " 利潤 " .. f.m(-100 * 10000) ..
-            " 和一個" .. f.bb("情況 B 機率 70%") .. " 利潤 " .. f.m(300 * 10000) .. " 那該情況的期望利潤就是\n" ..
-            f.bb("\nE(X) = -100*0.3 + 300*0.7 ") .. " 是 " .. f.m((-100 * 0.3 + 300 * 0.7) * 10000) .. "\n" ..
+            " 和一個" ..
+            f.bb("情況 B 機率 70%") .. " 利潤 " .. CraftSim.UTIL:FormatMoney(300 * 10000, true) .. " 那該情況的期望利潤就是\n" ..
+            f.bb("\nE(X) = -100*0.3 + 300*0.7 ") ..
+            " 是 " .. CraftSim.UTIL:FormatMoney((-100 * 0.3 + 300 * 0.7) * 10000, true) .. "\n" ..
             "你可以在" .. f.bb("統計資料") .. "視窗中檢視當前配方的所有情況！"
         ,
 
@@ -102,15 +104,15 @@ function CraftSim.LOCAL_TW:GetData()
         [CraftSim.CONST.TEXT.POPUP_NO_PRICE_SOURCE_WARNING] = "沒有找到價格來源!\n\n至少需要安裝下面其中一個價格來源插件，CraftSim 才能計算利潤:\n\n\n",
         [CraftSim.CONST.TEXT.POPUP_NO_PRICE_SOURCE_WARNING_SUPPRESS] = "不要再顯示警告",
 
-        -- Materials Frame
+        -- Reagents Frame
         [CraftSim.CONST.TEXT.REAGENT_OPTIMIZATION_TITLE] = "CraftSim 材料最佳化",
-        [CraftSim.CONST.TEXT.MATERIALS_REACHABLE_QUALITY] = "可達到品質: ",
-        [CraftSim.CONST.TEXT.MATERIALS_MISSING] = "缺少材料",
-        [CraftSim.CONST.TEXT.MATERIALS_AVAILABLE] = "可用材料",
-        [CraftSim.CONST.TEXT.MATERIALS_CHEAPER] = "最便宜材料",
-        [CraftSim.CONST.TEXT.MATERIALS_BEST_COMBINATION] = "已分配最佳組合",
-        [CraftSim.CONST.TEXT.MATERIALS_NO_COMBINATION] = "無法找到提高\n品質的組合",
-        [CraftSim.CONST.TEXT.MATERIALS_ASSIGN] = "分配",
+        [CraftSim.CONST.TEXT.REAGENTS_REACHABLE_QUALITY] = "可達到品質: ",
+        [CraftSim.CONST.TEXT.REAGENTS_MISSING] = "缺少材料",
+        [CraftSim.CONST.TEXT.REAGENTS_AVAILABLE] = "可用材料",
+        [CraftSim.CONST.TEXT.REAGENTS_CHEAPER] = "最便宜材料",
+        [CraftSim.CONST.TEXT.REAGENTS_BEST_COMBINATION] = "已分配最佳組合",
+        [CraftSim.CONST.TEXT.REAGENTS_NO_COMBINATION] = "無法找到提高\n品質的組合",
+        [CraftSim.CONST.TEXT.REAGENTS_ASSIGN] = "分配",
 
         -- Specialization Info Frame
         [CraftSim.CONST.TEXT.SPEC_INFO_TITLE] = "CraftSim 專精資訊",
@@ -119,34 +121,31 @@ function CraftSim.LOCAL_TW:GetData()
         [CraftSim.CONST.TEXT.SPEC_INFO_WORK_IN_PROGRESS] = "專精資訊仍在製作中",
 
         -- Crafting Results Frame
-        [CraftSim.CONST.TEXT.CRAFT_RESULTS_TITLE] = "CraftSim 製造結果",
-        [CraftSim.CONST.TEXT.CRAFT_RESULTS_LOG] = "製造記錄",
-        [CraftSim.CONST.TEXT.CRAFT_RESULTS_LOG_1] = "利潤: ",
-        [CraftSim.CONST.TEXT.CRAFT_RESULTS_LOG_2] = "獲得靈感!",
-        [CraftSim.CONST.TEXT.CRAFT_RESULTS_LOG_3] = "複數製造: ",
-        [CraftSim.CONST.TEXT.CRAFT_RESULTS_LOG_4] = "節省資源!: ",
-        [CraftSim.CONST.TEXT.CRAFT_RESULTS_LOG_5] = "機率: ",
-        [CraftSim.CONST.TEXT.CRAFT_RESULTS_CRAFTED_ITEMS] = "製造的物品",
-        [CraftSim.CONST.TEXT.CRAFT_RESULTS_SESSION_PROFIT] = "此次利潤",
-        [CraftSim.CONST.TEXT.CRAFT_RESULTS_RESET_DATA] = "重置資料",
-        [CraftSim.CONST.TEXT.CRAFT_RESULTS_EXPORT_JSON] = "匯出 JSON",
-        [CraftSim.CONST.TEXT.CRAFT_RESULTS_RECIPE_STATISTICS] = "配方統計資料",
-        [CraftSim.CONST.TEXT.CRAFT_RESULTS_NOTHING] = "尚未製造任何東西!",
-        [CraftSim.CONST.TEXT.CRAFT_RESULTS_STATISTICS_1] = "製造: ",
-        [CraftSim.CONST.TEXT.CRAFT_RESULTS_STATISTICS_2] = "預期 Φ 利潤: ",
-        [CraftSim.CONST.TEXT.CRAFT_RESULTS_STATISTICS_3] = "實際 Φ 利潤: ",
-        [CraftSim.CONST.TEXT.CRAFT_RESULTS_STATISTICS_4] = "實際利潤: ",
-        [CraftSim.CONST.TEXT.CRAFT_RESULTS_STATISTICS_5] = "過程 - 實際 / 期望: ",
-        [CraftSim.CONST.TEXT.CRAFT_RESULTS_STATISTICS_6] = "靈感: ",
-        [CraftSim.CONST.TEXT.CRAFT_RESULTS_STATISTICS_7] = "複數製造: ",
-        [CraftSim.CONST.TEXT.CRAFT_RESULTS_STATISTICS_8] = "- Φ 額外物品: ",
-        [CraftSim.CONST.TEXT.CRAFT_RESULTS_STATISTICS_9] = "精明過程: ",
-        [CraftSim.CONST.TEXT.CRAFT_RESULTS_STATISTICS_10] = "- Φ 節省成本: ",
-        [CraftSim.CONST.TEXT.CRAFT_RESULTS_STATISTICS_11] = "利潤: ",
-        [CraftSim.CONST.TEXT.CRAFT_RESULTS_SAVED_REAGENTS] = "節省材料",
-        [CraftSim.CONST.TEXT.CRAFT_RESULTS_DISABLE_CHECKBOX] = f.l("停用記錄製造結果"),
-        [CraftSim.CONST.TEXT.CRAFT_RESULTS_DISABLE_CHECKBOX_TOOLTIP] = "啟用此選項會停止在製造時記錄任何製造結果，並且會" .. f.g("增加效能"),
-
+        [CraftSim.CONST.TEXT.CRAFT_LOG_TITLE] = "CraftSim 製造結果",
+        [CraftSim.CONST.TEXT.CRAFT_LOG_LOG] = "製造記錄",
+        [CraftSim.CONST.TEXT.CRAFT_LOG_LOG_1] = "利潤: ",
+        [CraftSim.CONST.TEXT.CRAFT_LOG_LOG_2] = "獲得靈感!",
+        [CraftSim.CONST.TEXT.CRAFT_LOG_LOG_3] = "複數製造: ",
+        [CraftSim.CONST.TEXT.CRAFT_LOG_LOG_4] = "節省資源!: ",
+        [CraftSim.CONST.TEXT.CRAFT_LOG_LOG_5] = "機率: ",
+        [CraftSim.CONST.TEXT.CRAFT_LOG_CRAFTED_ITEMS] = "製造的物品",
+        [CraftSim.CONST.TEXT.CRAFT_LOG_SESSION_PROFIT] = "此次利潤",
+        [CraftSim.CONST.TEXT.CRAFT_LOG_RESET_DATA] = "重置資料",
+        [CraftSim.CONST.TEXT.CRAFT_LOG_EXPORT_JSON] = "匯出 JSON",
+        [CraftSim.CONST.TEXT.CRAFT_LOG_RECIPE_STATISTICS] = "配方統計資料",
+        [CraftSim.CONST.TEXT.CRAFT_LOG_NOTHING] = "尚未製造任何東西!",
+        [CraftSim.CONST.TEXT.CRAFT_LOG_CALCULATION_COMPARISON_NUM_CRAFTS_PREFIX] = "製造: ",
+        [CraftSim.CONST.TEXT.CRAFT_LOG_STATISTICS_2] = "預期 Φ 利潤: ",
+        [CraftSim.CONST.TEXT.CRAFT_LOG_STATISTICS_3] = "實際 Φ 利潤: ",
+        [CraftSim.CONST.TEXT.CRAFT_LOG_STATISTICS_4] = "實際利潤: ",
+        [CraftSim.CONST.TEXT.CRAFT_LOG_STATISTICS_5] = "過程 - 實際 / 期望: ",
+        [CraftSim.CONST.TEXT.CRAFT_LOG_STATISTICS_6] = "靈感: ",
+        [CraftSim.CONST.TEXT.CRAFT_LOG_STATISTICS_7] = "複數製造: ",
+        [CraftSim.CONST.TEXT.CRAFT_LOG_STATISTICS_8] = "- Φ 額外物品: ",
+        [CraftSim.CONST.TEXT.CRAFT_LOG_STATISTICS_9] = "精明過程: ",
+        [CraftSim.CONST.TEXT.CRAFT_LOG_CALCULATION_COMPARISON_NUM_CRAFTS_PREFIX0] = "- Φ 節省成本: ",
+        [CraftSim.CONST.TEXT.CRAFT_LOG_CALCULATION_COMPARISON_NUM_CRAFTS_PREFIX1] = "利潤: ",
+        [CraftSim.CONST.TEXT.CRAFT_LOG_SAVED_REAGENTS] = "節省材料",
         -- Stats Weight Frame
         [CraftSim.CONST.TEXT.STAT_WEIGHTS_TITLE] = "CraftSim 平均利潤",
         [CraftSim.CONST.TEXT.EXPLANATIONS_TITLE] = "CraftSim 平均利潤說明",
@@ -243,9 +242,6 @@ function CraftSim.LOCAL_TW:GetData()
         [CraftSim.CONST.TEXT.RECIPE_SCAN_ONLY_FAVORITES_CHECKBOX] = "只有最愛",
         [CraftSim.CONST.TEXT.RECIPE_SCAN_ONLY_FAVORITES_CHECKBOX_TOOLTIP] = "只掃描最愛的配方",
         [CraftSim.CONST.TEXT.RECIPE_SCAN_EQUIPPED] = "已裝備",
-        [CraftSim.CONST.TEXT.RECIPE_SCAN_MODE_Q1] = "材料品質 1",
-        [CraftSim.CONST.TEXT.RECIPE_SCAN_MODE_Q2] = "材料品質 2",
-        [CraftSim.CONST.TEXT.RECIPE_SCAN_MODE_Q3] = "材料品質 3",
         [CraftSim.CONST.TEXT.RECIPE_SCAN_MODE_OPTIMIZE] = "最佳化材料",
 
         -- Recipe Top Gear
@@ -279,8 +275,6 @@ function CraftSim.LOCAL_TW:GetData()
         [CraftSim.CONST.TEXT.OPTIONS_GENERAL_SHOW_PROFIT_TOOLTIP] = "除了金錢，還要顯示利潤佔造製成本的百分本。",
         [CraftSim.CONST.TEXT.OPTIONS_GENERAL_REMEMBER_LAST_RECIPE] = "記住上次的配方",
         [CraftSim.CONST.TEXT.OPTIONS_GENERAL_REMEMBER_LAST_RECIPE_TOOLTIP] = "打開製造視窗時，再次打開上次選擇的配方。",
-        [CraftSim.CONST.TEXT.OPTIONS_GENERAL_DETAILED_TOOLTIP] = "詳細的上次製造資訊",
-        [CraftSim.CONST.TEXT.OPTIONS_GENERAL_DETAILED_TOOLTIP_TOOLTIP] = "在物品的浮動提示資訊中顯示上次使用的材料組合的完整清單。",
         [CraftSim.CONST.TEXT.OPTIONS_GENERAL_SUPPORTED_PRICE_SOURCES] = "支援的價格來源:",
         [CraftSim.CONST.TEXT.OPTIONS_PERFORMANCE_RAM] = "製造時啟用記憶體清理",
         [CraftSim.CONST.TEXT.OPTIONS_PERFORMANCE_RAM_TOOLTIP] =
@@ -291,7 +285,7 @@ function CraftSim.LOCAL_TW:GetData()
         [CraftSim.CONST.TEXT.OPTIONS_TSM_RESET] = "恢復成預設值",
         [CraftSim.CONST.TEXT.OPTIONS_TSM_INVALID_EXPRESSION] = "語法不正確",
         [CraftSim.CONST.TEXT.OPTIONS_TSM_VALID_EXPRESSION] = "語法正確",
-        [CraftSim.CONST.TEXT.OPTIONS_MODULES_MATERIALS] = "材料最佳化模組",
+        [CraftSim.CONST.TEXT.OPTIONS_MODULES_REAGENT_OPTIMIZATION] = "材料最佳化模組",
         [CraftSim.CONST.TEXT.OPTIONS_MODULES_AVERAGE_PROFIT] = "平均利潤模組",
         [CraftSim.CONST.TEXT.OPTIONS_MODULES_TOP_GEAR] = "最佳裝備模組",
         [CraftSim.CONST.TEXT.OPTIONS_MODULES_COST_OVERVIEW] = "成本概覽模組",
@@ -323,12 +317,10 @@ function CraftSim.LOCAL_TW:GetData()
         [CraftSim.CONST.TEXT.CONTROL_PANEL_MODULES_PRICE_OVERRIDES_LABEL] = "重訂價格",
         [CraftSim.CONST.TEXT.CONTROL_PANEL_MODULES_PRICE_OVERRIDES_TOOLTIP] =
         "取代所有配方或特定配方的任何材料、可選材料和製造結果的價格。也可以設定物品使用製造資料的價格。",
-        [CraftSim.CONST.TEXT.CONTROL_PANEL_MODULES_CRAFT_DATA_LABEL] = "製造資料",
-        [CraftSim.CONST.TEXT.CONTROL_PANEL_MODULES_CRAFT_DATA_TOOLTIP] = "編輯已儲存的配置，以製作不同品質的商品，並在浮動提示資訊中顯示並計算製作成本。",
         [CraftSim.CONST.TEXT.CONTROL_PANEL_MODULES_SPECIALIZATION_INFO_LABEL] = "專精資訊",
         [CraftSim.CONST.TEXT.CONTROL_PANEL_MODULES_SPECIALIZATION_INFO_TOOLTIP] = "顯示你的專業專精會如何影響這個配方，可以模擬任何配置!",
-        [CraftSim.CONST.TEXT.CONTROL_PANEL_MODULES_CRAFT_RESULTS_LABEL] = "製造結果",
-        [CraftSim.CONST.TEXT.CONTROL_PANEL_MODULES_CRAFT_RESULTS_TOOLTIP] = "顯示製造的日誌和統計資料!",
+        [CraftSim.CONST.TEXT.CONTROL_PANEL_MODULES_CRAFT_LOG_LABEL] = "製造結果",
+        [CraftSim.CONST.TEXT.CONTROL_PANEL_MODULES_CRAFT_LOG_TOOLTIP] = "顯示製造的日誌和統計資料!",
         [CraftSim.CONST.TEXT.CONTROL_PANEL_MODULES_COST_OPTIMIZATION_LABEL] = "成本明細",
         [CraftSim.CONST.TEXT.CONTROL_PANEL_MODULES_COST_OPTIMIZATION_TOOLTIP] = "顯示製造成本詳細資訊的模組",
         [CraftSim.CONST.TEXT.CONTROL_PANEL_MODULES_RECIPE_SCAN_LABEL] = "配方掃描",
@@ -338,9 +330,13 @@ function CraftSim.LOCAL_TW:GetData()
         [CraftSim.CONST.TEXT.CONTROL_PANEL_RESET_FRAMES] = "重置框架位置",
         [CraftSim.CONST.TEXT.CONTROL_PANEL_OPTIONS] = "選項",
         [CraftSim.CONST.TEXT.CONTROL_PANEL_NEWS] = "更新資訊",
+        [CraftSim.CONST.TEXT.CONTROL_PANEL_EASYCRAFT_EXPORT] = f.l("Easycraft") .. " 匯出",
+        [CraftSim.CONST.TEXT.CONTROL_PANEL_EASYCRAFT_EXPORTING] = "正在匯出",
+        [CraftSim.CONST.TEXT.CONTROL_PANEL_EASYCRAFT_EXPORT_NO_RECIPE_FOUND] = "没有适用于 The War Within 扩展包的导出配方",
         [CraftSim.CONST.TEXT.CONTROL_PANEL_FORGEFINDER_EXPORT] = f.l("ForgeFinder") .. " 匯出",
         [CraftSim.CONST.TEXT.CONTROL_PANEL_FORGEFINDER_EXPORTING] = "正在匯出",
-        [CraftSim.CONST.TEXT.CONTROL_PANEL_FORGEFINDER_EXPLANATION] = f.l("www.wowforgefinder.com") ..
+        [CraftSim.CONST.TEXT.CONTROL_PANEL_EXPORT_EXPLANATION] = f.l("wowforgefinder.com") ..
+            " & " .. f.l("easycraft.io") ..
             "\n是個尋找和提供" .. f.bb("魔獸世界製造訂單") .. "的網站。",
         [CraftSim.CONST.TEXT.CONTROL_PANEL_DEBUG] = "除錯",
         [CraftSim.CONST.TEXT.CONTROL_PANEL_TITLE] = "控制台",
@@ -351,7 +347,6 @@ function CraftSim.LOCAL_TW:GetData()
         [CraftSim.CONST.TEXT.SUPPORTERS_DESCRIPTION_2] = f.l("您是否想要支持 CraftSim 並且在這裡留下你名字和訊息?\n請考慮斗內 <3"),
         [CraftSim.CONST.TEXT.SUPPORTERS_DATE] = "日期",
         [CraftSim.CONST.TEXT.SUPPORTERS_SUPPORTER] = "贊助者",
-        [CraftSim.CONST.TEXT.SUPPORTERS_TYPE] = "類型",
         [CraftSim.CONST.TEXT.SUPPORTERS_MESSAGE] = "留言",
 
         -- Customer History
@@ -367,8 +362,6 @@ function CraftSim.LOCAL_TW:GetData()
         [CraftSim.CONST.TEXT.CUSTOMER_HISTORY_PURGE_NO_TIP_LABEL] = "移除 0 小費客戶",
         [CraftSim.CONST.TEXT.CUSTOMER_HISTORY_PURGE_ZERO_TIPS_CONFIRMATION_POPUP] = "是否確定要刪除小費總計為 0 的所有客戶資料?",
         [CraftSim.CONST.TEXT.CUSTOMER_HISTORY_DELETE_CUSTOMER_CONFIRMATION_POPUP] = "是否確定要刪除 %s 的所有資料?",
-        [CraftSim.CONST.TEXT.CUSTOMER_HISTORY_DELETE_CUSTOMER_POPUP_TITLE] = "刪除客戶歷史記錄",
-        [CraftSim.CONST.TEXT.CUSTOMER_HISTORY_PURGE_ZERO_TIPS_CONFIRMATION_POPUP_TITLE] = "刪除 0 小費客戶歷史記錄",
         [CraftSim.CONST.TEXT.CUSTOMER_HISTORY_PURGE_DAYS_INPUT_LABEL] = "自動移除天數",
         [CraftSim.CONST.TEXT.CUSTOMER_HISTORY_PURGE_DAYS_INPUT_TOOLTIP] =
         "CraftSim 會在每次登入後，自動刪除上次刪除後 X 天的所有 0 小費客戶。\n設為 0 時，CraftSim 將完全不會自動刪除。",
@@ -387,10 +380,10 @@ function CraftSim.LOCAL_TW:GetData()
         [CraftSim.CONST.TEXT.CRAFT_QUEUE_CRAFTING_COSTS_HEADER] = "製造成本",
         [CraftSim.CONST.TEXT.CRAFT_QUEUE_CRAFT_BUTTON_ROW_LABEL] = "製造",
         [CraftSim.CONST.TEXT.CRAFT_QUEUE_CRAFT_BUTTON_ROW_LABEL_WRONG_GEAR] = "工具錯誤",
-        [CraftSim.CONST.TEXT.CRAFT_QUEUE_CRAFT_BUTTON_ROW_LABEL_NO_MATS] = "沒有材料",
+        [CraftSim.CONST.TEXT.CRAFT_QUEUE_CRAFT_BUTTON_ROW_LABEL_NO_REAGENTS] = "沒有材料",
         [CraftSim.CONST.TEXT.CRAFT_QUEUE_ADD_OPEN_RECIPE_BUTTON_LABEL] = "加入開放材料",
         [CraftSim.CONST.TEXT.CRAFT_QUEUE_CLEAR_ALL_BUTTON_LABEL] = "全部清除",
-        [CraftSim.CONST.TEXT.CRAFT_QUEUE_IMPORT_RECIPE_SCAN_BUTTON_LABEL] = "根據配方掃描補貨",
+        [CraftSim.CONST.TEXT.CRAFT_QUEUE_RESTOCK_FAVORITES_BUTTON_LABEL] = "根據配方掃描補貨",
         [CraftSim.CONST.TEXT.CRAFT_QUEUE_CRAFT_BUTTON_ROW_LABEL_WRONG_PROFESSION] = "專業錯誤",
         [CraftSim.CONST.TEXT.CRAFT_QUEUE_CRAFT_BUTTON_ROW_LABEL_ON_COOLDOWN] = "冷卻中",
         [CraftSim.CONST.TEXT.CRAFT_QUEUE_CRAFT_NEXT_BUTTON_LABEL] = "製造下一個",

@@ -1,11 +1,14 @@
 ---@class CraftSim
 local CraftSim = select(2, ...)
 
+local GUTIL = CraftSim.GUTIL
+local f = GUTIL:GetFormatter()
+
 CraftSim.UTIL = {}
 
 CraftSim.UTIL.frameLevel = 100
 
-local print = CraftSim.DEBUG:SetDebugPrint(CraftSim.CONST.DEBUG_IDS.UTIL)
+local print = CraftSim.DEBUG:RegisterDebugID("Util")
 
 function CraftSim.UTIL:NextFrameLevel()
     local frameLevel = CraftSim.UTIL.frameLevel
@@ -13,8 +16,26 @@ function CraftSim.UTIL:NextFrameLevel()
     return frameLevel
 end
 
+---@param orderType Enum.CraftingOrderType
+---@return string
+function CraftSim.UTIL:GetOrderTypeText(orderType)
+    local orderTypeText = CreateAtlasMarkup("Professions-Crafting-Orders-Icon", 15, 15)
+
+    if orderType == Enum.CraftingOrderType.Npc then
+        orderTypeText = string.format("%s %s", orderTypeText, f.bb("NPC"))
+    elseif orderType == Enum.CraftingOrderType.Guild then
+        orderTypeText = string.format("%s %s", orderTypeText, f.g("Guild"))
+    elseif orderType == Enum.CraftingOrderType.Personal then
+        orderTypeText = string.format("%s %s", orderTypeText, f.bb("Pers."))
+    elseif orderType == Enum.CraftingOrderType.Public then
+        orderTypeText = string.format("%s %s", orderTypeText, f.b("Public"))
+    end
+
+    return orderTypeText
+end
+
 -- thx ketho forum guy
-function CraftSim.UTIL:KethoEditBox_Show(text)
+function CraftSim.UTIL:ShowTextCopyBox(text)
     if not KethoEditBox then
         local f = CreateFrame("Frame", "KethoEditBox", UIParent, "DialogBoxFrame")
         f:SetPoint("CENTER")
@@ -110,9 +131,30 @@ function CraftSim.UTIL:ValidateNumberInput(inputBox, allowNegative)
     return inputNumber
 end
 
+---@return CraftSim.EXPORT_MODE
 function CraftSim.UTIL:GetExportModeByVisibility()
     return (ProfessionsFrame.OrdersPage.OrderView.OrderDetails:IsVisible() and CraftSim.CONST.EXPORT_MODE.WORK_ORDER) or
         CraftSim.CONST.EXPORT_MODE.NON_WORK_ORDER
+end
+
+--- used for e.g. phial of bountiful seasons
+---@return number season 0 -> winter, 1 -> spring, 2 -> summer, 3 -> fall
+function CraftSim.UTIL:GetCurrentSeason()
+    -- Get the current in-game date
+    local month, day = tonumber(date("%m")), tonumber(date("%d"))
+
+    -- Determine the season based on the month and day
+    if (month == 12 and day >= 21) or (month >= 1 and month < 3) or (month == 3 and day < 20) then
+        return 0
+    elseif (month == 3 and day >= 20) or (month >= 4 and month < 6) or (month == 6 and day < 21) then
+        return 1
+    elseif (month == 6 and day >= 21) or (month >= 7 and month < 9) or (month == 9 and day < 23) then
+        return 2
+    elseif (month == 9 and day >= 23) or (month >= 10 and month < 12) or (month == 12 and day < 21) then
+        return 3
+    end
+
+    return 2
 end
 
 function CraftSim.UTIL:IsWorkOrder()
@@ -249,6 +291,31 @@ function CraftSim.UTIL:IsDragonflightRecipe(recipeID)
     return false
 end
 
+---@param recipeID number
+function CraftSim.UTIL:IsTWWRecipe(recipeID)
+    local recipeInfo = C_TradeSkillUI.GetRecipeInfo(recipeID)
+    if recipeInfo then
+        local professionInfo = C_TradeSkillUI.GetProfessionInfoByRecipeID(recipeInfo.recipeID)
+        if not professionInfo.profession then
+            print("No Profession loaded yet?", false, true)
+            print(professionInfo, true)
+        end
+
+        -- do not use C_TradeSkillUI.IsRecipeInSkillLine because its not using cached data..
+        local IsTWWRecipe = professionInfo.professionID ==
+            CraftSim.CONST.TRADESKILLLINEIDS[professionInfo.profession][CraftSim.CONST.EXPANSION_IDS.THE_WAR_WITHIN]
+        return IsTWWRecipe
+    end
+
+    return false
+end
+
+---@param baseYield number
+function CraftSim.UTIL:GetMulticraftConstantByBaseYield(baseYield)
+    local mcConstants = CraftSim.DB.OPTIONS:Get("PROFIT_CALCULATION_MULTICRAFT_CONSTANTS")
+    return mcConstants[baseYield] or mcConstants.DEFAULT
+end
+
 function CraftSim.UTIL:GetDifferentQualitiesByCraftingReagentTbl(recipeID, craftingReagentInfoTbl, allocationItemGUID,
                                                                  maxQuality)
     local linksByQuality = {}
@@ -277,8 +344,10 @@ end
 ---@param skillEnd number
 ---@param skillCurveValueStart number
 ---@param skillCurveValueEnd number
+---@param lessConcentrationUsageFactors number[]
+---@param noRounding boolean?
 function CraftSim.UTIL:CalculateConcentrationCost(costConstant, playerSkill, skillStart, skillEnd, skillCurveValueStart,
-                                                  skillCurveValueEnd)
+                                                  skillCurveValueEnd, lessConcentrationUsageFactors, noRounding)
     local skillDifference = math.abs(skillEnd - skillStart)
     local valueDifference = math.abs(skillCurveValueStart - skillCurveValueEnd) -- can go up or down
     local skillValueStep = valueDifference / skillDifference
@@ -293,9 +362,16 @@ function CraftSim.UTIL:CalculateConcentrationCost(costConstant, playerSkill, ski
         playerSkillCurveValue = skillCurveValueStart - playerSkillCurveValueDifference
     end
 
+    local concentrationCost = (playerSkillCurveValue * costConstant)
+    local factorSubtraction = GUTIL:Fold(lessConcentrationUsageFactors or {}, 0, function(foldValue, nextFactor)
+        return foldValue + concentrationCost * nextFactor
+    end)
 
-    local concentrationCost = playerSkillCurveValue * costConstant
-    return CraftSim.GUTIL:Round(concentrationCost)
+    if noRounding then
+        return concentrationCost - factorSubtraction
+    else
+        return CraftSim.GUTIL:Round(concentrationCost - factorSubtraction)
+    end
 end
 
 ---@param recipeDifficulty number
@@ -365,4 +441,61 @@ function CraftSim.UTIL:IsBetaBuild()
     local build = select(1, GetBuildInfo())
 
     return build == CraftSim.CONST.CURRENT_BETA_BUILD
+end
+
+--- for buff bag detection
+---@param itemID number bag itemID
+function CraftSim.UTIL:CheckIfBagIsEquipped(itemID)
+    -- There are 5 bag slots
+    for bagSlot = 0, 5 do
+        local equippedBagID = GetInventoryItemID("player", C_Container.ContainerIDToInventoryID(bagSlot + 1))
+        if equippedBagID == itemID then
+            return true
+        end
+    end
+    return false
+end
+
+-- encode a string to base64
+---@param str string string to encore
+function CraftSim.UTIL:atob(str)
+    local b = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+
+    return ((str:gsub('.', function(x)
+        local r, b = '', x:byte()
+        for i = 8, 1, -1 do r = r .. (b % 2 ^ i - b % 2 ^ (i - 1) > 0 and '1' or '0') end
+        return r;
+    end) .. '0000'):gsub('%d%d%d?%d?%d?%d?', function(x)
+        if (#x < 6) then return '' end
+        local c = 0
+        for i = 1, 6 do c = c + (x:sub(i, i) == '1' and 2 ^ (6 - i) or 0) end
+        return b:sub(c + 1, c + 1)
+    end) .. ({ '', '==', '=' })[#str % 3 + 1])
+end
+
+--- wrapper to use the money format use texture option
+---@param copperValue number
+---@param useColor? boolean -- colors the numbers green if positive and red if negative
+---@param percentRelativeTo number? if included: will be treated as 100% and a % value in relation to the coppervalue will be added
+function CraftSim.UTIL:FormatMoney(copperValue, useColor, percentRelativeTo)
+    return GUTIL:FormatMoney(copperValue, useColor, percentRelativeTo, true,
+        CraftSim.DB.OPTIONS:Get("MONEY_FORMAT_USE_TEXTURES"))
+end
+
+---@param profession Enum.Profession
+function CraftSim.UTIL:IsProfessionLearned(profession)
+    local learnedProfessions = { GetProfessions() };
+
+    local skillLineIDs = GUTIL:Map(learnedProfessions, function(professionIndex)
+        return select(7, GetProfessionInfo(professionIndex))
+    end)
+
+    if GUTIL:Some(skillLineIDs, function(skillLineID)
+            local info = C_TradeSkillUI.GetProfessionInfoBySkillLineID(skillLineID)
+            return info and info.profession == profession
+        end) then
+        return true
+    end
+
+    return false
 end

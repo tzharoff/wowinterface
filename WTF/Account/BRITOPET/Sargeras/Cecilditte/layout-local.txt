@@ -1,0 +1,8 @@
+Version: 1
+Frame: RARESCANNER_BUTTON
+FrameLevel: 200
+Anchor: RIGHT
+X: -81
+Y: -130
+W: 200
+H: 50

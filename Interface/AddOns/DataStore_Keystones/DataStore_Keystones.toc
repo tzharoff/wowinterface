@@ -1,8 +1,8 @@
-## Interface: 110000
+## Interface: 110005
 ## Title: DataStore_Keystones
 ## Notes: Stores information about Mythic+ Keystones
 ## Author: Teelo (US-Jubei'thos)
-## Version: 11.0-001
+## Version: 11.0-003
 ## Dependencies: DataStore, DataStore_Containers
 ## OptionalDeps: Ace3
 ## SavedVariables: DataStore_KeystonesDB

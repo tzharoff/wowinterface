@@ -9,7 +9,6 @@ local AL = LibStub("AceLocale-3.0"):GetLocale("RareScanner");
 
 -- RareScanner database libraries
 local RSGeneralDB = private.ImportLib("RareScannerGeneralDB")
-local RSGuideDB = private.ImportLib("RareScannerGuideDB")
 local RSContainerDB = private.ImportLib("RareScannerContainerDB")
 local RSConfigDB = private.ImportLib("RareScannerConfigDB")
 local RSNpcDB = private.ImportLib("RareScannerNpcDB")
@@ -21,18 +20,35 @@ local RSUtils = private.ImportLib("RareScannerUtils")
 local RSConstants = private.ImportLib("RareScannerConstants")
 
 -- RareScanner services libraries
-local RSMinimap = private.ImportLib("RareScannerMinimap")
-local RSMap = private.ImportLib("RareScannerMap")
-local RSTooltip = private.ImportLib("RareScannerTooltip")
-local RSGuidePOI = private.ImportLib("RareScannerGuidePOI")
-local RSTomtom = private.ImportLib("RareScannerTomtom")
-local RSWaypoints = private.ImportLib("RareScannerWaypoints")
 local RSRecentlySeenTracker = private.ImportLib("RareScannerRecentlySeenTracker")
 
 RSVignetteDataProviderMixin = CreateFromMixins(VignetteDataProviderMixin);
 
-function RSVignetteDataProviderMixin:GetPinTemplate()
+function RSVignetteDataProviderMixin:GetPinTemplates()
+	local templates = self.pinTemplates;
+	if (not templates) then
+		templates = { "RSVignettePinTemplate", "RSVignettePinPOIButtonTemplate" };
+		self.pinTemplates = templates;
+	end
+
+	return templates;
+end
+
+function RSVignetteDataProviderMixin:GetPinTemplate(vignetteInfo)
+	if (vignetteInfo.mapPin) then
+		return "RSVignettePinPOIButtonTemplate";
+	end
+
+	return self:GetDefaultPinTemplate();
+end
+
+function RSVignetteDataProviderMixin:GetDefaultPinTemplate()
 	return "RSVignettePinTemplate";
+end
+
+function RSVignetteDataProviderMixin:OnShow()
+	VignetteDataProviderMixin.OnShow(self)
+	self:ShowAnimations()
 end
 
 local function pingAnimation(pin, animation, entityID, mapID, x, y)
@@ -58,11 +74,6 @@ local function pingAnimation(pin, animation, entityID, mapID, x, y)
 		animation:SetLooping("BOUNCE")
 		animation:Play()
 	end
-end
-
-function RSVignetteDataProviderMixin:OnShow()
-	VignetteDataProviderMixin.OnShow(self)
-	self:ShowAnimations()
 end
 
 function RSVignetteDataProviderMixin:ShowAnimations()
@@ -142,17 +153,25 @@ end
 
 -- Needed to override the template FyrakkFlightVignettePinTemplate and avoid taint issues
 function RSVignetteDataProviderMixin:GetPin(vignetteGUID, vignetteInfo)
-	if vignetteInfo.type == Enum.VignetteType.FyrakkFlight then
-		if self.fyrakkFlightPin then
+	if (vignetteInfo.type == Enum.VignetteType.FyrakkFlight) then
+		if (self.fyrakkFlightPin) then
 			self.fyrakkFlightPin:OnAcquired(vignetteGUID, vignetteInfo);
 		else
 			self.fyrakkFlightPin = self:GetMap():AcquirePin("RSFyrakkFlightVignettePinTemplate", vignetteGUID, vignetteInfo);
 		end
 		return self.fyrakkFlightPin;
 	else
-		local pinTemplate = self:GetPinTemplate();
-		-- GetNumActivePinsByTemplate will return the number right now, before this pin is added
-		local frameIndex = self:GetMap():GetNumActivePinsByTemplate(pinTemplate) + 1;
+		local pinTemplate = self:GetPinTemplate(vignetteInfo);
+		-- GetNumActivePinsByTemplate will return the number right now, before this pin is added, use a consistent template here for the count.
+		local frameIndex = self:GetMap():GetNumActivePinsByTemplate(self:GetDefaultPinTemplate()) + 1;
+		
+		-- Fix Nerathor icon
+		local _, _, _, _, _, id, _ = strsplit("-", vignetteInfo.objectGUID);
+		local entityID = tonumber(id)
+		if (entityID == 229982) then
+			vignetteInfo.atlasName = RSConstants.NPC_VIGNETTE
+		end
+		
 		return self:GetMap():AcquirePin(pinTemplate, vignetteGUID, vignetteInfo, frameIndex);
 	end
 end

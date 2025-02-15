@@ -1,68 +1,45 @@
-# [5.16.0](https://github.com/WeakAuras/WeakAuras2/tree/5.16.0) (2024-08-15)
+# [5.19.1](https://github.com/WeakAuras/WeakAuras2/tree/5.19.1) (2025-01-30)
 
-[Full Changelog](https://github.com/WeakAuras/WeakAuras2/compare/5.15.4...5.16.0)
+[Full Changelog](https://github.com/WeakAuras/WeakAuras2/compare/5.19.0...5.19.1)
 
 ## Highlights
 
- - Tons of Templates updates for many classes in TWW 
+This is mainly a release to bump the TOC version for classic.
+
+Some minor features:
+
+- Empty region learned how to take an icon to display in the left side options pane (no more transparent squares!)
+- Circular & Linear Progress Texture subregions learned the inverse option
+- Unit Characteristics Trigger now allows "Assigned Role" for non-group units
+- In game changelog (hi again!) is less prone to producing text boxes that tower over the edge of your screen
+
+And some bug fiixes:
+
+- Expanding the options for Glow/Border subregions should no longer produce errors
+- Classic: "Clipped Progress" option for model subregions should function identically to retail now
+- WeakAuras.ScanEvents is less prone to vomiting if called with garbage data
+- Designing a TSU trigger to populate state with garbage timed progress data should no longer brick Options
 
 ## Commits
 
-Boneshock (1):
+InfusOnWoW (10):
 
-- Dynamic Text: add props from child and multiselect auras.
+- Tweak Changelog display
+- Modernize: Fix lua error if there are no authorOptions
+- Also remove "Clipped Progress" on Classic
+- Empty Base Region: Add a thumbnail icon
+- Sanity check WeakAuras.ScanEvents event's type
+- CircularProgressTexture: Add inverse option
+- Linear Progress Texture: Add an inverse setting
+- Fix Glow/Border anchor_area lua error in Options
+- Guard against expirationTime/duration being strings in various places
+- Unit Characteristics: Allow "Assigned Role" check for non-group units
 
-InfusOnWoW (19):
+Stanzilla (1):
 
-- Templates: Add Dractyhr and Earthen
-- Templates: Update warlock for TWW
-- Templates: DK Remove pet buffs that are also on the player
-- Templates: Priest update for TWW
-- Templates: Update Rogue for TWW
-- Templates: Add Mage
-- Templates: Remove PvP Talents
-- Templates: Update BL/Hero template
-- Templates: Update Hunter
-- Templates: BL/Heroism Add Evoker Fury of the Aspects
-- Templates: Warrior
-- Weapon Enchant Trigger: Add the enchantId to the state
-- Weapon Enchant tirgger: Fix enchanted check
-- Rename Dragonriding Load option
-- StopMotion: Always call UpdateProgress
-- Aurabar: Fix overlays without an explicit texture not handling atlas textures
-- AuraBar: Allow selecting an atlas texture also for overlays
-- Cooldown Progress (Spell), Cooldown Ready: Change spell id logic
-- Update Atlas File List from wago.tools
-
-Sean Anderson (3):
-
-- thrash no range
-- update balance druid templates
-- Fix incorrect mount form id and add balance druid premade forms
-
-Stanzilla (3):
-
-- Update TOC for retail patch 11.0.2
-- Update WeakAurasModelPaths from wago.tools
 - Update WeakAurasModelPaths from wago.tools
 
-emptyrivers (1):
+mrbuds (1):
 
-- add a line to custom code errors to identify the stack trace
-
-mrbuds (13):
-
-- TSU can use unitAuraInstanceID for tooltips
-- Fix error when creating a trigger of spell type, fixes #5308
-- Fix inconsistency with markers replacements
-- Allow select a frame that have no name for anchor & glow
-- Paladin templates
-- Druid templates
-- Shaman templates
-- Monk templates
-- DH templates
-- DK templates
-- Evoker templates
-- Fix herotalent tree
-- Update encounter ids with SoD level 60 raids
+- classic_era toc update
 

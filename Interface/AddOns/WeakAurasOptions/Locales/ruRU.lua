@@ -7,7 +7,7 @@ end
 local L = WeakAuras.L
 
 -- WeakAuras/Options
-	L[" and |cFFFF0000mirrored|r"] = "; Отражение"
+	L[" and |cFFFF0000mirrored|r"] = "и |cFFFF0000mirrored|r"
 	L["-- Do not remove this comment, it is part of this aura: "] = "-- Не удаляйте этот комментарий! Он является частью кода индикации "
 	L[" rotated |cFFFF0000%s|r degrees"] = "; Поворот %.4g"
 	L["% - To show a percent sign"] = "% — отображение знака процента"
@@ -15,8 +15,7 @@ local L = WeakAuras.L
 	L["%d |4aura:auras; added"] = "%d |4индикация добавлена:индикации добавлены:индикаций добавлено;"
 	L["%d |4aura:auras; deleted"] = "%d |4индикация удалена:индикации удалены:индикаций удалено;"
 	L["%d |4aura:auras; modified"] = "%d |4индикация изменена:индикации изменены:индикаций изменено;"
-	--[[Translation missing --]]
-	L["%d |4aura:auras; with meta data modified"] = "%d |4aura:auras; with meta data modified"
+	L["%d |4aura:auras; with meta data modified"] = "%d |4аура:ауры; с измененными метаданными"
 	L["%d displays loaded"] = "%d индикаций загружено"
 	L["%d displays not loaded"] = "%d индикаций не загружено"
 	L["%d displays on standby"] = "%d индикаций в режиме ожидания"
@@ -95,7 +94,6 @@ local L = WeakAuras.L
 	L["|cFFffcc00Font Flags:|r |cFFFF0000%s|r and shadow |c%sColor|r with offset |cFFFF0000%s/%s|r%s%s"] = "|cFFFFCC00Атрибуты текста:|r |cFFE6CC80%s|r; Тень |c%sO|r цвета со смещением (%s, %s);%s%s"
 	L["|cFFffcc00Font Flags:|r |cFFFF0000%s|r and shadow |c%sColor|r with offset |cFFFF0000%s/%s|r%s%s%s"] = "|cFFFFCC00Атрибуты текста:|r |cFFE6CC80%s|r; Тень |c%sO|r цвета со смещением (%s, %s);%s%s%s"
 	L["|cffffcc00Format Options|r"] = "|cFFFFCC00Параметры форматирования|r"
-	--[[Translation missing --]]
 	L[ [=[• |cff00ff00Player|r, |cff00ff00Target|r, |cff00ff00Focus|r, and |cff00ff00Pet|r correspond directly to those individual unitIDs.
 • |cff00ff00Specific Unit|r lets you provide a specific valid unitID to watch.
 |cffff0000Note|r: The game will not fire events for all valid unitIDs, making some untrackable by this trigger.
@@ -104,15 +102,7 @@ local L = WeakAuras.L
 • |cffffff00Multi-target|r attempts to use the Combat Log events, rather than unitID, to track affected units.
 |cffff0000Note|r: Without a direct relationship to actual unitIDs, results may vary.
 
-|cffffff00*|r Yellow Unit settings can match multiple units and will default to being active even while no affected units are found without a Unit Count or Match Count setting.]=] ] = [=[• |cff00ff00Player|r, |cff00ff00Target|r, |cff00ff00Focus|r, and |cff00ff00Pet|r correspond directly to those individual unitIDs.
-• |cff00ff00Specific Unit|r lets you provide a specific valid unitID to watch.
-|cffff0000Note|r: The game will not fire events for all valid unitIDs, making some untrackable by this trigger.
-• |cffffff00Party|r, |cffffff00Raid|r, |cffffff00Boss|r, |cffffff00Arena|r, and |cffffff00Nameplate|r can match multiple corresponding unitIDs.
-• |cffffff00Smart Group|r adjusts to your current group type, matching just the "player" when solo, "party" units (including "player") in a party or "raid" units in a raid.
-• |cffffff00Multi-target|r attempts to use the Combat Log events, rather than unitID, to track affected units.
-|cffff0000Note|r: Without a direct relationship to actual unitIDs, results may vary.
-
-|cffffff00*|r Yellow Unit settings can match multiple units and will default to being active even while no affected units are found without a Unit Count or Match Count setting.]=]
+|cffffff00*|r Yellow Unit settings can match multiple units and will default to being active even while no affected units are found without a Unit Count or Match Count setting.]=] ] = "• |cff00ff00Player|r, |cff00ff00Target|r, |cff00ff00Focus|r и |cff00ff00Pet|r непосредственно соответствуют этим индивидуальным unitID. • |cff00ff00Specific Unit|r позволяет указать конкретный допустимый unitID для отслеживания. |cffff0000Примечание|r: Игра не будет генерировать события для всех допустимых unitID, что делает некоторые из них недоступными для этого триггера. • |cffffff00Party|r, |cffffff00Raid|r, |cffffff00Boss|r, |cffffff00Arena|r и |cffffff00Nameplate|r могут соответствовать нескольким соответствующим unitID. • |cffffff00Smart Group|r подстраивается под ваш текущий тип группы, соответствуя только \"player\" в одиночной игре, \"party\" единицам (включая \"player\") в группе или \"raid\" единицам в рейде. • |cffffff00Multi-target|r пытается использовать события Combat Log, а не unitID, для отслеживания затронутых единиц. |cffff0000Примечание|r: Без прямой связи с фактическими unitID результаты могут варьироваться. |cffffff00*|r Желтые настройки Unit могут соответствовать нескольким единицам и по умолчанию будут активными, даже если не найдены затронутые единицы без настроек Unit Count или Match Count."
 	L["A 20x20 pixels icon"] = "Иконка 20х20 пикселей"
 	L["A 32x32 pixels icon"] = "Иконка 32х32 пикселей"
 	L["A 40x40 pixels icon"] = "Иконка 40х40 пикселей"
@@ -125,6 +115,7 @@ Enable this setting if you want this timer to be hidden, or when using a WeakAur
 Включите этот параметр, если вы хотите скрыть этот отсчет или использовать текст WeakAuras для его отображения.]=]
 	L["A Unit ID (e.g., party1)."] = [=[Введите идентификатор единицы (UID, Unit ID).
 Например: party4, raid7, arena3, boss2, nameplate6, target, focus, pet и др.]=]
+	L["Ace: Funkeh, Nevcairiel"] = "Ace: Funkeh, Nevcairiel"
 	L["Actions"] = "Действия"
 	L["Active Aura Filters and Info"] = "Фильтры и информация об эффекте"
 	L["Actual Spec"] = "Текущая специализация"
@@ -148,10 +139,12 @@ Enable this setting if you want this timer to be hidden, or when using a WeakAur
 	L["Affected Unit Filters and Info"] = "Фильтры и информация о задействованных единицах"
 	L["Align"] = "Выравнивание"
 	L["Alignment"] = "Выравнивание"
+	L["All maintainers of the libraries we use, especially:"] = "Все поддерживающие библиотеки, которые мы используем, особенно:"
 	L["All of"] = "И (все условия)"
 	L["Allow Full Rotation"] = "Разрешить полное вращение"
 	L["Alpha"] = "Прозрачность"
 	L["Anchor"] = "Крепление"
+	L["Anchor Mode"] = "Режим крепления"
 	L["Anchor Point"] = "Точка крепления"
 	L["Anchored To"] = "Прикрепить к"
 	L["And "] = "И "
@@ -159,6 +152,7 @@ Enable this setting if you want this timer to be hidden, or when using a WeakAur
 	L["and %s"] = "и %s"
 	L["and aligned left"] = "Выранивание по левому краю;"
 	L["and aligned right"] = "Выранивание по правому краю;"
+	L["And our Patreons, Discord Regulars and Subscribers, and Friends of the Addon:"] = "И наши Patreons, регулярные участники Discord, подписчики и друзья аддона:"
 	L["and rotated left"] = "Текст повернут вверх;"
 	L["and rotated right"] = "Текст повернут вниз;"
 	L["and with width |cFFFF0000%s|r and %s"] = "Ширина поля %s; %s"
@@ -182,11 +176,11 @@ Enable this setting if you want this timer to be hidden, or when using a WeakAur
 	L["Any of"] = "ИЛИ (любое условие)"
 	L["Apply Template"] = "Применить шаблон"
 	L["Arcane Orb"] = "Чародейский шар"
+	L["Area"] = "Зона"
 	L["At a position a bit left of Left HUD position."] = "Немного левее позиции левого HUD"
 	L["At a position a bit left of Right HUD position"] = "Немного правее позиции правого HUD"
 	L["At the same position as Blizzard's spell alert"] = "В таком же положении, что и предупреждение о заклинаниях Blizzard"
-	--[[Translation missing --]]
-	L["Attach to Foreground"] = "Attach to Foreground"
+	L["Attach to Foreground"] = "Прикрепить к переднему плану"
 	L["Aura"] = "Аура"
 	L[ [=[Aura is
 Off Screen]=] ] = [=[Индикация за
@@ -234,8 +228,7 @@ Off Screen]=] ] = [=[Индикация за
 	L["Bottom Right"] = "Снизу справа"
 	L["Bracket Matching"] = "Закрывать скобки"
 	L["Browse Wago, the largest collection of auras."] = "Просматривайте Wago - ресурс с крупнейшей коллекцией индикаций."
-	--[[Translation missing --]]
-	L["By default this shows the information from the trigger selected via dynamic information. The information from a specific trigger can be shown via e.g. %2.p."] = "By default this shows the information from the trigger selected via dynamic information. The information from a specific trigger can be shown via e.g. %2.p."
+	L["By default this shows the information from the trigger selected via dynamic information. The information from a specific trigger can be shown via e.g. %2.p."] = "По умолчанию это отображает информацию из триггера, выбранного через динамическую информацию. Информацию из конкретного триггера можно показать, используя, например, %2.p."
 	L["Can be a UID (e.g., party1)."] = [=[Введите идентификатор единицы (UID, Unit ID).
 Например: party4, raid7, arena3, boss2, nameplate6, target, focus, pet и др.]=]
 	L["Can set to 0 if Columns * Width equal File Width"] = "Можно указать 0 в качестве значения, если последовательность изображений занимает всю ширину файла (т. е. произведение количества столбцов и ширины кадра равно ширине файла)"
@@ -245,17 +238,21 @@ Off Screen]=] ] = [=[Индикация за
 	L["Cast by a Player Character"] = "Применён игроком"
 	L["Categories to Update"] = "Категории для обновления"
 	L["Center"] = "Центр"
+	L["Changelog"] = "Журнал изменений"
 	L["Chat Message"] = "Сообщение в чат"
 	L["Chat with WeakAuras experts on our Discord server."] = "Общайтесь со знатоками WeakAuras на нашем сервере Discord."
 	L["Check On..."] = "Проверять..."
 	L["Check out our wiki for a large collection of examples and snippets."] = "Ознакомьтесь с нашим вики-разделом с большой коллекцией примеров и фрагментов кода."
 	L["Children:"] = "Индикации:"
 	L["Choose"] = "Выбрать"
+	L["Circular Texture %s"] = "Круглая текстура %s"
 	L["Class"] = "Класс"
 	L["Clear Debug Logs"] = "Очистить записи"
 	L["Clear Saved Data"] = "Очистить данные"
 	L["Clip Overlays"] = "Обрезать наложения"
-	L["Clipped by Progress"] = "Ограничить прогрессом"
+	--[[Translation missing --]]
+	L["Clipped by Foreground"] = "Clipped by Foreground"
+	L["Clockwise"] = "По часовой стрелке"
 	L["Close"] = "Закрыть"
 	L["Code Editor"] = "Редактор кода"
 	L["Collapse"] = "Свернуть"
@@ -296,8 +293,7 @@ Off Screen]=] ] = [=[Индикация за
 	L["Crop X"] = "Обрезать по X"
 	L["Crop Y"] = "Обрезать по Y"
 	L["Custom"] = "Самостоятельно"
-	--[[Translation missing --]]
-	L["Custom - Allows you to define a custom Lua function that returns a list of string values. %c1 will be replaced by the first value returned, %c2 by the second, etc."] = "Custom - Allows you to define a custom Lua function that returns a list of string values. %c1 will be replaced by the first value returned, %c2 by the second, etc."
+	L["Custom - Allows you to define a custom Lua function that returns a list of string values. %c1 will be replaced by the first value returned, %c2 by the second, etc."] = "Пользовательский - Позволяет определить пользовательскую функцию Lua, которая возвращает список строковых значений. %c1 будет заменен на первое возвращенное значение, %c2 на второе и так далее."
 	L["Custom Anchor"] = "Свое крепление"
 	L["Custom Check"] = "Своя проверка"
 	L["Custom Code"] = "Свой код"
@@ -364,14 +360,15 @@ UNIT_POWER  UNIT_AURA, PLAYER_TARGET_CHANGED]=]
 	L["Dynamic Information"] = "Динамическая информация"
 	L["Dynamic information from first active trigger"] = "Динамическая информация из первого активного триггера"
 	L["Dynamic information from Trigger %i"] = "Динамическая информация из Триггера %i"
-	--[[Translation missing --]]
-	L["Dynamic Text Replacements"] = "Dynamic Text Replacements"
+	L["Dynamic Text Replacements"] = "Динамическая замена текста"
 	L["Ease Strength"] = "Степень функции скорости"
 	L["Ease type"] = "Тип изменения скорости анимации"
 	L["Edge"] = "Кромка"
 	L["eliding"] = "Скрытие текста при переполнении"
 	L["Else If"] = "Иначе Если"
 	L["Else If %s"] = "Иначе, если %s"
+	--[[Translation missing --]]
+	L["Empty Base Region"] = "Empty Base Region"
 	L["Enable \"Edge\" part of the overlay"] = "Включить эту часть наложения"
 	L["Enable \"swipe\" part of the overlay"] = "Включить эту часть наложения"
 	L["Enable Debug Log"] = "Журнал отладки"
@@ -417,10 +414,8 @@ UNIT_POWER  UNIT_AURA, PLAYER_TARGET_CHANGED]=]
 	L["Fade"] = "Выцветание"
 	L["Fade In"] = "Появление"
 	L["Fade Out"] = "Исчезновение"
-	--[[Translation missing --]]
-	L["Fadeout Sound"] = "Fadeout Sound"
-	--[[Translation missing --]]
-	L["Fadeout Time (seconds)"] = "Fadeout Time (seconds)"
+	L["Fadeout Sound"] = "Затухание звука"
+	L["Fadeout Time (seconds)"] = "Время затухания (в секундах)"
 	L["False"] = "Ложь"
 	L["Fetch Affected/Unaffected Names and Units"] = "Получить имена и единицы задействован. и незадействован. игроков"
 	L["Fetch Raid Mark Information"] = "Получить информацию о метке цели"
@@ -432,7 +427,7 @@ UNIT_POWER  UNIT_AURA, PLAYER_TARGET_CHANGED]=]
 	L["Filter by Arena Spec"] = "Фильтр по специализации на арене"
 	L["Filter by Class"] = "Фильтр по классу"
 	L["Filter by Group Role"] = "Фильтр по выбранной роли"
-	L["Filter by Nameplate Type"] = "Тип индикатора здоровья"
+	L["Filter by Hostility"] = "Фильтровать по враждебности"
 	L["Filter by Npc ID"] = "Фильтр по ID NPC"
 	L["Filter by Raid Role"] = "Фильтр по роли в рейде"
 	L["Filter by Specialization"] = "Фильтр по специализации"
@@ -443,13 +438,13 @@ Supports multiple entries, separated by commas
 Can use \ to escape -.]=] ] = [=[Формат записи: Имя, Имя-Игровой мир, -Игровой мир.
 
 Можно указать несколько значений, разделенных запятыми. Если название уже содержит дефис, экранируйте его при помощи символа \]=]
-	L["Filter to only dispellable de/buffs of the given type(s)"] = "Фильтр на основе типа рассеивания эффекта"
+	L[ [=[Filter to only dispellable de/buffs of the given type(s)
+Bleed classification via LibDispel]=] ] = "Фильтровать только рассеяемые дебаффы указанного типа(ов) классификации кровотечения через LibDispel"
 	L["Find Auras"] = "Найти индикации"
 	L["Finish"] = "Конечная"
 	L["Finishing..."] = "Завершение..."
 	L["Fire Orb"] = "Огненный шар"
-	--[[Translation missing --]]
-	L["Flat Framelevels"] = "Flat Framelevels"
+	L["Flat Framelevels"] = "Плоские уровни фреймов"
 	L["Font"] = "Шрифт"
 	L["Font Size"] = "Размер шрифта"
 	L["Foreground"] = "Передний план"
@@ -465,6 +460,8 @@ Can use \ to escape -.]=] ] = [=[Формат записи: Имя, Имя-Иг�
 	L["Frame Strata"] = "Слой кадра"
 	L["Frame Width"] = "Ширина кадра"
 	L["Frequency"] = "Частота"
+	--[[Translation missing --]]
+	L["Full Bar"] = "Full Bar"
 	L["Full Circle"] = "Полный круг"
 	L["Global Conditions"] = "Универсальные условия"
 	L["Glow %s"] = "Свечение %s"
@@ -480,18 +477,12 @@ Can use \ to escape -.]=] ] = [=[Формат записи: Имя, Имя-Иг�
 	L["Grid direction"] = "Направление заполнения сетки"
 	L["Group"] = "Группа"
 	L["Group (verb)"] = "Группировать"
-	--[[Translation missing --]]
-	L["Group Alpha"] = "Group Alpha"
-	--[[Translation missing --]]
+	L["Group Alpha"] = "Группа Альфа"
 	L[ [=[Group and anchor each auras by frame.
 
 - Nameplates: attach to nameplates per unit.
 - Unit Frames: attach to unit frame buttons per unit.
-- Custom Frames: choose which frame each region should be anchored to.]=] ] = [=[Group and anchor each auras by frame.
-
-- Nameplates: attach to nameplates per unit.
-- Unit Frames: attach to unit frame buttons per unit.
-- Custom Frames: choose which frame each region should be anchored to.]=]
+- Custom Frames: choose which frame each region should be anchored to.]=] ] = "Группировать и привязывать каждую ауру по фрейму. - Панели имен: прикреплять к панелям имен для каждого юнита. - Фреймы юнитов: прикреплять к кнопкам фреймов юнитов для каждого юнита. - Пользовательские фреймы: выбрать, к какому фрейму следует привязывать каждую область."
 	L["Group aura count description"] = [=[Количество единиц заданного типа (|cFFE6CC80%s|r), к которым должен быть применен один или несколько вышеперечисленных эффектов, чтобы сработал триггер.
 
 Если указано целое число (10), то количество единиц, имеющих этот эффект, будет сравниваться с введенным числом.
@@ -524,6 +515,7 @@ Can use \ to escape -.]=] ] = [=[Формат записи: Имя, Имя-Иг�
 	L["Hide on"] = "Скрыть на"
 	L["Hide this group's children"] = "Скрыть индикации этой группы"
 	L["Hide Timer Text"] = "Скрыть отсчет времени"
+	L["Highlights"] = "Основные моменты"
 	L["Horizontal Align"] = "Выравнивание по горизонтали"
 	L["Horizontal Bar"] = "Горизонтальная полоса"
 	L["Hostility"] = "Враждебность"
@@ -531,8 +523,7 @@ Can use \ to escape -.]=] ] = [=[Формат записи: Имя, Имя-Иг�
 	L["Hybrid Position"] = "Гибридная позиция"
 	L["Hybrid Sort Mode"] = "Режим гибридной сортировки"
 	L["Icon"] = "Иконка"
-	--[[Translation missing --]]
-	L["Icon - The icon associated with the display"] = "Icon - The icon associated with the display"
+	L["Icon - The icon associated with the display"] = "Иконка — иконка, связанная с отображением"
 	L["Icon Info"] = "Информация об иконке"
 	L["Icon Inset"] = "Вставка иконки"
 	L["Icon Picker"] = "Средство выбора иконки"
@@ -541,14 +532,12 @@ Can use \ to escape -.]=] ] = [=[Формат записи: Имя, Имя-Иг�
 	L["Icon Source"] = "Источник иконки"
 	L["If"] = "Если"
 	L["If %s"] = "Если %s"
-	--[[Translation missing --]]
-	L["If checked, then the combo box in the User settings will be sorted."] = "If checked, then the combo box in the User settings will be sorted."
+	L["If checked, then the combo box in the User settings will be sorted."] = "Если флажок установлен,то выпадающий список в настройках пользователя будет отсортирован."
 	L["If checked, then the user will see a multi line edit box. This is useful for inputting large amounts of text."] = "Если флажок установлен, то строка преобразуется в многострочное текстовое поле. Это удобная форма для ввода большого количества текста."
 	L["If checked, then this group will not merge with other group when selecting multiple auras."] = "Если флажок установлен, то группа не будет объединена с другой группой при выборе нескольких индикаций."
 	L["If checked, then this option group can be temporarily collapsed by the user."] = "Если флажок установлен, то пользователь может свернуть и развернуть эту группу параметров."
 	L["If checked, then this option group will start collapsed."] = "Если флажок установлен, то эта группа параметров отобразится в свёрнутом виде."
 	L["If checked, then this separator will include text. Otherwise, it will be just a horizontal line."] = "Если флажок установлен, то разделитель будет содержать текст, расположенный по центру. В противном случае, он представляет собой просто горизонтальную линию."
-	L["If checked, then this separator will not merge with other separators when selecting multiple auras."] = "Если флажок установлен, то разделитель не будет объединён с другими разделителями при выборе нескольких индикаций."
 	L["If checked, then this space will span across multiple lines."] = "Если флажок установлен, то данный элемент будет занимать несколько строк."
 	L["If unchecked, then a default color will be used (usually yellow)"] = "Если флажок не установлен, то будет использоваться цвет по умолчанию (желтый)"
 	L["If unchecked, then this space will fill the entire line it is on in User Mode."] = "Если флажок не установлен, то данный элемент будет занимать всю строку, в которой он находится."
@@ -579,8 +568,7 @@ Can use \ to escape -.]=] ] = [=[Формат записи: Имя, Имя-Иг�
 	L["Indent Size"] = "Размер отступа"
 	L["Information"] = "Информация"
 	L["Inner"] = "Внутри"
-	--[[Translation missing --]]
-	L["Insert text replacement codes to make text dynamic."] = "Insert text replacement codes to make text dynamic."
+	L["Insert text replacement codes to make text dynamic."] = "Вставьте коды замены текста, чтобы сделать текст динамическим."
 	L["Invalid Item ID"] = "Неверный ID"
 	L["Invalid Item Name/ID/Link"] = "Неверное название, ссылка или ID"
 	L["Invalid Spell ID"] = "Неверный ID"
@@ -605,9 +593,16 @@ Can use \ to escape -.]=] ] = [=[Формат записи: Имя, Имя-Иг�
 	L["Left HUD position"] = "Позиция левого HUD"
 	L["Length"] = "Длина"
 	L["Length of |cFFFF0000%s|r"] = "Длина %s"
+	L["LibCompress: Galmok"] = "LibCompress: Galmok"
+	L["LibCustomGlow: Dooez"] = "LibCustomGlow: Dooez"
+	L["LibDeflate: Yoursafety"] = "LibDeflate: Yoursafety"
+	L["LibDispel: Simpy"] = "LibDispel: Simpy"
+	L["LibSerialize: Sanjo"] = "LibSerialize: Sanjo"
 	L["LibSharedMedia"] = "LibSharedMedia"
+	L["LibSpecialization: Funkeh"] = "LibSpecialization: Funkeh"
 	L["Limit"] = "Лимит"
 	L["Line"] = "Строка"
+	L["Linear Texture %s"] = "Линейная текстура %s"
 	L["Lines & Particles"] = "Линии или частицы"
 	L["Linked aura: "] = "Связанная индикация: "
 	L["Load"] = "Загрузка"
@@ -618,10 +613,8 @@ Can use \ to escape -.]=] ] = [=[Формат записи: Имя, Имя-Иг�
 	L["Low Mana"] = "Мало маны"
 	L["Magnetically Align"] = "Привязка к направляющим"
 	L["Main"] = "Основная"
-	--[[Translation missing --]]
-	L["Manual"] = "Manual"
-	--[[Translation missing --]]
-	L["Manual Icon"] = "Manual Icon"
+	L["Manual"] = "Ручной"
+	L["Manual Icon"] = "Ручная иконка"
 	L["Manual with %i/%i"] = "Вручную с %i/%i"
 	L["Match Count"] = "Количество совпадений"
 	L["Match Count per Unit"] = "Кол-во совпадений на единицу"
@@ -663,8 +656,7 @@ Can use \ to escape -.]=] ] = [=[Формат записи: Имя, Имя-Иг�
 |cFF777777Ничего|r - |cFF00FF00Одно|r - |cFF777777Несколько|r
 Можно выбрать только одно соответствующее значение]=]
 	L["Must be a power of 2"] = "Размеры текстуры должны быть степенью двойки"
-	--[[Translation missing --]]
-	L["Name - The name of the display (usually an aura name), or the display's ID if there is no dynamic name"] = "Name - The name of the display (usually an aura name), or the display's ID if there is no dynamic name"
+	L["Name - The name of the display (usually an aura name), or the display's ID if there is no dynamic name"] = "Имя — название отображения (обычно название ауры) или ID отображения, если динамическое имя отсутствует"
 	L["Name Info"] = "Информация о названии"
 	L["Name Pattern Match"] = "Совпадение названия с образцом"
 	L["Name(s)"] = "Название"
@@ -681,11 +673,9 @@ Can use \ to escape -.]=] ] = [=[Формат записи: Имя, Имя-Иг�
 	L["Not all children have the same value for this option"] = "Не все индикации имеют одинаковое значение для этого параметра"
 	L["Not Loaded"] = "Не загружено"
 	L["Note: Automated Messages to SAY and YELL are blocked outside of Instances."] = "|cFFFFCC00Примечание.|r Вне подземелий (instances) автоматизированная отправка сообщений в чат заблокирована для Сказать и Крик."
-	--[[Translation missing --]]
-	L["Note: This progress source does not provide a total value/duration. A total value/duration must be set via \"Set Maximum Progress\""] = "Note: This progress source does not provide a total value/duration. A total value/duration must be set via \"Set Maximum Progress\""
+	L["Note: This progress source does not provide a total value/duration. A total value/duration must be set via \"Set Maximum Progress\""] = "Примечание: Этот источник прогресса не предоставляет общего значения/продолжительности. Общее значение/продолжительность должно быть установлено через \"Установить максимальный прогресс\"."
 	L["Npc ID"] = "ID NPC"
 	L["Number of Entries"] = "Число записей"
-	--[[Translation missing --]]
 	L[ [=[Occurrence of the event, reset when aura is unloaded
 Can be a range of values
 Can have multiple values separated by a comma or a space
@@ -695,16 +685,7 @@ Examples:
 2nd to 6th: 2-6
 every 2 events: /2
 every 3 events starting from 2nd: 2/3
-every 3 events starting from 2nd and ending at 11th: 2-11/3]=] ] = [=[Occurrence of the event, reset when aura is unloaded
-Can be a range of values
-Can have multiple values separated by a comma or a space
-
-Examples:
-2nd 5th and 6th events: 2, 5, 6
-2nd to 6th: 2-6
-every 2 events: /2
-every 3 events starting from 2nd: 2/3
-every 3 events starting from 2nd and ending at 11th: 2-11/3]=]
+every 3 events starting from 2nd and ending at 11th: 2-11/3]=] ] = "Время наступления события, сбрасываемое при выгрузке ауры. Может быть диапазоном значений. Может содержать несколько значений, разделённых запятой или пробелом. Примеры: 2-е, 5-е и 6-е события: 2, 5, 6; 2-е по 6-е: 2-6; каждые 2 события: /2; каждые 3 события, начиная с 2-го: 2/3; каждые 3 события, начиная с 2-го и заканчивая 11-м: 2-11/3."
 	L["OFF"] = "ВЫКЛ."
 	L["Offer a guided way to create auras for your character"] = "Предлагаем пошаговый способ создания индикаций для вашего персонажа"
 	L["Offset by |cFFFF0000%s|r/|cFFFF0000%s|r"] = "; Смещение (%.4g, %.4g)"
@@ -726,6 +707,7 @@ every 3 events starting from 2nd and ending at 11th: 2-11/3]=]
 	L["or %s"] = "или %s"
 	L["Orange Rune"] = "Оранжевая руна"
 	L["Orientation"] = "Ориентация"
+	L["Our translators (too many to name)"] = "Наши переводчики (слишком много, чтобы назвать)"
 	L["Outer"] = "Снаружи"
 	L["Outline"] = "Контур"
 	L["Overflow"] = "Переполнение"
@@ -746,7 +728,7 @@ every 3 events starting from 2nd and ending at 11th: 2-11/3]=]
 	L["Places a tick on the bar"] = "Размещает такт (деление) на полосе"
 	L["Play Sound"] = "Воспроизвести звук"
 	L["Portrait Zoom"] = "Увеличить портрет"
-	L["Position Settings"] = "Настройки размера и расположения"
+	L["Position and Size Settings"] = "Настройки положения и размера"
 	L["Preferred Match"] = "Предпочтительный результат"
 	L["Premade Auras"] = "Готовые индикации"
 	L["Premade Snippets"] = "Готовые фрагменты кода"
@@ -755,8 +737,7 @@ every 3 events starting from 2nd and ending at 11th: 2-11/3]=]
 	L["Press Ctrl+C to copy"] = "Нажмите Ctrl+C, чтобы скопировать"
 	L["Press Ctrl+C to copy the URL"] = "Нажмите Ctrl+C, чтобы скопировать URL-адрес"
 	L["Prevent Merging"] = "Не допускать слияние"
-	--[[Translation missing --]]
-	L["Progress - The remaining time of a timer, or a non-timer value"] = "Progress - The remaining time of a timer, or a non-timer value"
+	L["Progress - The remaining time of a timer, or a non-timer value"] = "Прогресс - оставшееся время таймера или значение, не относящееся к таймеру"
 	L["Progress Bar"] = "Полоса прогресса"
 	L["Progress Bar Settings"] = "Настройки полосы прогресса"
 	L["Progress Settings"] = "Настройки прогресса"
@@ -776,6 +757,8 @@ every 3 events starting from 2nd and ending at 11th: 2-11/3]=]
 	L["Regions of type \"%s\" are not supported."] = "Регионы типа \"%s\" не поддерживаются."
 	L["Remaining Time"] = "Оставшееся время"
 	L["Remove"] = "Удалить"
+	L["Remove All Sounds"] = "Удалить все звуки"
+	L["Remove All Text To Speech"] = "Удалить весь текст в речь"
 	L["Remove this display from its group"] = "Убрать индикацию из этой группы"
 	L["Remove this property"] = "Удалить это свойство"
 	L["Rename"] = "Переименовать"
@@ -804,12 +787,13 @@ every 3 events starting from 2nd and ending at 11th: 2-11/3]=]
 	L["Row Space"] = "Отступ между строками"
 	L["Row Width"] = "Ширина строки"
 	L["Rows"] = "Строки"
-	--[[Translation missing --]]
-	L["Run on..."] = "Run on..."
+	L["Run on..."] = "Запустить на..."
 	L["Same"] = "Такая же"
 	L["Same texture as Foreground"] = "Такая же текстура, что и на переднем плане"
 	L["Saved Data"] = "Сохраненные данные"
 	L["Scale"] = "Масштаб"
+	--[[Translation missing --]]
+	L["Scale Factor"] = "Scale Factor"
 	L["Search API"] = "API поиска"
 	L["Select Talent"] = "Выбрать талант"
 	L["Select the auras you always want to be listed first"] = "Выберите индикации для гибридной позиции"
@@ -831,28 +815,43 @@ every 3 events starting from 2nd and ending at 11th: 2-11/3]=]
 	L["Show \"Swipe\""] = "Показать эффект Swipe"
 	L["Show and Clone Settings"] = "Настройки появления и клонирования"
 	L["Show Border"] = "Показать границу"
+	L["Show Circular Texture"] = "Показать круглую текстуру"
 	L["Show Debug Logs"] = "Показать записи"
 	L["Show Glow"] = "Показать свечение"
 	L["Show Icon"] = "Показать иконку"
 	L["Show If Unit Does Not Exist"] = "Показать при отсутствии единицы"
+	L["Show Linear Texture"] = "Показать линейную текстуру"
 	L["Show Matches for"] = "Показать совпадения для единиц"
 	L["Show Matches for Units"] = "Показать совпадения для единиц"
 	L["Show Model"] = "Показать модель"
 	L["Show model of unit "] = "Показать модель единицы"
 	L["Show On"] = "Показать"
+	L["Show Sound Setting"] = "Показать настройки звука"
 	L["Show Spark"] = "Показать искру"
+	L["Show Stop Motion"] = "Показать стоп-кадр"
 	L["Show Text"] = "Показать текст"
+	L["Show Text To Speech Setting"] = "Показать настройку преобразования текста в речь"
+	L["Show Texture"] = "Показать текстуру"
 	L["Show this group's children"] = "Показать индикации этой группы"
 	L["Show Tick"] = "Показать такт"
 	L["Shows a 3D model from the game files"] = "Показывает 3D модель из файлов игры"
 	L["Shows a border"] = "Показывает границу"
+	--[[Translation missing --]]
+	L["Shows a Circular Progress Texture"] = "Shows a Circular Progress Texture"
 	L["Shows a custom texture"] = "Показывает свою текстуру"
 	L["Shows a glow"] = "Показывает свечение"
+	--[[Translation missing --]]
+	L["Shows a Linear Progress Texture"] = "Shows a Linear Progress Texture"
 	L["Shows a model"] = "Показывает 3D модель"
 	L["Shows a progress bar with name, timer, and icon"] = "Показывает полосу прогресса с названием, таймером и иконкой"
 	L["Shows a spell icon with an optional cooldown overlay"] = "Показывает иконку заклинания с наложением анимации восстановления (перезарядки)"
+	--[[Translation missing --]]
+	L["Shows a Stop Motion"] = "Shows a Stop Motion"
 	L["Shows a stop motion texture"] = "Воспроизводит покадровую анимацию, созданную из последовательности нескольких изображений, слегка отличающихся между собой"
+	L["Shows a Texture"] = "Отображает текстуру"
 	L["Shows a texture that changes based on duration"] = "Показывает текстуру, меняющуюся в зависимости от длительности"
+	--[[Translation missing --]]
+	L["Shows nothing, except sub elements"] = "Shows nothing, except sub elements"
 	L["Shows one or more lines of text, which can include dynamic information such as progress or stacks"] = "Показывает одну или несколько строк текста, которые могут включать в себя динамическую информацию такую как длительность или стаки"
 	L["Simple"] = "Простой способ"
 	L["Size"] = "Размер"
@@ -888,8 +887,7 @@ every 3 events starting from 2nd and ending at 11th: 2-11/3]=]
 	L["Spell Selection Filters"] = "Фильтры выбора заклинания"
 	L["Stack Count"] = "Количество стаков"
 	L["Stack Info"] = "Информация о стаках"
-	--[[Translation missing --]]
-	L["Stacks - The number of stacks of an aura (usually)"] = "Stacks - The number of stacks of an aura (usually)"
+	L["Stacks - The number of stacks of an aura (usually)"] = "Стаки - количество стаков ауры (обычно)"
 	L["Stagger"] = "Выступ (смещение уровня)"
 	L["Standby"] = "Ожидает"
 	L["Star"] = "Звезда"
@@ -900,14 +898,13 @@ every 3 events starting from 2nd and ending at 11th: 2-11/3]=]
 	L["Start of %s"] = "Начало группы \"%s\""
 	L["Step Size"] = "Размер шага"
 	L["Stop Motion"] = "Анимация Stop motion"
+	L["Stop Motion %s"] = "Стоп-кадр %s"
 	L["Stop Motion Settings"] = "Настройки анимации Stop motion"
 	L["Stop Sound"] = "Остановить вопроизведение звука"
 	L["Sub Elements"] = "Внутренние элементы"
 	L["Sub Option %i"] = "Внутренний параметр %i"
-	--[[Translation missing --]]
-	L["Subevent"] = "Subevent"
-	--[[Translation missing --]]
-	L["Subevent Suffix"] = "Subevent Suffix"
+	L["Subevent"] = "Подсобытие"
+	L["Subevent Suffix"] = "Суффикс подсобытия"
 	L["Supports multiple entries, separated by commas"] = "Можно указать несколько значений, разделенных запятыми."
 	L["Swipe Overlay Settings"] = "Настройки восстановления (наложение)"
 	L["Templates could not be loaded, the addon is %s"] = "Не удалось загрузить WeakAuras Templates. Причина - %s"
@@ -917,28 +914,27 @@ every 3 events starting from 2nd and ending at 11th: 2-11/3]=]
 	L["Text Color"] = "Цвет текста"
 	L["Text Settings"] = "Настройки текста"
 	L["Texture"] = "Текстура"
+	L["Texture %s"] = "Текстура %s"
 	L["Texture Info"] = "Информация о текстуре"
 	L["Texture Picker"] = "Средство выбора текстуры"
 	L["Texture Rotation"] = "Поворот текстуры"
-	--[[Translation missing --]]
-	L["Texture Selection Mode"] = "Texture Selection Mode"
+	L["Texture Selection Mode"] = "Режим выбора текстуры"
 	L["Texture Settings"] = "Настройки текстуры"
 	L["Texture Wrap"] = "Обтекание текстурой"
 	L["Texture X Offset"] = "Смещение текстуры по X"
 	L["Texture Y Offset"] = "Смещение текстуры по Y"
+	L["Thanks"] = "Спасибо"
 	L["The addon ElvUI is enabled. It might add cooldown numbers to the swipe. You can configure these in the ElvUI settings"] = "Включен аддон ElvUI. Он может добавить отображение отсчета времени поверх наложения. Настроить его вы можете в ElvUI."
 	L["The addon OmniCC is enabled. It might add cooldown numbers to the swipe. You can configure these in the OmniCC settings"] = "Включен аддон OmniCC. Он может добавить отображение отсчета времени поверх наложения. Настроить его вы можете в OmniCC."
 	L["The duration of the animation in seconds."] = "Длительность анимации в секундах."
 	L["The duration of the animation in seconds. The finish animation does not start playing until after the display would normally be hidden."] = [=[Длительность анимации в секундах.
 Конечная анимация не начнет отображаться, пока индикация не будет нормально скрыта  (должен сработать детриггер).]=]
-	--[[Translation missing --]]
-	L["The group and all direct children will share the same base frame level."] = "The group and all direct children will share the same base frame level."
-	--[[Translation missing --]]
-	L["The trigger number is optional. When no trigger number is specified, the trigger selected via dynamic information will be used."] = "The trigger number is optional. When no trigger number is specified, the trigger selected via dynamic information will be used."
+	L["The group and all direct children will share the same base frame level."] = "Группа и все её прямые дочерние элементы будут иметь один и тот же базовый уровень фрейма."
+	L["The trigger number is optional. When no trigger number is specified, the trigger selected via dynamic information will be used."] = "Номер триггера является необязательным. Если номер триггера не указан, будет использоваться триггер, выбранный через динамическую информацию."
 	L["The type of trigger"] = "Тип триггера"
+	L["The WeakAuras Options Addon version %s doesn't match the WeakAuras version %s. If you updated the addon while the game was running, try restarting World of Warcraft. Otherwise try reinstalling WeakAuras"] = "Версия %s дополнения WeakAuras Options не соответствует версии %s WeakAuras. Если вы обновили дополнение во время игры, попробуйте перезапустить World of Warcraft. В противном случае попробуйте переустановить WeakAuras"
 	L["Then "] = "Тогда "
-	--[[Translation missing --]]
-	L["There are several special codes available to make this text dynamic. Click to view a list with all dynamic text codes."] = "There are several special codes available to make this text dynamic. Click to view a list with all dynamic text codes."
+	L["There are several special codes available to make this text dynamic. Click to view a list with all dynamic text codes."] = "Существует несколько специальных кодов для динамического текста. Нажмите, чтобы просмотреть список всех кодов динамического текста."
 	L["Thickness"] = "Толщина"
 	L["This adds %raidMark as text replacements."] = "Добавляет строку %raidMark в качестве шаблона замены текста."
 	L["This adds %role, %roleIcon as text replacements. Does nothing if the unit is not a group member."] = "Добавляет строки %role, %roleIcon в качестве шаблонов замены текста. Не содержит данных, если единица не является участником группы или рейда."
@@ -962,7 +958,13 @@ Upgrade your version of WeakAuras or wait for next release before installing thi
 	L["This is a modified version of your group: |cff9900FF%s|r"] = "Это изменённая версия вашей группы индикаций |cFF9900FF%s|r"
 	L["This region of type \"%s\" is not supported."] = "Регион типа \"%s\" не поддерживается."
 	L["This setting controls what widget is generated in user mode."] = "Настройка определяет, какой примитив графического интерфейса (виджет) создается для этого параметра в режиме пользователя."
+	--[[Translation missing --]]
+	L["Thumbnail Icon"] = "Thumbnail Icon"
 	L["Tick %s"] = "Такт %s"
+	--[[Translation missing --]]
+	L["Tick Area %s"] = "Tick Area %s"
+	--[[Translation missing --]]
+	L["Tick Center %s"] = "Tick Center %s"
 	L["Tick Mode"] = "Способ размещения"
 	L["Tick Placement"] = "Размещение"
 	L["Time in"] = "Время"
@@ -970,6 +972,8 @@ Upgrade your version of WeakAuras or wait for next release before installing thi
 	L["To Frame's"] = "Относительно кадра"
 	L["To Group's"] = "Относительно группы"
 	L["To Personal Ressource Display's"] = "На индикаторе личного ресурса"
+	--[[Translation missing --]]
+	L["To Region's"] = "To Region's"
 	L["To Screen's"] = "Относительно экрана"
 	L["Toggle the visibility of all loaded displays"] = "Переключить видимость всех загруженных индикаций"
 	L["Toggle the visibility of all non-loaded displays"] = "Переключить видимость всех незагруженных индикаций"
@@ -986,8 +990,7 @@ Upgrade your version of WeakAuras or wait for next release before installing thi
 	L["Top Left"] = "Сверху слева"
 	L["Top Right"] = "Сверху справа"
 	L["Total"] = "Общий"
-	--[[Translation missing --]]
-	L["Total - The maximum duration of a timer, or a maximum non-timer value"] = "Total - The maximum duration of a timer, or a maximum non-timer value"
+	L["Total - The maximum duration of a timer, or a maximum non-timer value"] = "Всего - Максимальная продолжительность таймера или максимальное значение для не таймера"
 	L["Total Angle"] = "Общий угол"
 	L["Total Time"] = "Общее время"
 	L["Trigger"] = "Триггер"
@@ -1003,7 +1006,10 @@ Upgrade your version of WeakAuras or wait for next release before installing thi
 	L["Unit Count"] = "Количество единиц"
 	L["Unit Frames"] = "Рамки единиц"
 	L["Unknown"] = "Неизвестно"
+	--[[Translation missing --]]
+	L["Unknown Encounter's Spell Id"] = "Unknown Encounter's Spell Id"
 	L["Unknown property '%s' found in '%s'"] = "Неизвестное свойство %s в переменной %s."
+	L["Unknown Spell"] = "Неизвестное заклинание"
 	L["Unlike the start or finish animations, the main animation will loop over and over until the display is hidden."] = "В отличие от начальной или конечной анимации, основная зациклена и будет повторяться пока индикация не пропадет."
 	L["Update"] = "Обновить"
 	L["Update Auras"] = "Обновить индикации"
@@ -1022,10 +1028,8 @@ Upgrade your version of WeakAuras or wait for next release before installing thi
 	L["Value"] = "Значение"
 	L["Value %i"] = "Значение %i"
 	L["Values are in normalized rgba format."] = "Значения представлены в нормализованном формате RGBA (от 0 до 1)."
-	--[[Translation missing --]]
-	L["Values/Remaining Time above this value are displayed as full progress."] = "Values/Remaining Time above this value are displayed as full progress."
-	--[[Translation missing --]]
-	L["Values/Remaining Time below this value are displayed as zero progress."] = "Values/Remaining Time below this value are displayed as zero progress."
+	L["Values/Remaining Time above this value are displayed as full progress."] = "Значения/Оставшееся время выше этого значения отображаются как полный прогресс."
+	L["Values/Remaining Time below this value are displayed as zero progress."] = "Значения/Оставшееся время ниже этого значения отображаются как нулевой прогресс."
 	L["Values:"] = "Значения:"
 	L["Version: "] = "Версия: "
 	L["Version: %s"] = "Версия: %s"
@@ -1034,6 +1038,7 @@ Upgrade your version of WeakAuras or wait for next release before installing thi
 	L["View"] = "Вид"
 	L["View custom code"] = "Просмотреть код"
 	L["Voice"] = "Голос"
+	L["We thank"] = "Мы благодарим"
 	L["WeakAuras %s on WoW %s"] = "WeakAuras: %s. Интерфейс: %s"
 	L["What do you want to do?"] = "Что вы хотите сделать?"
 	L["Whole Area"] = "Вся область"
@@ -1055,20 +1060,13 @@ Upgrade your version of WeakAuras or wait for next release before installing thi
 |cFFFF0000Это действие необратимо!|r Продолжить?]=]
 	L["You are about to delete a trigger. |cFFFF0000This cannot be undone!|r Would you like to continue?"] = [=[Вы собираетесь удалить триггер.
 |cFFFF0000Это действие необратимо!|r Продолжить?]=]
-	--[[Translation missing --]]
 	L[ [=[You can add a comma-separated list of state values here that (when changed) WeakAuras should also run the Anchor Code on.
 
-WeakAuras will always run custom anchor code if you include 'changed' in this list, or when a region is added, removed, or re-ordered.]=] ] = [=[You can add a comma-separated list of state values here that (when changed) WeakAuras should also run the Anchor Code on.
-
-WeakAuras will always run custom anchor code if you include 'changed' in this list, or when a region is added, removed, or re-ordered.]=]
-	--[[Translation missing --]]
+WeakAuras will always run custom anchor code if you include 'changed' in this list, or when a region is added, removed, or re-ordered.]=] ] = "Вы можете добавить сюда список значений состояния, разделенных запятыми, при изменении которых WeakAuras также выполнит код привязки. WeakAuras всегда выполнит пользовательский код привязки, если вы включите 'изменен' в этот список, или когда регион будет добавлен, удален или переупорядочен."
 	L[ [=[You can add a comma-separated list of state values here that (when changed) WeakAuras should also run the Grow Code on.
 
-WeakAuras will always run custom grow code if you include 'changed' in this list, or when a region is added, removed, or re-ordered.]=] ] = [=[You can add a comma-separated list of state values here that (when changed) WeakAuras should also run the Grow Code on.
-
-WeakAuras will always run custom grow code if you include 'changed' in this list, or when a region is added, removed, or re-ordered.]=]
-	--[[Translation missing --]]
-	L["You can add a comma-separated list of state values here that (when changed) WeakAuras should also run the sort code on.WeakAuras will always run custom sort code if you include 'changed' in this list, or when a region is added, removed."] = "You can add a comma-separated list of state values here that (when changed) WeakAuras should also run the sort code on.WeakAuras will always run custom sort code if you include 'changed' in this list, or when a region is added, removed."
+WeakAuras will always run custom grow code if you include 'changed' in this list, or when a region is added, removed, or re-ordered.]=] ] = "Вы можете добавить сюда список значений состояния, разделенных запятыми, при изменении которых WeakAuras также выполнит код увеличения. WeakAuras всегда выполнит пользовательский код увеличения, если вы включите 'изменен' в этот список, или когда регион будет добавлен, удален или переупорядочен."
+	L["You can add a comma-separated list of state values here that (when changed) WeakAuras should also run the sort code on.WeakAuras will always run custom sort code if you include 'changed' in this list, or when a region is added, removed."] = "Вы можете добавить сюда список значений состояния, разделенных запятыми, при изменении которых WeakAuras также выполнит код сортировки. WeakAuras всегда выполнит пользовательский код сортировки, если вы включите 'изменен' в этот список, или когда регион будет добавлен или удален."
 	L["Your Saved Snippets"] = "Ваши фрагменты кода"
 	L["Z Offset"] = "Смещение по Z"
 	L["Z Rotation"] = "Поворот по Z"

@@ -1,0 +1,15 @@
+Version: 1
+Frame: RARESCANNER_BUTTON
+FrameLevel: 200
+Anchor: RIGHT
+X: -339
+Y: -154
+W: 200
+H: 50
+Frame: TargetHealthPercentBar
+FrameLevel: 1
+Anchor: LEFT
+X: 11
+Y: -67
+W: 38
+H: 16

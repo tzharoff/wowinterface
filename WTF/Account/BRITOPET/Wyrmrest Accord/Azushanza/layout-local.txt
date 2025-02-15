@@ -1,4 +1,11 @@
 Version: 1
+Frame: GroupLootHistoryFrame
+FrameLevel: 1
+Anchor: CENTER
+X: -26
+Y: -30
+W: 261
+H: 590
 Frame: ScriptErrorsFrame
 FrameLevel: 0
 Anchor: BOTTOMLEFT

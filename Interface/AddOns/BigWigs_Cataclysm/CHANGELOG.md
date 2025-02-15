@@ -1,6 +1,7 @@
 # BigWigs [Cataclysm]
 
-## [v11.0.3](https://github.com/BigWigsMods/BigWigs_Cataclysm/tree/v11.0.3) (2024-08-13)
-[Full Changelog](https://github.com/BigWigsMods/BigWigs_Cataclysm/compare/v11.0.2...v11.0.3) [Previous Releases](https://github.com/BigWigsMods/BigWigs_Cataclysm/releases)
+## [v11.0.13](https://github.com/BigWigsMods/BigWigs_Cataclysm/tree/v11.0.13) (2025-02-05)
+[Full Changelog](https://github.com/BigWigsMods/BigWigs_Cataclysm/compare/v11.0.12...v11.0.13) [Previous Releases](https://github.com/BigWigsMods/BigWigs_Cataclysm/releases)
 
-- Updates and cleanups for classic  
+- bump toc  
+- Firelands/Staghelm: Cancel ultimate timers when leaving shapeshift (#30)  

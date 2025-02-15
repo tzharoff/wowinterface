@@ -12,7 +12,7 @@ CraftSim.SIMULATION_MODE.recipeData = nil
 ---@type CraftSim.SpecializationData?
 CraftSim.SIMULATION_MODE.specializationData = nil
 
-local print = CraftSim.DEBUG:SetDebugPrint(CraftSim.CONST.DEBUG_IDS.SIMULATION_MODE)
+local print = CraftSim.DEBUG:RegisterDebugID("Modules.SimulationMode")
 
 function CraftSim.SIMULATION_MODE:ResetSpecData()
     CraftSim.SIMULATION_MODE.specializationData = CraftSim.SIMULATION_MODE.recipeData.specializationData:Copy()
@@ -206,11 +206,25 @@ function CraftSim.SIMULATION_MODE:UpdateRequiredReagentsByInputs()
     -- optional/finishing
     recipeData.reagentData:ClearOptionalReagents()
 
+    local possibleRequiredSelectableItemIDs = {}
+    if recipeData.reagentData:HasRequiredSelectableReagent() then
+        possibleRequiredSelectableItemIDs = GUTIL:Map(
+            recipeData.reagentData.requiredSelectableReagentSlot.possibleReagents,
+            function(reagent)
+                return reagent.item:GetItemID()
+            end)
+    end
+
     local itemIDs = {}
-    for _, dropdown in pairs(reagentOverwriteFrame.optionalReagentItemSelectors) do
-        local itemID = dropdown.selectedItem and dropdown.selectedItem:GetItemID()
+    for _, optionalReagentItemSelector in pairs(reagentOverwriteFrame.optionalReagentItemSelectors) do
+        local itemID = optionalReagentItemSelector.selectedItem and optionalReagentItemSelector.selectedItem:GetItemID()
         if itemID then
-            table.insert(itemIDs, itemID)
+            -- try to set required selectable if available else put to optional/finishing
+            if tContains(possibleRequiredSelectableItemIDs, itemID) then
+                recipeData.reagentData.requiredSelectableReagentSlot:SetReagent(itemID)
+            else
+                table.insert(itemIDs, itemID)
+            end
         end
     end
 
@@ -226,7 +240,7 @@ function CraftSim.SIMULATION_MODE:UpdateSimulationMode()
 end
 
 function CraftSim.SIMULATION_MODE:UpdateRecipeDataBuffsBySimulatedBuffs()
-    local print = CraftSim.DEBUG:SetDebugPrint("BUFFDATA")
+    local print = CraftSim.DEBUG:RegisterDebugID("Modules.SimulationMode.UpdateRecipeDataBuffsBySimulatedBuffs")
     local recipeData = CraftSim.SIMULATION_MODE.recipeData
 
     if not recipeData then return end
@@ -244,7 +258,7 @@ function CraftSim.SIMULATION_MODE:UpdateRecipeDataBuffsBySimulatedBuffs()
 
     local simulateBuffSelector = craftBuffsFrame.content.simulateBuffSelector
 
-    recipeData.buffData:SetBuffsByUIDToValueMap(simulateBuffSelector.selectedValues)
+    recipeData.buffData:SetBuffsByUIDToValueMap(simulateBuffSelector.savedVariablesTable)
     recipeData.buffData:UpdateProfessionStats()
 end
 
@@ -264,5 +278,44 @@ function CraftSim.SIMULATION_MODE:InitializeSimulationMode(recipeData)
     CraftSim.SIMULATION_MODE:UpdateSimulationMode()
 
     -- recalculate modules
+    CraftSim.INIT:TriggerModuleUpdate()
+end
+
+--- used by allocate button in reagent optimization module
+---@param recipeData CraftSim.RecipeData
+function CraftSim.SIMULATION_MODE:AllocateReagents(recipeData)
+    if not CraftSim.SIMULATION_MODE.isActive then return end
+    if not CraftSim.SIMULATION_MODE.recipeData then return end
+
+    local simulationModeFrames = CraftSim.SIMULATION_MODE.UI:GetSimulationModeFramesByVisibility()
+    local reagentOverwriteFrame = simulationModeFrames.reagentOverwriteFrame
+
+    for _, currentInput in pairs(reagentOverwriteFrame.reagentOverwriteInputs) do
+        if currentInput.isActive then
+            for i = 1, 3, 1 do
+                local input = currentInput["inputq" .. i]
+                input:SetText(recipeData.reagentData:GetReagentQuantityByItemID(input.itemID))
+            end
+        end
+    end
+
+    for _, finishingSlot in ipairs(recipeData.reagentData.finishingReagentSlots) do
+        for _, optionalReagentItemSelector in pairs(reagentOverwriteFrame.optionalReagentItemSelectors) do
+            ---@type GGUI.ItemSelector
+            local optionalReagentItemSelector = optionalReagentItemSelector
+
+            if #optionalReagentItemSelector.selectionFrame.itemSlots > 0 then
+                -- if same slot
+                local sameSlot = optionalReagentItemSelector.selectionFrame.itemSlots[1].item:GetItemID() ==
+                    finishingSlot.possibleReagents[1].item:GetItemID()
+
+                if sameSlot then
+                    optionalReagentItemSelector:SetSelectedItem(finishingSlot.activeReagent and
+                        finishingSlot.activeReagent.item)
+                end
+            end
+        end
+    end
+
     CraftSim.INIT:TriggerModuleUpdate()
 end

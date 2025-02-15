@@ -7,7 +7,7 @@ local GUTIL = CraftSim.GUTIL
 ---@overload fun(options: CraftSim.CraftQueueItem.Options): CraftSim.CraftQueueItem
 CraftSim.CraftQueueItem = CraftSim.CraftSimObject:extend()
 
-local print = CraftSim.DEBUG:SetDebugPrint("CRAFTQ")
+local print = CraftSim.DEBUG:RegisterDebugID("Classes.CraftQueue.CraftQueueItem")
 
 ---@class CraftSim.CraftQueueItem.Options
 ---@field recipeData CraftSim.RecipeData
@@ -41,7 +41,7 @@ end
 
 --- calculates allowedToCraft, canCraftOnce, gearEquipped, correctProfessionOpen, notOnCooldown and craftAbleAmount
 function CraftSim.CraftQueueItem:CalculateCanCraft()
-    CraftSim.DEBUG:StartProfiling('CraftSim.CraftQueueItem:CalculateCanCraft')
+    CraftSim.DEBUG:StartProfiling('CraftQueue.CraftQueueItem.CalculateCanCraft')
     local _, craftAbleAmount = self.recipeData:CanCraft(1)
     self.craftAbleAmount = craftAbleAmount
     self.canCraftOnce = craftAbleAmount > 0
@@ -56,7 +56,7 @@ function CraftSim.CraftQueueItem:CalculateCanCraft()
 
     self.allowedToCraft = self.canCraftOnce and self.gearEquipped and self.correctProfessionOpen and self.notOnCooldown and
         self.isCrafter and self.learned
-    CraftSim.DEBUG:StopProfiling('CraftSim.CraftQueueItem:CalculateCanCraft')
+    CraftSim.DEBUG:StopProfiling('CraftQueue.CraftQueueItem.CalculateCanCraft')
 end
 
 ---@class CraftSim.CraftQueueItem.Serialized
@@ -65,12 +65,14 @@ end
 ---@field concentrating? boolean
 ---@field crafterData CraftSim.CrafterData
 ---@field requiredReagents CraftSim.Reagent.Serialized[]
+---@field requiredSelectableReagent CraftingReagentInfo?
 ---@field optionalReagents CraftingReagentInfo[]
 ---@field professionGearSet CraftSim.ProfessionGearSet.Serialized
 ---@field subRecipeDepth number
 ---@field subRecipeCostsEnabled boolean
 ---@field serializedSubRecipeData CraftSim.CraftQueueItem.Serialized[]
 ---@field parentRecipeInfo CraftSim.RecipeData.ParentRecipeInfo[]
+---@field orderData CraftingOrderInfo?
 
 function CraftSim.CraftQueueItem:Serialize()
     ---@param recipeData CraftSim.RecipeData
@@ -81,12 +83,15 @@ function CraftSim.CraftQueueItem:Serialize()
             crafterData = recipeData.crafterData,
             concentrating = recipeData.concentrating,
             requiredReagents = recipeData.reagentData:SerializeRequiredReagents(),
+            requiredSelectableReagent = recipeData.reagentData:HasRequiredSelectableReagent() and
+                recipeData.reagentData.requiredSelectableReagentSlot:GetCraftingReagentInfo(),
             optionalReagents = recipeData.reagentData:GetOptionalCraftingReagentInfoTbl(),
             professionGearSet = recipeData.professionGearSet:Serialize(),
             subRecipeDepth = recipeData.subRecipeDepth,
             subRecipeCostsEnabled = recipeData.subRecipeCostsEnabled,
             serializedSubRecipeData = {},
             parentRecipeInfo = recipeData.parentRecipeInfo,
+            orderData = recipeData.orderData,
         }
 
         -- save correct mapping
@@ -113,12 +118,20 @@ function CraftSim.CraftQueueItem:Deserialize(serializedData)
     ---@return CraftSim.RecipeData?
     local function deserializeCraftQueueRecipeData(serializedCraftQueueItem)
         -- first create a recipeData
-        local recipeData = CraftSim.RecipeData(serializedCraftQueueItem.recipeID, nil, nil,
-            serializedCraftQueueItem.crafterData)
+        local recipeData = CraftSim.RecipeData({
+            recipeID = serializedCraftQueueItem.recipeID,
+            crafterData = serializedCraftQueueItem.crafterData,
+            forceCache = true, -- necessary here due to execution after login
+        })
         recipeData.subRecipeDepth = serializedCraftQueueItem.subRecipeDepth or 0
         recipeData.concentrating = serializedCraftQueueItem.concentrating
         recipeData.subRecipeCostsEnabled = serializedCraftQueueItem.subRecipeCostsEnabled
         recipeData.parentRecipeInfo = serializedCraftQueueItem.parentRecipeInfo or {}
+
+        if serializedCraftQueueItem.orderData then
+            recipeData:SetOrder(serializedCraftQueueItem.orderData)
+        end
+
 
         if recipeData and recipeData.isCrafterInfoCached then
             -- deserialize potential subrecipes and restore correct mapping
@@ -133,6 +146,11 @@ function CraftSim.CraftQueueItem:Deserialize(serializedData)
             end
 
             recipeData:SetReagentsByCraftingReagentInfoTbl(GUTIL:Concat { requiredReagentsCraftingReagentInfos, serializedCraftQueueItem.optionalReagents })
+
+            if serializedCraftQueueItem.requiredSelectableReagent then
+                recipeData.reagentData:SetRequiredSelectableReagent(serializedCraftQueueItem.requiredSelectableReagent
+                    .itemID)
+            end
 
             recipeData:SetNonQualityReagentsMax()
 
@@ -170,6 +188,41 @@ function CraftSim.CraftQueueItem:IsCrafter()
     return self.recipeData:IsCrafter()
 end
 
+function CraftSim.CraftQueueItem:UpdateCountByParentRecipes()
+    if self.recipeData.subRecipeDepth == 0 then return end
+
+    local parentCraftQueueItems = GUTIL:Map(self.recipeData.parentRecipeInfo, function(prI)
+        print("searching for ")
+        print(prI, true, "PRI", 1)
+        return CraftSim.CRAFTQ.craftQueue:FindRecipeByParentRecipeInfo(prI)
+    end)
+
+    local itemID = self.recipeData.resultData.expectedItem:GetItemID()
+    local totalCount = GUTIL:Fold(parentCraftQueueItems, 0, function(foldValue, cqi)
+        if not cqi then return foldValue end
+        local itemCount = cqi.recipeData.reagentData:GetReagentQuantityByItemID(itemID) * cqi.amount
+
+        return itemCount + foldValue
+    end)
+
+    -- if I am the crafter also use warbank count otherwise not
+    local inventoryCount = CraftSim.DB.ITEM_COUNT:Get(self.recipeData:GetCrafterUID(), itemID, true, self.isCrafter)
+
+    local restCount = math.max(0, totalCount - inventoryCount)
+
+    local minimumCrafts = math.max(0, restCount / self.recipeData.baseItemAmount)
+
+    self.amount = minimumCrafts
+
+    print("Updated amount for " .. tostring(self.recipeData.resultData.expectedItem:GetItemLink()) .. ": " .. self
+        .amount)
+    print("parentCraftQueueItems: " .. #parentCraftQueueItems)
+    print("totalCount: " .. totalCount)
+    print("inventoryCount: " .. inventoryCount)
+    print("restCount: " .. restCount)
+    print("minimumCrafts: " .. minimumCrafts)
+end
+
 function CraftSim.CraftQueueItem:UpdateSubRecipesInQueue()
     if not self.recipeData:HasActiveSubRecipes() then return end
 
@@ -182,10 +235,13 @@ function CraftSim.CraftQueueItem:UpdateSubRecipesInQueue()
         if subRecipeData then
             if self.recipeData:GetReagentQuantityByItemID(itemID) > 0 then
                 local cqi = CraftSim.CRAFTQ.craftQueue:FindRecipe(subRecipeData)
+                print(" - Searching in queue for " ..
+                    subRecipeData.recipeName .. "\n" .. subRecipeData:GetRecipeCraftQueueUID())
                 if not cqi then
-                    print("- Adding Subrecipe to queue: " ..
-                        subRecipeData.recipeName .. " - " .. subRecipeData:GetCrafterUID())
+                    print(" - Not Found, Adding to queue")
                     cqi = CraftSim.CRAFTQ.craftQueue:AddRecipe({ recipeData = subRecipeData, amount = 1, })
+                else
+                    print(" - Subrecipe already in queue")
                 end
 
                 return cqi

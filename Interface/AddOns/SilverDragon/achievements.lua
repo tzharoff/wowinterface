@@ -536,10 +536,47 @@ local achievements = {
 	[17525] = {}, -- Champion of the Forbidden Reach
 	[17783] = {}, -- Adventurer of Zaralek Cavern
 	[19316] = {}, -- Adventurer of the Emerald Dream
+	[40222] = {}, -- Echoes of Danger
 	[40435] = {}, -- Adventurer of the Isle of Dorn
+	[40475] = { -- To All the Slimes I Love
+		need=EMOTE152_CMD1, completed=DONE, -- /love
+		[226626] = 68670, -- Spring Mole
+		[217756] = 68673, -- Snake
+		[220173] = 68674, -- Lightdarter
+		[221146] = 68676, -- Tiny Sporbit
+		[220369] = 68677, -- Dustcrawler Beetle
+		[219581] = 68675, -- Mass of Worms (less-common variant, not sure it works)
+		[219585] = 68675, -- Mass of Worms
+		[217461] = 68731, -- Grottoscale Hatchling
+		[220177] = 68729, -- Crackcreeper
+		[214726] = 68730, -- Lava Slug
+		[220370] = 68732, -- Earthenwork Stoneskitterer
+		[223663] = 68733, -- Cavern Skiplet
+		[217316] = 68734, -- Moss Sludglet
+		[219366] = 68747, -- Cavern Mote
+		[220168] = 68748, -- Stumblegrub
+		[219842] = 69805, -- Darkgrotto Hopper
+		[220413] = 68749, -- Oozeling
+		[217559] = 68750, -- Pebble Scarab
+		[216058] = 68751, -- Rock Snail
+	},
+	[40625] = { -- The Missing Lynx
+		need=EMOTE410_CMD1, completed=DONE, -- /pet
+		-- The rest have IDs associated, and are picked up fine
+		[216549] = 7, -- Nightclaw
+		[215590] = 8, -- Shadowpouncer
+		[215593] = 9, -- Purrlock
+		[215606] = 9, -- Purrlock
+		[215041] = 10, -- Miral Murder-Mittens
+		[219412] = 11, -- Fuzzy
+		[218887] = 12, -- Furball
+		[221106] = 13, -- Dander
+	},
 	[40837] = {}, -- Adventurer of the Ringing Deeps
 	[40840] = {}, -- Adventurer of Azj-Kahet
 	[40851] = {}, -- Adventurer of Hallowfall
+	[40995] = {}, -- The Originals
+	[40997] = {}, -- The Gatecrashers (Anniversary)
 }
 ns.achievements = achievements
 local mobs_to_achievement = {
@@ -558,11 +595,9 @@ function ns:AchievementMobStatus(id)
 	end
 	local criteria = achievements[achievement][id]
 	local _, name, _, achievement_completed, _, _, _, _, _, _, _, _, completedByMe = GetAchievementInfo(achievement)
-	local completed
-	if criteria < 40 then
-		_, _, completed = GetAchievementCriteriaInfo(achievement, criteria)
-	else
-		_, _, completed = GetAchievementCriteriaInfoByID(achievement, criteria)
+	local retOK, _, _, completed = pcall(criteria < 100 and GetAchievementCriteriaInfo or GetAchievementCriteriaInfoByID, achievement, criteria, true)
+	if not retOK then
+		return
 	end
 	return achievement, name, completed, achievement_completed and not completedByMe
 end
@@ -587,7 +622,7 @@ do
 		return false
 	end
 	local function doTest(test, input, ...)
-		if type(input) == "table" and not input.__parent then
+		if ns.xtype(input) == "table" then
 			if input.alliance then
 				return doTest(test, faction == "Alliance" and input.alliance or input.horde, ...)
 			end

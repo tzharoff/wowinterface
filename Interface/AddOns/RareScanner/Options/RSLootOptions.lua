@@ -249,6 +249,18 @@ function RSLootOptions.GetLootOptions()
 							end,
 							width = "full",
 							disabled = function() return (not CanIMogIt or (not RSConfigDB.IsDisplayingLootBar() and not RSConfigDB.IsShowingLootOnWorldMap())) end,
+						},
+						tsm = {
+							order = 3,
+							type = "toggle",
+							name = AL["LOOT_TOOLTIPS_TSM"],
+							desc = AL["LOOT_TOOLTIPS_TSM_DESC"],
+							get = function() return RSConfigDB.IsShowingLootTSMTooltip() end,
+							set = function(_, value)
+								RSConfigDB.SetShowingLootTSMTooltip(value)
+							end,
+							width = "full",
+							disabled = function() return (not TSM_API or not TSM_API.GetCustomPriceValue or (not RSConfigDB.IsDisplayingLootBar() and not RSConfigDB.IsShowingLootOnWorldMap())) end,
 						}
 					},
 					disabled = function() return (not RSConfigDB.IsDisplayingLootBar() and not RSConfigDB.IsShowingLootOnWorldMap()) end,
@@ -434,8 +446,8 @@ function RSLootOptions.GetLootOptions()
 											private.loot_toggle_all = true
 										end
 		
-										for _, v in pairs(options.args.filters.args.category_filters.args.lootFilters.values) do
-											RSConfigDB.SetLootFilterByCategory(private.loot_main_category_ID, v, private.loot_toggle_all)
+										for k, _ in pairs(options.args.filters.args.category_filters.args.lootFilters.values) do
+											RSConfigDB.SetLootFilterByCategory(private.loot_main_category_ID, k, private.loot_toggle_all)
 										end
 									end,
 									width = "full",

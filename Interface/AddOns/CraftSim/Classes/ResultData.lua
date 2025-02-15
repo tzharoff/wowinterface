@@ -2,7 +2,7 @@
 local CraftSim = select(2, ...)
 
 
-local print = CraftSim.DEBUG:SetDebugPrint(CraftSim.CONST.DEBUG_IDS.DATAEXPORT)
+local print = CraftSim.DEBUG:RegisterDebugID("Classes.RecipeData.ResultData")
 
 ---@class CraftSim.ResultData : CraftSim.CraftSimObject
 CraftSim.ResultData = CraftSim.CraftSimObject:extend()
@@ -36,7 +36,6 @@ end
 function CraftSim.ResultData:UpdatePossibleResultItems()
     local recipeData = self.recipeData
 
-    -- TODO: only need to update possible list for gear as everything else is static
     self.itemsByQuality = {}
     local craftingReagentInfoTbl = recipeData.reagentData:GetCraftingReagentInfoTbl()
 
@@ -93,12 +92,17 @@ end
 --- Returns true if either the given quality or any higher quality than it is craftable
 ---@param qualityID any
 ---@return boolean craftable
+---@return boolean concentrationOnly reachable only with concentration
 function CraftSim.ResultData:IsMinimumQualityReachable(qualityID)
     if not self.recipeData.supportsQualities then
-        return true
+        return true, false
     end
 
-    return qualityID <= self.expectedQualityConcentration
+    local reachable = qualityID <= self.expectedQualityConcentration
+    local concentrationOnly = self.expectedQuality < self.expectedQualityConcentration and
+        qualityID == self.expectedQualityConcentration
+
+    return reachable, concentrationOnly
 end
 
 --- Updates based on professionStats and reagentData
@@ -133,7 +137,8 @@ function CraftSim.ResultData:Update()
 
     local professionStats = self.recipeData.professionStats
 
-    self.expectedYieldPerCraft = CraftSim.CALC:GetExpectedItemAmountMulticraft(recipeData)
+    self.expectedYieldPerCraft = self.recipeData.baseItemAmount +
+        (select(2, CraftSim.CALC:GetExpectedItemAmountMulticraft(recipeData)) * professionStats.multicraft:GetPercent(true))
 
     -- special case for no quality results. Needed for expectedCrafts and such
     if not recipeData.supportsQualities then

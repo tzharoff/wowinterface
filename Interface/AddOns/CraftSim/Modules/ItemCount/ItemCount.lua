@@ -3,17 +3,18 @@ local CraftSim = select(2, ...)
 
 local GUTIL = CraftSim.GUTIL
 
-local print = CraftSim.DEBUG:SetDebugPrint(CraftSim.CONST.DEBUG_IDS.CACHE_ITEM_COUNT)
+local print = CraftSim.DEBUG:RegisterDebugID("Data.ItemCount")
 
 ---@class CraftSim.ITEM_COUNT : Frame
 CraftSim.ITEM_COUNT = GUTIL:CreateRegistreeForEvents({ "BAG_UPDATE_DELAYED", "BANKFRAME_OPENED" })
 
 ---@param crafterUID string
 ---@param itemID ItemInfo
+---@param excludeWarbank? boolean
 ---@return number count
 ---@return ItemID? alternativeItemID
 ---@return number? alternativeCount
-function CraftSim.ITEM_COUNT:Get(crafterUID, itemID)
+function CraftSim.ITEM_COUNT:Get(crafterUID, itemID, excludeWarbank)
     local playerCrafterUID = CraftSim.UTIL:GetPlayerCrafterUID()
     crafterUID = crafterUID or playerCrafterUID
     local isPlayer = crafterUID == playerCrafterUID
@@ -26,10 +27,10 @@ function CraftSim.ITEM_COUNT:Get(crafterUID, itemID)
 
         local altCount = nil
         -- if player then return inclusive accountBankCount
-        local itemCount = CraftSim.DB.ITEM_COUNT:Get(crafterUID, itemID, true, true)
+        local itemCount = CraftSim.DB.ITEM_COUNT:Get(crafterUID, itemID, true, not excludeWarbank)
         if alternativeItemID then
             self:UpdateAllCountsForItemID(alternativeItemID)
-            altCount = CraftSim.DB.ITEM_COUNT:Get(crafterUID, alternativeItemID, true, true)
+            altCount = CraftSim.DB.ITEM_COUNT:Get(crafterUID, alternativeItemID, true, not excludeWarbank)
         end
         return itemCount, alternativeItemID, altCount
     end

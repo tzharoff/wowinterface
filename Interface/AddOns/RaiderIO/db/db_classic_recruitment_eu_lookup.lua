@@ -1,12 +1,12 @@
 --
--- Copyright (c) 2024 by Ludicrous Speed, LLC
+-- Copyright (c) 2025 by Ludicrous Speed, LLC
 -- All rights reserved.
 --
-local provider={name=...,data=3,region="eu",date="2024-08-16T06:14:37Z",numCharacters=136,lookup={},recordSizeInBytes=2,encodingOrder={0,1,3}}
+local provider={name=...,data=3,region="eu",date="2025-02-14T06:13:13Z",numCharacters=52,lookup={},recordSizeInBytes=2,encodingOrder={0,1,3}}
 local F
 
--- chunk size: 158
-F = function() provider.lookup[1] = "\10\21\10\21\10\21\10\21\10\21\10\21\10\21\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\29\10\25\10\25\10\25\10\25\10\25\10\25\10\25\10\25\10\25\4\8\4\8\4\4\4\8\4\4" end F()
+-- chunk size: 16
+F = function() provider.lookup[1] = "\4\4\4\4\4\8\4\16\4\8\4\4\4\4\4\4" end F()
 
 F = nil
 RaiderIO.AddProvider(provider)

@@ -21,7 +21,7 @@ DBM-StatusBarTimers: enabled
 DBM-Brawlers: enabled
 DBM-CastleNathria: disabled
 DBM-DMF: enabled
-DBM-Party-Shadowlands: disabled
+DBM-Party-Shadowlands: enabled
 DBM-SanctumOfDomination: disabled
 DBM-Shadowlands: disabled
 DBM-WorldEvents: enabled
@@ -80,7 +80,7 @@ APR-MistsOfPandaria: disabled
 APR-Legion: disabled
 APR-Dragonflight: disabled
 APR-ExilesReach: disabled
-CraftSim: disabled
+CraftSim: enabled
 TradeSkillMaster: disabled
 APR-BattleForAzeroth: disabled
 LittleWigs_BurningCrusade: enabled
@@ -111,3 +111,18 @@ MythicDungeonTools: enabled
 BigWigs_BurningCrusade: enabled
 LittleWigs_WrathOfTheLichKing: enabled
 BigWigs_MistsOfPandaria: enabled
+RemixCheckList: disabled
+Remix Gem Helper: disabled
+CopyPasta2: disabled
+MythicDungeonPortals: disabled
+LittleWigs_Dragonflight: enabled
+BigWigs_Dragonflight: enabled
+BigWigs_NerubarPalace: enabled
+DBM-Raids-WarWithin: enabled
+DBM-KhazAlgar: enabled
+DBM-Test: enabled
+BigWigs_Cataclysm: enabled
+BigWigs_Classic: enabled
+BigWigs_KhazAlgar: enabled
+FriendGroups: disabled
+LittleWigs_Shadowlands: enabled

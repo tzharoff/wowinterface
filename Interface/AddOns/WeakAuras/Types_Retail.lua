@@ -238,7 +238,7 @@ function Private.GetTalentData(specId)
 								talentData[3][2] = node.posY - subTreeInfo.posY
 								talentData[3][5] = subTreeIndex
 								tinsert(heroData, talentData)
-							else
+							elseif not node.subTreeID then
 								tinsert(specData, talentData)
 							end
 						end
@@ -259,7 +259,6 @@ function Private.GetTalentData(specId)
 	heroData[1001] = true
 	Private.talentInfo[specId] = { specData, heroData, specDataByNodeId }
 	return specData, heroData, specDataByNodeId
-  -- TODO fix callers
 end
 
 WeakAuras.StopMotion = {

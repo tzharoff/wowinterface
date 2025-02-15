@@ -5,11 +5,11 @@ WeakAurasOptionsSaved = {
 },
 ["locale"] = "enUS",
 ["needsRebuild"] = true,
-["version"] = "5.15.0",
+["version"] = "5.18.0",
 ["spellCacheAchievements"] = true,
+["spellCacheStrings"] = true,
+["spellCacheAchivements"] = true,
 ["savedSnippets"] = {
 },
-["spellCacheAchivements"] = true,
-["spellCacheStrings"] = true,
-["build"] = "55664",
+["build"] = "57689",
 }

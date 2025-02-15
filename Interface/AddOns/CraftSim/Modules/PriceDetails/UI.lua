@@ -7,7 +7,7 @@ CraftSim.PRICE_DETAILS.UI = {}
 CraftSim.PRICE_DETAILS.frame = nil
 CraftSim.PRICE_DETAILS.frameWO = nil
 
-local print = CraftSim.DEBUG:SetDebugPrint("PRICE_DETAILS")
+local print = CraftSim.DEBUG:RegisterDebugID("Modules.PriceDetails.UI")
 
 function CraftSim.PRICE_DETAILS.UI:Init()
     local sizeX = 410
@@ -51,7 +51,9 @@ function CraftSim.PRICE_DETAILS.UI:Init()
         sizeY = sizeY,
         frameID = CraftSim.CONST.FRAMES.PRICE_DETAILS_WORK_ORDER,
         title = CraftSim.LOCAL:GetText(CraftSim.CONST.TEXT.COST_OVERVIEW_TITLE) ..
-            " " .. CraftSim.GUTIL:ColorizeText("WO", CraftSim.GUTIL.COLORS.GREY),
+            " " ..
+            CraftSim.GUTIL:ColorizeText(CraftSim.LOCAL:GetText(CraftSim.CONST.TEXT.SOURCE_COLUMN_WO),
+                CraftSim.GUTIL.COLORS.GREY),
         collapseable = true,
         closeable = true,
         moveable = true,
@@ -164,15 +166,15 @@ function CraftSim.PRICE_DETAILS.UI:UpdateDisplay(recipeData, exportMode)
                 local itemLink = resultItem:GetItemLink()
                 itemColumn.icon:SetItem(resultItem)
                 local priceOverride = CraftSim.DB.PRICE_OVERRIDE:GetResultOverridePrice(recipeData.recipeID, qualityID)
-                local price = priceOverride or CraftSim.PRICEDATA:GetMinBuyoutByItemLink(itemLink)
+                local price = priceOverride or CraftSim.PRICE_SOURCE:GetMinBuyoutByItemLink(itemLink)
                 local profit = (price * CraftSim.CONST.AUCTION_HOUSE_CUT) -
                     (priceData.craftingCosts / recipeData.baseItemAmount)
-                priceColumn.text:SetText(CraftSim.GUTIL:FormatMoney(price) ..
+                priceColumn.text:SetText(CraftSim.UTIL:FormatMoney(price) ..
                     ((priceOverride and CraftSim.GUTIL:ColorizeText(" (OR)", CraftSim.GUTIL.COLORS.LEGENDARY)) or ""))
-                profitColumn.text:SetText(CraftSim.GUTIL:FormatMoney(profit, true))
+                profitColumn.text:SetText(CraftSim.UTIL:FormatMoney(profit, true))
 
                 local itemCount = C_Item.GetItemCount(itemLink, true, false, true)
-                local ahCount = CraftSim.PRICEDATA:GetAuctionAmount(itemLink)
+                local ahCount = CraftSim.PRICE_SOURCE:GetAuctionAmount(itemLink)
 
                 if ahCount then
                     invColumn.text:SetText((itemCount or 0) .. "/" .. ahCount)

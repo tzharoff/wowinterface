@@ -179,7 +179,6 @@ function platerInternal.CreateDataTables(Plater)
         [100991] = true, -- Strangling Roots
         [131009] = true, -- Spirit of Gold
         [127315] = true, -- Reanimation Totem
-        [127315] = true, -- Reanimation Totem
         [125828] = true, -- Soulspawn
         [205212] = true, -- Infinite Keeper
         [205265] = true, -- Time-Displaced Trooper
@@ -191,7 +190,7 @@ function platerInternal.CreateDataTables(Plater)
         [[Interface\AddOns\Plater\images\cooldown_edge_2]],
         "Interface\\Cooldown\\edge",
         "Interface\\Cooldown\\edge-LoC",
-        "Interface\\GLUES\\loadingOld",
+        [[Interface\AddOns\Plater\images\transparent]],
     }
 
     --textures used in the castbar, scripts can add more values to it, profile holds only the path to it

@@ -1,3 +1,12 @@
+VER 3 0100000000000007 "14" "134400"
+#showtooltip
+/use 14
+END
+VER 3 0100000000000005 "AW" "134400"
+#showtooltip
+/cast Avenging Wrath
+/use 14
+END
 VER 3 0100000000000003 "BoF" "134400"
 #showtooltip
 /stopcasting
@@ -6,6 +15,12 @@ END
 VER 3 0100000000000004 "FV" "134400"
 #showtooltip
 /cast Final Verdict
+/use 14
+END
+VER 3 0100000000000006 "MG" "134400"
+#showtooltip
+/cast Moment of Glory
+/cast Avenging Wrath
 /use 14
 END
 VER 3 0100000000000001 "VuhDoDCShieldData" "Ability_Repair"

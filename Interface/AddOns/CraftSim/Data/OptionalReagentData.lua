@@ -6,9 +6,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Armor Spikes",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 35,
-			},
+			increasedifficulty = 35,
 		},
 	},
 	[191532] = {
@@ -16,9 +14,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Potion Absorption Inhibitor",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 35,
-			},
+			increasedifficulty = 35,
 		},
 	},
 	[191533] = {
@@ -26,9 +22,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Potion Absorption Inhibitor",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 30,
-			},
+			increasedifficulty = 30,
 		},
 	},
 	[191534] = {
@@ -36,9 +30,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Potion Absorption Inhibitor",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[191872] = {
@@ -46,9 +38,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Armor Spikes",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 30,
-			},
+			increasedifficulty = 30,
 		},
 	},
 	[191873] = {
@@ -56,9 +46,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Armor Spikes",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[192552] = {
@@ -66,9 +54,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of the Fireflash",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[192553] = {
@@ -76,9 +62,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of the Fireflash",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[192554] = {
@@ -86,9 +70,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of the Fireflash",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[193468] = {
@@ -96,9 +78,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Fang Adornments",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 35,
-			},
+			increasedifficulty = 35,
 		},
 	},
 	[193469] = {
@@ -106,9 +86,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Toxified Armor Patch",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 35,
-			},
+			increasedifficulty = 35,
 		},
 	},
 	[193551] = {
@@ -116,9 +94,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Fang Adornments",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 30,
-			},
+			increasedifficulty = 30,
 		},
 	},
 	[193552] = {
@@ -126,9 +102,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Toxified Armor Patch",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 30,
-			},
+			increasedifficulty = 30,
 		},
 	},
 	[193554] = {
@@ -136,9 +110,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Fang Adornments",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[193555] = {
@@ -146,9 +118,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Toxified Armor Patch",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[193941] = {
@@ -156,9 +126,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Bronzed Grip Wrappings",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 35,
-			},
+			increasedifficulty = 35,
 		},
 	},
 	[193942] = {
@@ -166,9 +134,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Bronzed Grip Wrappings",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 30,
-			},
+			increasedifficulty = 30,
 		},
 	},
 	[193943] = {
@@ -176,9 +142,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Bronzed Grip Wrappings",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[193944] = {
@@ -186,9 +150,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Blue Silken Lining",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 35,
-			},
+			increasedifficulty = 35,
 		},
 	},
 	[193945] = {
@@ -196,9 +158,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Blue Silken Lining",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 30,
-			},
+			increasedifficulty = 30,
 		},
 	},
 	[193946] = {
@@ -206,9 +166,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Blue Silken Lining",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[194566] = {
@@ -216,9 +174,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of the Feverflare",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[194567] = {
@@ -226,9 +182,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of the Feverflare",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[194568] = {
@@ -236,9 +190,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of the Feverflare",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[194569] = {
@@ -246,9 +198,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of the Aurora",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[194570] = {
@@ -256,9 +206,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of the Aurora",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[194571] = {
@@ -266,9 +214,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of the Aurora",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[194572] = {
@@ -276,9 +222,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of the Quickblade",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[194573] = {
@@ -286,9 +230,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of the Quickblade",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[194574] = {
@@ -296,9 +238,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of the Quickblade",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[194575] = {
@@ -306,9 +246,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of the Harmonious",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[194576] = {
@@ -316,9 +254,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of the Harmonious",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[194577] = {
@@ -326,9 +262,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of the Harmonious",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[194578] = {
@@ -336,9 +270,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of the Peerless",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[194579] = {
@@ -346,9 +278,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of the Peerless",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[194580] = {
@@ -356,9 +286,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of the Peerless",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[194868] = {
@@ -366,9 +294,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Emberscale Sigil",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[194869] = {
@@ -376,9 +302,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Sagescale Sigil",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[194870] = {
@@ -386,9 +310,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Bronzescale Sigil",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[194871] = {
@@ -396,9 +318,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Azurescale Sigil",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[197921] = {
@@ -406,9 +326,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Primal Infusion",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 30,
-			},
+			increasedifficulty = 30,
 		},
 	},
 	[198046] = {
@@ -416,9 +334,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Concentrated Primal Infusion",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 50,
-			},
+			increasedifficulty = 50,
 		},
 	},
 	[198048] = {
@@ -426,9 +342,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Titan Training Matrix I",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[198056] = {
@@ -436,9 +350,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Titan Training Matrix II",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 40,
-			},
+			increasedifficulty = 40,
 		},
 	},
 	[198058] = {
@@ -446,9 +358,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Titan Training Matrix III",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 60,
-			},
+			increasedifficulty = 60,
 		},
 	},
 	[198059] = {
@@ -456,9 +366,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Titan Training Matrix IV",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 140,
-			},
+			increasedifficulty = 140,
 		},
 	},
 	[198174] = {
@@ -466,9 +374,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Razor-Sharp Gear",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[198175] = {
@@ -476,9 +382,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Razor-Sharp Gear",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[198176] = {
@@ -486,9 +390,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Razor-Sharp Gear",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[198231] = {
@@ -496,9 +398,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Rapidly Ticking Gear",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[198232] = {
@@ -506,9 +406,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Rapidly Ticking Gear",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[198233] = {
@@ -516,9 +414,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Rapidly Ticking Gear",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[198236] = {
@@ -526,9 +422,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Meticulously-Tuned Gear",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[198237] = {
@@ -536,9 +430,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Meticulously-Tuned Gear",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[198238] = {
@@ -546,9 +438,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Meticulously-Tuned Gear",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[198253] = {
@@ -556,9 +446,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Calibrated Safety Switch",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[198254] = {
@@ -566,9 +454,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Calibrated Safety Switch",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[198255] = {
@@ -576,9 +462,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Calibrated Safety Switch",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 10,
-			},
+			increasedifficulty = 10,
 		},
 	},
 	[198256] = {
@@ -586,9 +470,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Magazine of Healing Darts",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 35,
-			},
+			increasedifficulty = 35,
 		},
 	},
 	[198257] = {
@@ -596,9 +478,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Magazine of Healing Darts",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 30,
-			},
+			increasedifficulty = 30,
 		},
 	},
 	[198258] = {
@@ -606,9 +486,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Magazine of Healing Darts",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[198259] = {
@@ -616,9 +494,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Critical Failure Prevention Unit",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[198260] = {
@@ -626,9 +502,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Critical Failure Prevention Unit",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[198261] = {
@@ -636,9 +510,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Critical Failure Prevention Unit",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 10,
-			},
+			increasedifficulty = 10,
 		},
 	},
 	[198307] = {
@@ -646,9 +518,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "One-Size-Fits-All Gear",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[198308] = {
@@ -656,9 +526,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "One-Size-Fits-All Gear",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[198309] = {
@@ -666,9 +534,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "One-Size-Fits-All Gear",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[198431] = {
@@ -676,9 +542,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Jetscale Sigil",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[198534] = {
@@ -686,9 +550,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of Ingenuity",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[198535] = {
@@ -696,9 +558,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of Ingenuity",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[198536] = {
@@ -706,9 +566,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of Ingenuity",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[198619] = {
@@ -716,9 +574,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Spring-Loaded Capacitor Casing",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[198620] = {
@@ -726,9 +582,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Spring-Loaded Capacitor Casing",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[198621] = {
@@ -736,9 +590,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Spring-Loaded Capacitor Casing",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 10,
-			},
+			increasedifficulty = 10,
 		},
 	},
 	[199051] = {
@@ -746,9 +598,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Azurescale Sigil",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[199052] = {
@@ -756,9 +606,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Azurescale Sigil",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 10,
-			},
+			increasedifficulty = 10,
 		},
 	},
 	[199053] = {
@@ -766,9 +614,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Bronzescale Sigil",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[199054] = {
@@ -776,9 +622,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Bronzescale Sigil",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 10,
-			},
+			increasedifficulty = 10,
 		},
 	},
 	[199055] = {
@@ -786,9 +630,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Emberscale Sigil",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[199056] = {
@@ -796,9 +638,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Emberscale Sigil",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 10,
-			},
+			increasedifficulty = 10,
 		},
 	},
 	[199057] = {
@@ -806,9 +646,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Jetscale Sigil",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[199058] = {
@@ -816,9 +654,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Jetscale Sigil",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 10,
-			},
+			increasedifficulty = 10,
 		},
 	},
 	[199059] = {
@@ -826,9 +662,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Sagescale Sigil",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[199060] = {
@@ -836,9 +670,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Sagescale Sigil",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 10,
-			},
+			increasedifficulty = 10,
 		},
 	},
 	[200565] = {
@@ -846,9 +678,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of Resourcefulness",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[200566] = {
@@ -856,9 +686,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of Resourcefulness",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[200567] = {
@@ -866,9 +694,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of Resourcefulness",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[200568] = {
@@ -876,9 +702,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of Multicraft",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[200569] = {
@@ -886,9 +710,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of Multicraft",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[200570] = {
@@ -896,9 +718,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of Multicraft",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[200571] = {
@@ -906,9 +726,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of Crafting Speed",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[200572] = {
@@ -916,9 +734,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of Crafting Speed",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[200573] = {
@@ -926,9 +742,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of Crafting Speed",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[200574] = {
@@ -936,9 +750,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of Finesse",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[200575] = {
@@ -946,9 +758,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of Finesse",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[200576] = {
@@ -956,9 +766,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of Finesse",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[200577] = {
@@ -966,9 +774,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of Perception",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[200578] = {
@@ -976,9 +782,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of Perception",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[200579] = {
@@ -986,9 +790,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of Perception",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[200580] = {
@@ -996,9 +798,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of Deftness",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[200581] = {
@@ -1006,9 +806,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of Deftness",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[200582] = {
@@ -1016,9 +814,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Draconic Missive of Deftness",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[200652] = {
@@ -1026,9 +822,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Alchemical Flavor Pocket",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[204673] = {
@@ -1036,9 +830,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Titan Training Matrix V",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 150,
-			},
+			increasedifficulty = 150,
 		},
 	},
 	[204681] = {
@@ -1046,9 +838,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Enchanted Whelpling's Shadowflame Crest",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 160,
-			},
+			increasedifficulty = 160,
 		},
 	},
 	[204682] = {
@@ -1056,9 +846,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Enchanted Wyrm's Shadowflame Crest",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 30,
-			},
+			increasedifficulty = 30,
 		},
 	},
 	[204697] = {
@@ -1066,9 +854,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Enchanted Aspect's Shadowflame Crest",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 50,
-			},
+			increasedifficulty = 50,
 		},
 	},
 	[204708] = {
@@ -1076,9 +862,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Shadowflame-Tempered Armor Patch",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 35,
-			},
+			increasedifficulty = 35,
 		},
 	},
 	[204709] = {
@@ -1086,9 +870,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Shadowflame-Tempered Armor Patch",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 30,
-			},
+			increasedifficulty = 30,
 		},
 	},
 	[204710] = {
@@ -1096,9 +878,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Shadowflame-Tempered Armor Patch",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[204909] = {
@@ -1106,9 +886,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Statuette of Foreseen Power",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 30,
-			},
+			increasedifficulty = 30,
 		},
 	},
 	[205012] = {
@@ -1116,9 +894,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Reserve Parachute",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[205115] = {
@@ -1126,9 +902,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Statuette of Foreseen Power",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[205170] = {
@@ -1136,9 +910,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Statuette of Foreseen Power",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 10,
-			},
+			increasedifficulty = 10,
 		},
 	},
 	[205171] = {
@@ -1146,9 +918,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Figurine of the Gathering Storm",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 30,
-			},
+			increasedifficulty = 30,
 		},
 	},
 	[205172] = {
@@ -1156,9 +926,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Figurine of the Gathering Storm",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[205173] = {
@@ -1166,9 +934,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Figurine of the Gathering Storm",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 10,
-			},
+			increasedifficulty = 10,
 		},
 	},
 	[205411] = {
@@ -1176,9 +942,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Medical Wrap Kit",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[206960] = {
@@ -1186,9 +950,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Enchanted Wyrm's Dreaming Crest",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 30,
-			},
+			increasedifficulty = 30,
 		},
 	},
 	[206961] = {
@@ -1196,9 +958,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Enchanted Aspect's Dreaming Crest",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 50,
-			},
+			increasedifficulty = 50,
 		},
 	},
 	[206977] = {
@@ -1206,9 +966,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Enchanted Whelpling's Dreaming Crest",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 160,
-			},
+			increasedifficulty = 160,
 		},
 	},
 	[208187] = {
@@ -1216,9 +974,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Verdant Conduit",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 35,
-			},
+			increasedifficulty = 35,
 		},
 	},
 	[208188] = {
@@ -1226,9 +982,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Verdant Conduit",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 30,
-			},
+			increasedifficulty = 30,
 		},
 	},
 	[208189] = {
@@ -1236,9 +990,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Verdant Conduit",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[208746] = {
@@ -1246,9 +998,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Dreamtender's Charm",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 35,
-			},
+			increasedifficulty = 35,
 		},
 	},
 	[208747] = {
@@ -1256,9 +1006,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Dreamtender's Charm",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 30,
-			},
+			increasedifficulty = 30,
 		},
 	},
 	[208748] = {
@@ -1266,9 +1014,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Dreamtender's Charm",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[210671] = {
@@ -1276,9 +1022,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Verdant Tether",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 35,
-			},
+			increasedifficulty = 35,
 		},
 	},
 	[210672] = {
@@ -1286,9 +1030,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Verdant Tether",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 30,
-			},
+			increasedifficulty = 30,
 		},
 	},
 	[210673] = {
@@ -1296,9 +1038,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Verdant Tether",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[211518] = {
@@ -1306,9 +1046,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Enchanted Wyrm's Awakened Crest",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 30,
-			},
+			increasedifficulty = 30,
 		},
 	},
 	[211519] = {
@@ -1316,9 +1054,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Enchanted Aspect's Awakened Crest",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 50,
-			},
+			increasedifficulty = 50,
 		},
 	},
 	[211520] = {
@@ -1326,9 +1062,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Enchanted Whelpling's Awakened Crest",
 		expansionID = 9,
 		stats = {
-			{
-				increasedifficulty = 160,
-			},
+			increasedifficulty = 160,
 		},
 	},
 	[213768] = {
@@ -1336,9 +1070,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Elemental Focusing Lens",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[213769] = {
@@ -1346,9 +1078,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Elemental Focusing Lens",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[213770] = {
@@ -1356,9 +1086,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Elemental Focusing Lens",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[213771] = {
@@ -1366,9 +1094,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Prismatic Null Stone",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[213772] = {
@@ -1376,9 +1102,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Prismatic Null Stone",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[213773] = {
@@ -1386,9 +1110,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Prismatic Null Stone",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[213774] = {
@@ -1396,9 +1118,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Captured Starlight",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[213775] = {
@@ -1406,9 +1126,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Captured Starlight",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[213776] = {
@@ -1416,9 +1134,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Captured Starlight",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[219495] = {
@@ -1426,9 +1142,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Blessed Weapon Grip",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[219496] = {
@@ -1436,9 +1150,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Blessed Weapon Grip",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[219497] = {
@@ -1446,9 +1158,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Blessed Weapon Grip",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[219504] = {
@@ -1456,9 +1166,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Writhing Armor Banding",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[219505] = {
@@ -1466,9 +1174,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Writhing Armor Banding",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[219506] = {
@@ -1476,9 +1182,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Writhing Armor Banding",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[221911] = {
@@ -1486,9 +1190,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Serrated Cogwheel",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[221912] = {
@@ -1496,9 +1198,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Serrated Cogwheel",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[221913] = {
@@ -1506,9 +1206,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Serrated Cogwheel",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[221914] = {
@@ -1516,9 +1214,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Overclocked Cogwheel",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[221915] = {
@@ -1526,9 +1222,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Overclocked Cogwheel",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[221916] = {
@@ -1536,9 +1230,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Overclocked Cogwheel",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[221917] = {
@@ -1546,9 +1238,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Impeccable Cogwheel",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[221918] = {
@@ -1556,9 +1246,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Impeccable Cogwheel",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[221919] = {
@@ -1566,9 +1254,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Impeccable Cogwheel",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[221920] = {
@@ -1576,9 +1262,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Adjustable Cogwheel",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[221921] = {
@@ -1586,9 +1270,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Adjustable Cogwheel",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[221922] = {
@@ -1596,9 +1278,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Adjustable Cogwheel",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[221923] = {
@@ -1606,9 +1286,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Recalibrated Safety Switch",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[221924] = {
@@ -1616,9 +1294,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Recalibrated Safety Switch",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[221925] = {
@@ -1626,9 +1302,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Recalibrated Safety Switch",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[221926] = {
@@ -1636,9 +1310,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Blame Redirection Device",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[221927] = {
@@ -1646,9 +1318,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Blame Redirection Device",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[221928] = {
@@ -1656,9 +1326,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Blame Redirection Device",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[221932] = {
@@ -1666,9 +1334,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Complicated Fuse Box",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[221933] = {
@@ -1676,9 +1342,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Complicated Fuse Box",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[221934] = {
@@ -1686,9 +1350,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Complicated Fuse Box",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[221935] = {
@@ -1696,9 +1358,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Pouch of Pocket Grenades",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[221936] = {
@@ -1706,9 +1366,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Pouch of Pocket Grenades",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[221937] = {
@@ -1716,9 +1374,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Pouch of Pocket Grenades",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[221938] = {
@@ -1726,9 +1382,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Concealed Chaos Module",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[221939] = {
@@ -1736,9 +1390,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Concealed Chaos Module",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[221940] = {
@@ -1746,9 +1398,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Concealed Chaos Module",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[221941] = {
@@ -1756,9 +1406,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Energy Redistribution Beacon",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[221942] = {
@@ -1766,9 +1414,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Energy Redistribution Beacon",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[221943] = {
@@ -1776,9 +1422,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Energy Redistribution Beacon",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[222579] = {
@@ -1786,9 +1430,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of the Aurora",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[222580] = {
@@ -1796,9 +1438,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of the Aurora",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[222581] = {
@@ -1806,9 +1446,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of the Aurora",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[222582] = {
@@ -1816,9 +1454,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of the Feverflare",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[222583] = {
@@ -1826,9 +1462,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of the Feverflare",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[222584] = {
@@ -1836,9 +1470,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of the Feverflare",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[222585] = {
@@ -1846,9 +1478,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of the Fireflash",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[222586] = {
@@ -1856,9 +1486,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of the Fireflash",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[222587] = {
@@ -1866,9 +1494,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of the Fireflash",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[222588] = {
@@ -1876,9 +1502,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of the Harmonious",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[222589] = {
@@ -1886,9 +1510,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of the Harmonious",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[222590] = {
@@ -1896,9 +1518,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of the Harmonious",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[222591] = {
@@ -1906,9 +1526,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of the Peerless",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[222592] = {
@@ -1916,9 +1534,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of the Peerless",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[222593] = {
@@ -1926,9 +1542,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of the Peerless",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[222594] = {
@@ -1936,9 +1550,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of the Quickblade",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[222595] = {
@@ -1946,9 +1558,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of the Quickblade",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[222596] = {
@@ -1956,9 +1566,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of the Quickblade",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[222626] = {
@@ -1966,9 +1574,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of Ingenuity",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[222627] = {
@@ -1976,9 +1582,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of Ingenuity",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[222628] = {
@@ -1986,9 +1590,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of Ingenuity",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[222629] = {
@@ -1996,9 +1598,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of Resourcefulness",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[222630] = {
@@ -2006,9 +1606,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of Resourcefulness",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[222631] = {
@@ -2016,9 +1614,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of Resourcefulness",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[222632] = {
@@ -2026,9 +1622,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of Multicraft",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[222633] = {
@@ -2036,9 +1630,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of Multicraft",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[222634] = {
@@ -2046,9 +1638,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of Multicraft",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[222635] = {
@@ -2056,9 +1646,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of Crafting Speed",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[222636] = {
@@ -2066,9 +1654,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of Crafting Speed",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[222637] = {
@@ -2076,9 +1662,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of Crafting Speed",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[222638] = {
@@ -2086,9 +1670,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of Finesse",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[222639] = {
@@ -2096,9 +1678,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of Finesse",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[222640] = {
@@ -2106,9 +1686,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of Finesse",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[222641] = {
@@ -2116,9 +1694,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of Perception",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[222642] = {
@@ -2126,9 +1702,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of Perception",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[222643] = {
@@ -2136,9 +1710,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of Perception",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[222644] = {
@@ -2146,9 +1718,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of Deftness",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[222645] = {
@@ -2156,9 +1726,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of Deftness",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[222646] = {
@@ -2166,9 +1734,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Algari Missive of Deftness",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[222868] = {
@@ -2176,9 +1742,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Dawnthread Lining",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[222869] = {
@@ -2186,9 +1750,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Dawnthread Lining",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[222870] = {
@@ -2196,9 +1758,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Dawnthread Lining",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[222871] = {
@@ -2206,9 +1766,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Duskthread Lining",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[222872] = {
@@ -2216,9 +1774,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Duskthread Lining",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[222873] = {
@@ -2226,9 +1782,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Duskthread Lining",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[224069] = {
@@ -2236,9 +1790,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Enchanted Weathered Harbinger Crest",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 100,
-			},
+			increasedifficulty = 100,
 		},
 	},
 	[224072] = {
@@ -2246,9 +1798,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Enchanted Runed Harbinger Crest",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 10,
-			},
+			increasedifficulty = 10,
 		},
 	},
 	[224073] = {
@@ -2256,9 +1806,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Enchanted Gilded Harbinger Crest",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[226022] = {
@@ -2266,9 +1814,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Darkmoon Sigil: Ascension",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[226023] = {
@@ -2276,9 +1822,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Darkmoon Sigil: Ascension",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[226024] = {
@@ -2286,9 +1830,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Darkmoon Sigil: Ascension",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[226025] = {
@@ -2296,9 +1838,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Darkmoon Sigil: Radiance",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[226026] = {
@@ -2306,9 +1846,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Darkmoon Sigil: Radiance",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[226027] = {
@@ -2316,9 +1854,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Darkmoon Sigil: Radiance",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[226028] = {
@@ -2326,9 +1862,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Darkmoon Sigil: Symbiosis",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[226029] = {
@@ -2336,9 +1870,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Darkmoon Sigil: Symbiosis",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[226030] = {
@@ -2346,9 +1878,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Darkmoon Sigil: Symbiosis",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[226031] = {
@@ -2356,9 +1886,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Darkmoon Sigil: Vivacity",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 25,
-			},
+			increasedifficulty = 25,
 		},
 	},
 	[226032] = {
@@ -2366,9 +1894,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Darkmoon Sigil: Vivacity",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 15,
-			},
+			increasedifficulty = 15,
 		},
 	},
 	[226033] = {
@@ -2376,9 +1902,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Darkmoon Sigil: Vivacity",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 5,
-			},
+			increasedifficulty = 5,
 		},
 	},
 	[228338] = {
@@ -2386,9 +1910,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Soul Sigil I",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 20,
-			},
+			increasedifficulty = 20,
 		},
 	},
 	[228339] = {
@@ -2396,9 +1918,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Soul Sigil II",
 		expansionID = 10,
 		stats = {
-			{
-				increasedifficulty = 40,
-			},
+			increasedifficulty = 40,
 		},
 	},
 	[191511] = {
@@ -2406,7 +1926,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Stable Fluidic Draconium",
 		expansionID = 9,
 		stats = {
-			ingenuityrefundincrease = 25,
+			ingenuityrefundincrease = 15.0,
 		},
 	},
 	[191512] = {
@@ -2414,7 +1934,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Stable Fluidic Draconium",
 		expansionID = 9,
 		stats = {
-			ingenuityrefundincrease = 25,
+			ingenuityrefundincrease = 20.0,
 		},
 	},
 	[191513] = {
@@ -2422,7 +1942,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Stable Fluidic Draconium",
 		expansionID = 9,
 		stats = {
-			ingenuityrefundincrease = 25,
+			ingenuityrefundincrease = 25.0,
 		},
 	},
 	[191514] = {
@@ -2430,8 +1950,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Brood Salt",
 		expansionID = 9,
 		stats = {
-			ingenuity = 50,
-			craftingspeed = 20,
+			ingenuity = 30.0,
+			craftingspeed = 12.0,
 		},
 	},
 	[191515] = {
@@ -2439,8 +1959,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Brood Salt",
 		expansionID = 9,
 		stats = {
-			ingenuity = 50,
-			craftingspeed = 20,
+			ingenuity = 40.0,
+			craftingspeed = 16.0,
 		},
 	},
 	[191516] = {
@@ -2448,8 +1968,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Brood Salt",
 		expansionID = 9,
 		stats = {
-			ingenuity = 50,
-			craftingspeed = 20,
+			ingenuity = 50.0,
+			craftingspeed = 20.0,
 		},
 	},
 	[191517] = {
@@ -2457,8 +1977,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Writhefire Oil",
 		expansionID = 9,
 		stats = {
-			modifyskillgain = 15,
-			increasedifficulty = 30,
+			modifyskillgain = 9.0,
+			increasedifficulty = 18.0,
 		},
 	},
 	[191518] = {
@@ -2466,8 +1986,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Writhefire Oil",
 		expansionID = 9,
 		stats = {
-			modifyskillgain = 15,
-			increasedifficulty = 30,
+			modifyskillgain = 12.0,
+			increasedifficulty = 24.0,
 		},
 	},
 	[191519] = {
@@ -2475,8 +1995,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Writhefire Oil",
 		expansionID = 9,
 		stats = {
-			modifyskillgain = 15,
-			increasedifficulty = 30,
+			modifyskillgain = 15.0,
+			increasedifficulty = 30.0,
 		},
 	},
 	[191520] = {
@@ -2484,8 +2004,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Agitating Potion Augmentation",
 		expansionID = 9,
 		stats = {
-			ingenuity = 50,
-			multicraft = 45,
+			ingenuity = 30.0,
+			multicraft = 27.0,
 		},
 	},
 	[191521] = {
@@ -2493,8 +2013,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Agitating Potion Augmentation",
 		expansionID = 9,
 		stats = {
-			ingenuity = 50,
-			multicraft = 45,
+			ingenuity = 40.0,
+			multicraft = 36.0,
 		},
 	},
 	[191522] = {
@@ -2502,8 +2022,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Agitating Potion Augmentation",
 		expansionID = 9,
 		stats = {
-			ingenuity = 50,
-			multicraft = 45,
+			ingenuity = 50.0,
+			multicraft = 45.0,
 		},
 	},
 	[191523] = {
@@ -2511,8 +2031,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Reactive Phial Embellishment",
 		expansionID = 9,
 		stats = {
-			ingenuity = 50,
-			multicraft = 45,
+			ingenuity = 30.0,
+			multicraft = 27.0,
 		},
 	},
 	[191524] = {
@@ -2520,8 +2040,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Reactive Phial Embellishment",
 		expansionID = 9,
 		stats = {
-			ingenuity = 50,
-			multicraft = 45,
+			ingenuity = 40.0,
+			multicraft = 36.0,
 		},
 	},
 	[191525] = {
@@ -2529,8 +2049,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Reactive Phial Embellishment",
 		expansionID = 9,
 		stats = {
-			ingenuity = 50,
-			multicraft = 45,
+			ingenuity = 50.0,
+			multicraft = 45.0,
 		},
 	},
 	[191526] = {
@@ -2538,7 +2058,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Lesser Illustrious Insight",
 		expansionID = 9,
 		stats = {
-			skill = 30,
+			skill = 30.0,
 		},
 	},
 	[191529] = {
@@ -2546,7 +2066,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Illustrious Insight",
 		expansionID = 9,
 		stats = {
-			skill = 30,
+			skill = 30.0,
 		},
 	},
 	[192894] = {
@@ -2554,8 +2074,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Blotting Sand",
 		expansionID = 9,
 		stats = {
-			modifyskillgain = 15,
-			increasedifficulty = 30,
+			modifyskillgain = 9.0,
+			increasedifficulty = 18.0,
 		},
 	},
 	[192895] = {
@@ -2563,8 +2083,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Blotting Sand",
 		expansionID = 9,
 		stats = {
-			modifyskillgain = 15,
-			increasedifficulty = 30,
+			modifyskillgain = 12.0,
+			increasedifficulty = 24.0,
 		},
 	},
 	[192896] = {
@@ -2572,8 +2092,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Blotting Sand",
 		expansionID = 9,
 		stats = {
-			modifyskillgain = 15,
-			increasedifficulty = 30,
+			modifyskillgain = 15.0,
+			increasedifficulty = 30.0,
 		},
 	},
 	[192897] = {
@@ -2581,8 +2101,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Pounce",
 		expansionID = 9,
 		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
+			ingenuityrefundincrease = 7.199999999999999,
+			ingenuity = 30.0,
 		},
 	},
 	[192898] = {
@@ -2590,8 +2110,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Pounce",
 		expansionID = 9,
 		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
+			ingenuityrefundincrease = 9.600000000000001,
+			ingenuity = 40.0,
 		},
 	},
 	[192899] = {
@@ -2599,8 +2119,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Pounce",
 		expansionID = 9,
 		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
+			ingenuityrefundincrease = 12.0,
+			ingenuity = 50.0,
 		},
 	},
 	[193950] = {
@@ -2608,8 +2128,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Abrasive Polishing Cloth",
 		expansionID = 9,
 		stats = {
-			modifyskillgain = 15,
-			increasedifficulty = 30,
+			modifyskillgain = 9.0,
+			increasedifficulty = 18.0,
 		},
 	},
 	[193951] = {
@@ -2617,8 +2137,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Abrasive Polishing Cloth",
 		expansionID = 9,
 		stats = {
-			modifyskillgain = 15,
-			increasedifficulty = 30,
+			modifyskillgain = 12.0,
+			increasedifficulty = 24.0,
 		},
 	},
 	[193952] = {
@@ -2626,8 +2146,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Abrasive Polishing Cloth",
 		expansionID = 9,
 		stats = {
-			modifyskillgain = 15,
-			increasedifficulty = 30,
+			modifyskillgain = 15.0,
+			increasedifficulty = 30.0,
 		},
 	},
 	[193953] = {
@@ -2635,8 +2155,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Vibrant Polishing Cloth",
 		expansionID = 9,
 		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
+			ingenuityrefundincrease = 7.199999999999999,
+			ingenuity = 30.0,
 		},
 	},
 	[193954] = {
@@ -2644,8 +2164,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Vibrant Polishing Cloth",
 		expansionID = 9,
 		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
+			ingenuityrefundincrease = 9.600000000000001,
+			ingenuity = 40.0,
 		},
 	},
 	[193955] = {
@@ -2653,8 +2173,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Vibrant Polishing Cloth",
 		expansionID = 9,
 		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
+			ingenuityrefundincrease = 12.0,
+			ingenuity = 50.0,
 		},
 	},
 	[193956] = {
@@ -2662,8 +2182,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Blazing Embroidery Thread",
 		expansionID = 9,
 		stats = {
-			modifyskillgain = 15,
-			increasedifficulty = 30,
+			modifyskillgain = 9.0,
+			increasedifficulty = 18.0,
 		},
 	},
 	[193957] = {
@@ -2671,8 +2191,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Blazing Embroidery Thread",
 		expansionID = 9,
 		stats = {
-			modifyskillgain = 15,
-			increasedifficulty = 30,
+			modifyskillgain = 12.0,
+			increasedifficulty = 24.0,
 		},
 	},
 	[193958] = {
@@ -2680,8 +2200,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Blazing Embroidery Thread",
 		expansionID = 9,
 		stats = {
-			modifyskillgain = 15,
-			increasedifficulty = 30,
+			modifyskillgain = 15.0,
+			increasedifficulty = 30.0,
 		},
 	},
 	[193959] = {
@@ -2689,8 +2209,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Chromatic Embroidery Thread",
 		expansionID = 9,
 		stats = {
-			ingenuityrefundincrease = 12,
-			craftingspeed = 20,
+			ingenuityrefundincrease = 7.199999999999999,
+			craftingspeed = 12.0,
 		},
 	},
 	[193960] = {
@@ -2698,8 +2218,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Chromatic Embroidery Thread",
 		expansionID = 9,
 		stats = {
-			ingenuityrefundincrease = 12,
-			craftingspeed = 20,
+			ingenuityrefundincrease = 9.600000000000001,
+			craftingspeed = 16.0,
 		},
 	},
 	[193961] = {
@@ -2707,8 +2227,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Chromatic Embroidery Thread",
 		expansionID = 9,
 		stats = {
-			ingenuityrefundincrease = 12,
-			craftingspeed = 20,
+			ingenuityrefundincrease = 12.0,
+			craftingspeed = 20.0,
 		},
 	},
 	[193962] = {
@@ -2716,7 +2236,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Shimmering Embroidery Thread",
 		expansionID = 9,
 		stats = {
-			reagentssavedfromresourcefulness = 25,
+			reagentssavedfromresourcefulness = 15.0,
 		},
 	},
 	[193963] = {
@@ -2724,7 +2244,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Shimmering Embroidery Thread",
 		expansionID = 9,
 		stats = {
-			reagentssavedfromresourcefulness = 25,
+			reagentssavedfromresourcefulness = 20.0,
 		},
 	},
 	[193964] = {
@@ -2732,7 +2252,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Shimmering Embroidery Thread",
 		expansionID = 9,
 		stats = {
-			reagentssavedfromresourcefulness = 25,
+			reagentssavedfromresourcefulness = 25.0,
 		},
 	},
 	[194902] = {
@@ -2740,8 +2260,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Ooey-Gooey Chocolate",
 		expansionID = 9,
 		stats = {
-			additionalitemscraftedwithmulticraft = 25,
-			multicraft = 1100,
+			additionalitemscraftedwithmulticraft = 25.0,
+			multicraft = 1100.0,
 		},
 	},
 	[197764] = {
@@ -2749,7 +2269,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Salad on the Side",
 		expansionID = 9,
 		stats = {
-			multicraft = 90,
+			multicraft = 90.0,
 		},
 	},
 	[197765] = {
@@ -2757,7 +2277,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Impossibly Sharp Cutting Knife",
 		expansionID = 9,
 		stats = {
-			resourcefulness = 110,
+			resourcefulness = 110.0,
 		},
 	},
 	[198216] = {
@@ -2765,8 +2285,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Haphazardly Tethered Wires",
 		expansionID = 9,
 		stats = {
-			modifyskillgain = 15,
-			increasedifficulty = 30,
+			modifyskillgain = 9.0,
+			increasedifficulty = 18.0,
 		},
 	},
 	[198217] = {
@@ -2774,8 +2294,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Haphazardly Tethered Wires",
 		expansionID = 9,
 		stats = {
-			modifyskillgain = 15,
-			increasedifficulty = 30,
+			modifyskillgain = 12.0,
+			increasedifficulty = 24.0,
 		},
 	},
 	[198218] = {
@@ -2783,8 +2303,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Haphazardly Tethered Wires",
 		expansionID = 9,
 		stats = {
-			modifyskillgain = 15,
-			increasedifficulty = 30,
+			modifyskillgain = 15.0,
+			increasedifficulty = 30.0,
 		},
 	},
 	[198219] = {
@@ -2792,8 +2312,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Overcharged Overclocker",
 		expansionID = 9,
 		stats = {
-			resourcefulness = 55,
-			ingenuity = 50,
+			resourcefulness = 33.0,
+			ingenuity = 30.0,
 		},
 	},
 	[198220] = {
@@ -2801,8 +2321,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Overcharged Overclocker",
 		expansionID = 9,
 		stats = {
-			resourcefulness = 55,
-			ingenuity = 50,
+			resourcefulness = 44.0,
+			ingenuity = 40.0,
 		},
 	},
 	[198221] = {
@@ -2810,8 +2330,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Overcharged Overclocker",
 		expansionID = 9,
 		stats = {
-			resourcefulness = 55,
-			ingenuity = 50,
+			resourcefulness = 55.0,
+			ingenuity = 50.0,
 		},
 	},
 	[213762] = {
@@ -2819,8 +2339,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Sifted Cave Sand",
 		expansionID = 10,
 		stats = {
-			reagentssavedfromresourcefulness = 12,
-			resourcefulness = 150,
+			reagentssavedfromresourcefulness = 6.0,
+			resourcefulness = 75.0,
 		},
 	},
 	[213763] = {
@@ -2828,8 +2348,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Sifted Cave Sand",
 		expansionID = 10,
 		stats = {
-			reagentssavedfromresourcefulness = 12,
-			resourcefulness = 150,
+			reagentssavedfromresourcefulness = 9.0,
+			resourcefulness = 112.5,
 		},
 	},
 	[213764] = {
@@ -2837,8 +2357,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Sifted Cave Sand",
 		expansionID = 10,
 		stats = {
-			reagentssavedfromresourcefulness = 12,
-			resourcefulness = 150,
+			reagentssavedfromresourcefulness = 12.0,
+			resourcefulness = 150.0,
 		},
 	},
 	[213765] = {
@@ -2846,7 +2366,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Ominous Energy Crystal",
 		expansionID = 10,
 		stats = {
-			ingenuity = 300,
+			ingenuity = 150.0,
 		},
 	},
 	[213766] = {
@@ -2854,7 +2374,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Ominous Energy Crystal",
 		expansionID = 10,
 		stats = {
-			ingenuity = 300,
+			ingenuity = 225.0,
 		},
 	},
 	[213767] = {
@@ -2862,7 +2382,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Ominous Energy Crystal",
 		expansionID = 10,
 		stats = {
-			ingenuity = 300,
+			ingenuity = 300.0,
 		},
 	},
 	[214043] = {
@@ -2870,8 +2390,8 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Glittering Gemdust",
 		expansionID = 10,
 		stats = {
-			skill = 50,
-			modifyskillgain = 25,
+			skill = 50.0,
+			modifyskillgain = 25.0,
 		},
 	},
 	[222499] = {
@@ -2879,7 +2399,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Forged Framework",
 		expansionID = 10,
 		stats = {
-			ingenuity = 300,
+			ingenuity = 150.0,
 		},
 	},
 	[222500] = {
@@ -2887,7 +2407,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Forged Framework",
 		expansionID = 10,
 		stats = {
-			ingenuity = 300,
+			ingenuity = 225.0,
 		},
 	},
 	[222501] = {
@@ -2895,7 +2415,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Forged Framework",
 		expansionID = 10,
 		stats = {
-			ingenuity = 300,
+			ingenuity = 300.0,
 		},
 	},
 	[222511] = {
@@ -2903,7 +2423,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Adjustable Framework",
 		expansionID = 10,
 		stats = {
-			additionalitemscraftedwithmulticraft = 25,
+			additionalitemscraftedwithmulticraft = 12.5,
 		},
 	},
 	[222512] = {
@@ -2911,7 +2431,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Adjustable Framework",
 		expansionID = 10,
 		stats = {
-			additionalitemscraftedwithmulticraft = 25,
+			additionalitemscraftedwithmulticraft = 18.75,
 		},
 	},
 	[222513] = {
@@ -2919,7 +2439,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Adjustable Framework",
 		expansionID = 10,
 		stats = {
-			additionalitemscraftedwithmulticraft = 25,
+			additionalitemscraftedwithmulticraft = 25.0,
 		},
 	},
 	[222514] = {
@@ -2927,7 +2447,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Tempered Framework",
 		expansionID = 10,
 		stats = {
-			resourcefulness = 300,
+			resourcefulness = 150.0,
 		},
 	},
 	[222515] = {
@@ -2935,7 +2455,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Tempered Framework",
 		expansionID = 10,
 		stats = {
-			resourcefulness = 300,
+			resourcefulness = 225.0,
 		},
 	},
 	[222516] = {
@@ -2943,7 +2463,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Tempered Framework",
 		expansionID = 10,
 		stats = {
-			resourcefulness = 300,
+			resourcefulness = 300.0,
 		},
 	},
 	[222876] = {
@@ -2951,7 +2471,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Gritty Polishing Cloth",
 		expansionID = 10,
 		stats = {
-			resourcefulness = 300,
+			resourcefulness = 150.0,
 		},
 	},
 	[222877] = {
@@ -2959,7 +2479,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Gritty Polishing Cloth",
 		expansionID = 10,
 		stats = {
-			resourcefulness = 300,
+			resourcefulness = 225.0,
 		},
 	},
 	[222878] = {
@@ -2967,7 +2487,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Gritty Polishing Cloth",
 		expansionID = 10,
 		stats = {
-			resourcefulness = 300,
+			resourcefulness = 300.0,
 		},
 	},
 	[222879] = {
@@ -2975,7 +2495,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Bright Polishing Cloth",
 		expansionID = 10,
 		stats = {
-			additionalitemscraftedwithmulticraft = 25,
+			additionalitemscraftedwithmulticraft = 12.5,
 		},
 	},
 	[222880] = {
@@ -2983,7 +2503,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Bright Polishing Cloth",
 		expansionID = 10,
 		stats = {
-			additionalitemscraftedwithmulticraft = 25,
+			additionalitemscraftedwithmulticraft = 18.75,
 		},
 	},
 	[222881] = {
@@ -2991,7 +2511,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Bright Polishing Cloth",
 		expansionID = 10,
 		stats = {
-			additionalitemscraftedwithmulticraft = 25,
+			additionalitemscraftedwithmulticraft = 25.0,
 		},
 	},
 	[222882] = {
@@ -2999,7 +2519,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Weavercloth Embroidery Thread",
 		expansionID = 10,
 		stats = {
-			ingenuity = 300,
+			ingenuity = 150.0,
 		},
 	},
 	[222883] = {
@@ -3007,7 +2527,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Weavercloth Embroidery Thread",
 		expansionID = 10,
 		stats = {
-			ingenuity = 300,
+			ingenuity = 225.0,
 		},
 	},
 	[222884] = {
@@ -3015,7 +2535,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Weavercloth Embroidery Thread",
 		expansionID = 10,
 		stats = {
-			ingenuity = 300,
+			ingenuity = 300.0,
 		},
 	},
 	[222885] = {
@@ -3023,7 +2543,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Preserving Embroidery Thread",
 		expansionID = 10,
 		stats = {
-			reagentssavedfromresourcefulness = 25,
+			reagentssavedfromresourcefulness = 12.5,
 		},
 	},
 	[222886] = {
@@ -3031,7 +2551,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Preserving Embroidery Thread",
 		expansionID = 10,
 		stats = {
-			reagentssavedfromresourcefulness = 25,
+			reagentssavedfromresourcefulness = 18.75,
 		},
 	},
 	[222887] = {
@@ -3039,7 +2559,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Preserving Embroidery Thread",
 		expansionID = 10,
 		stats = {
-			reagentssavedfromresourcefulness = 25,
+			reagentssavedfromresourcefulness = 25.0,
 		},
 	},
 	[224173] = {
@@ -3047,7 +2567,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Concentration Concentrate",
 		expansionID = 10,
 		stats = {
-			reduceconcentrationcost = 10,
+			reduceconcentrationcost = 6.0,
 		},
 	},
 	[224174] = {
@@ -3055,7 +2575,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Concentration Concentrate",
 		expansionID = 10,
 		stats = {
-			reduceconcentrationcost = 10,
+			reduceconcentrationcost = 8.0,
 		},
 	},
 	[224175] = {
@@ -3063,7 +2583,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Concentration Concentrate",
 		expansionID = 10,
 		stats = {
-			reduceconcentrationcost = 10,
+			reduceconcentrationcost = 10.0,
 		},
 	},
 	[224176] = {
@@ -3071,7 +2591,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Mirror Powder",
 		expansionID = 10,
 		stats = {
-			multicraft = 300,
+			multicraft = 300.0,
 		},
 	},
 	[224177] = {
@@ -3079,7 +2599,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Mirror Powder",
 		expansionID = 10,
 		stats = {
-			multicraft = 300,
+			multicraft = 240.0,
 		},
 	},
 	[224178] = {
@@ -3087,7 +2607,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Mirror Powder",
 		expansionID = 10,
 		stats = {
-			multicraft = 300,
+			multicraft = 180.0,
 		},
 	},
 	[225670] = {
@@ -3095,7 +2615,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Apprentice's Crafting License",
 		expansionID = 10,
 		stats = {
-			skill = 5,
+			skill = 5.0,
 		},
 	},
 	[225671] = {
@@ -3103,7 +2623,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Stack of Pentagold Reviews",
 		expansionID = 10,
 		stats = {
-			skill = 10,
+			skill = 10.0,
 		},
 	},
 	[225672] = {
@@ -3111,7 +2631,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Unraveled Instructions",
 		expansionID = 10,
 		stats = {
-			skill = 20,
+			skill = 20.0,
 		},
 	},
 	[225673] = {
@@ -3119,7 +2639,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Artisan's Consortium Seal of Approval",
 		expansionID = 10,
 		stats = {
-			skill = 40,
+			skill = 40.0,
 		},
 	},
 	[225912] = {
@@ -3127,7 +2647,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Hot Honeycomb",
 		expansionID = 10,
 		stats = {
-			multicraft = 1100,
+			multicraft = 1100.0,
 		},
 	},
 	[225987] = {
@@ -3135,7 +2655,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Bottled Brilliance",
 		expansionID = 10,
 		stats = {
-			modifyskillgain = 40,
+			modifyskillgain = 20.0,
 		},
 	},
 	[225988] = {
@@ -3143,7 +2663,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Bottled Brilliance",
 		expansionID = 10,
 		stats = {
-			modifyskillgain = 40,
+			modifyskillgain = 30.0,
 		},
 	},
 	[225989] = {
@@ -3151,7 +2671,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Bottled Brilliance",
 		expansionID = 10,
 		stats = {
-			modifyskillgain = 40,
+			modifyskillgain = 40.0,
 		},
 	},
 	[228401] = {
@@ -3159,7 +2679,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Bubbling Mycobloom Culture",
 		expansionID = 10,
 		stats = {
-			resourcefulness = 300,
+			resourcefulness = 150.0,
 		},
 	},
 	[228402] = {
@@ -3167,7 +2687,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Bubbling Mycobloom Culture",
 		expansionID = 10,
 		stats = {
-			resourcefulness = 300,
+			resourcefulness = 225.0,
 		},
 	},
 	[228403] = {
@@ -3175,7 +2695,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Bubbling Mycobloom Culture",
 		expansionID = 10,
 		stats = {
-			resourcefulness = 300,
+			resourcefulness = 300.0,
 		},
 	},
 	[228404] = {
@@ -3183,7 +2703,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Petal Powder",
 		expansionID = 10,
 		stats = {
-			additionalitemscraftedwithmulticraft = 25,
+			additionalitemscraftedwithmulticraft = 12.5,
 		},
 	},
 	[228405] = {
@@ -3191,7 +2711,7 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Petal Powder",
 		expansionID = 10,
 		stats = {
-			additionalitemscraftedwithmulticraft = 25,
+			additionalitemscraftedwithmulticraft = 18.75,
 		},
 	},
 	[228406] = {
@@ -3199,223 +2719,23 @@ CraftSim.OPTIONAL_REAGENT_DATA = {
 		name = "Petal Powder",
 		expansionID = 10,
 		stats = {
-			additionalitemscraftedwithmulticraft = 25,
+			additionalitemscraftedwithmulticraft = 25.0,
 		},
 	},
-	[221626] = {
-		qualityID = 1,
-		name = "Preserving Pocket Cloth",
+	[210232] = {
+		qualityID = 0,
+		name = "Forged Aspirant's Heraldry",
 		expansionID = 10,
 		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
+			increasedifficulty = 50,
 		},
 	},
-	[221629] = {
-		qualityID = 1,
-		name = "Bright Polishing Cloth",
+	[210233] = {
+		qualityID = 0,
+		name = "Forged Gladiator's Heraldry",
 		expansionID = 10,
 		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
-		},
-	},
-	[221632] = {
-		qualityID = 1,
-		name = "Weaverthread Polishing Cloth",
-		expansionID = 10,
-		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
-		},
-	},
-	[221635] = {
-		qualityID = 1,
-		name = "Gritty Polishing Cloth",
-		expansionID = 10,
-		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
-		},
-	},
-	[222392] = {
-		qualityID = 1,
-		name = "Preserving Pocket Cloth",
-		expansionID = 10,
-		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
-		},
-	},
-	[222393] = {
-		qualityID = 1,
-		name = "Preserving Pocket Cloth",
-		expansionID = 10,
-		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
-		},
-	},
-	[222394] = {
-		qualityID = 1,
-		name = "Preserving Pocket Cloth",
-		expansionID = 10,
-		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
-		},
-	},
-	[222395] = {
-		qualityID = 1,
-		name = "Bright Polishing Cloth",
-		expansionID = 10,
-		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
-		},
-	},
-	[222396] = {
-		qualityID = 1,
-		name = "Bright Polishing Cloth",
-		expansionID = 10,
-		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
-		},
-	},
-	[222397] = {
-		qualityID = 1,
-		name = "Bright Polishing Cloth",
-		expansionID = 10,
-		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
-		},
-	},
-	[222398] = {
-		qualityID = 1,
-		name = "Weaverthread Polishing Cloth",
-		expansionID = 10,
-		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
-		},
-	},
-	[222399] = {
-		qualityID = 1,
-		name = "Weaverthread Polishing Cloth",
-		expansionID = 10,
-		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
-		},
-	},
-	[222400] = {
-		qualityID = 1,
-		name = "Weaverthread Polishing Cloth",
-		expansionID = 10,
-		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
-		},
-	},
-	[222401] = {
-		qualityID = 1,
-		name = "Gritty Polishing Cloth",
-		expansionID = 10,
-		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
-		},
-	},
-	[222402] = {
-		qualityID = 1,
-		name = "Gritty Polishing Cloth",
-		expansionID = 10,
-		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
-		},
-	},
-	[222403] = {
-		qualityID = 1,
-		name = "Gritty Polishing Cloth",
-		expansionID = 10,
-		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
-		},
-	},
-	[221627] = {
-		qualityID = 2,
-		name = "Preserving Pocket Cloth",
-		expansionID = 10,
-		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
-		},
-	},
-	[221630] = {
-		qualityID = 2,
-		name = "Bright Polishing Cloth",
-		expansionID = 10,
-		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
-		},
-	},
-	[221633] = {
-		qualityID = 2,
-		name = "Weaverthread Polishing Cloth",
-		expansionID = 10,
-		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
-		},
-	},
-	[221636] = {
-		qualityID = 2,
-		name = "Gritty Polishing Cloth",
-		expansionID = 10,
-		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
-		},
-	},
-	[221628] = {
-		qualityID = 3,
-		name = "Preserving Pocket Cloth",
-		expansionID = 10,
-		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
-		},
-	},
-	[221631] = {
-		qualityID = 3,
-		name = "Bright Polishing Cloth",
-		expansionID = 10,
-		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
-		},
-	},
-	[221634] = {
-		qualityID = 3,
-		name = "Weaverthread Polishing Cloth",
-		expansionID = 10,
-		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
-		},
-	},
-	[221637] = {
-		qualityID = 3,
-		name = "Gritty Polishing Cloth",
-		expansionID = 10,
-		stats = {
-			ingenuityrefundincrease = 12,
-			ingenuity = 50,
+			increasedifficulty = 150,
 		},
 	},
 }

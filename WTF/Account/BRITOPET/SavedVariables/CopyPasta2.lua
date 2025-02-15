@@ -1,157 +1,69 @@
 
 PasteDB = {
 ["profileKeys"] = {
-["Zeejadin - Wyrmrest Accord"] = "Zeejadin - Wyrmrest Accord",
-["Zeenc - Wyrmrest Accord"] = "Zeenc - Wyrmrest Accord",
-["Zeejaxxus - Wyrmrest Accord"] = "Zeejaxxus - Wyrmrest Accord",
-["Blightpower - Wyrmrest Accord"] = "Blightpower - Wyrmrest Accord",
-["Justzeej - Wyrmrest Accord"] = "Justzeej - Wyrmrest Accord",
-["Seratia - Shadowsong"] = "Seratia - Shadowsong",
-["Zeejthyr - Wyrmrest Accord"] = "Zeejthyr - Wyrmrest Accord",
-["Bowz - Wyrmrest Accord"] = "Bowz - Wyrmrest Accord",
-["Unzeej - Wyrmrest Accord"] = "Unzeej - Wyrmrest Accord",
-["Nü - Wyrmrest Accord"] = "Nü - Wyrmrest Accord",
-["Leafittozeej - Wyrmrest Accord"] = "Leafittozeej - Wyrmrest Accord",
-["Seratia - Wyrmrest Accord"] = "Seratia - Wyrmrest Accord",
-["Healsforgold - Wyrmrest Accord"] = "Healsforgold - Wyrmrest Accord",
-["Zeejbank - Wyrmrest Accord"] = "Zeejbank - Wyrmrest Accord",
-["Funkeej - Wyrmrest Accord"] = "Funkeej - Wyrmrest Accord",
-["Heartheha - Wyrmrest Accord"] = "Heartheha - Wyrmrest Accord",
-["Robozeej - Wyrmrest Accord"] = "Robozeej - Wyrmrest Accord",
-["Flappyzeej - Wyrmrest Accord"] = "Flappyzeej - Wyrmrest Accord",
-["Bigdiscnergy - Wyrmrest Accord"] = "Bigdiscnergy - Wyrmrest Accord",
-["Zeejina - Wyrmrest Accord"] = "Zeejina - Wyrmrest Accord",
-["Zeej - Wyrmrest Accord"] = "Zeej - Wyrmrest Accord",
-["Velexis - Wyrmrest Accord"] = "Velexis - Wyrmrest Accord",
-["Zeej - US Mythic Dungeons"] = "Zeej - US Mythic Dungeons",
-["Destinedcow - Moon Guard"] = "Destinedcow - Moon Guard",
-["Felzeej - Wyrmrest Accord"] = "Felzeej - Wyrmrest Accord",
-["Azushanza - Wyrmrest Accord"] = "Azushanza - Wyrmrest Accord",
-["Monplande - Wyrmrest Accord"] = "Monplande - Wyrmrest Accord",
-["Átahsaia - Wyrmrest Accord"] = "Átahsaia - Wyrmrest Accord",
-["Candypauper - Wyrmrest Accord"] = "Candypauper - Wyrmrest Accord",
-["Beepboopbeep - Wyrmrest Accord"] = "Beepboopbeep - Wyrmrest Accord",
-["Zeejorc - Wyrmrest Accord"] = "Zeejorc - Wyrmrest Accord",
-["Rollingneed - Aman'Thul"] = "Rollingneed - Aman'Thul",
-["Gobfatha - Wyrmrest Accord"] = "Gobfatha - Wyrmrest Accord",
-["Destinedcow - Wyrmrest Accord"] = "Destinedcow - Wyrmrest Accord",
-["Zeejplande - Area 52"] = "Zeejplande - Area 52",
-["Necrozeejiac - Wyrmrest Accord"] = "Necrozeejiac - Wyrmrest Accord",
-["Udderlyzeej - Wyrmrest Accord"] = "Udderlyzeej - Wyrmrest Accord",
+["Bøfá - Wyrmrest Accord"] = "Default",
+["Zeej - Shadowsong"] = "Default",
+["Zeenc - Wyrmrest Accord"] = "Default",
+["Zeejaxxus - Wyrmrest Accord"] = "Default",
+["Aqusiailea - Wyrmrest Accord"] = "Default",
+["Átahsaia - Tichondrius"] = "Default",
+["Justzeej - Wyrmrest Accord"] = "Default",
+["Seratia - Shadowsong"] = "Default",
+["Arrowz - Wyrmrest Accord"] = "Default",
+["Zeejthyr - Wyrmrest Accord"] = "Default",
+["Stálker - Wyrmrest Accord"] = "Default",
+["Calini - Wyrmrest Accord"] = "Default",
+["Timm - Wyrmrest Accord"] = "Default",
+["Unzeej - Wyrmrest Accord"] = "Default",
+["Nü - Wyrmrest Accord"] = "Default",
+["Leafittozeej - Wyrmrest Accord"] = "Default",
+["Seratia - Wyrmrest Accord"] = "Default",
+["Zejramaxoray - Wyrmrest Accord"] = "Default",
+["Fizzeejle - Stormrage"] = "Default",
+["Monplande - Wyrmrest Accord"] = "Default",
+["Zeejin - Wyrmrest Accord"] = "Default",
+["Zeejadin - Wyrmrest Accord"] = "Default",
+["Blightpower - Wyrmrest Accord"] = "Default",
+["Zeejaholic - Wyrmrest Accord"] = "Default",
+["Fellowhuman - Wyrmrest Accord"] = "Default",
+["Bigdiscnergy - Wyrmrest Accord"] = "Default",
+["Bishøp - Wyrmrest Accord"] = "Default",
+["Zeejuta - Wyrmrest Accord"] = "Default",
+["Voideostar - Wyrmrest Accord"] = "Default",
+["Healsforgold - Wyrmrest Accord"] = "Default",
+["Zeejorc - Wyrmrest Accord"] = "Default",
+["Zeejdh - Wyrmrest Accord"] = "Default",
+["Deadplande - Wyrmrest Accord"] = "Default",
+["Zeej - Wyrmrest Accord"] = "Default",
+["Velexis - Wyrmrest Accord"] = "Default",
+["Zeejdruid - Wyrmrest Accord"] = "Default",
+["Excitedly - Wyrmrest Accord"] = "Default",
+["Azushanza - Wyrmrest Accord"] = "Default",
+["Zeejudo - Wyrmrest Accord"] = "Default",
+["Heartheha - Wyrmrest Accord"] = "Default",
+["Felzeej - Wyrmrest Accord"] = "Default",
+["Necrozeejiac - Wyrmrest Accord"] = "Default",
+["Whÿ - Wyrmrest Accord"] = "Whÿ - Wyrmrest Accord",
+["Bowz - Wyrmrest Accord"] = "Default",
+["Candypauper - Wyrmrest Accord"] = "Default",
+["Cecilditte - Sargeras"] = "Default",
+["Zeejbank - Wyrmrest Accord"] = "Default",
+["Zeejee - Wyrmrest Accord"] = "Default",
+["Haximar - Wyrmrest Accord"] = "Default",
+["Douche - Wyrmrest Accord"] = "Default",
+["Zeejplande - Area 52"] = "Default",
+["Beepboopbeep - Wyrmrest Accord"] = "Default",
+["Udderlyzeej - Wyrmrest Accord"] = "Default",
 },
 ["profiles"] = {
-["Zeejadin - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Zeenc - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Zeejaxxus - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Blightpower - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Justzeej - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Seratia - Shadowsong"] = {
-["loaded"] = true,
-},
-["Zeejthyr - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Bowz - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Unzeej - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Nü - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Leafittozeej - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Seratia - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Healsforgold - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Zeejbank - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Funkeej - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Heartheha - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Robozeej - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Flappyzeej - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Bigdiscnergy - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Zeejina - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Zeej - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Velexis - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Zeej - US Mythic Dungeons"] = {
-["loaded"] = true,
-},
-["Destinedcow - Moon Guard"] = {
-["loaded"] = true,
-},
-["Felzeej - Wyrmrest Accord"] = {
+["Whÿ - Wyrmrest Accord"] = {
 ["loaded"] = true,
 ["whispertarget"] = "",
 ["where"] = "Default",
 ["pos"] = {
 },
 },
-["Azushanza - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Monplande - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Átahsaia - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Candypauper - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Beepboopbeep - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Zeejorc - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Rollingneed - Aman'Thul"] = {
-["loaded"] = true,
-},
-["Gobfatha - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Destinedcow - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Zeejplande - Area 52"] = {
-},
-["Necrozeejiac - Wyrmrest Accord"] = {
-["loaded"] = true,
-},
-["Udderlyzeej - Wyrmrest Accord"] = {
+["Default"] = {
 ["loaded"] = true,
 },
 },

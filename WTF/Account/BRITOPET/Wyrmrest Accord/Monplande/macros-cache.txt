@@ -15,6 +15,11 @@ VER 3 0100000000000002 "Mortal Strike" "134400"
 /use 13
 /use 14
 END
+VER 3 0100000000000009 "R" "134400"
+#showtooltip
+/cast Rampage
+/use 13
+END
 VER 3 0100000000000008 "SB" "134400"
 #showtooltip
 /cast [@focus] Storm Bolt

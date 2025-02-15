@@ -1,0 +1,15 @@
+Version: 1
+Frame: GroupLootHistoryFrame
+FrameLevel: 1
+Anchor: CENTER
+X: -311
+Y: 32
+W: 261
+H: 590
+Frame: ScriptErrorsFrame
+FrameLevel: 0
+Anchor: BOTTOM
+X: 17
+Y: 0
+W: 784
+H: 260

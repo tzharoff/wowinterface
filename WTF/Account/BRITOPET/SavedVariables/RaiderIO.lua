@@ -7,22 +7,35 @@ RaiderIO_Config = {
 ["point"] = "TOPLEFT",
 },
 ["minimapIcon"] = {
-["minimapPos"] = 180,
+["minimapPos"] = 114.8500372321384,
 ["showInCompartment"] = true,
 ["lock"] = false,
 ["hide"] = false,
 },
 }
-RaiderIO_LastCharacter = "us-Nü-wyrmrest-accord"
+RaiderIO_LastCharacter = "us-Monplande-wyrmrest-accord"
 RaiderIO_MissingCharacters = {
-["us-Xalicia-wyrmrest-accord"] = true,
-["us-Kârsh-wyrmrest-accord"] = true,
-["us-Galala-wyrmrest-accord"] = true,
-["us-Nü-wyrmrest-accord"] = true,
-["us-Torastraza-wyrmrest-accord"] = true,
-["us-Taurslug-wyrmrest-accord"] = true,
-["us-Hastorr-wyrmrest-accord"] = true,
-["us-Nupe-wyrmrest-accord"] = true,
+["us-Twiddledie-wyrmrest-accord"] = true,
+["us-Heartsong-blackwater-raiders"] = true,
+["us-Taesto-wyrmrest-accord"] = true,
+["us-Krunntozzkix-cenarion-circle"] = true,
+["us-Ferrafox-sisters-of-elune"] = true,
+["us-Nadrelari-wyrmrest-accord"] = true,
+["us-Gravesnacher-area-52"] = true,
+["us-Unassociated-wyrmrest-accord"] = true,
+["us-Merydeth-shadow-council"] = true,
+["us-Harpera-cenarion-circle"] = true,
+["us-Grimgork-area-52"] = true,
+["us-Vlud-wyrmrest-accord"] = true,
+["us-Golba-wyrmrest-accord"] = true,
+["us-Delishious-cenarius"] = true,
+["us-Penriah-wyrmrest-accord"] = true,
+["us-Gobsteen-wyrmrest-accord"] = true,
+["us-Deportelon-burning-legion"] = true,
+["us-Vendemic-wyrmrest-accord"] = true,
+["us-Llywelynn-wyrmrest-accord"] = true,
+["us-Azuara-area-52"] = true,
+["us-Dryzzyt-cenarion-circle"] = true,
 }
 RaiderIO_MissingServers = {
 }

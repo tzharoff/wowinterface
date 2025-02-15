@@ -10,7 +10,7 @@ local GUTIL = CraftSim.GUTIL
 
 CraftSim.FRAME.frames = {}
 
-local print = CraftSim.DEBUG:SetDebugPrint(CraftSim.CONST.DEBUG_IDS.FRAMES)
+local print = CraftSim.DEBUG:RegisterDebugID("Util.Frames")
 
 function CraftSim.FRAME:FormatStatDiffpercentText(statDiff, roundTo, suffix)
     if statDiff == nil then
@@ -35,29 +35,7 @@ function CraftSim.FRAME:ToggleFrame(frame, visible)
     end
 end
 
---> in GGUI.TabSystem
-function CraftSim.FRAME:InitTabSystem(tabs)
-    if #tabs == 0 then
-        return
-    end
-    -- show first tab
-    for _, tab in pairs(tabs) do
-        tab:SetScript("OnClick", function(self)
-            for _, otherTab in pairs(tabs) do
-                otherTab.content:Hide()
-                otherTab:SetEnabled(otherTab.canBeEnabled)
-            end
-            tab.content:Show()
-            tab:SetEnabled(false)
-        end)
-        tab.content:Hide()
-    end
-    tabs[1].content:Show()
-    tabs[1]:SetEnabled(false)
-end
-
 function CraftSim.FRAME:RestoreModulePositions()
-    local controlPanel = GGUI:GetFrame(CraftSim.INIT.FRAMES, CraftSim.CONST.FRAMES.CONTROL_PANEL)
     local recipeScanFrame = GGUI:GetFrame(CraftSim.INIT.FRAMES, CraftSim.CONST.FRAMES.RECIPE_SCAN)
     local customerHistoryFrame = GGUI:GetFrame(CraftSim.INIT.FRAMES, CraftSim.CONST.FRAMES.CUSTOMER_HISTORY)
     local priceOverrideFrame = GGUI:GetFrame(CraftSim.INIT.FRAMES, CraftSim.CONST.FRAMES.PRICE_OVERRIDE)
@@ -70,19 +48,19 @@ function CraftSim.FRAME:RestoreModulePositions()
         CraftSim.CONST.FRAMES.AVERAGE_PROFIT_WO)
     local topgearFrame = GGUI:GetFrame(CraftSim.INIT.FRAMES, CraftSim.CONST.FRAMES.TOP_GEAR)
     local topgearFrameWO = GGUI:GetFrame(CraftSim.INIT.FRAMES, CraftSim.CONST.FRAMES.TOP_GEAR_WORK_ORDER)
-    local materialOptimizationFrame = GGUI:GetFrame(CraftSim.INIT.FRAMES,
+    local reagentOptimizationFrame = GGUI:GetFrame(CraftSim.INIT.FRAMES,
         CraftSim.CONST.FRAMES.REAGENT_OPTIMIZATION)
-    local materialOptimizationFrameWO = GGUI:GetFrame(CraftSim.INIT.FRAMES,
+    local reagentOptimizationFrameWO = GGUI:GetFrame(CraftSim.INIT.FRAMES,
         CraftSim.CONST.FRAMES.REAGENT_OPTIMIZATION_WORK_ORDER)
     local debugFrame = GGUI:GetFrame(CraftSim.INIT.FRAMES, CraftSim.CONST.FRAMES.DEBUG)
     local infoFrame = GGUI:GetFrame(CraftSim.INIT.FRAMES, CraftSim.CONST.FRAMES.INFO)
 
     infoFrame:RestoreSavedConfig(UIParent)
     debugFrame:RestoreSavedConfig(UIParent)
-    controlPanel:RestoreSavedConfig(ProfessionsFrame)
-    recipeScanFrame:RestoreSavedConfig(ProfessionsFrame)
-    CraftSim.CRAFT_RESULTS.frame:RestoreSavedConfig(ProfessionsFrame)
-    customerHistoryFrame:RestoreSavedConfig(ProfessionsFrame)
+    CraftSim.RECIPE_SCAN.frame:RestoreSavedConfig(ProfessionsFrame)
+    CraftSim.CRAFT_LOG.logFrame:RestoreSavedConfig(UIParent)
+    CraftSim.CRAFT_LOG.advFrame:RestoreSavedConfig(UIParent)
+    CraftSim.CUSTOMER_HISTORY.frame:RestoreSavedConfig(ProfessionsFrame)
     priceOverrideFrame:RestoreSavedConfig(ProfessionsFrame)
     priceOverrideFrameWO:RestoreSavedConfig(ProfessionsFrame)
     specInfoFrame:RestoreSavedConfig(ProfessionsFrame)
@@ -95,8 +73,8 @@ function CraftSim.FRAME:RestoreModulePositions()
     CraftSim.PRICE_DETAILS.frameWO:RestoreSavedConfig(ProfessionsFrame)
     CraftSim.COST_OPTIMIZATION.frame:RestoreSavedConfig(ProfessionsFrame)
     CraftSim.COST_OPTIMIZATION.frameWO:RestoreSavedConfig(ProfessionsFrame)
-    materialOptimizationFrame:RestoreSavedConfig(ProfessionsFrame)
-    materialOptimizationFrameWO:RestoreSavedConfig(ProfessionsFrame)
+    reagentOptimizationFrame:RestoreSavedConfig(ProfessionsFrame)
+    reagentOptimizationFrameWO:RestoreSavedConfig(ProfessionsFrame)
     CraftSim.CRAFTQ.frame:RestoreSavedConfig(ProfessionsFrame)
 
     CraftSim.CRAFT_BUFFS.frame:RestoreSavedConfig(ProfessionsFrame.CraftingPage)
@@ -104,55 +82,20 @@ function CraftSim.FRAME:RestoreModulePositions()
     CraftSim.STATISTICS.frameNO_WO:RestoreSavedConfig(ProfessionsFrame.CraftingPage)
     CraftSim.STATISTICS.frameWO:RestoreSavedConfig(ProfessionsFrame.OrdersPage.OrderView.OrderDetails.SchematicForm)
     CraftSim.EXPLANATIONS.frame:RestoreSavedConfig(ProfessionsFrame)
+    CraftSim.COOLDOWNS.frame:RestoreSavedConfig(ProfessionsFrame)
+
+    CraftSim.CONCENTRATION_TRACKER.trackerFrame:RestoreSavedConfig(CraftSim.CONCENTRATION_TRACKER.frame.frame)
 end
 
 function CraftSim.FRAME:ResetFrames()
     for _, frame in pairs(CraftSim.INIT.FRAMES) do
-        print("resetting frameID: " .. tostring(frame.frameID))
+        print(CraftSim.LOCAL:GetText(CraftSim.CONST.TEXT.FRAMES_RESETTING) .. tostring(frame.frameID))
         frame:ResetPosition()
     end
 end
 
---> in GGUI.Button
-function CraftSim.FRAME:CreateButton(label, parent, anchorParent, anchorA, anchorB, anchorX, anchorY, sizeX, sizeY,
-                                     sizeToText, clickCallback)
-    local button = CreateFrame("Button", nil, parent, "UIPanelButtonTemplate")
-    button:SetText(label)
-    if sizeToText then
-        button:SetSize(button:GetTextWidth() + sizeX, sizeY)
-    else
-        button:SetSize(sizeX, sizeY)
-    end
-
-    button:SetPoint(anchorA, anchorParent, anchorB, anchorX, anchorY)
-    button:SetScript("OnClick", function()
-        clickCallback(button)
-    end)
-    return button
-end
-
---> in GGUI.Tab
-function CraftSim.FRAME:CreateTab(label, parent, anchorParent, anchorA, anchorB, anchorX, anchorY, canBeEnabled, contentX,
-                                  contentY, contentParent, contentAnchor, contentOffsetX, contentOffsetY)
-    local tabExtraWidth = 15
-    local tabButton = CreateFrame("Button", nil, parent, "UIPanelButtonTemplate")
-    tabButton.canBeEnabled = canBeEnabled
-    tabButton:SetText(label)
-    tabButton:SetSize(tabButton:GetTextWidth() + tabExtraWidth, 30)
-    tabButton.ResetWidth = function()
-        tabButton:SetSize(tabButton:GetTextWidth() + tabExtraWidth, 30)
-    end
-    tabButton:SetPoint(anchorA, anchorParent, anchorB, anchorX, anchorY)
-
-
-    tabButton.content = CreateFrame("Frame", nil, contentParent)
-    tabButton.content:SetPoint("TOP", contentAnchor, "TOP", contentOffsetX, contentOffsetY)
-    tabButton.content:SetSize(contentX, contentY)
-
-    return tabButton
-end
-
 --> in GGUI.Text
+---@deprecated
 function CraftSim.FRAME:CreateText(text, parent, anchorParent, anchorA, anchorB, anchorX, anchorY, scale, font,
                                    justifyData)
     scale = scale or 1
@@ -181,6 +124,7 @@ function CraftSim.FRAME:CreateText(text, parent, anchorParent, anchorA, anchorB,
 end
 
 --> in GGUI.ScrollingMessageFrame
+---@deprecated
 function CraftSim.FRAME:CreateScrollingMessageFrame(parent, anchorParent, anchorA, anchorB, anchorX, anchorY, maxLines,
                                                     sizeX, sizeY)
     local scrollingFrame = CreateFrame("ScrollingMessageFrame", nil, parent)
@@ -206,6 +150,7 @@ function CraftSim.FRAME:CreateScrollingMessageFrame(parent, anchorParent, anchor
 end
 
 --> in GGUI.Checkbox
+---@deprecated
 function CraftSim.FRAME:CreateCheckboxCustomCallback(label, description, initialValue, clickCallback, parent,
                                                      anchorParent, anchorA, anchorB, offsetX, offsetY)
     local checkBox = CreateFrame("CheckButton", nil, parent, "ChatConfigCheckButtonTemplate")
@@ -227,6 +172,7 @@ function CraftSim.FRAME:CreateCheckboxCustomCallback(label, description, initial
 end
 
 --> in GGUI.HelpIcon
+---@deprecated
 function CraftSim.FRAME:CreateHelpIcon(text, parent, anchorParent, anchorA, anchorB, offsetX, offsetY)
     local helpButton = CreateFrame("Button", nil, parent, "UIPanelButtonTemplate")
     helpButton.tooltipText = text
@@ -265,7 +211,8 @@ function CraftSim.FRAME:InitOneTimeNoteFrame()
         closeable = true,
         scrollableContent = true,
         moveable = true,
-        title = GUTIL:ColorizeText("CraftSim What's New? (" .. currentVersion .. ")",
+        title = GUTIL:ColorizeText(
+            CraftSim.LOCAL:GetText(CraftSim.CONST.TEXT.FRAMES_WHATS_NEW) .. " (" .. currentVersion .. ")",
             GUTIL.COLORS.GREEN),
         backdropOptions = CraftSim.CONST.DEFAULT_BACKDROP_OPTIONS,
         frameTable = CraftSim.INIT.FRAMES,
@@ -281,20 +228,22 @@ function CraftSim.FRAME:InitOneTimeNoteFrame()
         end)
     frame.content.discordBox:SetScale(0.75)
     frame.content.discordBoxLabel = CraftSim.FRAME:CreateText(
-        "Join the Discord!", frame.content, frame.content.discordBox, "BOTTOM", "TOP", 0, 0, 0.75)
+        CraftSim.LOCAL:GetText(CraftSim.CONST.TEXT.FRAMES_JOIN_DISCORD), frame.content, frame.content.discordBox,
+        "BOTTOM", "TOP", 0, 0, 0.75)
 
     frame.content.donateBox = CraftSim.FRAME:CreateInput(
-        nil, frame.content, frame.content, "TOP", "TOP", 120, -20, 250, 30, CraftSim.CONST.PAYPAL_ME_URL, function()
+        nil, frame.content, frame.content, "TOP", "TOP", 120, -20, 250, 30, CraftSim.CONST.KOFI_URL, function()
             -- do not let the player remove the link
-            frame.content.donateBox:SetText(CraftSim.CONST.PAYPAL_ME_URL)
+            frame.content.donateBox:SetText(CraftSim.CONST.KOFI_URL)
         end)
     frame.content.donateBox:SetScale(0.75)
     frame.content.donateBoxLabel = CraftSim.FRAME:CreateText(
-        f.patreon("Support CraftSim, donate <3"), frame.content, frame.content.donateBox, "BOTTOM", "TOP", 0, 0, 0.75)
+        f.patreon(CraftSim.LOCAL:GetText(CraftSim.CONST.TEXT.FRAMES_DONATE_KOFI)), frame.content, frame.content
+        .donateBox, "BOTTOM", "TOP", 0, 0, 0.75)
 
     frame.content.infoText = frame.content:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
     frame.content.infoText:SetPoint("TOP", frame.content, "TOP", 10, -45)
-    frame.content.infoText:SetText("No Info")
+    frame.content.infoText:SetText(CraftSim.LOCAL:GetText(CraftSim.CONST.TEXT.FRAMES_NO_INFO))
     frame.content.infoText:SetJustifyH("LEFT")
 
     frame.showInfo = function(infoText)
@@ -307,6 +256,7 @@ function CraftSim.FRAME:InitOneTimeNoteFrame()
 end
 
 ---> GGUI
+---@deprecated
 function CraftSim.FRAME:CreateScrollFrame(parent, offsetTOP, offsetLEFT, offsetRIGHT, offsetBOTTOM)
     local scrollFrame = CreateFrame("ScrollFrame", nil, parent, "UIPanelScrollFrameTemplate")
     scrollFrame.scrollChild = CreateFrame("frame")
@@ -323,6 +273,7 @@ function CraftSim.FRAME:CreateScrollFrame(parent, offsetTOP, offsetLEFT, offsetR
 end
 
 --> in GGUI.TextInput
+---@deprecated
 function CraftSim.FRAME:CreateInput(name, parent, anchorParent, anchorA, anchorB, offsetX, offsetY, sizeX, sizeY,
                                     initialValue, onTextChangedCallback)
     local numericInput = CreateFrame("EditBox", name, parent, "InputBoxTemplate")
@@ -341,6 +292,7 @@ function CraftSim.FRAME:CreateInput(name, parent, anchorParent, anchorA, anchorB
 end
 
 --> in GGUI.NumericInput
+---@deprecated
 function CraftSim.FRAME:CreateNumericInput(name, parent, anchorParent, anchorA, anchorB, offsetX, offsetY, sizeX, sizeY,
                                            initialValue, allowNegative, onTextChangedCallback)
     local numericInput = CreateFrame("EditBox", name, parent, "InputBoxTemplate")

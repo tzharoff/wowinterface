@@ -57,7 +57,7 @@ _detalhes_database = {
 ["pos"] = {
 },
 },
-["last_version"] = "11.0.0 12822",
+["last_version"] = "11.0.7 13388",
 ["player_stats"] = {
 ["mythicdungeoncompletedDF2"] = {
 [198] = {
@@ -527,12 +527,12 @@ _detalhes_database = {
 ["reverse"] = false,
 },
 ["active_profile"] = "Zeejina-Wyrmrest Accord",
-["last_realversion"] = 159,
+["last_realversion"] = 161,
 ["benchmark_db"] = {
 ["frame"] = {
 },
 },
-["last_instance_time"] = 1715400021,
+["last_day"] = "28",
 ["combat_log"] = {
 ["track_hunter_frenzy"] = false,
 ["inverse_deathlog_raid"] = false,
@@ -544,110 +544,7 @@ _detalhes_database = {
 ["evoker_show_realtimedps"] = true,
 ["inverse_deathlog_mplus"] = false,
 },
-["local_instances_config"] = {
-{
-["modo"] = 2,
-["sub_attribute"] = 1,
-["horizontalSnap"] = false,
-["verticalSnap"] = false,
-["isLocked"] = false,
-["is_open"] = true,
-["sub_atributo_last"] = {
-1,
-1,
-1,
-1,
-1,
-},
-["snap"] = {
-},
-["segment"] = 0,
-["mode"] = 2,
-["attribute"] = 1,
-["pos"] = {
-["normal"] = {
-["y"] = -46.81463623046875,
-["x"] = -842.0428009033203,
-["w"] = 372.6666870117188,
-["h"] = 215.2904510498047,
-},
-["solo"] = {
-["y"] = 2,
-["x"] = 1,
-["w"] = 300,
-["h"] = 200,
-},
-},
-},
-{
-["modo"] = 2,
-["sub_attribute"] = 3,
-["horizontalSnap"] = false,
-["verticalSnap"] = false,
-["isLocked"] = false,
-["is_open"] = false,
-["sub_atributo_last"] = {
-1,
-1,
-1,
-3,
-1,
-},
-["snap"] = {
-},
-["segment"] = -1,
-["mode"] = 2,
-["attribute"] = 4,
-["pos"] = {
-["normal"] = {
-["y"] = -182.5498352050781,
-["x"] = -821.2564849853516,
-["w"] = 457.9999694824219,
-["h"] = 304.9999694824219,
-},
-["solo"] = {
-["y"] = 2,
-["x"] = 1,
-["w"] = 300,
-["h"] = 200,
-},
-},
-},
-{
-["modo"] = 2,
-["sub_attribute"] = 3,
-["horizontalSnap"] = false,
-["verticalSnap"] = false,
-["isLocked"] = false,
-["is_open"] = true,
-["sub_atributo_last"] = {
-1,
-1,
-1,
-3,
-1,
-},
-["snap"] = {
-},
-["segment"] = -1,
-["mode"] = 2,
-["attribute"] = 4,
-["pos"] = {
-["normal"] = {
-["y"] = -260.9230041503906,
-["x"] = -848.2134399414062,
-["w"] = 369.0770874023438,
-["h"] = 172.2223052978516,
-},
-["solo"] = {
-["y"] = 2,
-["x"] = 1,
-["w"] = 300,
-["h"] = 200,
-},
-},
-},
-},
+["ignore_nicktag"] = false,
 ["mythic_plus_log"] = {
 "06/05/24 18:39:23|Activity Time: 1838.2710000004",
 "06/05/24 18:39:23|GetCompletionInfo() Found, Time: 2731",
@@ -700,156 +597,6 @@ _detalhes_database = {
 "03/05/24 22:24:20|MythicDungeonFinished() | Details was in combat.",
 },
 ["cached_roles"] = {
-},
-["last_day"] = "05",
-["ignore_nicktag"] = false,
-["nick_tag_cache"] = {
-["nextreset"] = 1724132192,
-["last_version"] = 16,
-},
-["data_harvested_for_charts"] = {
-},
-["announce_firsthit"] = {
-["enabled"] = true,
-["channel"] = "SELF",
-},
-["force_font_outline"] = "",
-["combat_id"] = 251,
-["savedStyles"] = {
-},
-["combat_counter"] = 1460,
-["character_data"] = {
-["logons"] = 153,
-},
-["announce_deaths"] = {
-["enabled"] = false,
-["last_hits"] = 1,
-["only_first"] = 5,
-["where"] = 1,
-},
-["tabela_overall"] = {
-{
-["tipo"] = 2,
-["_ActorTable"] = {
-},
-},
-{
-["tipo"] = 3,
-["_ActorTable"] = {
-},
-},
-{
-["tipo"] = 7,
-["_ActorTable"] = {
-},
-},
-{
-["tipo"] = 9,
-["_ActorTable"] = {
-},
-},
-{
-["tipo"] = 2,
-["_ActorTable"] = {
-},
-},
-["raid_roster"] = {
-},
-["tempo_start"] = 12046.089,
-["last_events_tables"] = {
-},
-["alternate_power"] = {
-},
-["totals_grupo"] = {
-0,
-0,
-{
-0,
-[0] = 0,
-["alternatepower"] = 0,
-[3] = 0,
-[6] = 0,
-},
-{
-["buff_uptime"] = 0,
-["ress"] = 0,
-["debuff_uptime"] = 0,
-["cooldowns_defensive"] = 0,
-["interrupt"] = 0,
-["dispell"] = 0,
-["cc_break"] = 0,
-["dead"] = 0,
-},
-},
-["bossTimers"] = {
-},
-["trinketProcs"] = {
-},
-["playerTalents"] = {
-},
-["totals"] = {
-0,
-0,
-{
-0,
-[0] = 0,
-["alternatepower"] = 0,
-[3] = 0,
-[6] = 0,
-},
-{
-["buff_uptime"] = 0,
-["ress"] = 0,
-["debuff_uptime"] = 0,
-["cooldowns_defensive"] = 0,
-["interrupt"] = 0,
-["dispell"] = 0,
-["cc_break"] = 0,
-["dead"] = 0,
-},
-["frags_total"] = 0,
-["voidzone_damage"] = 0,
-},
-["player_last_events"] = {
-},
-["frags_need_refresh"] = false,
-["aura_timeline"] = {
-},
-["data_inicio"] = 0,
-["amountCasts"] = {
-},
-["mapId"] = 2444,
-["cleu_events"] = {
-["n"] = 1,
-},
-["zoneName"] = "Dragon Isles",
-["boss_hp"] = 1,
-["is_challenge"] = false,
-["frags"] = {
-},
-["data_fim"] = 0,
-["cleu_timeline"] = {
-},
-["spells_cast_timeline"] = {
-},
-["PhaseData"] = {
-{
-1,
-1,
-},
-["heal_section"] = {
-},
-["heal"] = {
-},
-["damage_section"] = {
-},
-["damage"] = {
-},
-},
-["start_time"] = 0,
-["TimeData"] = {
-},
-["combat_counter"] = 1459,
 },
 ["plugin_database"] = {
 ["DETAILS_PLUGIN_TINY_THREAT"] = {
@@ -938,7 +685,10 @@ _detalhes_database = {
 0.5,
 },
 ["scale"] = 1,
-["arrow_anchor_y"] = 0,
+["main_frame_size"] = {
+300,
+500.0000305175781,
+},
 ["minimap"] = {
 ["minimapPos"] = 155.2472387522797,
 ["radius"] = 160,
@@ -959,22 +709,6 @@ _detalhes_database = {
 ["square_amount"] = 5,
 ["enabled"] = false,
 ["arrow_size"] = 10,
-["y"] = 4.57763671875e-05,
-["row_spacement"] = 21,
-["main_frame_color"] = {
-0,
-0,
-0,
-0.2,
-},
-["row_color"] = {
-0.1,
-0.1,
-0.1,
-0.4,
-},
-["arrow_texture"] = "Interface\\CHATFRAME\\ChatFrameExpandArrow",
-["use_spark"] = true,
 ["per_second"] = {
 ["enabled"] = false,
 ["point"] = "CENTER",
@@ -986,19 +720,31 @@ _detalhes_database = {
 ["update_speed"] = 0.05,
 ["attribute_type"] = 1,
 },
+["row_spacement"] = 21,
+["main_frame_color"] = {
+0,
+0,
+0,
+0.2,
+},
+["author"] = "Terciob",
+["arrow_texture"] = "Interface\\CHATFRAME\\ChatFrameExpandArrow",
+["y"] = 4.57763671875e-05,
+["font_size"] = 10,
 ["x"] = 0,
 ["font_face"] = "Friz Quadrata TT",
 ["square_size"] = 32,
-["font_size"] = 10,
-["author"] = "Terciob",
+["use_spark"] = true,
+["row_color"] = {
+0.1,
+0.1,
+0.1,
+0.4,
+},
 ["main_frame_locked"] = false,
-["main_frame_size"] = {
-300,
-500.0000305175781,
+["arrow_anchor_y"] = 0,
 },
 },
-},
-["last_encounter"] = "Scalecommander Sarkareth",
 ["mythic_dungeon_currentsaved"] = {
 ["players"] = {
 "Player-1171-068FFE4B",
@@ -1016,6 +762,260 @@ _detalhes_database = {
 ["dungeon_zone_id"] = 2451,
 ["previous_boss_killed_at"] = 1715045961,
 },
+["last_encounter"] = "Scalecommander Sarkareth",
+["last_instance_time"] = 1715400021,
+["announce_firsthit"] = {
+["enabled"] = true,
+["channel"] = "SELF",
+},
+["force_font_outline"] = "",
+["combat_id"] = 275,
+["savedStyles"] = {
+},
+["combat_counter"] = 1541,
+["character_data"] = {
+["logons"] = 179,
+},
+["announce_deaths"] = {
+["enabled"] = false,
+["last_hits"] = 1,
+["only_first"] = 5,
+["where"] = 1,
+},
+["tabela_overall"] = {
+{
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 3,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+},
+["tempo_start"] = 1558245.935,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["totals_grupo"] = {
+0,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["bossTimers"] = {
+},
+["trinketProcs"] = {
+},
+["playerTalents"] = {
+},
+["totals"] = {
+0,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = false,
+["aura_timeline"] = {
+},
+["data_inicio"] = 0,
+["amountCasts"] = {
+},
+["mapId"] = 2552,
+["cleu_events"] = {
+["n"] = 1,
+},
+["zoneName"] = "Khaz Algar (Surface)",
+["boss_hp"] = 1,
+["is_challenge"] = false,
+["frags"] = {
+},
+["data_fim"] = 0,
+["cleu_timeline"] = {
+},
+["spells_cast_timeline"] = {
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["heal_section"] = {
+},
+["heal"] = {
+},
+["damage_section"] = {
+},
+["damage"] = {
+},
+},
+["start_time"] = 0,
+["TimeData"] = {
+},
+["combat_counter"] = 1540,
+},
+["local_instances_config"] = {
+{
+["modo"] = 2,
+["sub_attribute"] = 1,
+["horizontalSnap"] = false,
+["verticalSnap"] = false,
+["isLocked"] = false,
+["is_open"] = true,
+["sub_atributo_last"] = {
+1,
+1,
+1,
+1,
+1,
+},
+["snap"] = {
+},
+["segment"] = 0,
+["mode"] = 2,
+["attribute"] = 1,
+["pos"] = {
+["normal"] = {
+["y"] = -46.81463623046875,
+["x"] = -842.0427551269531,
+["w"] = 372.666748046875,
+["h"] = 215.2904510498047,
+},
+["solo"] = {
+["y"] = 2,
+["x"] = 1,
+["w"] = 300,
+["h"] = 200,
+},
+},
+},
+{
+["modo"] = 2,
+["sub_attribute"] = 3,
+["horizontalSnap"] = false,
+["verticalSnap"] = false,
+["isLocked"] = false,
+["is_open"] = false,
+["sub_atributo_last"] = {
+1,
+1,
+1,
+3,
+1,
+},
+["snap"] = {
+},
+["segment"] = -1,
+["mode"] = 2,
+["attribute"] = 4,
+["pos"] = {
+["normal"] = {
+["y"] = -182.5498352050781,
+["x"] = -821.2564849853516,
+["w"] = 457.9999694824219,
+["h"] = 304.9999694824219,
+},
+["solo"] = {
+["y"] = 2,
+["x"] = 1,
+["w"] = 300,
+["h"] = 200,
+},
+},
+},
+{
+["modo"] = 2,
+["sub_attribute"] = 3,
+["horizontalSnap"] = false,
+["verticalSnap"] = false,
+["isLocked"] = false,
+["is_open"] = true,
+["sub_atributo_last"] = {
+1,
+1,
+1,
+3,
+1,
+},
+["snap"] = {
+},
+["segment"] = -1,
+["mode"] = 2,
+["attribute"] = 4,
+["pos"] = {
+["normal"] = {
+["y"] = -260.9230041503906,
+["x"] = -849.3074188232422,
+["w"] = 369.0771179199219,
+["h"] = 172.2223052978516,
+},
+["solo"] = {
+["y"] = 2,
+["x"] = 1,
+["w"] = 300,
+["h"] = 200,
+},
+},
+},
+},
+["data_harvested_for_charts"] = {
+},
+["nick_tag_cache"] = {
+["nextreset"] = 1739244400,
+["last_version"] = 16,
+},
 ["announce_cooldowns"] = {
 ["enabled"] = false,
 ["ignored_cooldowns"] = {
@@ -1032,6 +1032,15 @@ _detalhes_database = {
 ["channel"] = "SELF",
 },
 ["cached_specs"] = {
+["Player-1171-0AC06074"] = 72,
+["Player-1171-0A73F46B"] = 267,
+["Player-1171-0AE12C14"] = 65,
+["Player-1171-0AADB453"] = 70,
+["Player-1171-0AE2B05F"] = 267,
+["Player-1171-0AD1D292"] = 250,
+["Player-1171-0A9E0E20"] = 265,
+["Player-1171-0A73932D"] = 104,
 ["Player-1171-0AC52BC5"] = 581,
+["Player-1171-0AAAE73B"] = 266,
 },
 }

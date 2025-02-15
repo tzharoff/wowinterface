@@ -79,6 +79,9 @@ L.MOVIE_NOTSKIPPED				= L.DBM .. "이 생략할 수 있는 동영상을 감지�
 L.BONUS_SKIPPED				= L.DBM .. "이 자동으로 추가 전리품 주사위 굴림 창을 닫았습니다. 창을 열고 싶으면 3분 안에 /dbmbonusroll 명령어를 입력하세요"
 
 L.AFK_WARNING				= "자리 비움 상태에서 전투에 돌입하여 (남은 생명력 %d퍼센트) 경고음을 재생중입니다. 자리를 비우고 있는게 아니라면 자리 비움 상태를 해제하거나 '기타 기능' 항목에서 해당 설정을 비활성화 해주세요."
+L.LOWHEALTH_WARNING						= "생명력 낮음 (%d퍼센트 남음), 경고음 재생중. '기타 기능' 메뉴에서 이 설정을 끌 수 있습니다."
+L.ENTERING_COMBAT						= "전투 시작"
+L.LEAVING_COMBAT						= "전투 종료"
 
 L.COMBAT_STARTED_AI_TIMER	= "내 CPU는 신경망 프로세서. 기계학습형 컴퓨터 (이 전투에선 새로운 타이머 인공지능 기능을 사용해서 예상 타이머 바를 생성합니다)"
 
@@ -367,6 +370,7 @@ L.AUTO_SPEC_WARN_TEXTS.youposcount	= "%s (%%s) (위치: %%s) 당신"
 L.AUTO_SPEC_WARN_TEXTS.soakpos		= "%s (뭉칠 위치: %%s)"
 L.AUTO_SPEC_WARN_TEXTS.target		= "%s: >%%s<"
 L.AUTO_SPEC_WARN_TEXTS.targetcount	= "%s (%%s): >%%s< "
+L.AUTO_SPEC_WARN_TEXTS.link		= "%s|1이;가; >%%s<랑 연결됨"
 L.AUTO_SPEC_WARN_TEXTS.defensive		= "%s - 생존기 켜세요"
 L.AUTO_SPEC_WARN_TEXTS.taunt		= "%s: >%%s< - 지금 도발"
 L.AUTO_SPEC_WARN_TEXTS.close		= "근처의 >%%2$s<에게 %1$s"
@@ -416,8 +420,9 @@ L.AUTO_SPEC_WARN_OPTIONS.youposcount		= "당신이 $spell:%s 대상이면 특수
 L.AUTO_SPEC_WARN_OPTIONS.soakpos			= "$spell:%s 대상에게 뭉쳐야 할 때 특수 알림 보기 (위치 포함)"
 L.AUTO_SPEC_WARN_OPTIONS.target			= "$spell:%s 대상 특수 알림 보기"
 L.AUTO_SPEC_WARN_OPTIONS.targetcount		= "$spell:%s 대상 특수 알림 보기 (횟수 포함)"
+L.AUTO_SPEC_WARN_OPTIONS.link			= "$spell:%s에 의해 다른 사람과 연결됐을 때 특수 알림 보기"
 L.AUTO_SPEC_WARN_OPTIONS.defensive		= "$spell:%s에 생존기 사용 특수 알림 보기"
-L.AUTO_SPEC_WARN_OPTIONS.taunt			= "다른 탱커가 $spell:%s 대상이면 도발 특수 알림 보기"
+L.AUTO_SPEC_WARN_OPTIONS.taunt			= "다른 탱커가 $spell:%s 대상이면 도발 (탱커 특성일 때) 특수 알림 보기"
 L.AUTO_SPEC_WARN_OPTIONS.close			= "당신 근처에 $spell:%s 대상이 있으면 특수 알림 보기"
 L.AUTO_SPEC_WARN_OPTIONS.move			= "$spell:%s 피하기 특수 알림 보기"
 L.AUTO_SPEC_WARN_OPTIONS.keepmove 		= "$spell:%s에 계속 이동 특수 알림 보기"
@@ -463,6 +468,8 @@ L.AUTO_TIMER_TEXTS.nextcount			= "다음 %s (%%s)"
 L.AUTO_TIMER_TEXTS.nextsource			= "다음 %s: %%s"
 L.AUTO_TIMER_TEXTS.nextspecial			= "특수 스킬"
 
+L.AUTO_TIMER_TEXTS.varspecial			= "특수 스킬"--Now same as next, as the ~ was moved to timer number
+
 L.AUTO_TIMER_TEXTS.stage				= "단계"
 L.AUTO_TIMER_TEXTS.stagecount			= "%%s단계"
 L.AUTO_TIMER_TEXTS.stagecountcycle		= "%%s단계 (%%s)"--Example: Stage 2 (3) for a fight that alternates stage 1 and stage 2, but also tracks total cycles
@@ -477,25 +484,37 @@ L.AUTO_TIMER_TEXTS.combat				= "전투 시작"
 L.AUTO_TIMER_OPTIONS.target				= "$spell:%s 디버프 타이머 바 보기"
 L.AUTO_TIMER_OPTIONS.targetcount		= "$spell:%s 디버프 타이머 바 보기 (횟수 포함)"
 L.AUTO_TIMER_OPTIONS.cast				= "$spell:%s 시전 타이머 바 보기"
+L.AUTO_TIMER_OPTIONS.castpnp				= "$spell:%s 시전 타이머를 상위 이름표에만 표시"
 L.AUTO_TIMER_OPTIONS.castcount			= "$spell:%s 시전 타이머 바 보기 (횟수 포함)"
 L.AUTO_TIMER_OPTIONS.castsource			= "$spell:%s 시전 타이머 바 보기 (시전자 이름 포함)"
 L.AUTO_TIMER_OPTIONS.active				= "$spell:%s 지속 시간 타이머 바 보기"
 L.AUTO_TIMER_OPTIONS.fades				= "$spell:%s 남은 시간 타이머 바 보기"
 L.AUTO_TIMER_OPTIONS.ai					= "$spell:%s 쿨타임의 인공지능 예상 타이머 바 보기"
+
 L.AUTO_TIMER_OPTIONS.cd					= "$spell:%s 쿨타임 타이머 바 보기"
 L.AUTO_TIMER_OPTIONS.cdcount			= "$spell:%s 쿨타임 타이머 바 보기"
 L.AUTO_TIMER_OPTIONS.cdnp				= "$spell:%s 쿨타임 타이머를 이름표에만 표시"
-L.AUTO_TIMER_OPTIONS.cdnpcount			= "$spell:%s 쿨타임 타이머를 이름표에만 표시 (횟수 포함)"
+L.AUTO_TIMER_OPTIONS.cdpnp				= "$spell:%s 쿨타임 타이머를 상위 이름표에만 표시"
 L.AUTO_TIMER_OPTIONS.cdsource			= "$spell:%s 쿨타임 타이머 바 보기 (시전자 이름 포함)"
 L.AUTO_TIMER_OPTIONS.cdspecial			= "특수 스킬 쿨타임 타이머 바 보기"
 L.AUTO_TIMER_OPTIONS.cdcombo				= "연계 스킬 쿨타임 타이머 바 보기"--Used for combining 2 abilities into a single timer
+
 L.AUTO_TIMER_OPTIONS.next				= "다음 $spell:%s 타이머 바 보기"
 L.AUTO_TIMER_OPTIONS.nextcount			= "다음 $spell:%s 타이머 바 보기"
 L.AUTO_TIMER_OPTIONS.nextnp				= "다음 $spell:%s 타이머를 이름표에만 표시"
-L.AUTO_TIMER_OPTIONS.nextnpcount		= "다음 $spell:%s 타이머를 이름표에만 표시 (횟수 포함)"
+L.AUTO_TIMER_OPTIONS.nextpnp				= "다음 $spell:%s 타이머를 상위 이름표에만 표시"
 L.AUTO_TIMER_OPTIONS.nextsource			= "다음 $spell:%s 타이머 바 보기 (시전자 이름 포함)"
 L.AUTO_TIMER_OPTIONS.nextspecial		= "다음 특수 스킬 타이머 바 보기"
 L.AUTO_TIMER_OPTIONS.nextcombo			= "다음 연계 스킬 타이머 바 보기"--Used for combining 2 abilities into a single timer
+
+L.AUTO_TIMER_OPTIONS.var				= "$spell:%s 쿨타임 타이머 바 보기 (가변적 쿨타임 포함)"
+L.AUTO_TIMER_OPTIONS.varcount			= "$spell:%s 쿨타임 타이머 바 보기 (횟수 및 가변적 쿨타임 포함)"
+L.AUTO_TIMER_OPTIONS.varnp			= "$spell:%s 쿨타임을 이름표 전용 타이머로 보기 (가변적 쿨타임 포함)"
+L.AUTO_TIMER_OPTIONS.varpnp			= "$spell:%s 쿨타임을 이름표 전용 타이머로 가장 우선해서 보기 (가변적 쿨타임 포함)"
+L.AUTO_TIMER_OPTIONS.varsource			= "$spell:%s 쿨타임 타이머 바 보기 (시전자 및 가변적 쿨타임 포함)"
+L.AUTO_TIMER_OPTIONS.varspecial			= "특수 스킬 쿨타임 타이머 바 보기 (가변적 쿨타임 포함)"
+L.AUTO_TIMER_OPTIONS.varcombo			= "연계 스킬 쿨타임 타이머 바 보기 (가변적 쿨타임 포함)"
+
 L.AUTO_TIMER_OPTIONS.achievement		= "%s 업적의 타이머 바 보기"
 L.AUTO_TIMER_OPTIONS.stage				= "다음 단계 타이머 바 보기"
 L.AUTO_TIMER_OPTIONS.stagecount			= "다음 단계 타이머 바 보기 (단계 번호 포함)"
@@ -510,12 +529,13 @@ L.AUTO_TIMER_OPTIONS.roleplay			= "NPC 대사 지속 시간 타이머 바 보기
 L.AUTO_TIMER_OPTIONS.combat				= "전투 시작 타이머 바 보기"
 
 L.AUTO_ICONS_OPTION_TARGETS				= "$spell:%s 대상에 공격대 징표 설정"--Usually used for player targets with no specific sorting
-L.AUTO_ICONS_OPTION_TARGETS_TANK_A		= "$spell:%s 대상에 공격대 징표 설정 (탱커 근접 원거리 순서 및 이름 순서 우선)"
-L.AUTO_ICONS_OPTION_TARGETS_TANK_R		= "$spell:%s 대상에 공격대 징표 설정 (탱커 근접 원거리 순서 및 공격대 배치 순서 우선)"
+L.AUTO_ICONS_OPTION_TARGETS_TANK_A		= "$spell:%s 대상에 공격대 징표 설정 (탱커 근접 원거리 순서 및 미작동시 이름 순서 우선)"
+L.AUTO_ICONS_OPTION_TARGETS_TANK_R		= "$spell:%s 대상에 공격대 징표 설정 (탱커 근접 원거리 순서 및 미작동시 공격대 배치 순서 우선)"
 L.AUTO_ICONS_OPTION_TARGETS_MELEE_A		= "$spell:%s 대상에 공격대 징표 설정 (근접 캐릭터와 이름 순서 우선)"
 L.AUTO_ICONS_OPTION_TARGETS_MELEE_R		= "$spell:%s 대상에 공격대 징표 설정 (근접 캐릭터와 공격대 배치 순서 우선)"
 L.AUTO_ICONS_OPTION_TARGETS_RANGED_A	= "$spell:%s 대상에 공격대 징표 설정 (원거리 캐릭터와 이름 순서 우선)"
 L.AUTO_ICONS_OPTION_TARGETS_RANGED_R	= "$spell:%s 대상에 공격대 징표 설정 (원거리 캐릭터와 공격대 배치 순서 우선)"
+L.AUTO_ICONS_OPTION_TARGETS_MRH			= "$spell:%s 대상에 공격대 징표 설정 (근접 원거리 힐러 순서 및 미작동시 공격대 배치 순서 우선)"
 L.AUTO_ICONS_OPTION_TARGETS_ALPHA		= "$spell:%s 대상에 공격대 징표 설정 (이름순)"
 L.AUTO_ICONS_OPTION_TARGETS_ROSTER		= "$spell:%s 대상에 공격대 징표 설정 (공격대 배치 순서 우선)"
 L.AUTO_ICONS_OPTION_NPCS				= "$spell:%s에 공격대 징표 설정"--usually used for npcs/mobs
@@ -538,10 +558,11 @@ L.AUTO_YELL_OPTION_TEXT.repeatplayer	= "$spell:%s에 걸렸을 때 말풍선 알
 L.AUTO_YELL_OPTION_TEXT.repeaticon	= "$spell:%s에 걸렸을 때 말풍선 알림 반복 (공격대 징표 포함)"
 L.AUTO_YELL_OPTION_TEXT.icontarget	= "$spell:%s의 대상일 때 말풍선으로 공격대 징표 알림 반복"
 
-L.AUTO_YELL_ANNOUNCE_TEXT.yell		= UnitName("player") .. "에게 %s"
-L.AUTO_YELL_ANNOUNCE_TEXT.count		= UnitName("player") .. "에게 %s (%%d)"
-L.AUTO_YELL_ANNOUNCE_TEXT.fade		= "%s %%d초 후 사라짐"
-L.AUTO_YELL_ANNOUNCE_TEXT.position	= "{rt%%3$d}" .. UnitName("player") .. "{rt%%3$d}에게 %1$s %%2$s"
+L.AUTO_YELL_ANNOUNCE_TEXT.yell		= "%s: " .. UnitName("player")
+L.AUTO_YELL_ANNOUNCE_TEXT.count		= "%s: " .. UnitName("player") .. " (%%d)"
+L.AUTO_YELL_ANNOUNCE_TEXT.fade		= "%s 종료 %%d"
+L.AUTO_YELL_ANNOUNCE_TEXT.position		= "%s %%s: {rt%%d}" ..UnitName("player").. "{rt%%d}"
+L.AUTO_YELL_ANNOUNCE_TEXT.positionnoicon	= "%s %%s: " ..UnitName("player")
 L.AUTO_YELL_ANNOUNCE_TEXT.combo		= "%s랑 %%s"--Spell name (from option, plus spellname given in arg)
 
 L.AUTO_YELL_CUSTOM_FADE				= "%s 사라짐"
@@ -632,12 +653,17 @@ L.WORLD_BUFFS.blackfathomBoon	= "검은심연의 은혜"
 
 -- Annoying popup, especially for classic players
 L.DBM_INSTALL_REMINDER_HEADER	= "완료되지 않은 DBM 설치 작업이 감지되었습니다!"
-L.DBM_INSTALL_REMINDER_EXPLAIN	= "%s을 이용해 주셔서 감사합니다. %s에 있는 보스들의 DBM 모듈을 설치하지 않았습니다. %s 설치를 하기 전까지 DBM은 이 지역에서 타이머나 경고를 표시하지 않을 것입니다!"
+L.DBM_INSTALL_REMINDER_EXPLAIN	= "%s에 오신 것을 환영합니다. %s에서 이곳 보스들의 DBM 모듈을 설치하지 않았습니다. %s 설치를 하기 전까지 DBM은 이 지역에서 타이머나 경고를 표시하지 않을 것입니다!"
 L.DBM_INSTALL_REMINDER_DISABLE	= "이 지역의 모든 DBM 경고와 타이머 작동을 중지합니다." -- Used when we believe it's a user error that the mod isn't installed (i.e., current raids)
 L.DBM_INSTALL_REMINDER_DISABLE2 = "이 패키지를 설치하면 이 메시지는 나오지 않습니다." -- Used for unimportant mods, i.e., dungeons
 L.DBM_INSTALL_REMINDER_DL_WAGO	= (IsMacClient() and "Cmd+C" or "Ctrl+C")  ..  "를 누르면 Wago.io 링크를 클립보드로 복사합니다."
 L.DBM_INSTALL_REMINDER_DL_CURSE	= (IsMacClient() and "Cmd+C" or "Ctrl+C")  ..  "를 누르면 Curseforge 링크를 클립보드로 복사합니다."
 L.DBM_INSTALL_PACKAGE_VANILLA	= "오리지널 및 디스커버리 시즌 패키지"
+L.DBM_INSTALL_PACKAGE_BCC		= "불타는 성전 패키지"
 L.DBM_INSTALL_PACKAGE_WRATH		= "리분 패키지"
 L.DBM_INSTALL_PACKAGE_CATA		= "대격변 패키지"
+L.DBM_INSTALL_PACKAGE_MOP		= "판다리아의 안개 패키지"
 L.DBM_INSTALL_PACKAGE_DUNGEON	= "던전, 구렁, 이벤트 패키지"
+
+-- Tests
+L.DBM_TAINTED_BY_TESTS			= "DBM이 이번 접속에서 시간을 왜곡한 테스트 모드로 사용되고 있습니다. 보스 전투에서 DBM을 사용하기에 앞서 UI 재시작을 권장합니다. 모든 기능이 여전히 의도대로 작동해야 하나, 장담할 순 없습니다!"

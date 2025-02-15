@@ -1,43 +1,70 @@
+local addonName = ...
 local MDT = MDT
 local L = MDT.L
 
 local dungeonIndex = 112
 MDT.dungeonList[dungeonIndex] = L["Grim Batol"]
-MDT.mapInfo[dungeonIndex] = {};
+MDT.mapInfo[dungeonIndex] = {
+  teleportId = 445424,
+  shortName = L["grimBatolShortName"],
+  englishName = "Grim Batol",
+  mapID = 507
+}
 
-local zones = { 0 } -- TODO
+local zones = { 241, 293 }
 for _, zone in ipairs(zones) do
   MDT.zoneIdToDungeonIdx[zone] = dungeonIndex
 end
 
 MDT.dungeonMaps[dungeonIndex] = {
   [0] = "",
-  [1] = { customTextures = 'GrimBatol' },
+  [1] = { customTextures = 'Interface\\AddOns\\'..addonName..'\\TheWarWithin\\Textures\\GrimBatol' }
 }
 
 MDT.dungeonSubLevels[dungeonIndex] = {
-  [1] = L["Grim Batol"],
+  [1] = L["Grim Batol"]
 }
 
 MDT.dungeonTotalCount[dungeonIndex] = { normal = 683, teeming = 1000, teemingEnabled = true }
 
-MDT.mapPOIs[dungeonIndex] = {};
+MDT.mapPOIs[dungeonIndex] = {
+  [1] = {
+    [1] = {
+      ["template"] = "MapLinkPinTemplate",
+      ["type"] = "dungeonEntrance",
+      ["x"] = 11.53473991038,
+      ["y"] = -347.71954051998,
+    },
+  },
+};
 
 MDT.dungeonEnemies[dungeonIndex] = {
   [1] = {
     ["name"] = "Twilight Brute",
     ["id"] = 224152,
     ["count"] = 3,
-    ["health"] = 18221353,
+    ["health"] = 19891335,
     ["scale"] = 1.2,
     ["displayId"] = 119878,
     ["creatureType"] = "Dragonkin",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Sap"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Hibernate"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [451364] = {
@@ -144,7 +171,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Twilight Earthcaller",
     ["id"] = 224219,
     ["count"] = 7,
-    ["health"] = 14577083,
+    ["health"] = 15913068,
     ["scale"] = 1.2,
     ["displayId"] = 119892,
     ["creatureType"] = "Dragonkin",
@@ -152,9 +179,20 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["characteristics"] = {
       ["Taunt"] = true,
       ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Sap"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Hibernate"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [451261] = {
@@ -279,13 +317,15 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Twilight Destroyer",
     ["id"] = 224609,
     ["count"] = 22,
-    ["health"] = 36442707,
+    ["health"] = 39782670,
     ["scale"] = 1.7,
+    ["stealthDetect"] = true,
     ["displayId"] = 119995,
     ["creatureType"] = "Dragonkin",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [451612] = {
@@ -336,13 +376,15 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Twilight Overseer",
     ["id"] = 224221,
     ["count"] = 10,
-    ["health"] = 30976301,
+    ["health"] = 33815270,
     ["scale"] = 1.4,
+    ["stealthDetect"] = true,
     ["displayId"] = 119893,
     ["creatureType"] = "Dragonkin",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [451378] = {
@@ -453,7 +495,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Twilight Beguiler",
     ["id"] = 40167,
     ["count"] = 5,
-    ["health"] = 14577083,
+    ["health"] = 15913068,
     ["scale"] = 1.2,
     ["displayId"] = 31584,
     ["creatureType"] = "Humanoid",
@@ -461,9 +503,21 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["characteristics"] = {
       ["Taunt"] = true,
       ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Polymorph"] = true,
+      ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Imprison"] = true,
+      ["Sap"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [76151] = {
@@ -592,8 +646,9 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Molten Giant",
     ["id"] = 40166,
     ["count"] = 10,
-    ["health"] = 34620572,
+    ["health"] = 37793537,
     ["scale"] = 1.6,
+    ["stealthDetect"] = true,
     ["displayId"] = 38667,
     ["creatureType"] = "Giant",
     ["level"] = 80,
@@ -631,17 +686,29 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Twilight Enforcer",
     ["id"] = 224276,
     ["count"] = 5,
-    ["health"] = 20043489,
+    ["health"] = 21880469,
     ["scale"] = 1.2,
     ["displayId"] = 119898,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Polymorph"] = true,
       ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Imprison"] = true,
+      ["Sap"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [451033] = {
@@ -686,7 +753,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Twilight Warlock",
     ["id"] = 224271,
     ["count"] = 5,
-    ["health"] = 18221353,
+    ["health"] = 19891335,
     ["scale"] = 1.2,
     ["displayId"] = 119897,
     ["creatureType"] = "Humanoid",
@@ -694,10 +761,21 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["characteristics"] = {
       ["Taunt"] = true,
       ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Polymorph"] = true,
       ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Imprison"] = true,
+      ["Sap"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [76369] = {
@@ -798,16 +876,29 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Twilight Flamerender",
     ["id"] = 224240,
     ["count"] = 5,
-    ["health"] = 16399218,
+    ["health"] = 17902202,
     ["scale"] = 1.2,
     ["displayId"] = 34353,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Polymorph"] = true,
+      ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Imprison"] = true,
+      ["Sap"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [451241] = {
@@ -886,13 +977,15 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Twilight Lavabender",
     ["id"] = 224249,
     ["count"] = 15,
-    ["health"] = 28060883,
+    ["health"] = 30632655,
     ["scale"] = 1.6,
+    ["stealthDetect"] = true,
     ["displayId"] = 91122,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [451387] = {
@@ -1015,15 +1108,28 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Mutated Hatchling",
     ["id"] = 224853,
     ["count"] = 1,
-    ["health"] = 3644271,
+    ["health"] = 3978267,
     ["scale"] = 0.8,
     ["displayId"] = 119810,
     ["creatureType"] = "Dragonkin",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Root"] = true,
+      ["Fear"] = true,
+      ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Sap"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Hibernate"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [456718] = {
@@ -1254,8 +1360,9 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Faceless Corruptor",
     ["id"] = 39392,
     ["count"] = 10,
-    ["health"] = 29154165,
+    ["health"] = 31826136,
     ["scale"] = 1.5,
+    ["stealthDetect"] = true,
     ["displayId"] = 119899,
     ["creatureType"] = "Aberration",
     ["level"] = 80,
@@ -1263,12 +1370,6 @@ MDT.dungeonEnemies[dungeonIndex] = {
       ["Taunt"] = true,
     },
     ["spells"] = {
-      [383312] = {
-      },
-      [391568] = {
-      },
-      [448229] = {
-      },
       [451391] = {
       },
       [451394] = {
@@ -1309,7 +1410,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "General Umbriss",
     ["id"] = 39625,
     ["count"] = 0,
-    ["health"] = 109179731,
+    ["health"] = 139239345,
     ["scale"] = 2,
     ["displayId"] = 118920,
     ["creatureType"] = "Dragonkin",
@@ -1319,6 +1420,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["instanceID"] = 0,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [447261] = {
@@ -1346,7 +1448,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Forgemaster Throngus",
     ["id"] = 40177,
     ["count"] = 0,
-    ["health"] = 127376353,
+    ["health"] = 139239345,
     ["scale"] = 2,
     ["displayId"] = 33429,
     ["creatureType"] = "Giant",
@@ -1393,7 +1495,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Drahga Shadowburner",
     ["id"] = 40319,
     ["count"] = 0,
-    ["health"] = 38212907,
+    ["health"] = 19891335,
     ["scale"] = 2,
     ["displayId"] = 31792,
     ["creatureType"] = "Humanoid",
@@ -1403,6 +1505,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["instanceID"] = 0,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [76303] = {
@@ -1418,6 +1521,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
       [1] = {
         ["x"] = 601.87050733641,
         ["y"] = -88.125056103862,
+        ["g"] = 37,
         ["sublevel"] = 1,
       },
     },
@@ -1426,7 +1530,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Valiona",
     ["id"] = 40320,
     ["count"] = 0,
-    ["health"] = 181966219,
+    ["health"] = 270522156,
     ["scale"] = 2,
     ["displayId"] = 31795,
     ["creatureType"] = "Dragonkin",
@@ -1436,6 +1540,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["instanceID"] = 0,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [75328] = {
@@ -1449,8 +1554,9 @@ MDT.dungeonEnemies[dungeonIndex] = {
     },
     ["clones"] = {
       [1] = {
-        ["x"] = 566.82906046571,
-        ["y"] = -96.222101227406,
+        ["x"] = 565.93329686311,
+        ["y"] = -99.804913434793,
+        ["g"] = 37,
         ["sublevel"] = 1,
       },
     },
@@ -1459,7 +1565,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Erudax",
     ["id"] = 40484,
     ["count"] = 0,
-    ["health"] = 145572975,
+    ["health"] = 159130680,
     ["scale"] = 2,
     ["displayId"] = 119801,
     ["creatureType"] = "Aberration",
@@ -1469,6 +1575,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["instanceID"] = 0,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Slow"] = true,
     },
     ["spells"] = {
       [448057] = {
@@ -1500,6 +1607,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
       [1] = {
         ["x"] = 735.61929017988,
         ["y"] = -510.70608503454,
+        ["g"] = 38,
         ["sublevel"] = 1,
       },
     },
@@ -1508,15 +1616,25 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Invoked Shadowflame Spirit",
     ["id"] = 40357,
     ["count"] = 0,
-    ["health"] = 2277669,
-    ["scale"] = 1,
+    ["health"] = 2983700,
+    ["scale"] = 2,
     ["displayId"] = 116017,
     ["creatureType"] = "Elemental",
     ["level"] = 80,
     ["characteristics"] = {
+      ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
       ["Root"] = true,
+      ["Fear"] = true,
+      ["Banish"] = true,
+      ["Disorient"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
     },
     ["spells"] = {
       [75238] = {
@@ -1526,8 +1644,9 @@ MDT.dungeonEnemies[dungeonIndex] = {
     },
     ["clones"] = {
       [1] = {
-        ["x"] = 594.28838746645,
-        ["y"] = -118.05791523372,
+        ["x"] = 595.18400574724,
+        ["y"] = -116.71431827042,
+        ["g"] = 37,
         ["sublevel"] = 1,
       },
     },
@@ -1536,11 +1655,15 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Battered",
     ["id"] = 39294,
     ["count"] = 0,
-    ["health"] = 10000,
+    ["health"] = 21835402,
     ["scale"] = 1.5,
     ["displayId"] = 31463,
     ["creatureType"] = "Dragonkin",
     ["level"] = 80,
+    ["characteristics"] = {
+      ["Taunt"] = true,
+      ["Mind Soothe"] = true,
+    },
     ["spells"] = {
       [74039] = {
       },
@@ -1583,7 +1706,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Mutated Hatchling",
     ["id"] = 39388,
     ["count"] = 0,
-    ["health"] = 3036892,
+    ["health"] = 7956534,
     ["scale"] = 1,
     ["displayId"] = 119810,
     ["creatureType"] = "Dragonkin",
@@ -1591,8 +1714,21 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["isBoss"] = true,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Root"] = true,
+      ["Fear"] = true,
+      ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Sap"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Hibernate"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [456718] = {
@@ -1604,6 +1740,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
       [1] = {
         ["x"] = 768.87949936473,
         ["y"] = -513.19838039565,
+        ["g"] = 38,
         ["sublevel"] = 1,
       },
     },

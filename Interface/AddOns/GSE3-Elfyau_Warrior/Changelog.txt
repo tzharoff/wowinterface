@@ -1,0 +1,11 @@
+0.01 - First release for The War Within - Fury Warrior
+0.02 - Plugin Fix
+0.03 - Plugin Fix 2
+0.04 - Added Arms Warrior
+0.05 - Added Protection Warrior
+0.06 - Updated Fury Warrior to v0.2
+0.07 - Updated TOC
+0.08 - Update Protection Warrior to v0.2
+0.09 - Updated TOC
+0.10 - Updated Arms Warrior to v0.2
+0.11 - Updated Fury Warrior to v0.3

@@ -1,5 +1,141 @@
 # Changelog
 
+## Changed in v2025.2
+
+* Siren Isle: update the storm phase mobs
+
+## Changed in v2025.1
+
+* Siren Isle: quest updates, add the Proper Parrot to pirate rares
+* Don't get the wrong coordinates for mobs when the vignette is in the parent zone and doesn't have location data in the child zone (see: the Forbidden Vault)
+* General better display of unknown coordinates
+* Make macro updates less spammy (only edit the macro if it has actually changed)
+
+## Changed in v2024.34
+
+* Siren Isle updates for the pirate phase
+* Proper data update for Cataclysm Classic
+
+## Changed in v2024.33
+
+* More Siren Isle data
+* Fixed the locations for a few enemies in Dun Morogh
+* Port the right-click menus on map icons to the new menu system
+* Sneakily disable the AddOnSkins integration with SilverDragon if it's installed, since it's been completely broken and my single biggest source of bug reports for several years now
+
+## Changed in v2024.32
+
+* Updated for 11.0.7 / 1.15.5
+* Partial data for Siren Isle
+
+## Changed in v2024.31
+
+* Add vignettes and achievement status for The Originals
+* Avoid a potential error when checking achievement status for some unusual criteria
+
+## Changed in v2024.30
+
+* Add new world bosses in the 20th anniversary celebration
+
+## Changed in v2024.29
+
+* Added a bunch of Vanilla rares and loot that were re-added back in 10.1.7
+* Fix an issue in classic / cataclysm when showing popups for mobs with loot
+
+## Changed in v2024.28
+
+* Fix an issue in classic / cataclysm when showing loot windows on popups
+
+## Changed in v2024.27
+
+* Added quests for this week's world boss Kordac
+* Made dark magic scanning a little more efficient
+
+## Changed in v2024.26
+
+* Added quests for this week's world boss Orta
+* Ignore Xal'atath in mythics, even though she's flagged as a rare
+
+## Changed in v2024.25
+
+* Fix particularly short minimap route segments not being displayed
+* Fix for occasional mobs with *very specific* arrangements of loot not showing a loot icon in the LDB popup
+* Minor data improvements in Suramar
+
+## Changed in v2024.24
+
+* Added quests for this week's world boss Shurrai
+* Fixed the display of the quest for Deathtide
+
+## Changed in v2024.23
+
+* War Within data updates: added a few missing weekly reputation quests, filled out the loot in Treasures vignettes for Hallowfall and Azj-Kahet
+
+## Changed in v2024.22
+
+* Don't update the macro if the Blizzard macro frame is visible -- it resets edits you're making to macros.
+
+## Changed in v2024.21
+
+* Include season 1 world bosses
+* Macros are rewritten for the 11.0 limitations (finally); now tries to target as many of the mobs close to you as will fit in 255 character, now can include (zone-specific) custom mobs, and has an option to target with `/tar` rather than `/targetexact` to save space
+* Option in target-scanning to completely skip dead rares (this is more extreme than the existing option to not announce them, because it'll stop them from being added to the last-seen)
+* Fix an issue in classic when showing loot windows on popups
+
+## Changed in v2024.20
+
+* Absolutely massive behind-the-scenes change to how I track loot, which you will hopefully notice nothing about apart from it allowing me to...
+* Add weekly reputation quests and reputation rewards to War Within rares
+* Show how long the shadow phase has left on the Spawn of Beledar
+* Announcements: fix missing label for the Effects channel, add a test button that'll play the sound actually on the channel you selected so you can tell how loud it'll be
+* Overlay: fix showing requirement colors inverted in overlay tooltips
+* It's been 8 years: remove the database migration code from SilverDragon 2
+
+## Changed in v2024.19
+
+* History: fixed the frame not hiding immediately at the start of combat
+* Fixed some issues with profile-switching in History and ClickTargets
+* Stop showing the marker on the popup for a rare if you mark a different rare
+
+## Changed in v2024.18
+
+* New loot for all War Within zones
+* Add The Missing Lynx achievement for tooltips
+* Add To All the Slimes I Love achievement for tooltips
+* Add Echoes of Danger achievement for tooltips
+* Overlay: route pins should also sabotage SetPassThroughButtons; this should stop occasional action-blocked errors
+
+## Changed in v2024.17
+
+* New loot for all War Within zones
+* Don't put tomtom waypoints on the world map, stick to the crazy arrow
+* Improve the tooltips for history and popups
+* Add data to show in treasure-popups in Isle of Dorn and Ringing Deeps
+
+## Changed in v2024.16
+
+* A bunch of new loot for Hallowfall
+* Fix TomTom waypoints still pushing onto the arrow (with a more specific combination of settings between addons required now!), and not clearing after the popup closed
+
+## Changed in v2024.15
+
+* A bunch of new loot for the Ringing Deeps
+* Fix ctrl-clicking to set a waypoint from popups/history/etc not forcing its way into TomTom's crazy arrow
+
+## Changed in v2024.14
+
+* A bunch of new loot for the Isle of Dorn
+* Waypoints can now be set for loot as well
+* Support for Map Pin Enhanced for waypoints
+
+## Changed in v2024.13
+
+* Data for the War Within (from the beta: a few mobs aren't found yet, and there's a lot of loot missing)
+* Custom mobs can now set per-zone
+* Per-zone custom mobs will be picked up by the dark magic scanning method
+* Fix relative time display in history window for over 30 minutes ago
+* Fix an obscure error with double-releasing popups on leaving combat
+
 ## Changed in v2024.12
 
 * History: keep the frame position stable when toggling collapsed state

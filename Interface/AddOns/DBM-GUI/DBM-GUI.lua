@@ -102,6 +102,7 @@ local challengeModeIds = {
 	[505] = 2662, -- The Dawnbreaker
 	[506] = 2661, -- Cinderbrew Meadery
 	[507] = 670, -- Grim Batol
+	[525] = 2773, -- Operation: Floodgate
 }
 
 do
@@ -424,12 +425,13 @@ local function addOptions(mod, catpanel, v)
 					value	= val
 				})
 			end
+			--title, values, vartype, var, callfunc, width, height, parent
 			catbutton = catpanel:CreateDropdown(mod.localization.options[v], dropdownOptions, mod, v, function(value)
 				mod.Options[v] = value
 				if mod.optionFuncs and mod.optionFuncs[v] then
 					mod.optionFuncs[v]()
 				end
-			end, nil, 32)
+			end, nil, 40)
 			if not addSpacer then
 				if lastButton then
 					catbutton:SetPoint("TOPLEFT", lastButton, "BOTTOMLEFT", 0, -12)
@@ -445,22 +447,27 @@ local function addOptions(mod, catpanel, v)
 	end
 end
 
-function DBM_GUI:CreateBossModPanel(mod)
-	if not mod.panel then
+local isFirstModPanel = true
+---@param mod DBMMod
+function DBM_GUI:CreateBossModPanel(mod, isTestView)
+	local panel = isTestView and mod.testPanel or mod.panel
+	if not panel then
 		DBM:AddMsg("Couldn't create boss mod panel for " .. mod.localization.general.name)
 		return false
 	end
-	local panel = mod.panel
-	local category
 
+	local extraOffset = 0
+	if isTestView then
+		extraOffset = extraOffset + DBM_GUI:AddModTestOptionsAbove(panel, mod)
+	end
 	local iconstat = panel.frame:CreateFontString("DBM_GUI_Mod_Icons" .. mod.localization.general.name, "ARTWORK")
-	iconstat:SetPoint("TOP", panel.frame, 0, -10)
+	iconstat:SetPoint("TOP", panel.frame, 0, -10 - extraOffset)
 	iconstat:SetFontObject(GameFontNormal)
 	iconstat:SetText(L.IconsInUse)
 	for i = 1, 8 do
 		local icon = panel.frame:CreateTexture()
 		icon:SetTexture(137009) -- "Interface\\TargetingFrame\\UI-RaidTargetingIcons.blp"
-		icon:SetPoint("TOP", panel.frame, 81 - (i * 18), -26)
+		icon:SetPoint("TOP", panel.frame, 81 - (i * 18), -26 - extraOffset)
 		icon:SetSize(16, 16)
 		if not mod.usedIcons or not mod.usedIcons[i] then
 			icon:SetAlpha(0.25)
@@ -485,20 +492,28 @@ function DBM_GUI:CreateBossModPanel(mod)
 		end
 	end
 
-	local reset = panel:CreateButton(L.Mod_Reset, 155, 30, nil, GameFontNormalSmall)
+	local reset = panel:CreateButton(L.Mod_Reset, 155, 28, nil, GameFontNormalSmall)
 	reset.myheight = 40
-	reset:SetPoint("TOPRIGHT", panel.frame, "TOPRIGHT", -24, -4)
+	reset:SetPoint("TOPRIGHT", panel.frame, "TOPRIGHT", -24, -2 - extraOffset)
 	reset:SetScript("OnClick", function()
 		DBM:LoadModDefaultOption(mod)
 	end)
+	if not isTestView then
+		local playground = panel:CreateButton(L.EnterTestMode, 155, 28, nil, GameFontNormalSmall)
+		playground.myheight = 0
+		playground:SetPoint("TOPLEFT", reset, "BOTTOMLEFT", 0, -2)
+		playground:SetScript("OnClick", function()
+			mod.showTestUI = true
+			DBM_GUI:UpdateModList()
+			DBM_GUI_OptionsFrame:LoadAndShowFrame(mod.testPanel.frame)
+		end)
+	end
 	local button = panel:CreateCheckButton(L.Mod_Enabled:format("|n|cFFFFFFFF" .. mod.localization.general.name), true)
 	button:SetChecked(mod.Options.Enabled)
-	button:SetPoint("TOPLEFT", panel.frame, "TOPLEFT", 8, -14)
+	button:SetPoint("TOPLEFT", panel.frame, "TOPLEFT", 8, -14 - extraOffset)
 	button:SetScript("OnClick", function()
 		mod:Toggle()
 	end)
-	button.textObj:ClearAllPoints()
-	button.textObj:SetPoint("TOPLEFT", button, "TOPRIGHT", 0, 2)
 
 	if mod.addon then
 		for spellID, options in getmetatable(mod.groupOptions).__pairs(mod.groupOptions) do
@@ -555,7 +570,7 @@ function DBM_GUI:CreateBossModPanel(mod)
 
 	local scannedCategories = {}
 	for _, catident in pairs(mod.categorySort) do
-		category = mod.optionCategories[catident]
+		local category = mod.optionCategories[catident]
 		if not scannedCategories[catident] and category then
 			scannedCategories[catident] = true
 			local catpanel = panel:CreateArea(mod.localization.cats[catident])
@@ -565,6 +580,12 @@ function DBM_GUI:CreateBossModPanel(mod)
 			end
 		end
 	end
+	-- For some reason the options aren't loaded in properly if the very first mod view you load is a test view
+	-- But just forcing a call to show fixes this
+	if isFirstModPanel and isTestView then
+		DBM_GUI:ShowHide(true)
+	end
+	isFirstModPanel = true
 end
 
 local function GetSpecializationGroup()
@@ -638,11 +659,14 @@ function DBM_GUI:CreateBossModTab(addon, panel, subtab)
 			DBM:CopyAllModOption(addon.modId, name, tonumber(profile))
 			C_Timer.After(0.05, refresh)
 		end, 100)
-		copyModProfile:SetPoint("TOPLEFT", -7, -54)
+		local isNewDropdown = copyModProfile.mytype == "dropdown2"
+		copyModProfile:SetPoint("TOPLEFT", isNewDropdown and 15 or -7, -54)
 		copyModProfile:SetScript("OnShow", function()
 			copyModProfile.value = nil
 			copyModProfile.text = nil
-			_G[copyModProfile:GetName() .. "Text"]:SetText("")
+			if not isNewDropdown then
+				_G[copyModProfile:GetName() .. "Text"]:SetText("")
+			end
 		end)
 
 		local copyModSoundProfile = modProfileArea:CreateDropdown(L.SelectModProfileCopySound, modProfileDropdown, nil, nil, function(value)
@@ -655,7 +679,9 @@ function DBM_GUI:CreateBossModTab(addon, panel, subtab)
 		copyModSoundProfile:SetScript("OnShow", function()
 			copyModSoundProfile.value = nil
 			copyModSoundProfile.text = nil
-			_G[copyModSoundProfile:GetName() .. "Text"]:SetText("")
+			if not isNewDropdown then
+				_G[copyModSoundProfile:GetName() .. "Text"]:SetText("")
+			end
 		end)
 
 		local copyModNoteProfile = modProfileArea:CreateDropdown(L.SelectModProfileCopyNote, modProfileDropdown, nil, nil, function(value)
@@ -668,7 +694,9 @@ function DBM_GUI:CreateBossModTab(addon, panel, subtab)
 		copyModNoteProfile:SetScript("OnShow", function()
 			copyModNoteProfile.value = nil
 			copyModNoteProfile.text = nil
-			_G[copyModNoteProfile:GetName() .. "Text"]:SetText("")
+			if not isNewDropdown then
+				_G[copyModNoteProfile:GetName() .. "Text"]:SetText("")
+			end
 		end)
 
 		local deleteModProfile = modProfileArea:CreateDropdown(L.SelectModProfileDelete, modProfileDropdown, nil, nil, function(value)
@@ -677,11 +705,13 @@ function DBM_GUI:CreateBossModTab(addon, panel, subtab)
 			C_Timer.After(0.05, refresh)
 		end, 100)
 		deleteModProfile.myheight = 60
-		deleteModProfile:SetPoint("TOPLEFT", copyModSoundProfile, "BOTTOMLEFT", 0, -10)
+		deleteModProfile:SetPoint("TOPLEFT", copyModSoundProfile, "BOTTOMLEFT", 0, isNewDropdown and -15 or -10)
 		deleteModProfile:SetScript("OnShow", function()
 			deleteModProfile.value = nil
 			deleteModProfile.text = nil
-			_G[deleteModProfile:GetName() .. "Text"]:SetText("")
+			if not isNewDropdown then
+				_G[deleteModProfile:GetName() .. "Text"]:SetText("")
+			end
 		end)
 
 		function refresh()
@@ -771,7 +801,8 @@ function DBM_GUI:CreateBossModTab(addon, panel, subtab)
 	for _, mod in ipairs(DBM.Mods) do
 		if mod.modId == addon.modId and (not subtab or subtab == mod.subTab) and not mod.isTrashMod and not mod.noStatistics then
 			if not mod.stats then
-				mod.stats = {}
+				local defaultStats = DBM:CreateDefaultModStats()
+				mod.stats = defaultStats or {}
 			end
 
 			--Create Frames
@@ -835,9 +866,9 @@ function DBM_GUI:CreateBossModTab(addon, panel, subtab)
 				follower	= L.FOLLOWER,--no PLAYER_DIFFICULTY entry yet
 				story		= L.STORY,--no PLAYER_DIFFICULTY entry yet
 				lfr25		= PLAYER_DIFFICULTY3,
-				normal		= mod.addon.minExpansion < 5 and RAID_DIFFICULTY1 or PLAYER_DIFFICULTY1,
+				normal		= mod.addon.minExpansion < 5 and not DBM:IsSeasonal("SeasonOfDiscovery") and RAID_DIFFICULTY1 or PLAYER_DIFFICULTY1,
 				normal25	= RAID_DIFFICULTY2,
-				heroic		= mod.addon.minExpansion < 5 and RAID_DIFFICULTY3 or PLAYER_DIFFICULTY2,
+				heroic		= mod.addon.minExpansion < 5 and not DBM:IsSeasonal("SeasonOfDiscovery") and RAID_DIFFICULTY3 or PLAYER_DIFFICULTY2,
 				heroic25	= RAID_DIFFICULTY4,
 				mythic		= PLAYER_DIFFICULTY6,
 				challenge	= (mod.addon.minExpansion < 6 and not mod.upgradedMPlus) and CHALLENGE_MODE or PLAYER_DIFFICULTY6 .. "+",
@@ -978,6 +1009,13 @@ do
 				end
 
 				if not IsAddOnLoaded(addon.modId) then
+					local autoLoadFrame = CreateFrame("Frame", nil, addon.panel.frame)
+					autoLoadFrame:SetScript("OnShow", function()
+						if not addon.attemptedAutoLoad then
+							addon.attemptedAutoLoad = true
+							DBM:LoadMod(addon, true)
+						end
+					end)
 					local button = addon.panel:CreateButton(L.Button_LoadMod, 200, 30)
 					button.addon = addon
 					button.headline = addon.panel:CreateText(L.BossModLoad_now, 350, nil, nil, "CENTER")
@@ -988,6 +1026,7 @@ do
 						DBM:LoadMod(self.addon, true)
 					end)
 					button:SetPoint("CENTER", 0, -20)
+					---@diagnostic disable-next-line: inject-field
 					addon.panel.loadButton = button
 				else
 					DBM_GUI:CreateBossModTab(addon, addon.panel)
@@ -1012,11 +1051,17 @@ do
 				---@class DBMMod
 				local mod = v
 				if mod.modId == addon.modId then
-					if not mod.panel and (not addon.subTabs or (addon.subPanels and (addon.subPanels[mod.subTab] or mod.subTab == 0))) then
+					if not addon.subTabs or (addon.subPanels and (addon.subPanels[mod.subTab] or mod.subTab == 0)) then
 						if addon.subTabs and addon.subPanels[mod.subTab] then
-							mod.panel = addon.subPanels[mod.subTab]:CreateNewPanel(mod.id or "Error: DBM.Mods", addon.type, nil, mod.localization.general.name)
+							mod.panel = mod.panel or addon.subPanels[mod.subTab]:CreateNewPanel(mod.id or "Error: DBM.Mods", addon.type, nil, mod.localization.general.name)
+							if mod.showTestUI then
+								mod.testPanel = mod.testPanel or addon.subPanels[mod.subTab]:CreateNewPanel(mod.id or "Error: DBM.Mods", addon.type, nil, L.TestModEntry:format(mod.localization.general.name), nil, nil, nil, true)
+							end
 						else
-							mod.panel = currentSeasons[mod.id] or addon.panel:CreateNewPanel(mod.id or "Error: DBM.Mods", addon.type, nil, mod.localization.general.name)
+							mod.panel = mod.panel or currentSeasons[mod.id] or addon.panel:CreateNewPanel(mod.id or "Error: DBM.Mods", addon.type, nil, mod.localization.general.name)
+							if mod.showTestUI then
+								mod.testPanel = mod.testPanel or currentSeasons[mod.id] or addon.panel:CreateNewPanel(mod.id or "Error: DBM.Mods", addon.type, nil, L.TestModEntry:format(mod.localization.general.name), nil, nil, nil, true)
+							end
 						end
 					end
 				end

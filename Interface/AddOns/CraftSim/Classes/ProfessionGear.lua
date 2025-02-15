@@ -1,10 +1,12 @@
 ---@class CraftSim
 local CraftSim = select(2, ...)
 
+local L = CraftSim.UTIL:GetLocalizer()
+
 ---@class CraftSim.ProfessionGear : CraftSim.CraftSimObject
 ---@overload fun():CraftSim.ProfessionGear
 CraftSim.ProfessionGear = CraftSim.CraftSimObject:extend()
-local print = CraftSim.DEBUG:SetDebugPrint(CraftSim.CONST.DEBUG_IDS.DATAEXPORT)
+local print = CraftSim.DEBUG:RegisterDebugID("Classes.RecipeData.ProfessionGear")
 
 function CraftSim.ProfessionGear:new()
 	---@type CraftSim.ProfessionStats
@@ -27,8 +29,8 @@ end
 
 ---@param itemLink string?
 function CraftSim.ProfessionGear:SetItem(itemLink)
+	self.professionStats:Clear()
 	if not itemLink then
-		self.professionStats:Clear()
 		self.item = nil
 		return
 	end
@@ -46,10 +48,14 @@ function CraftSim.ProfessionGear:SetItem(itemLink)
 	self.professionStats.multicraft.value = extractedStats.ITEM_MOD_MULTICRAFT_SHORT or 0
 	self.professionStats.resourcefulness.value = extractedStats.ITEM_MOD_RESOURCEFULNESS_SHORT or 0
 	self.professionStats.craftingspeed.value = extractedStats.ITEM_MOD_CRAFTING_SPEED_SHORT or 0
+	self.professionStats.ingenuity.value = extractedStats.ITEM_MOD_INGENUITY_SHORT or 0
 
 	local itemID = self.item:GetItemID()
 	if CraftSim.CONST.SPECIAL_TOOL_STATS[itemID] then
 		local stats = CraftSim.CONST.SPECIAL_TOOL_STATS[itemID]
+
+		self.professionStats.ingenuity:addExtraValue((stats.ingenuityrefundincrease or 0) / 100)
+		self.professionStats.ingenuity:addExtraValue((stats.reduceconcentrationcost or 0) / 100, 2)
 	end
 
 	local parsedSkill = 0
@@ -59,27 +65,31 @@ function CraftSim.ProfessionGear:SetItem(itemLink)
 		resourcefulness = 0,
 		multicraft = 0,
 	}
-	local equipMatchString = CraftSim.LOCAL:GetText(CraftSim.CONST.TEXT.EQUIP_MATCH_STRING)
-	local enchantedMatchString = CraftSim.LOCAL:GetText(CraftSim.CONST.TEXT.ENCHANTED_MATCH_STRING)
-	local resourcefulnessMatchString = CraftSim.LOCAL:GetText(CraftSim.CONST.TEXT.STAT_RESOURCEFULNESS)
-	local multicraftMatchString = CraftSim.LOCAL:GetText(CraftSim.CONST.TEXT.STAT_MULTICRAFT)
+	local equipMatchString = L(CraftSim.CONST.TEXT.EQUIP_MATCH_STRING)
+	local enchantedMatchString = L(CraftSim.CONST.TEXT.ENCHANTED_MATCH_STRING)
+	local resourcefulnessMatchString = L(CraftSim.CONST.TEXT.STAT_RESOURCEFULNESS)
+	local multicraftMatchString = L(CraftSim.CONST.TEXT.STAT_MULTICRAFT)
+	local ingenuityMatchString = L(CraftSim.CONST.TEXT.STAT_INGENUITY)
 	--print("TooltipData lines:")
 	--print(tooltipData.lines, true)
 	for _, line in pairs(tooltipData.lines) do
 		local lineText = line.leftText -- 10.1 Change
-		--for _, arg in pairs(line.args) do
 		if lineText and string.find(lineText, equipMatchString) then
 			-- here the stringVal looks like "Equip: +6 Blacksmithing Skill"
-			parsedSkill = tonumber(string.match(lineText, "(%d+)")) or 0
+			-- make sure it tries to only match the parsed equip line once to prevent special effect confusion (runed epic rod tww)
+			if parsedSkill == 0 then
+				parsedSkill = tonumber(string.match(lineText, "(%d+)")) or 0
+			end
 		end
 		if lineText and string.find(lineText, enchantedMatchString) then
 			if string.find(lineText, resourcefulnessMatchString) then
 				parsedEnchantingStats.resourcefulness = tonumber(string.match(lineText, "%+(%d+)")) or 0
 			elseif string.find(lineText, multicraftMatchString) then
 				parsedEnchantingStats.multicraft = tonumber(string.match(lineText, "%+(%d+)")) or 0
+			elseif string.find(lineText, ingenuityMatchString) then
+				parsedEnchantingStats.ingenuity = tonumber(string.match(lineText, "%+(%d+)")) or 0
 			end
 		end
-		--end
 	end
 
 	if parsedSkill > 0 then
@@ -93,6 +103,10 @@ function CraftSim.ProfessionGear:SetItem(itemLink)
 
 	if parsedEnchantingStats.multicraft then
 		self.professionStats.multicraft.value = self.professionStats.multicraft.value + parsedEnchantingStats.multicraft
+	end
+
+	if parsedEnchantingStats.ingenuity then
+		self.professionStats.ingenuity.value = self.professionStats.ingenuity.value + parsedEnchantingStats.ingenuity
 	end
 end
 

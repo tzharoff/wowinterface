@@ -1,4 +1,5 @@
 local E, L = select(2, ...):unpack()
+
 local OmniCDC = E.Libs.OmniCDC
 
 OmniCDC.StaticPopupDialogs["OMNICD_CUSTOM_UF_MSG"] = {
@@ -19,8 +20,8 @@ OmniCDC.StaticPopupDialogs["OMNICD_RELOADUI"] = {
 	button1 = ACCEPT,
 	button2 = CANCEL,
 	OnAccept = function()
-		EnableAddOn("Blizzard_CompactRaidFrames")
-		EnableAddOn("Blizzard_CUFProfiles")
+		C_AddOns.EnableAddOn("Blizzard_CompactRaidFrames")
+		C_AddOns.EnableAddOn("Blizzard_CUFProfiles")
 		C_UI.Reload()
 	end,
 	OnCancel = function()

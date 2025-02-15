@@ -1,46 +1,78 @@
 
 TomTomDB = {
-	["profileKeys"] = {
-		["Kalzulkoh - Wyrmrest Accord"] = "Default",
-		["Zartbertu - Wyrmrest Accord"] = "Default",
-		["Huufar - Wyrmrest Accord"] = "Default",
-	},
-	["profiles"] = {
-		["Default"] = {
-			["arrow"] = {
-				["position"] = {
-					"CENTER", -- [1]
-					nil, -- [2]
-					"CENTER", -- [3]
-					349.0003356933594, -- [4]
-					132.0001068115234, -- [5]
-				},
-			},
-			["block"] = {
-				["position"] = {
-					"BOTTOM", -- [1]
-					nil, -- [2]
-					"BOTTOM", -- [3]
-					249.9998321533203, -- [4]
-					255.0000610351563, -- [5]
-				},
-			},
-		},
-	},
+["profileKeys"] = {
+["Felkzarnbek - Wyrmrest Accord"] = "Default",
+["Zeej - Nemesis"] = "Default",
+["Rockwise - Wyrmrest Accord"] = "Default",
+["Moltar - Wyrmrest Accord"] = "Default",
+["Huufar - Wyrmrest Accord"] = "Default",
+["Zeeganis - Mal'Ganis"] = "Default",
+["Zeejralon - Azralon"] = "Default",
+["Hander - Kul Tiras"] = "Default",
+["Zartbertu - Wyrmrest Accord"] = "Default",
+["Kalzulkoh - Wyrmrest Accord"] = "Default",
+["Zeejus - Wyrmrest Accord"] = "Default",
+},
+["profiles"] = {
+["Default"] = {
+["arrow"] = {
+["position"] = {
+"CENTER",
+nil,
+"CENTER",
+349.0003356933594,
+132.0001068115234,
+},
+},
+["block"] = {
+["position"] = {
+"TOPRIGHT",
+nil,
+"TOPRIGHT",
+-211.9988555908203,
+-254.3506927490234,
+},
+},
+},
+},
 }
 TomTomWaypoints = nil
 TomTomWaypointsM = {
-	["profileKeys"] = {
-		["Kalzulkoh - Wyrmrest Accord"] = "Kalzulkoh - Wyrmrest Accord",
-		["Zartbertu - Wyrmrest Accord"] = "Zartbertu - Wyrmrest Accord",
-		["Huufar - Wyrmrest Accord"] = "Huufar - Wyrmrest Accord",
-	},
-	["profiles"] = {
-		["Kalzulkoh - Wyrmrest Accord"] = {
-		},
-		["Zartbertu - Wyrmrest Accord"] = {
-		},
-		["Huufar - Wyrmrest Accord"] = {
-		},
-	},
+["profileKeys"] = {
+["Felkzarnbek - Wyrmrest Accord"] = "Felkzarnbek - Wyrmrest Accord",
+["Zeej - Nemesis"] = "Zeej - Nemesis",
+["Rockwise - Wyrmrest Accord"] = "Rockwise - Wyrmrest Accord",
+["Moltar - Wyrmrest Accord"] = "Moltar - Wyrmrest Accord",
+["Huufar - Wyrmrest Accord"] = "Huufar - Wyrmrest Accord",
+["Zeeganis - Mal'Ganis"] = "Zeeganis - Mal'Ganis",
+["Zeejralon - Azralon"] = "Zeejralon - Azralon",
+["Hander - Kul Tiras"] = "Hander - Kul Tiras",
+["Zartbertu - Wyrmrest Accord"] = "Zartbertu - Wyrmrest Accord",
+["Kalzulkoh - Wyrmrest Accord"] = "Kalzulkoh - Wyrmrest Accord",
+["Zeejus - Wyrmrest Accord"] = "Zeejus - Wyrmrest Accord",
+},
+["profiles"] = {
+["Felkzarnbek - Wyrmrest Accord"] = {
+},
+["Zeej - Nemesis"] = {
+},
+["Rockwise - Wyrmrest Accord"] = {
+},
+["Moltar - Wyrmrest Accord"] = {
+},
+["Huufar - Wyrmrest Accord"] = {
+},
+["Zeeganis - Mal'Ganis"] = {
+},
+["Zeejralon - Azralon"] = {
+},
+["Hander - Kul Tiras"] = {
+},
+["Zartbertu - Wyrmrest Accord"] = {
+},
+["Kalzulkoh - Wyrmrest Accord"] = {
+},
+["Zeejus - Wyrmrest Accord"] = {
+},
+},
 }

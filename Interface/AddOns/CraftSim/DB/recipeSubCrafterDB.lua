@@ -9,7 +9,7 @@ CraftSim.DB = CraftSim.DB
 ---@class CraftSim.DB.RECIPE_SUB_CRAFTER : CraftSim.DB.Repository
 CraftSim.DB.RECIPE_SUB_CRAFTER = CraftSim.DB:RegisterRepository()
 
-local print = CraftSim.DEBUG:SetDebugPrint(CraftSim.CONST.DEBUG_IDS.DB)
+local print = CraftSim.DEBUG:RegisterDebugID("Database.recipeSubCrafterDB")
 
 function CraftSim.DB.RECIPE_SUB_CRAFTER:Init()
     if not CraftSimDB.recipeSubCrafterDB then
@@ -43,6 +43,12 @@ function CraftSim.DB.RECIPE_SUB_CRAFTER:Migrate()
         end
 
         CraftSimDB.recipeSubCrafterDB.version = 2
+    end
+
+    -- reset for tww refactor
+    if CraftSimDB.recipeSubCrafterDB.version == 2 then
+        self:ClearAll()
+        CraftSimDB.recipeSubCrafterDB.version = 3
     end
 end
 

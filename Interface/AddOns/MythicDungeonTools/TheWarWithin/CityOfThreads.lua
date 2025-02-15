@@ -1,34 +1,73 @@
+local addonName = ...
 local MDT = MDT
 local L = MDT.L
 
 local dungeonIndex = 114
 MDT.dungeonList[dungeonIndex] = L["CityOfThreads"]
-MDT.mapInfo[dungeonIndex] = {};
+MDT.mapInfo[dungeonIndex] = {
+  teleportId = 445416,
+  shortName = L["cityOfThreadsShortName"],
+  englishName = "City of Threads",
+  mapID = 502
+}
 
-local zones = { 0 } -- TODO
+local zones = { 2343 }
 for _, zone in ipairs(zones) do
   MDT.zoneIdToDungeonIdx[zone] = dungeonIndex
 end
 
 MDT.dungeonMaps[dungeonIndex] = {
   [0] = "",
-  [1] = { customTextures = 'CityOfThreads' },
+  [1] = { customTextures = 'Interface\\AddOns\\'..addonName..'\\TheWarWithin\\Textures\\CityOfThreads' }
 }
 
 MDT.dungeonSubLevels[dungeonIndex] = {
-  [1] = L["CityOfThreads"],
+  [1] = L["CityOfThreads"]
 }
 
 MDT.dungeonTotalCount[dungeonIndex] = { normal = 742, teeming = 1000, teemingEnabled = true }
 
-MDT.mapPOIs[dungeonIndex] = {};
+MDT.mapPOIs[dungeonIndex] = {
+  [1] = {
+    [1] = {
+      ["template"] = "MapLinkPinTemplate",
+      ["type"] = "dungeonEntrance",
+      ["x"] = 320.77680262201,
+      ["y"] = -83.954249381602,
+    },
+    [2] = {
+      ["template"] = "MapLinkPinTemplate",
+      ["type"] = "cityOfThreadsItem",
+      ["x"] = 502.76705118943,
+      ["y"] = -118.51498924243,
+    },
+    [3] = {
+      ["template"] = "MapLinkPinTemplate",
+      ["type"] = "cityOfThreadsItem",
+      ["x"] = 435.54496374703,
+      ["y"] = -259.54267223567,
+    },
+    [4] = {
+      ["template"] = "MapLinkPinTemplate",
+      ["type"] = "cityOfThreadsItem",
+      ["x"] = 326.12725031554,
+      ["y"] = -143.49639416954,
+    },
+    [5] = {
+      ["template"] = "MapLinkPinTemplate",
+      ["type"] = "cityOfThreadsItem",
+      ["x"] = 430.16808643823,
+      ["y"] = -167.16077396436,
+    },
+  },
+};
 
 MDT.dungeonEnemies[dungeonIndex] = {
   [1] = {
     ["name"] = "Sureki Silkbinder",
     ["id"] = 220195,
     ["count"] = 10,
-    ["health"] = 15670365,
+    ["health"] = 17106549,
     ["scale"] = 1.2,
     ["displayId"] = 120872,
     ["creatureType"] = "Humanoid",
@@ -36,11 +75,21 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["characteristics"] = {
       ["Taunt"] = true,
       ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Polymorph"] = true,
       ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Imprison"] = true,
+      ["Sap"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
       ["Sleep Walk"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [443427] = {
@@ -113,14 +162,14 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["sublevel"] = 1,
       },
       [11] = {
-        ["x"] = 437.27311259249,
-        ["y"] = -163.02819162461,
+        ["x"] = 445.66882753185,
+        ["y"] = -174.78218933701,
         ["g"] = 7,
         ["sublevel"] = 1,
       },
       [12] = {
-        ["x"] = 446.66714928546,
-        ["y"] = -156.64016755124,
+        ["x"] = 444.98803191928,
+        ["y"] = -157.7595791287,
         ["g"] = 7,
         ["sublevel"] = 1,
       },
@@ -188,15 +237,23 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Sureki Venomblade",
     ["id"] = 220193,
     ["count"] = 10,
-    ["health"] = 16763645,
+    ["health"] = 18300028,
     ["scale"] = 1.2,
     ["displayId"] = 120868,
     ["creatureType"] = "Uncategorized",
     ["level"] = 80,
     ["characteristics"] = {
+      ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
     },
     ["spells"] = {
       [443397] = {
@@ -313,8 +370,9 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Royal Swarmguard",
     ["id"] = 220197,
     ["count"] = 20,
-    ["health"] = 32798436,
+    ["health"] = 35804403,
     ["scale"] = 1.4,
+    ["stealthDetect"] = true,
     ["displayId"] = 120882,
     ["creatureType"] = "Demon",
     ["level"] = 80,
@@ -337,8 +395,8 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["sublevel"] = 1,
       },
       [2] = {
-        ["x"] = 412.45071573533,
-        ["y"] = -172.60348929333,
+        ["x"] = 409.09244897585,
+        ["y"] = -176.24164097428,
         ["g"] = 8,
         ["sublevel"] = 1,
         ["patrol"] = {
@@ -375,8 +433,8 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["sublevel"] = 1,
       },
       [4] = {
-        ["x"] = 428.2835459159,
-        ["y"] = -249.52893405992,
+        ["x"] = 432.20151846411,
+        ["y"] = -243.6519432105,
         ["g"] = 21,
         ["sublevel"] = 1,
         ["patrol"] = {
@@ -434,13 +492,15 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Herald Of Ansurek",
     ["id"] = 220196,
     ["count"] = 20,
-    ["health"] = 29154165,
+    ["health"] = 31826136,
     ["scale"] = 1.4,
+    ["stealthDetect"] = true,
     ["displayId"] = 120905,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [443433] = {
@@ -470,8 +530,8 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["sublevel"] = 1,
       },
       [3] = {
-        ["x"] = 448.07978042853,
-        ["y"] = -169.23431486618,
+        ["x"] = 454.51646105312,
+        ["y"] = -164.47675160777,
         ["g"] = 7,
         ["sublevel"] = 1,
       },
@@ -510,7 +570,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Xephitik",
     ["id"] = 219984,
     ["count"] = 8,
-    ["health"] = 27332030,
+    ["health"] = 29837003,
     ["scale"] = 1.8,
     ["displayId"] = 119732,
     ["creatureType"] = "Uncategorized",
@@ -543,15 +603,16 @@ MDT.dungeonEnemies[dungeonIndex] = {
   },
   [6] = {
     ["name"] = "Eye Of The Queen",
-    ["id"] = 220003,
+    ["id"] = 219983,
     ["count"] = 20,
-    ["health"] = 32798436,
+    ["health"] = 35804403,
     ["scale"] = 2,
     ["displayId"] = 119371,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [451218] = {
@@ -595,15 +656,28 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Web Marauder",
     ["id"] = 223182,
     ["count"] = 14,
-    ["health"] = 23687760,
+    ["health"] = 25858736,
     ["scale"] = 1.2,
     ["displayId"] = 119369,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
+      ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Polymorph"] = true,
+      ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Imprison"] = true,
+      ["Sap"] = true,
       ["Stun"] = true,
-      ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [452151] = {
@@ -634,15 +708,29 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Agile Pursuer",
     ["id"] = 223181,
     ["count"] = 14,
-    ["health"] = 18221353,
+    ["health"] = 19891335,
     ["scale"] = 1.2,
     ["displayId"] = 119370,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Polymorph"] = true,
+      ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Imprison"] = true,
+      ["Sap"] = true,
+      ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [448030] = {
@@ -679,15 +767,24 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Congealed Droplet",
     ["id"] = 216329,
     ["count"] = 1,
-    ["health"] = 3644271,
+    ["health"] = 3978267,
     ["scale"] = 1,
     ["displayId"] = 114555,
     ["creatureType"] = "Aberration",
     ["level"] = 80,
     ["characteristics"] = {
+      ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
       ["Root"] = true,
+      ["Fear"] = true,
+      ["Banish"] = true,
       ["Disorient"] = true,
+      ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
     },
     ["spells"] = {
     },
@@ -707,7 +804,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
       [3] = {
         ["x"] = 146.57597672434,
         ["y"] = -399.53654549824,
-        ["g"] = 38,
+        ["g"] = 40,
         ["sublevel"] = 1,
       },
       [4] = {
@@ -758,17 +855,29 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Battle Scarab",
     ["id"] = 220199,
     ["count"] = 1,
-    ["health"] = 3644271,
+    ["health"] = 3978267,
     ["scale"] = 0.6,
     ["displayId"] = 120589,
     ["creatureType"] = "Beast",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Polymorph"] = true,
       ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
+      ["Imprison"] = true,
+      ["Sap"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Scare Beast"] = true,
+      ["Hibernate"] = true,
     },
     ["spells"] = {
     },
@@ -852,26 +961,26 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["sublevel"] = 1,
       },
       [14] = {
-        ["x"] = 406.78375894997,
-        ["y"] = -164.55470767201,
+        ["x"] = 403.98519797922,
+        ["y"] = -166.51372597322,
         ["g"] = 8,
         ["sublevel"] = 1,
       },
       [15] = {
-        ["x"] = 412.72301595052,
-        ["y"] = -162.79978849513,
+        ["x"] = 409.92445497977,
+        ["y"] = -164.75880679634,
         ["g"] = 8,
         ["sublevel"] = 1,
       },
       [16] = {
-        ["x"] = 419.11663270762,
-        ["y"] = -164.81144910553,
+        ["x"] = 416.31807173687,
+        ["y"] = -166.77046740674,
         ["g"] = 8,
         ["sublevel"] = 1,
       },
       [17] = {
-        ["x"] = 421.53692815507,
-        ["y"] = -170.86706516824,
+        ["x"] = 418.73836718432,
+        ["y"] = -172.82608346945,
         ["g"] = 8,
         ["sublevel"] = 1,
       },
@@ -1079,15 +1188,29 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Covert Webmancer",
     ["id"] = 223844,
     ["count"] = 14,
-    ["health"] = 18221353,
+    ["health"] = 19891335,
     ["scale"] = 1.2,
     ["displayId"] = 118106,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
+      ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Polymorph"] = true,
+      ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Imprison"] = true,
+      ["Sap"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [442536] = {
@@ -1116,17 +1239,29 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Sureki Conscript",
     ["id"] = 223357,
     ["count"] = 3,
-    ["health"] = 10932812,
+    ["health"] = 11934801,
     ["scale"] = 0.7,
     ["displayId"] = 120886,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Polymorph"] = true,
       ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Imprison"] = true,
+      ["Sap"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [451238] = {
@@ -1315,11 +1450,15 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Royal Venomshell",
     ["id"] = 220730,
     ["count"] = 20,
-    ["health"] = 36442707,
+    ["health"] = 39782670,
     ["scale"] = 1.4,
     ["displayId"] = 120890,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
+    ["characteristics"] = {
+      ["Taunt"] = true,
+      ["Mind Soothe"] = true,
+    },
     ["spells"] = {
       [434133] = {
       },
@@ -1339,18 +1478,32 @@ MDT.dungeonEnemies[dungeonIndex] = {
     },
   },
   [14] = {
-    ["name"] = "Assistant Unnaturaler",
+    ["name"] = "Skittering Assistant",
     ["id"] = 216342,
     ["count"] = 3,
-    ["health"] = 10932812,
+    ["health"] = 7956534,
     ["scale"] = 1,
     ["displayId"] = 120891,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Polymorph"] = true,
+      ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Imprison"] = true,
+      ["Sap"] = true,
+      ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [453583] = {
@@ -1431,13 +1584,15 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Unstable Test Subject",
     ["id"] = 216328,
     ["count"] = 20,
-    ["health"] = 29154165,
+    ["health"] = 31826136,
     ["scale"] = 1.4,
+    ["stealthDetect"] = true,
     ["displayId"] = 116499,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [436205] = {
@@ -1476,16 +1631,23 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Sureki Unnaturaler",
     ["id"] = 216339,
     ["count"] = 6,
-    ["health"] = 14577083,
+    ["health"] = 15913068,
     ["scale"] = 1.2,
     ["displayId"] = 120894,
     ["creatureType"] = "Uncategorized",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
     },
     ["spells"] = {
       [446086] = {
@@ -1553,7 +1715,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Elder Shadeweaver",
     ["id"] = 221102,
     ["count"] = 40,
-    ["health"] = 36442707,
+    ["health"] = 39782670,
     ["scale"] = 2,
     ["displayId"] = 118827,
     ["creatureType"] = "Demon",
@@ -1586,13 +1748,14 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Hulking Warshell",
     ["id"] = 221103,
     ["count"] = 40,
-    ["health"] = 51019789,
+    ["health"] = 55695738,
     ["scale"] = 2,
     ["displayId"] = 118826,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [443507] = {
@@ -1616,7 +1779,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Orator Krixvizk",
     ["id"] = 216619,
     ["count"] = 0,
-    ["health"] = 127376353,
+    ["health"] = 139239345,
     ["scale"] = 1.2,
     ["displayId"] = 116692,
     ["creatureType"] = "Humanoid",
@@ -1626,6 +1789,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["instanceID"] = 0,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [434691] = {
@@ -1665,7 +1829,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Nx",
     ["id"] = 216648,
     ["count"] = 0,
-    ["health"] = 200162840,
+    ["health"] = 218804685,
     ["scale"] = 1.5,
     ["displayId"] = 116699,
     ["creatureType"] = "Humanoid",
@@ -1675,6 +1839,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["instanceID"] = 0,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [439518] = {
@@ -1682,8 +1847,6 @@ MDT.dungeonEnemies[dungeonIndex] = {
       [439522] = {
       },
       [439621] = {
-      },
-      [439637] = {
       },
       [439686] = {
       },
@@ -1697,23 +1860,16 @@ MDT.dungeonEnemies[dungeonIndex] = {
       },
       [440049] = {
       },
-      [440419] = {
-      },
-      [440434] = {
-      },
-      [440437] = {
-      },
-      [441286] = {
+      [440107] = {
       },
       [441381] = {
-      },
-      [441391] = {
       },
     },
     ["clones"] = {
       [1] = {
         ["x"] = 629.54955808077,
         ["y"] = -427.61602925928,
+        ["g"] = 51,
         ["sublevel"] = 1,
       },
     },
@@ -1722,7 +1878,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Vx",
     ["id"] = 216649,
     ["count"] = 0,
-    ["health"] = 200162840,
+    ["health"] = 218804685,
     ["scale"] = 1.5,
     ["displayId"] = 116700,
     ["creatureType"] = "Humanoid",
@@ -1732,6 +1888,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["instanceID"] = 0,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [439518] = {
@@ -1759,6 +1916,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
       [1] = {
         ["x"] = 659.46898694165,
         ["y"] = -425.94445203024,
+        ["g"] = 51,
         ["sublevel"] = 1,
       },
     },
@@ -1767,7 +1925,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Izo The Grand Splicer",
     ["id"] = 216658,
     ["count"] = 0,
-    ["health"] = 145572975,
+    ["health"] = 159130680,
     ["scale"] = 1.5,
     ["displayId"] = 116701,
     ["creatureType"] = "Humanoid",
@@ -1777,6 +1935,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["instanceID"] = 0,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [437700] = {
@@ -1810,7 +1969,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "The Coaglamation",
     ["id"] = 216320,
     ["count"] = 0,
-    ["health"] = 127376353,
+    ["health"] = 159130680,
     ["scale"] = 1.5,
     ["displayId"] = 117254,
     ["creatureType"] = "Elemental",
@@ -1855,18 +2014,36 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Ravenous Scarab",
     ["id"] = 219198,
     ["count"] = 0,
-    ["health"] = 3036892,
+    ["health"] = 3978267,
     ["scale"] = 1.5,
     ["displayId"] = 116480,
     ["creatureType"] = "Beast",
     ["level"] = 80,
     ["characteristics"] = {
+      ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Polymorph"] = true,
+      ["Root"] = true,
+      ["Fear"] = true,
+      ["Disorient"] = true,
+      ["Imprison"] = true,
+      ["Sap"] = true,
+      ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Scare Beast"] = true,
+      ["Hibernate"] = true,
     },
     ["spells"] = {
       [450042] = {
       },
       [450047] = {
+      },
+      [450055] = {
       },
     },
     ["clones"] = {
@@ -1881,16 +2058,29 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Web Marauder",
     ["id"] = 224731,
     ["count"] = 14,
-    ["health"] = 23687760,
+    ["health"] = 25858736,
     ["scale"] = 1,
     ["displayId"] = 119369,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
+      ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Polymorph"] = true,
       ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Imprison"] = true,
+      ["Sap"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [452151] = {
@@ -1927,15 +2117,29 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Covert Webmancer",
     ["id"] = 224732,
     ["count"] = 14,
-    ["health"] = 18221353,
+    ["health"] = 19891335,
     ["scale"] = 1,
     ["displayId"] = 118106,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
+      ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Polymorph"] = true,
+      ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Imprison"] = true,
+      ["Sap"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [442536] = {
@@ -1988,15 +2192,29 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Agile Pursuer",
     ["id"] = 228361,
     ["count"] = 14,
-    ["health"] = 18221353,
+    ["health"] = 19891335,
     ["scale"] = 1,
     ["displayId"] = 119370,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Polymorph"] = true,
+      ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Imprison"] = true,
+      ["Sap"] = true,
+      ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [448030] = {
@@ -2027,11 +2245,16 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Retired Lord Vul'azak",
     ["id"] = 220423,
     ["count"] = 20,
-    ["health"] = 32798436,
+    ["health"] = 32727423,
     ["scale"] = 2.1,
+    ["stealthDetect"] = true,
     ["displayId"] = 120885,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
+    ["characteristics"] = {
+      ["Taunt"] = true,
+      ["Mind Soothe"] = true,
+    },
     ["spells"] = {
       [443500] = {
       },

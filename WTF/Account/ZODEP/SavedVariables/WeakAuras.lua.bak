@@ -5,18 +5,18 @@ WeakAurasSaved = {
 ["editor_tab_spaces"] = 4,
 ["displays"] = {
 },
-["features"] = {
+["registered"] = {
 },
 ["editor_font_size"] = 12,
-["lastArchiveClear"] = 1678815452,
+["lastArchiveClear"] = 1734248523,
 ["minimap"] = {
 ["minimapPos"] = 336.8605763357979,
 ["hide"] = false,
 },
-["lastUpgrade"] = 1721699388,
-["dbVersion"] = 75,
+["lastUpgrade"] = 1728780803,
+["dbVersion"] = 78,
 ["migrationCutoff"] = 730,
-["registered"] = {
+["features"] = {
 },
 ["login_squelch_time"] = 10,
 ["historyCutoff"] = 730,

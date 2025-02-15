@@ -1,73 +1,98 @@
 
 BigWigs3DB = {
 ["namespaces"] = {
-["BigWigs_Plugins_Victory"] = {
+["BigWigs_Bosses_Skarvald & Dalronn"] = {
 },
-["BigWigs_Plugins_AltPower"] = {
-},
-["BigWigs_Plugins_Colors"] = {
-},
-["BigWigs_Plugins_Wipe"] = {
+["BigWigs_Bosses_Moorabi"] = {
 },
 ["LibDualSpec-1.0"] = {
 },
-["BigWigs_Plugins_Bars"] = {
+["BigWigs_Plugins_Statistics"] = {
 },
-["BigWigs_Plugins_BossBlock"] = {
+["BigWigs_Bosses_General Bjarngrim"] = {
 },
-["BigWigs_Plugins_InfoBox"] = {
+["BigWigs_Bosses_Gal'darah"] = {
+},
+["BigWigs_Bosses_Hadronox"] = {
+},
+["BigWigs_Bosses_Drakkari Colossus"] = {
+},
+["BigWigs_Plugins_Wipe"] = {
+},
+["BigWigs_Bosses_Anomalus"] = {
+},
+["BigWigs_Bosses_Slad'ran"] = {
+},
+["BigWigs_Bosses_Grand Magus Telestra"] = {
+},
+["BigWigs_Bosses_Ingvar the Plunderer"] = {
+},
+["BigWigs_Bosses_Bronjahm"] = {
+},
+["BigWigs_Plugins_Victory"] = {
+},
+["BigWigs_Bosses_Anub'arakAN"] = {
+},
+["BigWigs_Bosses_Ionar"] = {
 },
 ["BigWigs_Plugins_Sounds"] = {
 },
+["BigWigs_Bosses_Volkhan"] = {
+},
+["BigWigs_Bosses_Loken"] = {
+},
+["BigWigs_Bosses_Devourer of Souls"] = {
+},
+["BigWigs_Bosses_Halls of Lightning Trash"] = {
+},
+["BigWigs_Bosses_Krik'thir the Gatewatcher"] = {
+},
+["BigWigs_Plugins_Countdown"] = {
+},
+["BigWigs_Plugins_BossBlock"] = {
+},
+["BigWigs_Bosses_Prince Keleseth"] = {
+},
+["BigWigs_Plugins_Colors"] = {
+},
+["BigWigs_Bosses_The Nexus Trash"] = {
+},
+["BigWigs_Plugins_Nameplates"] = {
+["profiles"] = {
+["Default"] = {
+["iconOffsetY"] = -4,
+},
+},
+},
+["BigWigs_Plugins_Bars"] = {
+},
+["BigWigs_Bosses_Keristrasza"] = {
+},
 ["BigWigs_Plugins_Messages"] = {
 },
-["BigWigs_Plugins_Statistics"] = {
-},
 ["BigWigs_Plugins_AutoReply"] = {
+},
+["BigWigs_Bosses_Commander Kolurg/Stoutbeard"] = {
+},
+["BigWigs_Plugins_AltPower"] = {
+},
+["BigWigs_Plugins_Raid Icons"] = {
 },
 ["BigWigs_Plugins_Proximity"] = {
 ["profiles"] = {
 ["Default"] = {
-["height"] = 148.0001068115234,
-["posy"] = 689.0666399492147,
-["posx"] = 281.5994859854254,
 ["width"] = 190.9999847412109,
+["posy"] = 689.0666399492147,
+["height"] = 148.0001068115234,
+["posx"] = 281.5994859854254,
 },
 },
 },
-["BigWigs_Plugins_Raid Icons"] = {
+["BigWigs_Bosses_Ormorok the Tree-Shaper"] = {
 },
 ["BigWigs_Plugins_Pull"] = {
 },
-["BigWigs_Plugins_Countdown"] = {
-},
-},
-["global"] = {
-["watchedMovies"] = {
-[-510] = true,
-[991] = true,
-[992] = true,
-[-573] = true,
-[-2170] = true,
-[-575] = true,
-[964] = true,
-[-2238] = {
-true,
-true,
-},
-[-593] = {
-true,
-true,
-},
-[-609] = true,
-[-437] = true,
-[-564] = true,
-[-607] = true,
-[-323] = true,
-[-2233] = true,
-[-514] = true,
-[1003] = true,
-[-557] = true,
+["BigWigs_Plugins_InfoBox"] = {
 },
 },
 ["profileKeys"] = {
@@ -88,37 +113,71 @@ true,
 ["Seratia - Wyrmrest Accord"] = "Default",
 ["Healsforgold - Wyrmrest Accord"] = "Default",
 ["Zeejbank - Wyrmrest Accord"] = "Default",
+["Perideez - Wyrmrest Accord"] = "Default",
 ["Monplande - Wyrmrest Accord"] = "Default",
 ["Heartheha - Wyrmrest Accord"] = "Default",
+["Seratia - Shadowsong"] = "Default",
 ["Robozeej - Wyrmrest Accord"] = "Default",
+["Azushanza - Wyrmrest Accord"] = "Default",
 ["Flappyzeej - Wyrmrest Accord"] = "Default",
 ["Bigdiscnergy - Wyrmrest Accord"] = "Default",
 ["Zonks - Wyrmrest Accord"] = "Default",
 ["Zodji - Wyrmrest Accord"] = "Default",
+["Destinedcow - Wyrmrest Accord"] = "Default",
 ["Zeejthyr - Wyrmrest Accord"] = "Default",
 ["Zeejina - Wyrmrest Accord"] = "Default",
-["Seratia - Shadowsong"] = "Default",
-["Zonoes - Wyrmrest Accord"] = "Default",
+["Rollingneed - Aman'Thul"] = "Default",
+["Deadplande - Wyrmrest Accord"] = "Default",
 ["Zeej - Wyrmrest Accord"] = "Default",
 ["Velexis - Wyrmrest Accord"] = "Default",
-["Azushanza - Wyrmrest Accord"] = "Default",
-["Destinedcow - Wyrmrest Accord"] = "Default",
+["Zeejorc - Wyrmrest Accord"] = "Default",
+["Felzeej - Wyrmrest Accord"] = "Default",
 ["Zeej - US Mythic Dungeons"] = "Default",
 ["Destinedcow - Moon Guard"] = "Default",
 ["Gobfatha - Wyrmrest Accord"] = "Default",
-["Rollingneed - Aman'Thul"] = "Default",
-["Felzeej - Wyrmrest Accord"] = "Default",
-["Bowz - Wyrmrest Accord"] = "Default",
-["Addisocke - Wyrmrest Accord"] = "Default",
-["Candypauper - Wyrmrest Accord"] = "Default",
 ["Zeejadin - Wyrmrest Accord"] = "Default",
+["Addisocke - Wyrmrest Accord"] = "Default",
+["Bowz - Wyrmrest Accord"] = "Default",
 ["Funkeej - Wyrmrest Accord"] = "Default",
+["Candypauper - Wyrmrest Accord"] = "Default",
+["Zonoes - Wyrmrest Accord"] = "Default",
+["Necrozeejiac - Wyrmrest Accord"] = "Default",
 ["Zeejee - Wyrmrest Accord"] = "Default",
 ["Kaylaillea - Wyrmrest Accord"] = "Default",
 ["Átahsaia - Wyrmrest Accord"] = "Default",
-["Zeejorc - Wyrmrest Accord"] = "Default",
-["Necrozeejiac - Wyrmrest Accord"] = "Default",
+["Fellowhuman - Wyrmrest Accord"] = "Default",
+["Fizzeejle - Stormrage"] = "Default",
 ["Udderlyzeej - Wyrmrest Accord"] = "Default",
+},
+["global"] = {
+["watchedMovies"] = {
+[-510] = true,
+[991] = true,
+[992] = true,
+[-573] = true,
+[-2292] = true,
+[-2170] = true,
+[-575] = true,
+[964] = true,
+[-2238] = {
+true,
+true,
+},
+[-593] = {
+true,
+true,
+},
+[-609] = true,
+[-437] = true,
+[-564] = true,
+[-2296] = true,
+[-323] = true,
+[-607] = true,
+[-2233] = true,
+[-514] = true,
+[1003] = true,
+[-557] = true,
+},
 },
 ["profiles"] = {
 ["Default"] = {
@@ -129,120 +188,169 @@ BigWigsIconDB = {
 ["minimapPos"] = 26.78289066548818,
 }
 BigWigsStatsDB = {
-[2549] = {
-[2553] = {
+[2522] = {
+[2486] = {
 ["normal"] = {
-["best"] = 134.6599999999162,
-["kills"] = 1,
-},
-["heroic"] = {
-["kills"] = 2,
+["kills"] = 11,
+["best"] = 151.8070000000298,
 ["wipes"] = 1,
-["best"] = 212.7360000000335,
 },
-},
-[2554] = {
 ["heroic"] = {
-["best"] = 106.0560000000114,
-["kills"] = 10,
+["kills"] = 15,
+["wipes"] = 10,
+["best"] = 87.2730000000447,
 },
-["normal"] = {
-["best"] = 150.1780000000726,
-["kills"] = 1,
+["mythic"] = {
+["kills"] = 5,
+["wipes"] = 10,
+["best"] = 291.6469999999972,
 },
-},
-[2555] = {
-["heroic"] = {
-["kills"] = 3,
-["wipes"] = 2,
-["best"] = 174.9069999998901,
-},
-["normal"] = {
-["best"] = 121.1460000001825,
-["kills"] = 1,
+["LFR"] = {
+["best"] = 219.5420000001323,
+["kills"] = 2,
 },
 },
-[2563] = {
+[2491] = {
 ["heroic"] = {
 ["kills"] = 11,
-["best"] = 134.3580000000075,
-["wipes"] = 23,
+["wipes"] = 22,
+["best"] = 70.7160000000149,
 },
 ["normal"] = {
-["best"] = 119.3680000000168,
-["kills"] = 1,
+["kills"] = 11,
+["best"] = 260.7569999999832,
+["wipes"] = 3,
 },
-},
-[2556] = {
-["heroic"] = {
-["best"] = 171.910000000149,
-["kills"] = 5,
-},
-["normal"] = {
-["best"] = 112.185999999987,
-["kills"] = 1,
-},
-},
-[2564] = {
-["heroic"] = {
-["best"] = 92.43499999999767,
-["kills"] = 10,
-},
-["normal"] = {
-["best"] = 118.4739999999292,
-["kills"] = 1,
-},
-},
-[2557] = {
-["normal"] = {
-["kills"] = 1,
-["wipes"] = 1,
-["best"] = 80.0480000001844,
-},
-["heroic"] = {
-["best"] = 137.1660000002012,
+["LFR"] = {
+["best"] = 207.0470000000205,
 ["kills"] = 2,
 },
 },
-[2565] = {
+[2499] = {
+["heroic"] = {
+["kills"] = 7,
+["wipes"] = 118,
+["best"] = 284.6689999999944,
+},
+["normal"] = {
+["kills"] = 9,
+["wipes"] = 69,
+["best"] = 364.9900000000052,
+},
+["LFR"] = {
+["kills"] = 4,
+["best"] = 493.5949999999721,
+["wipes"] = 12,
+},
+},
+[2493] = {
+["heroic"] = {
+["kills"] = 10,
+["wipes"] = 59,
+["best"] = 306.5960000000196,
+},
+["normal"] = {
+["kills"] = 14,
+["wipes"] = 10,
+["best"] = 280.9309999999969,
+},
+["LFR"] = {
+["kills"] = 5,
+["best"] = 271.2770000000019,
+["wipes"] = 2,
+},
+},
+[2480] = {
+["heroic"] = {
+["best"] = 59.41899999999441,
+["kills"] = 20,
+},
+["normal"] = {
+["best"] = 55.30800000001909,
+["kills"] = 13,
+},
+["mythic"] = {
+["kills"] = 6,
+["wipes"] = 9,
+["best"] = 234.9499999999534,
+},
+["LFR"] = {
+["best"] = 162.3300000000745,
+["kills"] = 2,
+},
+},
+[2502] = {
+["normal"] = {
+["kills"] = 10,
+["best"] = 192.2830000000004,
+["wipes"] = 7,
+},
+["heroic"] = {
+["kills"] = 9,
+["wipes"] = 41,
+["best"] = 81.37300000002142,
+},
+["LFR"] = {
+["best"] = 186.9759999997914,
+["kills"] = 3,
+},
+},
+[2482] = {
+["normal"] = {
+["kills"] = 10,
+["best"] = 228.1159999999218,
+["wipes"] = 1,
+},
+["heroic"] = {
+["best"] = 146.8769999999786,
+["kills"] = 14,
+},
+["LFR"] = {
+["best"] = 210.6710000000894,
+["kills"] = 2,
+},
+},
+[2500] = {
+["normal"] = {
+["best"] = 185.2950000000419,
+["kills"] = 9,
+},
+["mythic"] = {
+["wipes"] = 8,
+},
 ["heroic"] = {
 ["kills"] = 12,
-["wipes"] = 10,
-["best"] = 220.1169999999693,
-},
-["normal"] = {
-["best"] = 204.2620000001043,
-["kills"] = 1,
+["wipes"] = 1,
+["best"] = 84.89899999997579,
 },
 ["LFR"] = {
-["best"] = 283.4830000000002,
-["kills"] = 1,
-},
-},
-[2519] = {
-["heroic"] = {
-["kills"] = 17,
-["wipes"] = 77,
-["best"] = 277.0370000000112,
-},
-["normal"] = {
-["best"] = 288.8820000002161,
-["kills"] = 1,
-},
-["LFR"] = {
-["best"] = 342.336000000003,
-["kills"] = 1,
+["best"] = 163.191000000108,
+["kills"] = 2,
 },
 },
 },
 [1008] = {
 [726] = {
+["N10"] = {
+["kills"] = 1,
+["fkDate"] = "2024/08/16",
+["bestDate"] = "2024/08/16",
+["best"] = 47.34199999994598,
+["fkDuration"] = 47.34199999994598,
+},
 ["H10"] = {
 ["best"] = 10.04699999999139,
 ["kills"] = 2,
 },
 },
 [679] = {
+["N10"] = {
+["kills"] = 1,
+["fkDate"] = "2024/08/16",
+["bestDate"] = "2024/08/16",
+["best"] = 19.99300000001676,
+["fkDuration"] = 19.99300000001676,
+},
 ["H10"] = {
 ["best"] = 10.86800000000221,
 ["kills"] = 2,
@@ -252,23 +360,14 @@ BigWigsStatsDB = {
 ["kills"] = 2,
 },
 },
-[682] = {
-["H10"] = {
-["best"] = 9.277000000001863,
-["kills"] = 2,
-},
-["LFR"] = {
-["best"] = 19.08699999999953,
-["kills"] = 2,
-},
-},
-[687] = {
-["H10"] = {
-["best"] = 40.19100000000617,
-["kills"] = 2,
-},
-},
 [689] = {
+["N10"] = {
+["kills"] = 1,
+["fkDate"] = "2024/08/16",
+["bestDate"] = "2024/08/16",
+["best"] = 31.08600000001025,
+["fkDuration"] = 31.08600000001025,
+},
 ["H10"] = {
 ["best"] = 9.892999999996391,
 ["kills"] = 2,
@@ -278,7 +377,44 @@ BigWigsStatsDB = {
 ["kills"] = 2,
 },
 },
+[687] = {
+["N10"] = {
+["kills"] = 1,
+["fkDate"] = "2024/08/16",
+["bestDate"] = "2024/08/16",
+["best"] = 51.70999999996275,
+["fkDuration"] = 51.70999999996275,
+},
+["H10"] = {
+["best"] = 40.19100000000617,
+["kills"] = 2,
+},
+},
+[682] = {
+["N10"] = {
+["kills"] = 1,
+["fkDate"] = "2024/08/16",
+["bestDate"] = "2024/08/16",
+["best"] = 19.36699999996927,
+["fkDuration"] = 19.36699999996927,
+},
+["H10"] = {
+["best"] = 9.277000000001863,
+["kills"] = 2,
+},
+["LFR"] = {
+["best"] = 19.08699999999953,
+["kills"] = 2,
+},
+},
 [677] = {
+["N10"] = {
+["kills"] = 1,
+["fkDate"] = "2024/08/16",
+["bestDate"] = "2024/08/16",
+["best"] = 126.7410000000382,
+["fkDuration"] = 126.7410000000382,
+},
 ["H10"] = {
 ["best"] = 108.2750000000087,
 ["kills"] = 2,
@@ -486,11 +622,10 @@ BigWigsStatsDB = {
 ["kills"] = 3,
 },
 },
-[816] = {
+[831] = {
 ["H10"] = {
+["best"] = 39.83499999999185,
 ["kills"] = 3,
-["best"] = 29.20100000000093,
-["wipes"] = 1,
 },
 },
 [825] = {
@@ -511,195 +646,17 @@ BigWigsStatsDB = {
 ["kills"] = 3,
 },
 },
-[831] = {
+[816] = {
 ["H10"] = {
-["best"] = 39.83499999999185,
 ["kills"] = 3,
+["best"] = 29.20100000000093,
+["wipes"] = 1,
 },
 },
 [832] = {
 ["H10"] = {
 ["best"] = 201.8629999999976,
 ["kills"] = 3,
-},
-},
-},
-[2522] = {
-[2500] = {
-["normal"] = {
-["best"] = 185.2950000000419,
-["kills"] = 9,
-},
-["mythic"] = {
-["wipes"] = 8,
-},
-["heroic"] = {
-["kills"] = 12,
-["wipes"] = 1,
-["best"] = 84.89899999997579,
-},
-["LFR"] = {
-["best"] = 163.191000000108,
-["kills"] = 2,
-},
-},
-[2491] = {
-["heroic"] = {
-["kills"] = 11,
-["wipes"] = 22,
-["best"] = 70.7160000000149,
-},
-["normal"] = {
-["kills"] = 11,
-["best"] = 260.7569999999832,
-["wipes"] = 3,
-},
-["LFR"] = {
-["best"] = 207.0470000000205,
-["kills"] = 2,
-},
-},
-[2499] = {
-["heroic"] = {
-["kills"] = 7,
-["wipes"] = 118,
-["best"] = 284.6689999999944,
-},
-["normal"] = {
-["kills"] = 9,
-["wipes"] = 69,
-["best"] = 364.9900000000052,
-},
-["LFR"] = {
-["kills"] = 4,
-["best"] = 493.5949999999721,
-["wipes"] = 12,
-},
-},
-[2486] = {
-["normal"] = {
-["kills"] = 11,
-["best"] = 151.8070000000298,
-["wipes"] = 1,
-},
-["heroic"] = {
-["kills"] = 15,
-["wipes"] = 10,
-["best"] = 87.2730000000447,
-},
-["mythic"] = {
-["kills"] = 5,
-["wipes"] = 10,
-["best"] = 291.6469999999972,
-},
-["LFR"] = {
-["best"] = 219.5420000001323,
-["kills"] = 2,
-},
-},
-[2480] = {
-["heroic"] = {
-["best"] = 59.41899999999441,
-["kills"] = 20,
-},
-["normal"] = {
-["best"] = 55.30800000001909,
-["kills"] = 13,
-},
-["mythic"] = {
-["kills"] = 6,
-["wipes"] = 9,
-["best"] = 234.9499999999534,
-},
-["LFR"] = {
-["best"] = 162.3300000000745,
-["kills"] = 2,
-},
-},
-[2502] = {
-["normal"] = {
-["kills"] = 10,
-["best"] = 192.2830000000004,
-["wipes"] = 7,
-},
-["heroic"] = {
-["kills"] = 9,
-["wipes"] = 41,
-["best"] = 81.37300000002142,
-},
-["LFR"] = {
-["best"] = 186.9759999997914,
-["kills"] = 3,
-},
-},
-[2482] = {
-["normal"] = {
-["kills"] = 10,
-["best"] = 228.1159999999218,
-["wipes"] = 1,
-},
-["heroic"] = {
-["best"] = 146.8769999999786,
-["kills"] = 14,
-},
-["LFR"] = {
-["best"] = 210.6710000000894,
-["kills"] = 2,
-},
-},
-[2493] = {
-["heroic"] = {
-["kills"] = 10,
-["wipes"] = 59,
-["best"] = 306.5960000000196,
-},
-["normal"] = {
-["kills"] = 14,
-["wipes"] = 10,
-["best"] = 280.9309999999969,
-},
-["LFR"] = {
-["kills"] = 5,
-["best"] = 271.2770000000019,
-["wipes"] = 2,
-},
-},
-},
-[1009] = {
-[744] = {
-["H10"] = {
-["best"] = 11.04499999999825,
-["kills"] = 2,
-},
-},
-[713] = {
-["H10"] = {
-["best"] = 18.91199999999662,
-["kills"] = 2,
-},
-},
-[741] = {
-["H10"] = {
-["best"] = 11.56500000000233,
-["kills"] = 2,
-},
-},
-[743] = {
-["H10"] = {
-["best"] = 22.88000000000466,
-["kills"] = 1,
-},
-},
-[745] = {
-["H10"] = {
-["best"] = 17.61000000000058,
-["kills"] = 2,
-},
-},
-[737] = {
-["H10"] = {
-["best"] = 50.90500000001339,
-["kills"] = 2,
 },
 },
 },
@@ -765,13 +722,13 @@ BigWigsStatsDB = {
 ["kills"] = 2,
 },
 },
-[849] = {
+[864] = {
 ["normal"] = {
-["best"] = 18.49399999999878,
+["best"] = 25.52300000000105,
 ["kills"] = 2,
 },
 ["heroic"] = {
-["best"] = 24.16299999999865,
+["best"] = 24.46999999998661,
 ["kills"] = 2,
 },
 },
@@ -835,13 +792,261 @@ BigWigsStatsDB = {
 ["kills"] = 2,
 },
 },
-[864] = {
+[849] = {
 ["normal"] = {
-["best"] = 25.52300000000105,
+["best"] = 18.49399999999878,
 ["kills"] = 2,
 },
 ["heroic"] = {
-["best"] = 24.46999999998661,
+["best"] = 24.16299999999865,
+["kills"] = 2,
+},
+},
+},
+[2657] = {
+[2609] = {
+["normal"] = {
+["kills"] = 8,
+["fkDuration"] = 248.5590000003576,
+["wipes"] = 3,
+["best"] = 84.70799999963492,
+["bestDate"] = "2025/01/04",
+["fkDate"] = "2024/09/13",
+},
+["heroic"] = {
+["kills"] = 10,
+["fkDate"] = "2024/09/27",
+["bestDate"] = "2024/12/06",
+["fkWipes"] = 3,
+["best"] = 195.0499999998137,
+["wipes"] = 8,
+["fkDuration"] = 390.8450000000303,
+},
+["LFR"] = {
+["kills"] = 1,
+["fkDate"] = "2024/09/21",
+["bestDate"] = "2024/09/21",
+["best"] = 238.8619999997318,
+["fkDuration"] = 238.8619999997318,
+},
+},
+[2608] = {
+["normal"] = {
+["kills"] = 9,
+["fkDuration"] = 511.8939999998547,
+["wipes"] = 23,
+["fkWipes"] = 16,
+["best"] = 247.0380000001751,
+["bestDate"] = "2024/10/26",
+["fkDate"] = "2024/09/14",
+},
+["heroic"] = {
+["kills"] = 6,
+["fkDate"] = "2024/10/26",
+["bestDate"] = "2024/12/06",
+["fkWipes"] = 5,
+["best"] = 344.3410000000149,
+["wipes"] = 7,
+["fkDuration"] = 488.8710000002757,
+},
+},
+[2611] = {
+["normal"] = {
+["kills"] = 9,
+["fkDuration"] = 201.3610000000335,
+["wipes"] = 2,
+["best"] = 118.526999999769,
+["bestDate"] = "2024/10/26",
+["fkDate"] = "2024/09/20",
+},
+["mythic"] = {
+["wipes"] = 3,
+},
+["heroic"] = {
+["kills"] = 10,
+["fkDate"] = "2024/09/27",
+["bestDate"] = "2024/12/06",
+["fkWipes"] = 5,
+["best"] = 161.2119999998249,
+["wipes"] = 10,
+["fkDuration"] = 383.23199999996,
+},
+["LFR"] = {
+["kills"] = 2,
+["fkDate"] = "2024/09/10",
+["bestDate"] = "2024/09/21",
+["fkWipes"] = 2,
+["best"] = 243.9759999997914,
+["wipes"] = 3,
+["fkDuration"] = 325.566000000108,
+},
+},
+[2612] = {
+["normal"] = {
+["kills"] = 8,
+["fkDuration"] = 394.0550000001676,
+["best"] = 136.398999999743,
+["bestDate"] = "2025/01/04",
+["fkDate"] = "2024/09/13",
+},
+["heroic"] = {
+["kills"] = 7,
+["fkDuration"] = 505.8599999998696,
+["wipes"] = 40,
+["fkWipes"] = 39,
+["best"] = 275.8680000002496,
+["bestDate"] = "2024/12/06",
+["fkDate"] = "2024/10/12",
+},
+["LFR"] = {
+["kills"] = 1,
+["fkDate"] = "2024/09/21",
+["bestDate"] = "2024/09/21",
+["best"] = 372.5920000001788,
+["fkDuration"] = 372.5920000001788,
+},
+},
+[2599] = {
+["normal"] = {
+["kills"] = 8,
+["fkDuration"] = 284.6540000000969,
+["best"] = 141.6270000003278,
+["bestDate"] = "2024/10/18",
+["fkDate"] = "2024/09/13",
+},
+["heroic"] = {
+["kills"] = 10,
+["fkDate"] = "2024/09/27",
+["bestDate"] = "2024/12/06",
+["fkWipes"] = 1,
+["best"] = 147.8890000004321,
+["wipes"] = 1,
+["fkDuration"] = 327.2440000000061,
+},
+["LFR"] = {
+["kills"] = 2,
+["fkDate"] = "2024/09/10",
+["bestDate"] = "2024/09/21",
+["best"] = 231.1540000000969,
+["fkDuration"] = 287.5160000002943,
+},
+},
+[2607] = {
+["heroic"] = {
+["kills"] = 8,
+["fkDate"] = "2024/09/27",
+["bestDate"] = "2024/12/13",
+["fkWipes"] = 2,
+["best"] = 188.7889999999898,
+["wipes"] = 2,
+["fkDuration"] = 393.6589999999851,
+},
+["mythic"] = {
+["kills"] = 1,
+["fkDate"] = "2024/12/06",
+["bestDate"] = "2024/12/06",
+["fkWipes"] = 3,
+["best"] = 535.152999999933,
+["wipes"] = 3,
+["fkDuration"] = 535.152999999933,
+},
+["normal"] = {
+["kills"] = 9,
+["fkDuration"] = 249.4679999998771,
+["best"] = 74.97899999981746,
+["bestDate"] = "2025/01/04",
+["fkDate"] = "2024/09/20",
+},
+["LFR"] = {
+["kills"] = 2,
+["fkDate"] = "2024/09/10",
+["bestDate"] = "2024/09/21",
+["fkWipes"] = 1,
+["best"] = 227.6609999998473,
+["wipes"] = 1,
+["fkDuration"] = 353.4960000002757,
+},
+},
+[2601] = {
+["normal"] = {
+["kills"] = 8,
+["fkDuration"] = 279.3379999999888,
+["best"] = 135.9939999999479,
+["bestDate"] = "2024/10/13",
+["fkDate"] = "2024/09/13",
+},
+["heroic"] = {
+["kills"] = 7,
+["fkDate"] = "2024/10/12",
+["bestDate"] = "2024/12/13",
+["fkWipes"] = 9,
+["best"] = 237.4519999999902,
+["wipes"] = 14,
+["fkDuration"] = 372.0989999999292,
+},
+["LFR"] = {
+["kills"] = 1,
+["fkDate"] = "2024/09/21",
+["bestDate"] = "2024/09/21",
+["best"] = 212.6620000000112,
+["fkDuration"] = 212.6620000000112,
+},
+},
+[2602] = {
+["normal"] = {
+["kills"] = 9,
+["fkDuration"] = 524.9240000001155,
+["wipes"] = 13,
+["fkWipes"] = 7,
+["best"] = 243.3919999999926,
+["bestDate"] = "2024/10/26",
+["fkDate"] = "2024/09/14",
+},
+["heroic"] = {
+["kills"] = 3,
+["fkDate"] = "2024/12/06",
+["bestDate"] = "2024/12/06",
+["fkWipes"] = 56,
+["best"] = 399.2800000002608,
+["wipes"] = 67,
+["fkDuration"] = 399.2800000002608,
+},
+},
+},
+[1009] = {
+[744] = {
+["H10"] = {
+["best"] = 11.04499999999825,
+["kills"] = 2,
+},
+},
+[741] = {
+["H10"] = {
+["best"] = 11.56500000000233,
+["kills"] = 2,
+},
+},
+[713] = {
+["H10"] = {
+["best"] = 18.91199999999662,
+["kills"] = 2,
+},
+},
+[743] = {
+["H10"] = {
+["best"] = 22.88000000000466,
+["kills"] = 1,
+},
+},
+[745] = {
+["H10"] = {
+["best"] = 17.61000000000058,
+["kills"] = 2,
+},
+},
+[737] = {
+["H10"] = {
+["best"] = 50.90500000001339,
 ["kills"] = 2,
 },
 },
@@ -872,4 +1077,116 @@ BigWigsStatsDB = {
 },
 },
 },
+[2549] = {
+[2553] = {
+["normal"] = {
+["best"] = 134.6599999999162,
+["kills"] = 1,
+},
+["heroic"] = {
+["best"] = 133.997999999905,
+["kills"] = 3,
+["bestDate"] = "2024/08/19",
+["wipes"] = 1,
+},
+},
+[2554] = {
+["heroic"] = {
+["best"] = 106.0560000000114,
+["kills"] = 11,
+},
+["normal"] = {
+["best"] = 150.1780000000726,
+["kills"] = 1,
+},
+},
+[2555] = {
+["heroic"] = {
+["kills"] = 4,
+["wipes"] = 2,
+["best"] = 174.9069999998901,
+},
+["normal"] = {
+["best"] = 121.1460000001825,
+["kills"] = 1,
+},
+},
+[2563] = {
+["heroic"] = {
+["kills"] = 12,
+["best"] = 134.3580000000075,
+["wipes"] = 23,
+},
+["normal"] = {
+["best"] = 119.3680000000168,
+["kills"] = 1,
+},
+},
+[2556] = {
+["heroic"] = {
+["kills"] = 6,
+["best"] = 130.4429999999702,
+["bestDate"] = "2024/08/19",
+},
+["normal"] = {
+["best"] = 112.185999999987,
+["kills"] = 1,
+},
+},
+[2564] = {
+["heroic"] = {
+["best"] = 92.43499999999767,
+["kills"] = 11,
+},
+["normal"] = {
+["best"] = 118.4739999999292,
+["kills"] = 1,
+},
+},
+[2557] = {
+["normal"] = {
+["kills"] = 1,
+["wipes"] = 1,
+["best"] = 80.0480000001844,
+},
+["heroic"] = {
+["kills"] = 3,
+["best"] = 90.07099999999627,
+["bestDate"] = "2024/08/19",
+},
+},
+[2565] = {
+["heroic"] = {
+["kills"] = 13,
+["wipes"] = 10,
+["best"] = 220.1169999999693,
+},
+["normal"] = {
+["best"] = 204.2620000001043,
+["kills"] = 1,
+},
+["LFR"] = {
+["kills"] = 2,
+["best"] = 275.7780000001658,
+["bestDate"] = "2024/08/17",
+},
+},
+[2519] = {
+["heroic"] = {
+["kills"] = 19,
+["wipes"] = 79,
+["best"] = 277.0370000000112,
+},
+["normal"] = {
+["best"] = 288.8820000002161,
+["kills"] = 1,
+},
+["LFR"] = {
+["kills"] = 2,
+["best"] = 284.7339999999385,
+["bestDate"] = "2024/08/17",
+},
+},
+},
 }
+BigWigsTempNameplates = true

@@ -9,7 +9,7 @@ CraftSim.STATISTICS.frameNO_WO = nil
 ---@type GGUI.Frame
 CraftSim.STATISTICS.frameWO = nil
 
-local print = CraftSim.DEBUG:SetDebugPrint(CraftSim.CONST.DEBUG_IDS.STATISTICS)
+local print = CraftSim.DEBUG:RegisterDebugID("Modules.Statistics")
 
 -- https://math.stackexchange.com/questions/888165/abramowitz-and-stegun-approximation-for-cumulative-normal-distribution
 function CraftSim.STATISTICS:CDF(q, mu, sd)
@@ -72,11 +72,11 @@ function CraftSim.STATISTICS:GetProbabilityOfPositiveProfitByCrafts(probabilityT
     local standardDeviationNumCrafts = math.sqrt(numCrafts) * standardDeviation
     local meanNumCrafts = meanOneCraft * numCrafts
 
-    print("mean (profit) of 1 craft: " .. CraftSim.GUTIL:FormatMoney(meanOneCraft, true))
-    print("mean (profit) of " .. numCrafts .. " crafts: " .. CraftSim.GUTIL:FormatMoney(meanNumCrafts, true))
-    print("standardDeviation 1 craft: " .. CraftSim.GUTIL:FormatMoney(standardDeviation, true))
+    print("mean (profit) of 1 craft: " .. CraftSim.UTIL:FormatMoney(meanOneCraft, true))
+    print("mean (profit) of " .. numCrafts .. " crafts: " .. CraftSim.UTIL:FormatMoney(meanNumCrafts, true))
+    print("standardDeviation 1 craft: " .. CraftSim.UTIL:FormatMoney(standardDeviation, true))
     print("standardDeviation " .. numCrafts ..
-        " crafts: " .. CraftSim.GUTIL:FormatMoney(standardDeviationNumCrafts, true))
+        " crafts: " .. CraftSim.UTIL:FormatMoney(standardDeviationNumCrafts, true))
 
 
     -- CDF:

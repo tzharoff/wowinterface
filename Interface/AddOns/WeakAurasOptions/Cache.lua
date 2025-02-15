@@ -39,6 +39,7 @@ function spellCache.Build()
     holes[219004] = 285223
     holes[285224] = 301088
     holes[301101] = 324269
+    holes[474742] = 1213143
   elseif WeakAuras.IsCataClassic() then
     holes = {}
     holes[121820] = 158262
@@ -51,6 +52,7 @@ function spellCache.Build()
   end
   wipe(cache)
   local co = coroutine.create(function()
+    metaData.rebuilding = true
     local id = 0
     local misses = 0
     while misses < 80000 do
@@ -75,7 +77,7 @@ function spellCache.Build()
       else
         misses = misses + 1
       end
-      coroutine.yield()
+      coroutine.yield(0.01, "spells")
     end
 
     if WeakAuras.IsCataOrRetail() then
@@ -91,14 +93,16 @@ function spellCache.Build()
               cache[name].achievements = cache[name].achievements .. "," .. id .. "=" .. iconID
             end
           end
+          coroutine.yield(0.1, "achievements")
         end
-        coroutine.yield()
+        coroutine.yield(0.1, "categories")
       end
     end
 
     metaData.needsRebuild = false
+    metaData.rebuilding = false
   end)
-  OptionsPrivate.Private.dynFrame:AddAction("spellCache", co)
+  OptionsPrivate.Private.Threads:Add("spellCache", co, 'background')
 end
 
 --[[ function to help find big holes in spellIds to help speedup Build()
@@ -107,7 +111,7 @@ local id = 0
 local misses = 0
 local lastId
 print("####")
-while misses < 400000 do
+while misses < 4000000 do
    id = id + 1
    local name = GetSpellInfo(id)
    local icon = GetSpellTexture(id)
@@ -142,11 +146,13 @@ function spellCache.GetIcon(name)
         for spell, icon in icons.spells:gmatch("(%d+)=(%d+)") do
           local spellId = tonumber(spell)
 
-          if not bestMatch or (spellId and IsSpellKnown(spellId)) then
+          if not bestMatch or (spellId and spellId ~= 0 and IsSpellKnown(spellId)) then
             bestMatch = tonumber(icon)
           end
         end
       end
+    elseif metaData.rebuilding then
+      OptionsPrivate.Private.Threads:SetPriority('spellCache', 'normal')
     end
 
     bestIcon[name] = bestMatch
@@ -167,6 +173,8 @@ function spellCache.GetSpellsMatching(name)
       end
       return result
     end
+  elseif metaData.rebuilding then
+    OptionsPrivate.Private.Threads:SetPriority('spellCache', 'normal')
   end
 end
 
@@ -270,19 +278,24 @@ function spellCache.BestKeyMatch(nearkey)
   return bestKey;
 end
 
+---@param input string | number
+---@return string name, number? id
 function spellCache.CorrectAuraName(input)
   if (not cache) then
     error("spellCache has not been loaded. Call WeakAuras.spellCache.Load(...) first.")
   end
 
-  local spellId = WeakAuras.SafeToNumber(input);
+  local spellId = WeakAuras.SafeToNumber(input)
+  if type(input) == "string" and input:find("|", nil, true) then
+    spellId = WeakAuras.SafeToNumber(input:match("|Hspell:(%d+)"))
+  end
   if(spellId) then
     local name, _, icon = OptionsPrivate.Private.ExecEnv.GetSpellInfo(spellId);
     if(name) then
       spellCache.AddIcon(name, spellId, icon)
       return name, spellId;
     else
-      return "Invalid Spell ID";
+      return "Invalid Spell ID", spellId;
     end
   else
     local ret = spellCache.BestKeyMatch(input);

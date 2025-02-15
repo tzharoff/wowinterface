@@ -1,0 +1,6 @@
+VER 3 0100000000000002 "petattack" "INV_WAND_09"
+/cast [@pettarget, exists] Legion Strike(Basic Attack)
+END
+VER 3 0100000000000001 "Sed" "Ability_Ambush"
+/cast Seduction
+END

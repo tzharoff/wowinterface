@@ -1,6 +1,8 @@
 ---@class CraftSim
 local CraftSim = select(2, ...)
-local print = CraftSim.DEBUG:SetDebugPrint(CraftSim.CONST.DEBUG_IDS.DATAEXPORT)
+local print = CraftSim.DEBUG:RegisterDebugID("Classes.RecipeData.Reagent")
+
+local GUTIL = CraftSim.GUTIL
 
 ---@class CraftSim.Reagent : CraftSim.CraftSimObject
 CraftSim.Reagent = CraftSim.CraftSimObject:extend()
@@ -85,6 +87,7 @@ function CraftSim.Reagent:GetReagentItemList()
     return reagentItemList
 end
 
+---@return CraftSim.Reagent
 function CraftSim.Reagent:Copy()
     local copy = CraftSim.Reagent()
 
@@ -133,6 +136,7 @@ end
 
 --- returns wether the player has enough of the given required item's allocations (times the multiplier)
 ---@param multiplier number? default: 1
+---@param crafterUID CrafterUID?
 function CraftSim.Reagent:HasItems(multiplier, crafterUID)
     multiplier = multiplier or 1
 
@@ -155,46 +159,45 @@ function CraftSim.Reagent:HasItems(multiplier, crafterUID)
 end
 
 --- check how many times the player can fulfill the allocated item quantity
+---@param crafterUID CrafterUID
 function CraftSim.Reagent:HasQuantityXTimes(crafterUID)
     local currentMinTimes = math.huge
 
-    local print = CraftSim.DEBUG:SetDebugPrint(CraftSim.CONST.DEBUG_IDS.CRAFTQ)
-    --print("CraftSim.Reagent:HasQuantityXTimes", false, true)
+    local print = CraftSim.DEBUG:RegisterDebugID("Classes.RecipeData.ReagentData.Reagent.HasQuantityXTimes")
     for q, reagentItem in pairs(self.items) do
         if reagentItem.quantity > 0 then
-            --print("-" .. tostring(reagentItem.item:GetItemName()) .. "(" .. q .. ")")
             -- use original item if available
             local itemID = (reagentItem.originalItem and reagentItem.originalItem:GetItemID()) or
-            reagentItem.item:GetItemID()
+                reagentItem.item:GetItemID()
             local itemCount = CraftSim.CRAFTQ:GetItemCountFromCraftQueueCache(crafterUID, itemID)
-            --print("--player item count: " .. tostring(itemCount))
-            --print("--reagentItem.quantity: " .. tostring(reagentItem.quantity))
             local itemFitCount = math.floor(itemCount / reagentItem.quantity)
-            --print("--itemFitCount: " .. tostring(itemFitCount))
             currentMinTimes = math.min(itemFitCount, currentMinTimes)
-            --print("--currentMinTimes: " .. tostring(currentMinTimes))
         end
     end
 
     return currentMinTimes
 end
 
-function CraftSim.Reagent:SetCheapestQualityMax()
+---@param considerSubCrafts boolean?
+function CraftSim.Reagent:SetCheapestQualityMax(considerSubCrafts)
     if self.hasQuality then
-        local itemPriceQ1 = CraftSim.PRICEDATA:GetMinBuyoutByItemID(self.items[1].item:GetItemID(), true)
-        local itemPriceQ2 = CraftSim.PRICEDATA:GetMinBuyoutByItemID(self.items[2].item:GetItemID(), true)
-        local itemPriceQ3 = CraftSim.PRICEDATA:GetMinBuyoutByItemID(self.items[3].item:GetItemID(), true)
+        local itemPriceQ1 = CraftSim.PRICE_SOURCE:GetMinBuyoutByItemID(self.items[1].item:GetItemID(), true, false,
+            considerSubCrafts)
+        local itemPriceQ2 = CraftSim.PRICE_SOURCE:GetMinBuyoutByItemID(self.items[2].item:GetItemID(), true, false,
+            considerSubCrafts)
+        local itemPriceQ3 = CraftSim.PRICE_SOURCE:GetMinBuyoutByItemID(self.items[3].item:GetItemID(), true, false,
+            considerSubCrafts)
 
         local cheapest = math.min(itemPriceQ1, itemPriceQ2, itemPriceQ3)
 
         self:Clear()
 
-        if itemPriceQ1 == cheapest then
-            self.items[1].quantity = self.requiredQuantity
+        if itemPriceQ3 == cheapest then
+            self.items[3].quantity = self.requiredQuantity
         elseif itemPriceQ2 == cheapest then
             self.items[2].quantity = self.requiredQuantity
-        elseif itemPriceQ3 == cheapest then
-            self.items[3].quantity = self.requiredQuantity
+        elseif itemPriceQ1 == cheapest then
+            self.items[1].quantity = self.requiredQuantity
         end
     else
         self.items[1].quantity = self.requiredQuantity
@@ -242,4 +245,20 @@ function CraftSim.Reagent:GetJSON(indent)
     jb:AddList("items", self.items, true)
     jb:End()
     return jb.json
+end
+
+---@param recipeData CraftSim.RecipeData
+---@return boolean
+function CraftSim.Reagent:IsOrderReagentIn(recipeData)
+    if not recipeData.orderData then return false end
+
+    local orderItemIDs = GUTIL:Map(recipeData.orderData.reagents or {}, function(reagentInfo)
+        return reagentInfo.reagent.itemID
+    end)
+
+    local isOrderReagent = GUTIL:Some(self.items, function(reagentItem)
+        return tContains(orderItemIDs, reagentItem.item:GetItemID())
+    end)
+
+    return isOrderReagent
 end

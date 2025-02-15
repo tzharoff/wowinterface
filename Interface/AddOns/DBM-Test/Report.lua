@@ -16,6 +16,8 @@ function test:NewReporter(testData, trace)
 		---@diagnostic disable-next-line: dbm-event-checker
 		mod = DBM:GetModByName(testData.mod), ---@type DBMMod
 		errors = {},
+		taints = {},
+		strayObjects = {}, -- Warning objects that didn't show up while loading but were triggered by the test
 	}, reporterMt)
 	return obj
 end
@@ -25,14 +27,17 @@ local function compareObjects(obj1, obj2)
 	local class1, class2 = obj1.objClass, obj2.objClass
 	local key1, key2 = obj1.spellId or obj1.text or obj1, obj2.spellId or obj2.text or obj2
 	local type1, type2 = obj1.type or obj1.announceType or obj1.yellType or "unknown", obj2.type or obj2.announceType or obj2.yellType or "unknown"
+	local creationOrder1, creationOrder2 = obj1.testCreationOrder or math.huge, obj2.testCreationOrder or math.huge
 	if class1 ~= class2 then
 		return class1 < class2
 	elseif type(key1) ~= type(key2) then
 		return type(key1) == "string"
 	elseif key1 ~= key2 then
 		return key1 < key2
-	else
+	elseif type1 ~= type2 then
 		return type1 < type2
+	else
+		return creationOrder1 < creationOrder2
 	end
 end
 
@@ -54,10 +59,10 @@ function reporter:ObjectToString(obj, skipType, showTriggerTimes)
 		local fileName = obj:match("Interface\\AddOns\\DBM%-VP[^\\]-\\(.-)%.ogg")
 		return ("%sVoicePack/%s"):format(not skipType and "[PlaySound] " or "", fileName)
 	end
-	local spellId = obj.spellId and obj.spellId > 50 and tostring(obj.spellId) or "<none>"
+	local spellId = type(obj.spellId) == "number" and obj.spellId > 50 and tostring(obj.spellId) or "<none>"
 	if obj.objClass == "Timer" then
 		-- FIXME: this should be fixed in timers, not here, can't see a good reason for the late evaluation of the localized text in timers whereas everything else can do it early
-		local text = obj.text or obj.type and obj.mod:GetLocalizedTimerText(obj.type, obj.spellId, obj.name) or obj.name
+		local text = type(obj.text) == "string" and obj.text or obj.type and obj.mod:GetLocalizedTimerText(obj.type, obj.spellId, obj.name) or obj.name
 		return ("%s%s, time=%.2f, type=%s, spellId=%s%s"):format(not skipType and "[Timer] " or "", text, obj.timer, obj.type, spellId, triggerDeltasPretty(showTriggerTimes))
 	elseif obj.objClass == "Announce" then
 		return ("%s%s, type=%s, spellId=%s%s"):format(not skipType and "[Announce] " or "", obj.text, tostring(obj.announceType), spellId, triggerDeltasPretty(showTriggerTimes))
@@ -82,7 +87,7 @@ end
 local function addSpellNames(str)
 	str = tostring(str)
 	return str:gsub("(%d+)", function(spellId)
-		local name = spellId and spellId ~= "0" and DBM:GetSpellInfo(spellId) or "Unknown spell"
+		local name = spellId and spellId ~= "0" and DBM:GetSpellInfo(tonumber(spellId) or -1) or "Unknown spell"
 		return spellId .. " (" .. name .. ")"
 	end)
 end
@@ -152,35 +157,7 @@ function reporter:FindUntriggeredEvents(findings)
 	end
 end
 
----@param ignores TestIgnoreWarnings
-local function ignoreSpellIdMismatch(ignores, triggerSpellId, warnSpellId)
-	if not ignores or not ignores.spellIdMismatches then
-		return false
-	end
-	local triggerSpellName = DBM:GetSpellInfo(triggerSpellId) or tostring(triggerSpellId)
-	local warnSpellName = DBM:GetSpellInfo(warnSpellId) or tostring(warnSpellId)
-	local ignoreKey = ignores.spellIdMismatches[triggerSpellId] and triggerSpellId or triggerSpellName
-	local ignoreList = ignores.spellIdMismatches[ignoreKey]
-	if not ignoreList then
-		return false
-	end
-	if ignoreList == true or ignoreList == warnSpellId or ignoreList == warnSpellName then
-		return ignoreKey
-	end
-	if type(ignoreList) == "table" then
-		for _, v in ipairs(ignoreList) do
-			if v == warnSpellId then
-				return ignoreKey, warnSpellId
-			elseif v == warnSpellName then
-				return ignoreKey, warnSpellName
-			end
-		end
-	end
-	return false
-end
-
 function reporter:FindSpellIdMismatches(findings)
-	local ignoredTriggerSpells = {}
 	for _, trigger in ipairs(self.trace) do
 		local triggerSpellId = extractSpellId(trigger.rawTrigger)
 		local triggerEvent = trigger.rawTrigger[3]
@@ -191,37 +168,10 @@ function reporter:FindSpellIdMismatches(findings)
 				if v.event == "StartTimer" or v.event == "ShowAnnounce" or v.event == "ShowSpecialWarning" or v.event == "ShowYell" then
 					local obj = v[1]
 					-- spellId field is sometimes used for non-spellId things like phases/stages
-					if obj.spellId and obj.spellId > 50 and obj.spellId ~= triggerSpellId then
-						local ignoreKey, ignoreValue = ignoreSpellIdMismatch(self.testData.ignoreWarnings, triggerSpellId, obj.spellId)
-						if ignoreKey then
-							ignoredTriggerSpells[ignoreKey] = ignoredTriggerSpells[ignoreKey] or {}
-							if ignoreValue then
-								ignoredTriggerSpells[ignoreKey][ignoreValue] = true
-							end
-						else
-							findings[#findings + 1] = {
-								type = "spell-mismatch", spellId = obj.spellId, triggerSpellId = triggerSpellId, sortKey = 2,
-								text = ("%s for spell ID %s is triggered by event %s %s"):format(obj.objClass, addSpellNames(obj.spellId), triggerEvent, addSpellNames(triggerSpellId))
-							}
-						end
-					end
-				end
-			end
-		end
-	end
-	if self.testData.ignoreWarnings and self.testData.ignoreWarnings.spellIdMismatches then
-		for k, v in pairs(self.testData.ignoreWarnings.spellIdMismatches) do
-			if type(v) ~= "table" and not ignoredTriggerSpells[k] then
-				findings[#findings + 1] = {
-					type = "unused-spell-mismatch-ignore", spellId = k, sortKey = 2.1,
-					text = ("ignoreWarnings ignores spell mismatches between %s and %s, but no such mismatch was found"):format(tostring(k), tostring(v == true and "*" or v))
-				}
-			elseif type(v) == "table" then
-				for _, ignoreMismatch in ipairs(v) do
-					if not ignoredTriggerSpells[k] or not ignoredTriggerSpells[k][ignoreMismatch] then
+					if type(obj.spellId) == "number" and obj.spellId > 50 and obj.spellId ~= triggerSpellId then
 						findings[#findings + 1] = {
-							type = "unused-spell-mismatch-ignore", spellId = k, sortKey = 2.1,
-							text = ("ignoreWarnings ignores spell mismatches between %s and %s, but no such mismatch was found"):format(tostring(k), tostring(ignoreMismatch))
+							type = "spell-mismatch", spellId = obj.spellId, triggerSpellId = triggerSpellId, sortKey = 2,
+							text = ("%s for spell ID %s is triggered by event %s %s"):format(obj.objClass, addSpellNames(obj.spellId), triggerEvent, addSpellNames(triggerSpellId))
 						}
 					end
 				end
@@ -233,12 +183,14 @@ end
 function reporter:FindPreciseShowsThatAlwaysFailed(findings)
 	local objs = self:FindObjects()
 	for _, obj in ipairs(objs) do
-		for maxTotal in pairs(obj.testUsedWithPreciseShow) do
-			if not obj.testUsedWithPreciseShowSucess[maxTotal] then
-				findings[#findings + 1] = {
-					type = "precise-show-always-failed", spellId = obj.spellId, sortKey = 3, extraSortKey = maxTotal,
-					text = ("%s uses PreciseShow(%d) but never gets %d targets"):format(self:ObjectToString(obj), maxTotal, maxTotal)
-				}
+		if obj.testUsedWithPreciseShow then
+			for maxTotal in pairs(obj.testUsedWithPreciseShow) do
+				if not obj.testUsedWithPreciseShowSucess[maxTotal] then
+					findings[#findings + 1] = {
+						type = "precise-show-always-failed", spellId = obj.spellId, sortKey = 3, extraSortKey = maxTotal,
+						text = ("%s uses PreciseShow(%d) but never gets %d targets"):format(self:ObjectToString(obj), maxTotal, maxTotal)
+					}
+				end
 			end
 		end
 	end
@@ -253,12 +205,27 @@ function reporter:FindWipeDetectionFailure(findings)
 	end
 end
 
+function reporter:FindEarlyTimerRefreshes(findings)
+	for _, trigger in ipairs(self.trace) do
+		for _, trace in ipairs(trigger.traces) do
+			if trace.event == "EarlyTimerRefresh" then
+				local timer, remaining, totalTime, variance = unpack(trace)
+				findings[#findings + 1] = {
+					type = "early-timer-refresh", sortKey = 5,
+					text = ("Timer %s (time=%.2f, variance=%.2f) got refreshed early with %.2fs remaining\n\t\tRefreshed by: %s"):format(self:ObjectToString(timer, true), totalTime, variance or 0, remaining, trigger.trigger)
+				}
+			end
+		end
+	end
+end
+
 function reporter:ReportFindings()
 	local findings = {}
 	self:FindUntriggeredEvents(findings)
 	self:FindSpellIdMismatches(findings)
 	self:FindPreciseShowsThatAlwaysFailed(findings)
 	self:FindWipeDetectionFailure(findings)
+	self:FindEarlyTimerRefreshes(findings)
 	local dedup = {}
 	for _, v in ipairs(findings) do
 		dedup[v.text] = v
@@ -297,14 +264,33 @@ function reporter:FindObjects()
 	if self.cachedObjects then
 		return self.cachedObjects
 	end
+	local seenObjs = {}
 	local objs = {}
+	-- Objects we saw during loading
 	for _, entry in ipairs(self.trace) do
 		for _, v in ipairs(entry.traces) do
 			if v.mod == self.mod and (v.event == "NewTimer" or v.event == "NewAnnounce" or v.event == "NewSpecialWarning" or v.event == "NewYell") then
-				objs[#objs + 1] = v[1]
+				local obj = v[1]
+				objs[#objs + 1] = obj
+				seenObjs[obj] = true
 			end
 		end
 	end
+	local function gatherObjects(list)
+		for _, obj in ipairs(list) do
+			if not seenObjs[obj] then
+				objs[#objs + 1] = obj
+				seenObjs[obj] = true
+			end
+		end
+	end
+	-- Objects the mod defines, these should be identical to what we already saw above if the mod was loaded properly
+	gatherObjects(self.mod.timers)
+	gatherObjects(self.mod.announces)
+	gatherObjects(self.mod.specwarns)
+	gatherObjects(self.mod.yells)
+	-- Objects we saw during test execution but not during test load, if there is anything new here then a second mod triggered
+	gatherObjects(self.strayObjects) -- TODO: We might want to tag these in the report, because we usually don't want that (but I do have some interesting multi-encounter pull logs)
 	table.sort(objs, compareObjects)
 	self.cachedObjects = objs
 	return objs
@@ -488,7 +474,7 @@ function reporter:EventToStringForReport(event, indent, subIndent)
 		local unscheduledTask = event.scheduleData.unscheduledTask
 		if unscheduledTask then
 			local funcName = unscheduledTask.scheduledBy.scheduleData.funcName or "(anonymous function)"
-			result[#result + 1] = ("%s scheduled by %s at %.2f"):format(funcName, unscheduledTask.scheduledBy.event, unscheduledTask.rawTrigger[1])
+			result[#result + 1] = ("%s scheduled by %s at %s"):format(funcName, unscheduledTask.scheduledBy.event, unscheduledTask.rawTrigger and ("%.02f"):format(unscheduledTask.rawTrigger[1]) or "<unknown>")
 		else
 			result[#result + 1] = "(unknown function)" -- can't happen
 		end
@@ -519,13 +505,19 @@ function reporter:EventToStringForReport(event, indent, subIndent)
 					-- StartTimer can have a dynamic arg, so round to one .1 second precision to avoid flakes
 					result[#result + 1] = ("%.1f"):format(v)
 				else
-					if (event.event == "ShowAnnounce" or event.event == "ShowYell") and paramId == 2 then
+					if (event.event == "ShowAnnounce" or event.event == "ShowYell" or event.event == "ShowSpecialWarning") and paramId == 2 then
 						-- These sometimes include the player name, either from UnitName("player") or from the name/guid translation from the test runner
 						-- FIXME: these can fail if your character name matches a spell name
 						if v == UnitName("player") then
 							v = "PlayerName"
 						elseif v:match(" on .*" .. UnitName("player")) then
 							v = v:gsub(UnitName("player"), "PlayerName")
+						end
+					elseif event.event == "ModTrace" then
+						if v == UnitName("player") then -- FIXME: we might need an explicit way to tag player names in custom traces
+							v = "PlayerName"
+						elseif v == UnitGUID("player") then
+							v = "FIXME: leaking player GUID: " .. v
 						end
 					end
 					result[#result + 1] = tostring(v)
@@ -534,7 +526,13 @@ function reporter:EventToStringForReport(event, indent, subIndent)
 		end
 	end
 	if event.event == "AntiSpam" then
+		local targetName = event[2]
 		result[#result] = nil -- filter bool result
+		result[#result] = nil -- filter target name as it's already part of the ID
+		if targetName and targetName == UnitName("player") then -- May refer to the player due to combat log rewriting
+			-- id is "<id> on <targetName>" if targetName is specified
+			result[#result] = result[#result]:gsub("on " .. UnitName("player") .. "$", "on PlayerName")
+		end
 		local filteredSpams = {}
 		if event.filteredAntiSpams and #event.filteredAntiSpams > 0 then
 			for _, v in ipairs(event.filteredAntiSpams) do
@@ -605,7 +603,7 @@ function reporter:FilterTraceEntry(entry, trigger)
 		return true
 	end
 	-- AntiSpams returned false, they are summarized in the previous true event
-	if entry.event == "AntiSpam" and not entry[2] then
+	if entry.event == "AntiSpam" and not entry[3] then
 		return true
 	end
 	-- Generic warning sounds
@@ -709,8 +707,8 @@ Event trace:
 end
 
 function reporter:HasDiff()
-	local expected = test.Registry.expectedResults[self.testData.name]
-	return not expected or expected:trim() ~= self:Report():trim()
+	DBM:Debug("called deprecated DBM.Test:HasDiff()")
+	return false
 end
 
 function reporter:ReportDiff()
@@ -746,10 +744,14 @@ function reporter:ReportDiff()
 	DBM:ShowUpdateReminder(nil, nil, msg, self:ReportWithHeader(), 300, "LEFT")
 end
 
+function reporter:ShowReport()
+	test:ShowTestReportFrame(self:Report())
+end
+
 ---@alias TestResultEnum "Success"|"Failure"
 ---@return TestResultEnum
 function reporter:GetResult()
-	return not self:HasDiff() and not self:HasErrors() and "Success" or "Failure"
+	return not self:HasErrors() and "Success" or "Failure"
 end
 
 function reporter:HasErrors()
@@ -757,11 +759,11 @@ function reporter:HasErrors()
 end
 
 local realErrorHandler
-local ourErrorsHandlers = setmetatable({}, {__mode = "k"})
+local ourErrorHandlers = setmetatable({}, {__mode = "k"})
 
 function reporter:GetRealErrorHandler()
 	local errorHandler = geterrorhandler()
-	if ourErrorsHandlers[errorHandler] then
+	if ourErrorHandlers[errorHandler] then
 		-- handle the case when you click on report errors while another test is running
 		errorHandler = realErrorHandler or HandleLuaError
 	end
@@ -775,13 +777,16 @@ function reporter:ReportErrors()
 	end
 end
 
-function reporter:SetupErrorHandler()
+function reporter:SetupErrorHandler(passthroughErrors)
 	self.oldErrorHandler = geterrorhandler()
 	realErrorHandler = self.oldErrorHandler
 	local errorHandler = function(err)
 		self.errors[#self.errors + 1] = err
+		if passthroughErrors then
+			realErrorHandler(err)
+		end
 	end
-	ourErrorsHandlers[errorHandler] = true
+	ourErrorHandlers[errorHandler] = true
 	seterrorhandler(errorHandler)
 end
 
@@ -794,4 +799,26 @@ end
 
 function reporter:FlagCombat(waitedFor)
 	self.inCombatAfterTest = waitedFor
+end
+
+---@alias DBMTestTaintType "Lang"|"ModEnv"|"DBMOptions"|"ModOptions"|"Perspective"|"StrayObjects"|"Playground"
+
+---@type table<DBMTestTaintType, string>
+local taintDescriptions = {
+	Lang = "Running on an %s client, golden test reports are created with English clients",
+	ModEnv = "Mod was not loaded with full test support enabled, global hooks in mods are disabled",
+	DBMOptions = "Running with DBM options set to something other than the test defaults",
+	ModOptions = "Running with mod options set to something other than the test defaults",
+	Perspective = "Test specifies player %s, but running as player %s",
+	StrayObjects = "Encountered stray warning objects during test run, an unexpected mod might have been triggered or mod was loaded without full test support",
+	Playground = "Test was started in playground mode"
+}
+
+---@param taintType DBMTestTaintType
+function reporter:Taint(taintType, ...)
+	self.taints[#self.taints + 1] = {type = taintType, description = taintDescriptions[taintType]:format(...)}
+end
+
+function reporter:IsTainted()
+	return #self.taints > 0
 end

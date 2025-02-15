@@ -415,13 +415,27 @@ GUTIL.COLORS = {
     UNCOMMON = "ff1eff00",
     GREY = "ff9d9d9d",
     ARTIFACT = "ffe6cc80",
-    GOLD = "fffffc01",
-    SILVER = "ffdadada",
-    COPPER = "ffc9803c",
+    GOLD = "FFFFD000",
+    SILVER = "FFE4E4E4",
+    COPPER = "FFCA8A4E",
     PATREON = "ffff424D",
     WHISPER = "ffff80ff",
     WHITE = "ffffffff",
 }
+
+---@param value number
+---@return string
+function GUTIL:SeperateThousands(value)
+    local formatted = tostring(value)
+    local k
+    while true do
+        formatted, k = string.gsub(formatted, "^(-?%d+)(%d%d%d)", '%1,%2')
+        if k == 0 then
+            break
+        end
+    end
+    return formatted
+end
 
 -- Thanks to arkinventory
 function GUTIL:StripColor(text)
@@ -452,10 +466,10 @@ end
 ---@param useColor? boolean -- colors the numbers green if positive and red if negative
 ---@param percentRelativeTo number? if included: will be treated as 100% and a % value in relation to the coppervalue will be added
 ---@param separateThousands? boolean
----@param noTextures? boolean
-function GUTIL:FormatMoney(copperValue, useColor, percentRelativeTo, separateThousands, noTextures)
+---@param useTextures? boolean
+function GUTIL:FormatMoney(copperValue, useColor, percentRelativeTo, separateThousands, useTextures)
     copperValue = GUTIL:Round(copperValue) -- there is no such thing as decimal coppers (we no fuel station here)
-    local absValue = abs(copperValue)
+    local absValue = abs(copperValue) or 0
     local minusText = ""
     local color = GUTIL.COLORS.GREEN
     local percentageText = ""
@@ -469,11 +483,38 @@ function GUTIL:FormatMoney(copperValue, useColor, percentRelativeTo, separateTho
         color = GUTIL.COLORS.RED
     end
 
-    local moneyText = GetMoneyString(absValue, separateThousands)
-    if noTextures then
-        local f = self:GetFormatter()
-        local g, s, c = self:GetMoneyValuesFromCopper(absValue)
-        moneyText = g .. f.gold("g") .. " " .. s .. f.silver("s") .. " " .. c .. f.copper("c")
+    local moneyText
+    local gValue, sValue, cValue = self:GetMoneyValuesFromCopper(absValue)
+    local gString, sString, cString = tostring(gValue or 0), tostring(sValue or 0), tostring(cValue or 0)
+    if separateThousands then
+        gString = GUTIL:SeperateThousands(gValue or 0)
+        sString = GUTIL:SeperateThousands(sValue or 0)
+        cString = GUTIL:SeperateThousands(cValue or 0)
+    end
+    local f = self:GetFormatter()
+    local gSep
+    local sSep
+    local cSep
+    if useTextures then
+        -- there is a format money api but its a bit less flexible and it changes the font
+        local coinIconSize = 11
+        gSep = CreateAtlasMarkup("auctionhouse-icon-coin-gold", coinIconSize, coinIconSize)
+        sSep = CreateAtlasMarkup("auctionhouse-icon-coin-silver", coinIconSize, coinIconSize)
+        cSep = CreateAtlasMarkup("auctionhouse-icon-coin-copper", coinIconSize, coinIconSize)
+    else
+        gSep = f.gold("g")
+        sSep = f.silver("s")
+        cSep = f.copper("c")
+    end
+
+    moneyText = cString .. cSep
+
+    if sValue > 0 or gValue > 0 then
+        moneyText = sString .. sSep .. moneyText
+    end
+
+    if gValue > 0 then
+        moneyText = gString .. gSep .. moneyText
     end
 
     if useColor then
@@ -508,7 +549,8 @@ function GUTIL:GetItemLocationFromItemID(itemID, includeBank)
             end
         end
         if includeBank then
-            for bag = NUM_BAG_SLOTS + 1, NUM_BAG_SLOTS + NUM_BANKBAGSLOTS do
+            -- +6 to include warbank
+            for bag = NUM_BAG_SLOTS + 1, NUM_BAG_SLOTS + NUM_BANKBAGSLOTS + 6 do
                 for slot = 1, C_Container.GetContainerNumSlots(bag) do
                     local slotItemID = C_Container.GetContainerItemID(bag, slot)
                     if slotItemID == itemID then
@@ -637,6 +679,17 @@ function GUTIL:WaitForEvent(event, callback, maxWaitSeconds)
     end
 end
 
+--- Runs the callback in the next frame when condition is true, otherwise it runs in the same frame
+---@param condition boolean
+---@param callback function
+function GUTIL:NextFrameIF(condition, callback)
+    if condition then
+        RunNextFrame(callback)
+    else
+        callback()
+    end
+end
+
 function GUTIL:EquipItemByLink(link)
     for bag = BANK_CONTAINER, NUM_BAG_SLOTS + NUM_BANKBAGSLOTS do
         for slot = 1, C_Container.GetContainerNumSlots(bag) do
@@ -652,7 +705,7 @@ function GUTIL:EquipItemByLink(link)
 end
 
 function GUTIL:isItemSoulbound(itemID)
-    return select(14, C_Item.GetItemInfo(itemID)) == 1
+    return select(14, C_Item.GetItemInfo(itemID)) == Enum.ItemBind.OnAcquire
 end
 
 --> GGUI or keep here?
@@ -800,12 +853,32 @@ end
 ---@param width number?
 ---@param offsetX number?
 ---@param offsetY number?
-function GUTIL:IconToText(iconPath, height, width, offsetX, offsetY)
+---@param originalX number? for textures to scale better
+---@param originalY number? for textures to scale better
+function GUTIL:IconToText(iconPath, height, width, offsetX, offsetY, originalX, originalY)
     width = width or height
     offsetX = offsetX or 0
     offsetY = offsetY or 0
 
-    return "\124T" .. iconPath .. ":" .. height .. ":" .. width .. ":" .. offsetX .. ":" .. offsetY .. "\124t"
+    if not originalX then
+        return ("|T%s:%d:%d:%d:%d|t"):format(
+            iconPath,
+            height or width,
+            width,
+            offsetX,
+            offsetY
+        );
+    else
+        return ("|T%s:%d:%d:%d:%d:%d:%d|t"):format(
+            iconPath,
+            height or width,
+            width,
+            offsetX,
+            offsetY,
+            originalX,
+            originalY
+        );
+    end
 end
 
 function GUTIL:ValidateNumberString(str, min, max, allowDecimals)
@@ -867,6 +940,7 @@ function GUTIL:OrderedPairs(t, compFunc)
     return GUTIL.OrderedNext, keys
 end
 
+---@deprecated use FrameDistributor
 --- spreads the iteration (unsorted random) of a given function over multiple frames (one frame per iteration) to reduce game lag for heavy processing.
 --- Use the finallyCallback to continue after the iteration ends
 ---@async
@@ -1039,4 +1113,120 @@ function GUTIL:TooltipAddDoubleLineWithID(options)
             return lineLeft, lineRight
         end
     end
+end
+
+--- GUTIL.FrameDistributor
+
+---@class GUTIL.FrameDistributor
+---@overload fun(options:GUTIL.FrameDistributor.ConstructorOptions): GUTIL.FrameDistributor
+GUTIL.FrameDistributor = GUTIL.Object:extend()
+
+---@class GUTIL.FrameDistributor.ConstructorOptions
+---@field iterationsPerFrame number? default: 1
+---@field maxIterations number?
+---@field iterationTable table? if null iterates til maxIterations or cancelled
+---@field continue fun(frameDistributor: GUTIL.FrameDistributor, key: any?, value: any?, currentIteration: number, progress: number) called each iteration, has to call Continue
+---@field cancel? fun(): boolean -- used to check for cancel between iterations
+---@field finally? fun()  -- ran when finished and on cancel
+
+---@param options GUTIL.FrameDistributor.ConstructorOptions
+function GUTIL.FrameDistributor:new(options)
+    self.iterationsPerFrame = options.iterationsPerFrame or 1
+    self.maxIterations = options.maxIterations
+
+    self.iterationTable = options.iterationTable
+    self:Reset()
+    self.continue = options.continue or function() end
+    self.cancel = options.cancel or function() return false end
+    self.finally = options.finally or function() end
+end
+
+function GUTIL.FrameDistributor:Continue()
+    self.currentIteration = self.currentIteration + 1
+
+    if self.maxIterations then
+        if self.currentIteration >= self.maxIterations then
+            self.finally()
+            return
+        end
+    end
+
+    local runInFrame = self.iterationsPerFrame <= 0 or (mod(self.currentIteration, self.iterationsPerFrame) > 0)
+
+    if self.cancel() then
+        self.finally()
+        return
+    end
+    local key, value
+    if self.iterationTable then
+        key, value = next(self.iterationTable, self.currentIterationKey)
+        self.currentIterationKey = key
+    end
+
+    local currentProgress = self.currentIteration / self.iterationProgressStep
+
+    if self.iterationTable and not key then
+        self.finally()
+        return
+    end
+
+    if runInFrame then
+        self.continue(self, key, value, self.currentIteration, currentProgress)
+    else
+        RunNextFrame(function()
+            self.continue(self, key, value, self.currentIteration, currentProgress)
+        end)
+    end
+end
+
+--- Stops iteration and calls finally callback
+function GUTIL.FrameDistributor:Break()
+    self.finally()
+end
+
+---@param newTable table
+function GUTIL.FrameDistributor:SetIterationTable(newTable)
+    self.iterationTable = newTable
+    self:Reset()
+end
+
+function GUTIL.FrameDistributor:Reset()
+    self.tableSize = GUTIL:Count(self.iterationTable or {})
+    if self.iterationTable then
+        self.iterationProgressStep = (self.tableSize / 100)
+    else
+        self.iterationProgressStep = 1
+    end
+    self.currentIterationKey = nil
+    self.breakActive = false
+    self.currentIteration = 0
+end
+
+--- Reuseable MenuUtil Context Menu Frames Utility
+---@param initCallback fun(frame: Frame)
+---@param sizeX number
+---@param sizeY number
+---@param frameID string
+function GUTIL:CreateReuseableMenuUtilContextMenuFrame(descriptionElement, initCallback, sizeX, sizeY, frameID)
+    self.contextMenuFrames = self.contextMenuFrames or {}
+
+    local contextMenuFrame = descriptionElement:CreateTemplate("Frame")
+    contextMenuFrame:AddInitializer(function(frame, elementDescription, menu)
+        frame = frame --[[@as Frame]]
+        frame:SetSize(sizeX, sizeY)
+        local customFrame = self.contextMenuFrames[frameID]
+        if not customFrame then
+            customFrame = CreateFrame("Frame")
+            initCallback(customFrame)
+            self.contextMenuFrames[frameID] = customFrame
+        end
+        customFrame:SetParent(frame)
+        customFrame:SetAllPoints(frame)
+        customFrame:Show()
+
+        -- to not make it appear in reuseable frames of other context menus
+        customFrame:SetScript("OnHide", function()
+            customFrame:Hide()
+        end)
+    end)
 end

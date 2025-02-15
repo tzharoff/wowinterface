@@ -1,51 +1,83 @@
+local addonName = ...
 local MDT = MDT
 local L = MDT.L
 
 local dungeonIndex = 110
 MDT.dungeonList[dungeonIndex] = L["The Stonevault"]
-MDT.mapInfo[dungeonIndex] = {};
+MDT.mapInfo[dungeonIndex] = {
+  teleportId = 445269,
+  shortName = L["stoneVaultShortName"],
+  englishName = "The Stonevault",
+  mapID = 501
+}
 
-local zones = { 0 } -- TODO
+local zones = { 2214, 2341 }
 for _, zone in ipairs(zones) do
   MDT.zoneIdToDungeonIdx[zone] = dungeonIndex
 end
 
 MDT.dungeonMaps[dungeonIndex] = {
   [0] = "",
-  [1] = { customTextures = 'Stonevault' },
+  [1] = { customTextures = 'Interface\\AddOns\\'..addonName..'\\TheWarWithin\\Textures\\Stonevault' }
 }
 
 MDT.dungeonSubLevels[dungeonIndex] = {
-  [1] = L["The Stonevault"],
+  [1] = L["The Stonevault"]
 }
 
 MDT.dungeonTotalCount[dungeonIndex] = { normal = 489, teeming = 1000, teemingEnabled = true }
 
-MDT.mapPOIs[dungeonIndex] = {};
-
+MDT.mapPOIs[dungeonIndex] = {
+  [1] = {
+    [1] = {
+      ["template"] = "MapLinkPinTemplate",
+      ["type"] = "stonevaultItem",
+      ["x"] = 247.47244222345,
+      ["y"] = -307.41345271418,
+    },
+    [2] = {
+      ["template"] = "MapLinkPinTemplate",
+      ["type"] = "dungeonEntrance",
+      ["x"] = 420.12609193429,
+      ["y"] = -67.862389219205,
+    },
+  },
+};
 
 MDT.dungeonEnemies[dungeonIndex] = {
   [1] = {
     ["name"] = "Cursedheart Invader",
     ["id"] = 212389,
     ["count"] = 5,
-    ["health"] = 18221353,
+    ["health"] = 19891335,
     ["scale"] = 1,
     ["displayId"] = 118702,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Polymorph"] = true,
+      ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Imprison"] = true,
+      ["Sap"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [426283] = {
         ["interruptible"] = true,
       },
       [426308] = {
-        ["interruptible"] = true,
       },
       [427300] = {
       },
@@ -88,8 +120,8 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["sublevel"] = 1,
       },
       [7] = {
-        ["x"] = 395.97497959271,
-        ["y"] = -192.22059154327,
+        ["x"] = 434.85585402472,
+        ["y"] = -191.43246286624,
         ["g"] = -3,
         ["sublevel"] = 1,
       },
@@ -129,13 +161,15 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Earth Infused Golem",
     ["id"] = 210109,
     ["count"] = 10,
-    ["health"] = 29154165,
+    ["health"] = 31826136,
     ["scale"] = 1,
+    ["stealthDetect"] = true,
     ["displayId"] = 117402,
     ["creatureType"] = "Mechanical",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Slow"] = true,
     },
     ["spells"] = {
       [425027] = {
@@ -151,8 +185,8 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["sublevel"] = 1,
       },
       [2] = {
-        ["x"] = 406.14796036113,
-        ["y"] = -181.72812203169,
+        ["x"] = 445.02883479314,
+        ["y"] = -180.93999335466,
         ["g"] = -3,
         ["sublevel"] = 1,
       },
@@ -169,8 +203,8 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["sublevel"] = 1,
       },
       [5] = {
-        ["x"] = 437.48188308858,
-        ["y"] = -181.96255305416,
+        ["x"] = 395.74669115686,
+        ["y"] = -181.44420259993,
         ["g"] = 4,
         ["sublevel"] = 1,
       },
@@ -180,17 +214,29 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Ghastly Voidsoul",
     ["id"] = 212453,
     ["count"] = 7,
-    ["health"] = 16399218,
+    ["health"] = 17902202,
     ["scale"] = 1,
     ["displayId"] = 118731,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Polymorph"] = true,
       ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Imprison"] = true,
+      ["Sap"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [449455] = {
@@ -205,20 +251,20 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["sublevel"] = 1,
       },
       [2] = {
-        ["x"] = 405.71261950077,
-        ["y"] = -191.97397860472,
+        ["x"] = 444.59349393278,
+        ["y"] = -191.18584992769,
         ["g"] = -3,
         ["sublevel"] = 1,
       },
       [3] = {
-        ["x"] = 437.19146418848,
-        ["y"] = -191.337801521,
+        ["x"] = 395.45627225676,
+        ["y"] = -190.81945106677,
         ["g"] = 4,
         ["sublevel"] = 1,
       },
       [4] = {
-        ["x"] = 446.72561503579,
-        ["y"] = -191.86125373346,
+        ["x"] = 404.99042310407,
+        ["y"] = -191.34290327923,
         ["g"] = 4,
         ["sublevel"] = 1,
       },
@@ -228,17 +274,23 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Repurposed Loaderbot",
     ["id"] = 222923,
     ["count"] = 3,
-    ["health"] = 19132421,
+    ["health"] = 20885902,
     ["scale"] = 1,
     ["displayId"] = 118231,
     ["creatureType"] = "Mechanical",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
       ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
     },
     ["spells"] = {
       [447141] = {
@@ -272,14 +324,14 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["sublevel"] = 1,
       },
       [5] = {
-        ["x"] = 396.35230338203,
-        ["y"] = -182.03219532435,
+        ["x"] = 435.23317781404,
+        ["y"] = -181.24406664732,
         ["g"] = -3,
         ["sublevel"] = 1,
       },
       [6] = {
-        ["x"] = 446.58036393967,
-        ["y"] = -181.51316144966,
+        ["x"] = 404.84517200795,
+        ["y"] = -180.99481099543,
         ["g"] = 4,
         ["sublevel"] = 1,
       },
@@ -301,11 +353,17 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Void Bound Despoiler",
     ["id"] = 212765,
     ["count"] = 10,
-    ["health"] = 29154165,
+    ["health"] = 31826136,
     ["scale"] = 1.3,
+    ["stealthDetect"] = true,
     ["displayId"] = 117973,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
+    ["characteristics"] = {
+      ["Taunt"] = true,
+      ["Slow"] = true,
+      ["Mind Soothe"] = true,
+    },
     ["spells"] = {
       [426771] = {
       },
@@ -357,21 +415,31 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Engine Speaker",
     ["id"] = 212764,
     ["count"] = 3,
-    ["health"] = 20043489,
+    ["health"] = 21880469,
     ["scale"] = 1,
     ["displayId"] = 117641,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Polymorph"] = true,
       ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Imprison"] = true,
+      ["Sap"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
-      [317898] = {
-      },
       [427382] = {
       },
       [452811] = {
@@ -465,20 +533,8 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["sublevel"] = 1,
       },
       [15] = {
-        ["x"] = 301.54167477449,
-        ["y"] = -399.37482981507,
-        ["g"] = 21,
-        ["sublevel"] = 1,
-      },
-      [16] = {
-        ["x"] = 301.5876565276,
-        ["y"] = -409.4563850863,
-        ["g"] = 21,
-        ["sublevel"] = 1,
-      },
-      [17] = {
-        ["x"] = 301.96424712952,
-        ["y"] = -418.84857418338,
+        ["x"] = 305.05898053776,
+        ["y"] = -409.18629178679,
         ["g"] = 21,
         ["sublevel"] = 1,
       },
@@ -506,16 +562,29 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Void Bound Howler",
     ["id"] = 221979,
     ["count"] = 7,
-    ["health"] = 17310286,
+    ["health"] = 18896768,
     ["scale"] = 1,
     ["displayId"] = 118365,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Polymorph"] = true,
+      ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Imprison"] = true,
+      ["Sap"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [445207] = {
@@ -585,7 +654,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Turned Speaker",
     ["id"] = 214350,
     ["count"] = 3,
-    ["health"] = 19132421,
+    ["health"] = 20885902,
     ["scale"] = 1,
     ["displayId"] = 118692,
     ["creatureType"] = "Aberration",
@@ -593,9 +662,16 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["characteristics"] = {
       ["Taunt"] = true,
       ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Root"] = true,
+      ["Fear"] = true,
+      ["Banish"] = true,
       ["Disorient"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
     },
     ["spells"] = {
       [427300] = {
@@ -641,15 +717,25 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Void Touched Elemental",
     ["id"] = 212400,
     ["count"] = 4,
-    ["health"] = 20043489,
+    ["health"] = 21880469,
     ["scale"] = 1,
     ["displayId"] = 109870,
     ["creatureType"] = "Elemental",
     ["level"] = 80,
     ["characteristics"] = {
+      ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Root"] = true,
+      ["Fear"] = true,
+      ["Banish"] = true,
       ["Disorient"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
     },
     ["spells"] = {
       [426345] = {
@@ -688,21 +774,31 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Aspiring Forgehand",
     ["id"] = 212405,
     ["count"] = 1,
-    ["health"] = 10932812,
+    ["health"] = 11934801,
     ["scale"] = 1,
     ["displayId"] = 114686,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Polymorph"] = true,
       ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Imprison"] = true,
+      ["Sap"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
-      [317898] = {
-      },
       [423766] = {
       },
       [427361] = {
@@ -856,14 +952,14 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["sublevel"] = 1,
       },
       [18] = {
-        ["x"] = 309.99703268189,
-        ["y"] = -403.51793042722,
+        ["x"] = 308.70117761502,
+        ["y"] = -399.81548435251,
         ["g"] = 21,
         ["sublevel"] = 1,
       },
       [19] = {
-        ["x"] = 309.40976383851,
-        ["y"] = -413.35817199874,
+        ["x"] = 306.81807489029,
+        ["y"] = -417.98619251745,
         ["g"] = 21,
         ["sublevel"] = 1,
       },
@@ -885,7 +981,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Forgebound Mender",
     ["id"] = 213338,
     ["count"] = 5,
-    ["health"] = 16399218,
+    ["health"] = 17902202,
     ["scale"] = 1,
     ["displayId"] = 115974,
     ["creatureType"] = "Humanoid",
@@ -893,13 +989,23 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["characteristics"] = {
       ["Taunt"] = true,
       ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Polymorph"] = true,
+      ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Imprison"] = true,
+      ["Sap"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
-      [317898] = {
-      },
       [429109] = {
         ["interruptible"] = true,
       },
@@ -968,19 +1074,33 @@ MDT.dungeonEnemies[dungeonIndex] = {
         ["g"] = 26,
         ["sublevel"] = 1,
       },
+      [11] = {
+        ["x"] = 314.57058323812,
+        ["y"] = -405.78567159115,
+        ["g"] = 21,
+        ["sublevel"] = 1,
+      },
+      [12] = {
+        ["x"] = 314.75572354955,
+        ["y"] = -414.30128908876,
+        ["g"] = 21,
+        ["sublevel"] = 1,
+      },
     },
   },
   [12] = {
     ["name"] = "Forge Loader",
     ["id"] = 213343,
     ["count"] = 10,
-    ["health"] = 32798436,
+    ["health"] = 35804403,
     ["scale"] = 1.4,
+    ["stealthDetect"] = true,
     ["displayId"] = 116911,
     ["creatureType"] = "Mechanical",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Slow"] = true,
     },
     ["spells"] = {
       [429114] = {
@@ -1066,11 +1186,16 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Cursedforge Honor Guard",
     ["id"] = 214264,
     ["count"] = 8,
-    ["health"] = 29154165,
+    ["health"] = 31826136,
     ["scale"] = 1,
+    ["stealthDetect"] = true,
     ["displayId"] = 115944,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
+    ["characteristics"] = {
+      ["Taunt"] = true,
+      ["Mind Soothe"] = true,
+    },
     ["spells"] = {
       [428894] = {
       },
@@ -1110,16 +1235,29 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Cursedforge Stoneshaper",
     ["id"] = 214066,
     ["count"] = 5,
-    ["health"] = 17310286,
+    ["health"] = 18896768,
     ["scale"] = 1,
     ["displayId"] = 115945,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
+      ["Taunt"] = true,
       ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Polymorph"] = true,
+      ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Imprison"] = true,
+      ["Sap"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [429422] = {
@@ -1171,8 +1309,9 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Rock Smasher",
     ["id"] = 213954,
     ["count"] = 12,
-    ["health"] = 36442707,
+    ["health"] = 39782670,
     ["scale"] = 1.5,
+    ["stealthDetect"] = true,
     ["displayId"] = 117855,
     ["creatureType"] = "Elemental",
     ["level"] = 80,
@@ -1203,16 +1342,56 @@ MDT.dungeonEnemies[dungeonIndex] = {
             ["y"] = -321.03385512463,
           },
           [2] = {
-            ["x"] = 418.74608459022,
-            ["y"] = -292.99204146227,
+            ["x"] = 420.0755257332,
+            ["y"] = -333.46133560933,
           },
           [3] = {
+            ["x"] = 419.70436667038,
+            ["y"] = -343.46116660108,
+          },
+          [4] = {
+            ["x"] = 420.79211588973,
+            ["y"] = -353.04846125516,
+          },
+          [5] = {
+            ["x"] = 421.03097927524,
+            ["y"] = -360.21445849705,
+          },
+          [6] = {
+            ["x"] = 421.03097927524,
+            ["y"] = -367.85819617804,
+          },
+          [7] = {
+            ["x"] = 421.03097927524,
+            ["y"] = -360.21445849705,
+          },
+          [8] = {
+            ["x"] = 420.79211588973,
+            ["y"] = -353.04846125516,
+          },
+          [9] = {
+            ["x"] = 419.70436667038,
+            ["y"] = -343.46116660108,
+          },
+          [10] = {
+            ["x"] = 420.0755257332,
+            ["y"] = -333.46133560933,
+          },
+          [11] = {
             ["x"] = 421.24294061487,
             ["y"] = -321.03385512463,
           },
-          [4] = {
-            ["x"] = 419.70436667038,
-            ["y"] = -343.46116660108,
+          [12] = {
+            ["x"] = 420.0755257332,
+            ["y"] = -305.0361963592,
+          },
+          [13] = {
+            ["x"] = 420.31436178255,
+            ["y"] = -295.24263353629,
+          },
+          [14] = {
+            ["x"] = 420.0755257332,
+            ["y"] = -305.0361963592,
           },
         },
       },
@@ -1234,16 +1413,29 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Cursedforge Mender",
     ["id"] = 224962,
     ["count"] = 5,
-    ["health"] = 16399218,
+    ["health"] = 17902202,
     ["scale"] = 1,
     ["displayId"] = 120170,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Polymorph"] = true,
+      ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Imprison"] = true,
+      ["Sap"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [429109] = {
@@ -1278,7 +1470,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "E.D.N.A",
     ["id"] = 210108,
     ["count"] = 0,
-    ["health"] = 145572975,
+    ["health"] = 159130680,
     ["scale"] = 1.5,
     ["displayId"] = 120054,
     ["creatureType"] = "Mechanical",
@@ -1288,6 +1480,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["instanceID"] = 0,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Slow"] = true,
     },
     ["spells"] = {
       [424795] = {
@@ -1323,7 +1516,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Skarmorak",
     ["id"] = 210156,
     ["count"] = 0,
-    ["health"] = 127376353,
+    ["health"] = 125533481,
     ["scale"] = 2,
     ["displayId"] = 118714,
     ["creatureType"] = "Elemental",
@@ -1333,6 +1526,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["instanceID"] = 0,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Slow"] = true,
     },
     ["spells"] = {
       [422233] = {
@@ -1361,11 +1555,14 @@ MDT.dungeonEnemies[dungeonIndex] = {
       },
       [445409] = {
       },
+      [464980] = {
+      },
     },
     ["clones"] = {
       [1] = {
         ["x"] = 699.74817113159,
         ["y"] = -173.1586521009,
+        ["g"] = 25,
         ["sublevel"] = 1,
       },
     },
@@ -1374,7 +1571,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Speaker Brokk",
     ["id"] = 213217,
     ["count"] = 0,
-    ["health"] = 90983109,
+    ["health"] = 89511008,
     ["scale"] = 2,
     ["displayId"] = 115818,
     ["creatureType"] = "Humanoid",
@@ -1382,6 +1579,11 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["isBoss"] = true,
     ["encounterID"] = 2590,
     ["instanceID"] = 0,
+    ["characteristics"] = {
+      ["Taunt"] = true,
+      ["Slow"] = true,
+      ["Mind Soothe"] = true,
+    },
     ["spells"] = {
       [428161] = {
       },
@@ -1418,6 +1620,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
       [1] = {
         ["x"] = 80.546507183685,
         ["y"] = -466.14107485364,
+        ["g"] = 27,
         ["sublevel"] = 1,
       },
     },
@@ -1426,7 +1629,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Speaker Dorlita",
     ["id"] = 213216,
     ["count"] = 0,
-    ["health"] = 109179731,
+    ["health"] = 107413209,
     ["scale"] = 2,
     ["displayId"] = 116916,
     ["creatureType"] = "Humanoid",
@@ -1434,6 +1637,11 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["isBoss"] = true,
     ["encounterID"] = 2590,
     ["instanceID"] = 0,
+    ["characteristics"] = {
+      ["Taunt"] = true,
+      ["Slow"] = true,
+      ["Mind Soothe"] = true,
+    },
     ["spells"] = {
       [428120] = {
       },
@@ -1456,15 +1664,16 @@ MDT.dungeonEnemies[dungeonIndex] = {
       [1] = {
         ["x"] = 102.30037882388,
         ["y"] = -506.10925249048,
+        ["g"] = 27,
         ["sublevel"] = 1,
       },
     },
   },
   [21] = {
-    ["name"] = "High Speaker Eirich",
+    ["name"] = "Void Speaker Eirich",
     ["id"] = 213119,
     ["count"] = 0,
-    ["health"] = 145572975,
+    ["health"] = 143466834,
     ["scale"] = 2,
     ["displayId"] = 119856,
     ["creatureType"] = "Humanoid",
@@ -1474,6 +1683,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["instanceID"] = 0,
     ["characteristics"] = {
       ["Taunt"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [427329] = {
@@ -1505,22 +1715,35 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Cursedheart Invader",
     ["id"] = 212403,
     ["count"] = 5,
-    ["health"] = 18221353,
+    ["health"] = 19891335,
     ["scale"] = 1,
     ["displayId"] = 118702,
     ["creatureType"] = "Humanoid",
     ["level"] = 80,
     ["characteristics"] = {
+      ["Taunt"] = true,
+      ["Incapacitate"] = true,
+      ["Silence"] = true,
+      ["Knock"] = true,
+      ["Grip"] = true,
+      ["Mind Control"] = true,
+      ["Polymorph"] = true,
+      ["Root"] = true,
+      ["Fear"] = true,
       ["Disorient"] = true,
+      ["Repentance"] = true,
+      ["Imprison"] = true,
+      ["Sap"] = true,
       ["Stun"] = true,
       ["Slow"] = true,
+      ["Sleep Walk"] = true,
+      ["Mind Soothe"] = true,
     },
     ["spells"] = {
       [426283] = {
         ["interruptible"] = true,
       },
       [426308] = {
-        ["interruptible"] = true,
       },
       [452811] = {
       },
@@ -1552,6 +1775,9 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["isBoss"] = true,
     ["encounterID"] = 2590,
     ["instanceID"] = 0,
+    ["characteristics"] = {
+      ["Taunt"] = true,
+    },
     ["spells"] = {
       [428819] = {
       },
@@ -1586,6 +1812,9 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["isBoss"] = true,
     ["encounterID"] = 2590,
     ["instanceID"] = 0,
+    ["characteristics"] = {
+      ["Taunt"] = true,
+    },
     ["spells"] = {
       [428242] = {
       },
@@ -1612,7 +1841,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["name"] = "Crystal Shard",
     ["id"] = 214443,
     ["count"] = 0,
-    ["health"] = 1399740,
+    ["health"] = 1275261,
     ["scale"] = 1,
     ["displayId"] = 37518,
     ["creatureType"] = "Uncategorized",
@@ -1620,6 +1849,10 @@ MDT.dungeonEnemies[dungeonIndex] = {
     ["isBoss"] = true,
     ["encounterID"] = 2579,
     ["instanceID"] = 0,
+    ["characteristics"] = {
+      ["Taunt"] = true,
+      ["Slow"] = true,
+    },
     ["spells"] = {
       [439600] = {
       },
@@ -1630,6 +1863,7 @@ MDT.dungeonEnemies[dungeonIndex] = {
       [1] = {
         ["x"] = 714.45914191942,
         ["y"] = -206.13900400225,
+        ["g"] = 25,
         ["sublevel"] = 1,
       },
     },

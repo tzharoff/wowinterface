@@ -1,4 +1,3 @@
-if not BigWigsLoader.isBeta then return end
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -46,8 +45,15 @@ function mod:OnEngage()
 	self:CDBar(424414, 5.2) -- Pierce Armor
 	self:CDBar(447270, 8.1) -- Hurl Spear
 	self:CDBar(424419, 12.0) -- Battle Cry
-	nextSavageMauling = t + 14.4
-	self:CDBar(447439, 14.4) -- Savage Mauling
+	nextSavageMauling = t + 13.0
+	self:CDBar(447439, 13.0) -- Savage Mauling
+end
+
+function mod:OnWipe()
+	local trashMod = BigWigs:GetBossModule("Priory of the Sacred Flame Trash", true)
+	if trashMod then
+		trashMod:CaptainDailcryWipe()
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -56,7 +62,7 @@ end
 
 function mod:BattleCry(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:CDBar(args.spellId, 30.3)
+	self:CDBar(args.spellId, 26.7)
 	self:PlaySound(args.spellId, "warning")
 end
 
@@ -78,7 +84,6 @@ function mod:BattleCrySuccess()
 		-- gains 50 energy if successful despite his energy gain still being paused.
 		energyGainedDuringSavageMauling = energyGainedDuringSavageMauling + 50
 	end
-	-- TODO the mini-bosses also get cooldown reduced on one of their abilities
 end
 
 function mod:HurlSpear(args)

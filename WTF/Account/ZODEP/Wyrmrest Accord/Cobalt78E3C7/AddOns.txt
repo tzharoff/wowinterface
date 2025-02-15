@@ -29,7 +29,7 @@ BigWigs_Plugins: enabled
 BigWigs_VaultOfTheIncarnates: disabled
 CopyPasta2: enabled
 Craftility: disabled
-CraftSim: disabled
+CraftSim: enabled
 DataStore: enabled
 DataStore_Keystones: enabled
 Details: disabled
@@ -91,8 +91,8 @@ TidyPlates_Grey: disabled
 TidyPlates_Neon: disabled
 TidyPlates_Quatre: disabled
 TomPoints: disabled
-TomTom: disabled
-TradeSkillMaster: disabled
+TomTom: enabled
+TradeSkillMaster: enabled
 TradeSkillMaster_AppHelper: enabled
 TrueStatValues: enabled
 VuhDo: enabled
